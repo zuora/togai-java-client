@@ -32,7 +32,7 @@ import java.io.Serializable;
  * Represents rate card of a price plan of usage type
  */
 @ApiModel(description = "Represents rate card of a price plan of usage type")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-26T12:56:18.144176+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RateCardUsageValue implements Serializable {
   private static final long serialVersionUID = 1L;
 

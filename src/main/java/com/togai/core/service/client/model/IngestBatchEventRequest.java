@@ -32,7 +32,7 @@ import java.io.Serializable;
  * Payload for ingesting batch events
  */
 @ApiModel(description = "Payload for ingesting batch events")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-26T12:56:18.144176+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class IngestBatchEventRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 

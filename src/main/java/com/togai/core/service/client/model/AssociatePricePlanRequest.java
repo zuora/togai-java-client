@@ -31,7 +31,7 @@ import java.io.Serializable;
  * Request to associate a price plan to an account
  */
 @ApiModel(description = "Request to associate a price plan to an account")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-26T12:56:18.144176+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AssociatePricePlanRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -42,6 +42,10 @@ public class AssociatePricePlanRequest implements Serializable {
   public static final String SERIALIZED_NAME_EFFECTIVE_FROM = "effectiveFrom";
   @SerializedName(SERIALIZED_NAME_EFFECTIVE_FROM)
   private LocalDate effectiveFrom;
+
+  public static final String SERIALIZED_NAME_EFFECTIVE_UNTIL = "effectiveUntil";
+  @SerializedName(SERIALIZED_NAME_EFFECTIVE_UNTIL)
+  private LocalDate effectiveUntil;
 
   public static final String SERIALIZED_NAME_RATE_CARD_OVERRIDE = "rateCardOverride";
   @SerializedName(SERIALIZED_NAME_RATE_CARD_OVERRIDE)
@@ -80,11 +84,11 @@ public class AssociatePricePlanRequest implements Serializable {
   }
 
    /**
-   * Date of effectiveness of the association. - Expected only if the account already has a price plan associated with it. - Date can only be startDate of any billing cycle of the currently associated price plan. 
+   * Date of effectiveness of the association. - Expected only if the account already has a price plan associated with it. 
    * @return effectiveFrom
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Date of effectiveness of the association. - Expected only if the account already has a price plan associated with it. - Date can only be startDate of any billing cycle of the currently associated price plan. ")
+  @ApiModelProperty(value = "Date of effectiveness of the association. - Expected only if the account already has a price plan associated with it. ")
 
   public LocalDate getEffectiveFrom() {
     return effectiveFrom;
@@ -93,6 +97,29 @@ public class AssociatePricePlanRequest implements Serializable {
 
   public void setEffectiveFrom(LocalDate effectiveFrom) {
     this.effectiveFrom = effectiveFrom;
+  }
+
+
+  public AssociatePricePlanRequest effectiveUntil(LocalDate effectiveUntil) {
+    
+    this.effectiveUntil = effectiveUntil;
+    return this;
+  }
+
+   /**
+   * Date until which the association must be effective. - Expected only if effectiveFrom is present. 
+   * @return effectiveUntil
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Date until which the association must be effective. - Expected only if effectiveFrom is present. ")
+
+  public LocalDate getEffectiveUntil() {
+    return effectiveUntil;
+  }
+
+
+  public void setEffectiveUntil(LocalDate effectiveUntil) {
+    this.effectiveUntil = effectiveUntil;
   }
 
 
@@ -130,12 +157,13 @@ public class AssociatePricePlanRequest implements Serializable {
     AssociatePricePlanRequest associatePricePlanRequest = (AssociatePricePlanRequest) o;
     return Objects.equals(this.pricePlanName, associatePricePlanRequest.pricePlanName) &&
         Objects.equals(this.effectiveFrom, associatePricePlanRequest.effectiveFrom) &&
+        Objects.equals(this.effectiveUntil, associatePricePlanRequest.effectiveUntil) &&
         Objects.equals(this.rateCardOverride, associatePricePlanRequest.rateCardOverride);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pricePlanName, effectiveFrom, rateCardOverride);
+    return Objects.hash(pricePlanName, effectiveFrom, effectiveUntil, rateCardOverride);
   }
 
   @Override
@@ -144,6 +172,7 @@ public class AssociatePricePlanRequest implements Serializable {
     sb.append("class AssociatePricePlanRequest {\n");
     sb.append("    pricePlanName: ").append(toIndentedString(pricePlanName)).append("\n");
     sb.append("    effectiveFrom: ").append(toIndentedString(effectiveFrom)).append("\n");
+    sb.append("    effectiveUntil: ").append(toIndentedString(effectiveUntil)).append("\n");
     sb.append("    rateCardOverride: ").append(toIndentedString(rateCardOverride)).append("\n");
     sb.append("}");
     return sb.toString();

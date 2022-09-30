@@ -31,7 +31,7 @@ import java.io.Serializable;
  * Represents effectiveness period and config of a price plan. i.e, price plan bound by time.
  */
 @ApiModel(description = "Represents effectiveness period and config of a price plan. i.e, price plan bound by time.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-26T12:56:18.144176+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PricingSchedule implements Serializable {
   private static final long serialVersionUID = 1L;
 

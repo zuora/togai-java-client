@@ -35,7 +35,7 @@ import java.io.Serializable;
 /**
  * EventSchemaListData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-26T12:56:18.144176+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EventSchemaListData implements Serializable {
   private static final long serialVersionUID = 1L;
 

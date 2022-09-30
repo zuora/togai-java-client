@@ -33,7 +33,7 @@ import java.io.Serializable;
  * Data of price plan list
  */
 @ApiModel(description = "Data of price plan list")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-26T12:56:18.144176+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PricePlanListData implements Serializable {
   private static final long serialVersionUID = 1L;
 

@@ -31,7 +31,7 @@ import java.io.Serializable;
  * Request to update a price plan
  */
 @ApiModel(description = "Request to update a price plan")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-26T12:56:18.144176+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdatePricePlanRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 

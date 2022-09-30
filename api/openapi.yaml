@@ -3939,6 +3939,7 @@ components:
       value:
         pricePlanName: Rides - Pro plan
         effectiveFrom: 2022-07-04
+        effectiveUntil: 2022-10-04
     Customer:
       summary: A sample Customer
       value:
@@ -4176,7 +4177,9 @@ components:
           pricingCycle:
             interval: MONTHLY
             startType: STATIC
-            offsetDays: 4
+            startOffset:
+              dayOffset: 4
+              monthOffset: NIL
             gracePeriod: 3
           usageMeters:
           - ride_completed
@@ -4789,21 +4792,21 @@ components:
                   name: EVENTS
                   aggregationPeriod: DAY
                   filters:
-                  - filterName: ACCOUNT_ID
-                    filterValues:
+                  - fieldName: ACCOUNT_ID
+                    fieldValues:
                     - account#1
-                  - filterName: CUSTOMER_ID
-                    filterValues:
+                  - fieldName: CUSTOMER_ID
+                    fieldValues:
                     - customer#1
-                  - filterName: EVENT_STATUS
-                    filterValues:
-                    - ALL
+                  - fieldName: EVENT_STATUS
+                    fieldValues:
+                    - PROCESSED
                 - id: m2
                   name: USAGE
                   aggregationPeriod: MONTH
                   filters:
-                  - filterName: CUSTOMER_ID
-                    filterValues:
+                  - fieldName: CUSTOMER_ID
+                    fieldValues:
                     - customer#1
           schema:
             $ref: '#/components/schemas/GetMetricsRequest'
@@ -5537,6 +5540,7 @@ components:
       additionalProperties: false
       description: Request to associate a price plan to an account
       example:
+        effectiveUntil: 2000-01-23
         pricePlanName: pricePlanName
         rateCardOverride:
           usageConfig:
@@ -5605,7 +5609,12 @@ components:
           description: |
             Date of effectiveness of the association.
             - Expected only if the account already has a price plan associated with it.
-            - Date can only be startDate of any billing cycle of the currently associated price plan.
+          format: date
+          type: string
+        effectiveUntil:
+          description: |
+            Date until which the association must be effective.
+            - Expected only if effectiveFrom is present.
           format: date
           type: string
         rateCardOverride:
@@ -8035,22 +8044,24 @@ components:
         \ - number of days from beginning of month and\n - monthOffset - number of\
         \ months from beginning of interval (quarter, half-year or year)\nNote: If\
         \ a day with offset doesn't exist for a month, closest previous day is considered\n\
-        Examples:\nMONTHLY -\n  - {dayOffset: 1} - First day of every month\n  - {dayOffset:\
-        \ 12} - 12th of every month\n  - {dayOffset: 28} - 28th of every month. i.e,\
-        \ 28th of Jan, 28th of Feb, ...\n  - {dayOffset: 30} - 30th of every month.\
-        \ i.e, 28th of Jan, 28th of Feb, ...\n  - {dayOffset: LAST} - Last day of\
-        \ every month. i.e, 31st of Jan, 28th of Feb, ...\nQUARTERLY\n  - {dayOffset:\
-        \ 15, monthOffset: FIRST} - 15th Jan, 15th Apr, 15th Jul and 15th Oct\n  -\
-        \ {dayOffset: 15, monthOffset: 2} - 15th Feb, 15th May, 15th Aug and 15th\
-        \ Nov\n  - {dayOffset: 15, monthOffset: LAST} - 15th Mar, 15th Jun, 15th Sep\
-        \ and 15th Dec\n  - {dayOffset: LAST, monthOffset: FIRST} - 31st Jan, 30th\
-        \ Apr, 30th Jul and 31th Oct\nHALF_YEARLY\n  - {dayOffset: 15, monthOffset:\
-        \ FIRST} - 15th Jan and 15th Jul\n  - {dayOffset: 15, monthOffset: 4} - 15th\
-        \ Apr and 15th Oct\n  - {dayOffset: 15, monthOffset: LAST} - 15th Jun and\
-        \ 15th Dec\nANNUALLY\n  - {dayOffset: 15, monthOffset: FIRST} - 15th Jan\n\
-        \  - {dayOffset: 15, monthOffset: 1} - 15th Jan\n  - {dayOffset: LAST, monthOffset:\
-        \ 2} - 29th Feb on Leap year, 28th otherwise \n  - {dayOffset: 15, monthOffset:\
-        \ 8} - 15th Aug\n  - {dayOffset: 15, monthOffset: LAST} - 15th Dec\n"
+        Examples:\nMONTHLY -\n  - {dayOffset: 1, monthOffset: NIL} - First day of\
+        \ every month\n  - {dayOffset: 12, monthOffset: NIL} - 12th of every month\n\
+        \  - {dayOffset: 28, monthOffset: NIL} - 28th of every month. i.e, 28th of\
+        \ Jan, 28th of Feb, ...\n  - {dayOffset: 30, monthOffset: NIL} - 30th of every\
+        \ month. i.e, 28th of Jan, 28th of Feb, ...\n  - {dayOffset: LAST, monthOffset:\
+        \ NIL} - Last day of every month. i.e, 31st of Jan, 28th of Feb, ...\nQUARTERLY\n\
+        \  - {dayOffset: 15, monthOffset: FIRST} - 15th Jan, 15th Apr, 15th Jul and\
+        \ 15th Oct\n  - {dayOffset: 15, monthOffset: 2} - 15th Feb, 15th May, 15th\
+        \ Aug and 15th Nov\n  - {dayOffset: 15, monthOffset: LAST} - 15th Mar, 15th\
+        \ Jun, 15th Sep and 15th Dec\n  - {dayOffset: LAST, monthOffset: FIRST} -\
+        \ 31st Jan, 30th Apr, 30th Jul and 31th Oct\nHALF_YEARLY\n  - {dayOffset:\
+        \ 15, monthOffset: FIRST} - 15th Jan and 15th Jul\n  - {dayOffset: 15, monthOffset:\
+        \ 4} - 15th Apr and 15th Oct\n  - {dayOffset: 15, monthOffset: LAST} - 15th\
+        \ Jun and 15th Dec\nANNUALLY\n  - {dayOffset: 15, monthOffset: FIRST} - 15th\
+        \ Jan\n  - {dayOffset: 15, monthOffset: 1} - 15th Jan\n  - {dayOffset: LAST,\
+        \ monthOffset: 2} - 29th Feb on Leap year, 28th otherwise \n  - {dayOffset:\
+        \ 15, monthOffset: 8} - 15th Aug\n  - {dayOffset: 15, monthOffset: LAST} -\
+        \ 15th Dec\n"
       example:
         dayOffset: dayOffset
         monthOffset: monthOffset
@@ -8066,6 +8077,7 @@ components:
           type: string
       required:
       - dayOffset
+      - monthOffset
       type: object
     RateCardUsage_value:
       description: Represents rate card of a price plan of usage type

@@ -29,7 +29,7 @@ import java.io.Serializable;
  * Request to update usage meter
  */
 @ApiModel(description = "Request to update usage meter")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-26T12:56:18.144176+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateUsageMeterRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 

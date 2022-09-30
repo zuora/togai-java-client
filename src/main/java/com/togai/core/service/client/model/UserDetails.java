@@ -29,7 +29,7 @@ import java.io.Serializable;
  * Root user details for the organization
  */
 @ApiModel(description = "Root user details for the organization")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-26T12:56:18.144176+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UserDetails implements Serializable {
   private static final long serialVersionUID = 1L;
 

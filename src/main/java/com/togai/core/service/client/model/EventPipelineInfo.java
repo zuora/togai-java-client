@@ -36,7 +36,7 @@ import java.io.Serializable;
  * Information related to ingestion of an event
  */
 @ApiModel(description = "Information related to ingestion of an event")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-26T12:56:18.144176+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EventPipelineInfo implements Serializable {
   private static final long serialVersionUID = 1L;
 

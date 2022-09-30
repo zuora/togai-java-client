@@ -33,7 +33,7 @@ import java.io.Serializable;
  * Object representing a single metrics query
  */
 @ApiModel(description = "Object representing a single metrics query")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-26T12:56:18.144176+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class MetricQuery implements Serializable {
   private static final long serialVersionUID = 1L;
 

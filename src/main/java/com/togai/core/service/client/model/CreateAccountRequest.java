@@ -31,7 +31,7 @@ import java.io.Serializable;
  * Payload to create account
  */
 @ApiModel(description = "Payload to create account")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-26T12:56:18.144176+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateAccountRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 

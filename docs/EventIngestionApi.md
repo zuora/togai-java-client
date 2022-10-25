@@ -4,13 +4,12 @@ All URIs are relative to *https://sandbox-api.togai.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**ingest**](EventIngestionApi.md#ingest) | **POST** ingest | Ingest events to Togai |
-| [**ingestBatch**](EventIngestionApi.md#ingestBatch) | **POST** ingestBatch | Ingest events to Togai in batch |
+| [**ingest**](EventIngestionApi.md#ingest) | **POST** /ingest | Ingest events to Togai |
+| [**ingestBatch**](EventIngestionApi.md#ingestBatch) | **POST** /ingestBatch | Ingest events to Togai in batch |
 
 
-
-## ingest
-
+<a name="ingest"></a>
+# **ingest**
 > ingest(ingestEventRequest)
 
 Ingest events to Togai
@@ -18,42 +17,40 @@ Ingest events to Togai
 API to ingest your application event to Togai for billing and usage analytics. To know the limits on the ingestion api, check our docs - https://togai.com/docs/limits.
 
 ### Example
-
 ```java
 // Import classes:
-import com.togai.core.service.client.ApiClient;
-import com.togai.core.service.client.ApiException;
-import com.togai.core.service.client.Configuration;
-import com.togai.core.service.client.auth.*;
-import com.togai.core.service.client.models.*;
-import com.togai.core.service.client.EventIngestionApi;
+import com.togai.client.ApiClient;
+import com.togai.client.ApiException;
+import com.togai.client.Configuration;
+import com.togai.client.auth.*;
+import com.togai.client.models.*;
+import com.togai.client.api.EventIngestionApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://sandbox-api.togai.com");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://sandbox-api.togai.com");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
 
-        EventIngestionApi apiInstance = new EventIngestionApi(defaultClient);
-        IngestEventRequest ingestEventRequest = new IngestEventRequest(); // IngestEventRequest | Request body to ingest events to Togai usage and billing management service.
-        try {
-            apiInstance.ingest(ingestEventRequest);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling EventIngestionApi#ingest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    EventIngestionApi apiInstance = new EventIngestionApi(defaultClient);
+    IngestEventRequest ingestEventRequest = new IngestEventRequest(); // IngestEventRequest | Request body to ingest events to Togai usage and billing management service.
+    try {
+      apiInstance.ingest(ingestEventRequest);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling EventIngestionApi#ingest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -69,9 +66,8 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -84,9 +80,8 @@ null (empty response body)
 | **503** | Service is currently unavailable to process the request. |  -  |
 | **0** | Error response |  -  |
 
-
-## ingestBatch
-
+<a name="ingestBatch"></a>
+# **ingestBatch**
 > IngestBatchEventResponse ingestBatch(ingestBatchEventRequest)
 
 Ingest events to Togai in batch
@@ -94,43 +89,41 @@ Ingest events to Togai in batch
 API to ingest your application event in batch to Togai for billing and usage analytics. To know the limits on the ingestion api, check our docs - https://togai.com/docs/limits.
 
 ### Example
-
 ```java
 // Import classes:
-import com.togai.core.service.client.ApiClient;
-import com.togai.core.service.client.ApiException;
-import com.togai.core.service.client.Configuration;
-import com.togai.core.service.client.auth.*;
-import com.togai.core.service.client.models.*;
-import com.togai.core.service.client.EventIngestionApi;
+import com.togai.client.ApiClient;
+import com.togai.client.ApiException;
+import com.togai.client.Configuration;
+import com.togai.client.auth.*;
+import com.togai.client.models.*;
+import com.togai.client.api.EventIngestionApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://sandbox-api.togai.com");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://sandbox-api.togai.com");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
 
-        EventIngestionApi apiInstance = new EventIngestionApi(defaultClient);
-        IngestBatchEventRequest ingestBatchEventRequest = new IngestBatchEventRequest(); // IngestBatchEventRequest | Request body to ingest events in batch to Togai usage and billing management service.
-        try {
-            IngestBatchEventResponse result = apiInstance.ingestBatch(ingestBatchEventRequest);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling EventIngestionApi#ingestBatch");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    EventIngestionApi apiInstance = new EventIngestionApi(defaultClient);
+    IngestBatchEventRequest ingestBatchEventRequest = new IngestBatchEventRequest(); // IngestBatchEventRequest | Request body to ingest events in batch to Togai usage and billing management service.
+    try {
+      IngestBatchEventResponse result = apiInstance.ingestBatch(ingestBatchEventRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling EventIngestionApi#ingestBatch");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -146,9 +139,8 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

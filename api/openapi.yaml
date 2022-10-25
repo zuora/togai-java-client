@@ -7,7 +7,7 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   title: Togai Apis
-  version: 1.0.0
+  version: "1.0"
 externalDocs:
   description: Find out more about Togai
   url: https://docs.togai.com/docs
@@ -18,13 +18,15 @@ security:
 - bearerAuth: []
 tags:
 - description: Customer level calls
-  name: customers
+  name: Customers
 - description: Account level calls
-  name: accounts
-- description: Event level calls
-  name: events
-- name: usage_meters
-- name: price_plans
+  name: Accounts
+- description: Event Schema level calls
+  name: Event Schemas
+- description: Usage Meter level calls
+  name: Usage Meters
+- description: Price Plan level calls
+  name: Price Plans
 - description: APIs for getting events ingested in Togai
   externalDocs:
     description: docs
@@ -135,7 +137,7 @@ paths:
           description: Error response
       summary: List customers
       tags:
-      - customers
+      - Customers
       x-accepts: application/json
     post:
       description: Create a customer and a default account corresponding to it
@@ -220,7 +222,7 @@ paths:
           description: Error response
       summary: Create a customer
       tags:
-      - customers
+      - Customers
       x-content-type: application/json
       x-accepts: application/json
   /customers/{customer_id}:
@@ -314,7 +316,7 @@ paths:
           description: Error response
       summary: Delete a customer
       tags:
-      - customers
+      - Customers
       x-accepts: application/json
     get:
       description: Get a customer by id
@@ -409,7 +411,7 @@ paths:
           description: Error response
       summary: Get a customer
       tags:
-      - customers
+      - Customers
       x-accepts: application/json
     patch:
       description: Update a customer by id
@@ -506,7 +508,7 @@ paths:
           description: Error response
       summary: Update a customer
       tags:
-      - customers
+      - Customers
       x-content-type: application/json
       x-accepts: application/json
   /customers/{customer_id}/accounts:
@@ -619,7 +621,7 @@ paths:
           description: Error response
       summary: List accounts of customer
       tags:
-      - accounts
+      - Accounts
       x-accepts: application/json
     post:
       description: Create an account
@@ -716,7 +718,7 @@ paths:
           description: Error response
       summary: Create an account
       tags:
-      - accounts
+      - Accounts
       x-content-type: application/json
       x-accepts: application/json
   /customers/{customer_id}/accounts/{account_id}:
@@ -821,7 +823,7 @@ paths:
           description: Error response
       summary: Delete an account
       tags:
-      - accounts
+      - Accounts
       x-accepts: application/json
     get:
       description: Get an account
@@ -927,7 +929,7 @@ paths:
           description: Error response
       summary: Get an account
       tags:
-      - accounts
+      - Accounts
       x-accepts: application/json
     patch:
       description: Update an account by id
@@ -1035,7 +1037,7 @@ paths:
           description: Error response
       summary: Update an account
       tags:
-      - accounts
+      - Accounts
       x-content-type: application/json
       x-accepts: application/json
   /customers/{customer_id}/accounts/{account_id}/add_aliases:
@@ -1145,7 +1147,7 @@ paths:
           description: Error response
       summary: Add Aliases to account
       tags:
-      - accounts
+      - Accounts
       x-content-type: application/json
       x-accepts: application/json
   /customers/{customer_id}/accounts/{account_id}/remove_aliases:
@@ -1255,7 +1257,7 @@ paths:
           description: Error response
       summary: Remove Aliases to account
       tags:
-      - accounts
+      - Accounts
       x-content-type: application/json
       x-accepts: application/json
   /customers/{customer_id}/accounts/{account_id}/price_plans:
@@ -1365,7 +1367,7 @@ paths:
           description: Error response
       summary: Associate a plan to an account
       tags:
-      - accounts
+      - Accounts
       x-content-type: application/json
       x-accepts: application/json
   /event_schema:
@@ -1486,7 +1488,7 @@ paths:
           description: Error response
       summary: List event schemas
       tags:
-      - events
+      - Event Schemas
       x-accepts: application/json
     post:
       description: Create an event schema
@@ -1571,7 +1573,7 @@ paths:
           description: Error response
       summary: Create an event schema
       tags:
-      - events
+      - Event Schemas
       x-content-type: application/json
       x-accepts: application/json
   /event_schema/{event_schema_name}:
@@ -1665,7 +1667,7 @@ paths:
           description: Error response
       summary: Delete an event schema
       tags:
-      - events
+      - Event Schemas
       x-accepts: application/json
     get:
       description: Get an event schema
@@ -1773,7 +1775,7 @@ paths:
           description: Error response
       summary: Get an event schema
       tags:
-      - events
+      - Event Schemas
       x-accepts: application/json
     patch:
       description: Update an event schema
@@ -1870,7 +1872,7 @@ paths:
           description: Error response
       summary: Update an event schema
       tags:
-      - events
+      - Event Schemas
       x-content-type: application/json
       x-accepts: application/json
   /event_schema/{event_schema_name}/versions:
@@ -1967,7 +1969,7 @@ paths:
           description: Error response
       summary: List all event schema versions
       tags:
-      - events
+      - Event Schemas
       x-accepts: application/json
   /event_schema/{event_schema_name}/activate:
     post:
@@ -2063,7 +2065,7 @@ paths:
           description: Error response
       summary: Activate an event schema
       tags:
-      - events
+      - Event Schemas
       x-accepts: application/json
   /event_schema/{event_schema_name}/deactivate:
     post:
@@ -2159,7 +2161,7 @@ paths:
           description: Error response
       summary: Deactivate an event schema
       tags:
-      - events
+      - Event Schemas
       x-accepts: application/json
   /event_schema/{event_schema_name}/usage_meters:
     get:
@@ -2298,7 +2300,7 @@ paths:
           description: Error response
       summary: List usage meters for event schema
       tags:
-      - usage_meters
+      - Usage Meters
       x-accepts: application/json
     post:
       description: Create an usage meter
@@ -2395,7 +2397,7 @@ paths:
           description: Error response
       summary: Create an usage meter
       tags:
-      - usage_meters
+      - Usage Meters
       x-content-type: application/json
       x-accepts: application/json
   /event_schema/{event_schema_name}/usage_meters/{usage_meter_name}:
@@ -2503,7 +2505,7 @@ paths:
           description: Error response
       summary: Get usage meter
       tags:
-      - usage_meters
+      - Usage Meters
       x-accepts: application/json
     patch:
       description: Update an usage meter
@@ -2611,7 +2613,7 @@ paths:
           description: Error response
       summary: Update an usage meter
       tags:
-      - usage_meters
+      - Usage Meters
       x-content-type: application/json
       x-accepts: application/json
   /event_schema/{event_schema_name}/usage_meters/{usage_meter_name}/activate:
@@ -2719,7 +2721,7 @@ paths:
           description: Error response
       summary: Activate usage meter
       tags:
-      - usage_meters
+      - Usage Meters
       x-accepts: application/json
   /event_schema/{event_schema_name}/usage_meters/{usage_meter_name}/deactivate:
     post:
@@ -2826,7 +2828,7 @@ paths:
           description: Error response
       summary: Deactivate usage meter
       tags:
-      - usage_meters
+      - Usage Meters
       x-accepts: application/json
   /usage_meter/{usage_meter_name}:
     delete:
@@ -2919,7 +2921,7 @@ paths:
           description: Error response
       summary: Delete an Usage Meter
       tags:
-      - usage_meters
+      - Usage Meters
       x-accepts: application/json
   /price_plans:
     get:
@@ -3020,7 +3022,7 @@ paths:
           description: Error response
       summary: List price plans
       tags:
-      - price_plans
+      - Price Plans
       x-accepts: application/json
     post:
       description: Create a price plan
@@ -3105,7 +3107,7 @@ paths:
           description: Error response
       summary: Create a price plan
       tags:
-      - price_plans
+      - Price Plans
       x-content-type: application/json
       x-accepts: application/json
   /price_plans/{price_plan_name}:
@@ -3202,7 +3204,7 @@ paths:
           description: Error response
       summary: Get a price plan
       tags:
-      - price_plans
+      - Price Plans
       x-accepts: application/json
     patch:
       description: Update a price plan
@@ -3299,7 +3301,7 @@ paths:
           description: Error response
       summary: Update a price plan
       tags:
-      - price_plans
+      - Price Plans
       x-content-type: application/json
       x-accepts: application/json
   /price_plans/{price_plan_name}/activate:
@@ -3396,7 +3398,7 @@ paths:
           description: Error response
       summary: Activate a price plan
       tags:
-      - price_plans
+      - Price Plans
       x-accepts: application/json
   /ingest:
     post:
@@ -3861,11 +3863,15 @@ components:
         description: Cab rides
         type: COUNTER
         aggregation: SUM
-        filters: "\"{\\\"and\\\": [{\\\"in\\\": [{\\\"var\\\": \\\"dimensions.city\\\
-          \"}, \\\"chennai\\\", \\\"mumbai\\\"]}, {\\\"or\\\": [{\\\">\\\": [{\\\"\
-          var\\\": \\\"attributes.distance\\\"}, 100]},{\\\"<\\\": [{\\\"var\\\":\
-          \ \\\"attributes.distance\\\"}, 20]}]}]}\"\n"
-        computation: "{\"*\":[{\"var\":\"attributes.distance\"}, 0.4]}"
+        computations:
+        - matcher: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"},\
+            \ \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\":\
+            \ \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
+            }, 20]}\n    ]\n  ]\n}\n"
+          computation:
+            '*':
+            - var: attributes.distance
+            - 0.4
     CreatePricePlanRequestUsage:
       value:
         name: Rides - Pro plan
@@ -4017,14 +4023,12 @@ components:
           aggregation: COUNT
           version: 1
           status: DRAFT
-          filters: "{\n    \"and\": [\n      {\"in\": [{\"var\": \"dimension.city\"\
-            }, \"chennai\", \"mumbai\"]},\n      \"or\": [\n          {\">\": [{\"\
-            var\": \"attribute.distance\"}, 100]},\n          {\"<\": [{\"var\": \"\
-            attribute.distance\"}, 20]}\n      ]\n    ]\n}\n"
-          computation:
-            '*':
-            - var: attributes.distance
-            - 0.4
+          computations:
+          - matcher: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"\
+              }, \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\"\
+              : \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
+              }, 20]}\n    ]\n  ]\n}\n"
+            computation: "1"
         nextToken: eyJsYXN0SXRlbUlkIjogInN0cmluZyIsICJwYWdlU2l6ZSI6IDEyMywgInNvcnRPcmRlciI6ICJhc2MifQ==
         context:
           pageSize: 10
@@ -4102,14 +4106,12 @@ components:
         type: COUNTER
         aggregation: COUNT
         status: DRAFT
-        filters: "{\n    \"and\": [\n      {\"in\": [{\"var\": \"dimension.city\"\
-          }, \"chennai\", \"mumbai\"]},\n      \"or\": [\n          {\">\": [{\"var\"\
-          : \"attribute.distance\"}, 100]},\n          {\"<\": [{\"var\": \"attribute.distance\"\
-          }, 20]}\n      ]\n    ]\n}\n"
-        computation:
-          '*':
-          - var: attributes.distance
-          - 0.4
+        computations:
+        - matcher: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"},\
+            \ \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\":\
+            \ \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
+            }, 20]}\n    ]\n  ]\n}\n"
+          computation: "1"
     PricePlan:
       value:
         name: Rides - Pro plan
@@ -5262,15 +5264,23 @@ components:
       additionalProperties: false
       description: Request to create usage meter
       example:
+        computations:
+        - id: id
+          matcher: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"},\
+            \ \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\":\
+            \ \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
+            }, 20]}\n    ]\n  ]\n}\n"
+          computation: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
+        - id: id
+          matcher: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"},\
+            \ \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\":\
+            \ \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
+            }, 20]}\n    ]\n  ]\n}\n"
+          computation: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
         name: name
         description: description
         aggregation: DRAFT
-        filters: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"}, \"\
-          chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\": \"attribute.distance\"\
-          }, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"}, 20]}\n    ]\n\
-          \  ]\n}\n"
         type: COUNTER
-        computation: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
       properties:
         name:
           description: Name of the event. Must be unique for an organization.
@@ -5296,20 +5306,10 @@ components:
           - SUM
           example: DRAFT
           type: string
-        filters:
-          description: |
-            Filters to be applied on event before matching to usage meter in JSONLogic format (https://jsonlogic.com/)
-          example: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"},\
-            \ \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\":\
-            \ \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
-            }, 20]}\n    ]\n  ]\n}\n"
-          maxLength: 1500
-          type: string
-        computation:
-          description: Computation. Has no effect if aggregation is 'count'
-          example: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
-          maxLength: 500
-          type: string
+        computations:
+          items:
+            $ref: '#/components/schemas/Computation'
+          type: array
       required:
       - aggregation
       - name
@@ -5319,14 +5319,22 @@ components:
       additionalProperties: false
       description: Request to update usage meter
       example:
+        computations:
+        - id: id
+          matcher: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"},\
+            \ \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\":\
+            \ \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
+            }, 20]}\n    ]\n  ]\n}\n"
+          computation: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
+        - id: id
+          matcher: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"},\
+            \ \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\":\
+            \ \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
+            }, 20]}\n    ]\n  ]\n}\n"
+          computation: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
         description: description
         aggregation: COUNT
-        filters: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"}, \"\
-          chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\": \"attribute.distance\"\
-          }, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"}, 20]}\n    ]\n\
-          \  ]\n}\n"
         type: COUNTER
-        computation: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
       properties:
         description:
           description: Description of the event
@@ -5351,20 +5359,10 @@ components:
           - SUM
           example: COUNT
           type: string
-        filters:
-          description: |
-            Filters to be applied on event before matching to usage meter in JSONLogic format (https://jsonlogic.com/)
-          example: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"},\
-            \ \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\":\
-            \ \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
-            }, 20]}\n    ]\n  ]\n}\n"
-          maxLength: 1500
-          type: string
-        computation:
-          description: Computation. Has no effect if aggregation is 'count'
-          example: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
-          maxLength: 500
-          type: string
+        computations:
+          items:
+            $ref: '#/components/schemas/Computation'
+          type: array
       required:
       - aggregation
       - type
@@ -5810,30 +5808,34 @@ components:
       example:
         data:
         - createdAt: 2000-01-23T04:56:07.000+00:00
+          computations:
+          - id: id
+            matcher: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"\
+              }, \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\"\
+              : \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
+              }, 20]}\n    ]\n  ]\n}\n"
+            computation: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
           name: rides-usage
           description: Meter to track cab rides
           aggregation: COUNT
-          filters: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"},\
-            \ \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\":\
-            \ \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
-            }, 20]}\n    ]\n  ]\n}\n"
           type: COUNTER
           lastActivatedAt: 2000-01-23T04:56:07.000+00:00
           status: DRAFT
-          computation: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
           updatedAt: 2000-01-23T04:56:07.000+00:00
         - createdAt: 2000-01-23T04:56:07.000+00:00
+          computations:
+          - id: id
+            matcher: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"\
+              }, \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\"\
+              : \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
+              }, 20]}\n    ]\n  ]\n}\n"
+            computation: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
           name: rides-usage
           description: Meter to track cab rides
           aggregation: COUNT
-          filters: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"},\
-            \ \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\":\
-            \ \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
-            }, 20]}\n    ]\n  ]\n}\n"
           type: COUNTER
           lastActivatedAt: 2000-01-23T04:56:07.000+00:00
           status: DRAFT
-          computation: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
           updatedAt: 2000-01-23T04:56:07.000+00:00
         nextToken: nextToken
         context:
@@ -6383,17 +6385,19 @@ components:
       description: Structure of usage meter
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
+        computations:
+        - id: id
+          matcher: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"},\
+            \ \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\":\
+            \ \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
+            }, 20]}\n    ]\n  ]\n}\n"
+          computation: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
         name: rides-usage
         description: Meter to track cab rides
         aggregation: COUNT
-        filters: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"}, \"\
-          chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\": \"attribute.distance\"\
-          }, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"}, 20]}\n    ]\n\
-          \  ]\n}\n"
         type: COUNTER
         lastActivatedAt: 2000-01-23T04:56:07.000+00:00
         status: DRAFT
-        computation: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         name:
@@ -6430,20 +6434,12 @@ components:
           - SUM
           example: COUNT
           type: string
-        filters:
-          description: |
-            Filters to be applied on event before matching to usage meter in JSONLogic format (https://jsonlogic.com/)
-          example: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"},\
-            \ \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\":\
-            \ \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
-            }, 20]}\n    ]\n  ]\n}\n"
-          maxLength: 1500
-          type: string
-        computation:
-          description: Computation. Has no effect if aggregation is 'count'
-          example: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
-          maxLength: 500
-          type: string
+        computations:
+          items:
+            $ref: '#/components/schemas/Computation'
+          maxItems: 1
+          minItems: 0
+          type: array
         createdAt:
           format: date-time
           type: string
@@ -6457,6 +6453,39 @@ components:
       - aggregation
       - name
       - type
+      type: object
+    Computation:
+      example:
+        id: id
+        matcher: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"}, \"\
+          chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\": \"attribute.distance\"\
+          }, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"}, 20]}\n    ]\n\
+          \  ]\n}\n"
+        computation: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
+      properties:
+        id:
+          description: Optional identifier describing the matcher and computation
+            pair
+          maxLength: 50
+          type: string
+        matcher:
+          description: |
+            Condition to be applied on event. Upon matching it the corresponding computation will be considered for usage_meter unit calculation. The result of the matcher needs to be truthy (https://jsonlogic.com/truthy.html) in order to be considered as a match.
+          example: "{\n  \"and\": [\n    {\"in\": [{\"var\": \"dimension.city\"},\
+            \ \"chennai\", \"mumbai\"]},\n    \"or\": [\n      {\">\": [{\"var\":\
+            \ \"attribute.distance\"}, 100]},\n      {\"<\": [{\"var\": \"attribute.distance\"\
+            }, 20]}\n    ]\n  ]\n}\n"
+          maxLength: 1500
+          type: string
+        computation:
+          description: "Computation to be applied on an event if it matches the matcher\
+            \ In case of a COUNT aggregation type, computation should be passed as\
+            \ '1'\n"
+          example: "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}"
+          maxLength: 500
+          type: string
+      required:
+      - computation
       type: object
     PaginationOptions:
       additionalProperties: false

@@ -12,8 +12,7 @@ Request to create usage meter
 |**description** | **String** | Description of the event |  [optional] |
 |**type** | [**TypeEnum**](#TypeEnum) | Type of usage meter |  |
 |**aggregation** | [**AggregationEnum**](#AggregationEnum) | Aggregation to be applied on usage meter result |  |
-|**filters** | **String** | Filters to be applied on event before matching to usage meter in JSONLogic format (https://jsonlogic.com/)  |  [optional] |
-|**computation** | **String** | Computation. Has no effect if aggregation is &#39;count&#39; |  [optional] |
+|**computations** | [**List&lt;Computation&gt;**](Computation.md) |  |  [optional] |
 
 
 

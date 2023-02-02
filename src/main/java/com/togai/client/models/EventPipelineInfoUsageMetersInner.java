@@ -53,6 +53,10 @@ import com.togai.client.JSON;
 public class EventPipelineInfoUsageMetersInner implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
@@ -118,6 +122,29 @@ public class EventPipelineInfoUsageMetersInner implements Serializable {
 
   public EventPipelineInfoUsageMetersInner() {
   }
+
+  public EventPipelineInfoUsageMetersInner id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Get id
+   * @return id
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
 
   public EventPipelineInfoUsageMetersInner name(String name) {
     
@@ -221,7 +248,8 @@ public class EventPipelineInfoUsageMetersInner implements Serializable {
       return false;
     }
     EventPipelineInfoUsageMetersInner eventPipelineInfoUsageMetersInner = (EventPipelineInfoUsageMetersInner) o;
-    return Objects.equals(this.name, eventPipelineInfoUsageMetersInner.name) &&
+    return Objects.equals(this.id, eventPipelineInfoUsageMetersInner.id) &&
+        Objects.equals(this.name, eventPipelineInfoUsageMetersInner.name) &&
         Objects.equals(this.version, eventPipelineInfoUsageMetersInner.version) &&
         Objects.equals(this.status, eventPipelineInfoUsageMetersInner.status) &&
         Objects.equals(this.units, eventPipelineInfoUsageMetersInner.units);
@@ -229,13 +257,14 @@ public class EventPipelineInfoUsageMetersInner implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, version, status, units);
+    return Objects.hash(id, name, version, status, units);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EventPipelineInfoUsageMetersInner {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
@@ -262,6 +291,7 @@ public class EventPipelineInfoUsageMetersInner implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("id");
     openapiFields.add("name");
     openapiFields.add("version");
     openapiFields.add("status");
@@ -269,6 +299,7 @@ public class EventPipelineInfoUsageMetersInner implements Serializable {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("id");
     openapiRequiredFields.add("name");
     openapiRequiredFields.add("version");
     openapiRequiredFields.add("status");
@@ -302,6 +333,9 @@ public class EventPipelineInfoUsageMetersInner implements Serializable {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
+      }
+      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));

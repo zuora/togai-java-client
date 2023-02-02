@@ -8,12 +8,12 @@ Data of price plan list
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**id** | **String** | Identifier of price plan |  |
 |**name** | **String** | Name of the price plan |  |
 |**description** | **String** | Description of price plan |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | Status of Price plan |  |
-|**pricingCycle** | [**PricingCycle**](PricingCycle.md) |  |  |
-|**usageMeters** | **List&lt;String&gt;** | Usage meters name linked to the price plan |  |
-|**pricingType** | **String** | Pricing type of the price plan |  |
+|**usageMeters** | **List&lt;String&gt;** | Usage meters id linked to the price plan |  |
+|**pricePlanDetails** | [**PricePlanDetails**](PricePlanDetails.md) |  |  |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**updatedAt** | **OffsetDateTime** |  |  |
 

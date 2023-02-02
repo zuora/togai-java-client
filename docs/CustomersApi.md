@@ -1,6 +1,6 @@
 # CustomersApi
 
-All URIs are relative to *https://sandbox-api.togai.com*
+All URIs are relative to *https://api.togai.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -17,7 +17,7 @@ All URIs are relative to *https://sandbox-api.togai.com*
 
 Create a customer
 
-Create a customer and a default account corresponding to it
+This API let’s you to create customers and corresponding accounts.
 
 ### Example
 ```java
@@ -32,7 +32,7 @@ import com.togai.client.api.CustomersApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://sandbox-api.togai.com");
+    defaultClient.setBasePath("https://api.togai.com");
     
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -90,7 +90,7 @@ public class Example {
 
 Delete a customer
 
-Delete a customer by id
+This API let’s you to delete a customer using customer_id.
 
 ### Example
 ```java
@@ -105,7 +105,7 @@ import com.togai.client.api.CustomersApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://sandbox-api.togai.com");
+    defaultClient.setBasePath("https://api.togai.com");
     
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -163,7 +163,7 @@ public class Example {
 
 Get a customer
 
-Get a customer by id
+Get customer information using customer_id.
 
 ### Example
 ```java
@@ -178,7 +178,7 @@ import com.togai.client.api.CustomersApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://sandbox-api.togai.com");
+    defaultClient.setBasePath("https://api.togai.com");
     
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -236,7 +236,7 @@ public class Example {
 
 List customers
 
-List customers with pagination and sort
+Returns a list of customers with pagination and sort.
 
 ### Example
 ```java
@@ -251,15 +251,15 @@ import com.togai.client.api.CustomersApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://sandbox-api.togai.com");
+    defaultClient.setBasePath("https://api.togai.com");
     
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     CustomersApi apiInstance = new CustomersApi(defaultClient);
-    String nextToken = "eyJsYXN0SXRlbUlkIjogInN0cmluZyIsICJwYWdlU2l6ZSI6IDEyMywgInNvcnRPcmRlciI6ICJhc2MifQ=="; // String | 
-    String pageSize = "10"; // String | 
+    String nextToken = "eyJsYXN0SXRlbUlkIjogInN0cmluZyIsICJwYWdlU2l6ZSI6IDEwMCwgInNvcnRPcmRlciI6ICJhc2MifQ=="; // String | 
+    BigDecimal pageSize = new BigDecimal("10"); // BigDecimal | 
     try {
       CustomerPaginatedResponse result = apiInstance.getCustomers(nextToken, pageSize);
       System.out.println(result);
@@ -279,7 +279,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **nextToken** | **String**|  | [optional] |
-| **pageSize** | **String**|  | [optional] |
+| **pageSize** | **BigDecimal**|  | [optional] |
 
 ### Return type
 
@@ -311,7 +311,7 @@ public class Example {
 
 Update a customer
 
-Update a customer by id
+This API let’s you to update a customer’s information using customer_id.
 
 ### Example
 ```java
@@ -326,7 +326,7 @@ import com.togai.client.api.CustomersApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://sandbox-api.togai.com");
+    defaultClient.setBasePath("https://api.togai.com");
     
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");

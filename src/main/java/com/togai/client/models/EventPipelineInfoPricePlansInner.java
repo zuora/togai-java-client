@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.UUID;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -62,7 +61,11 @@ public class EventPipelineInfoPricePlansInner implements Serializable {
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-  private UUID id;
+  private String id;
+
+  public static final String SERIALIZED_NAME_SCHEDULE_ID = "scheduleId";
+  @SerializedName(SERIALIZED_NAME_SCHEDULE_ID)
+  private String scheduleId;
 
   public static final String SERIALIZED_NAME_CYCLE_START = "cycleStart";
   @SerializedName(SERIALIZED_NAME_CYCLE_START)
@@ -102,7 +105,7 @@ public class EventPipelineInfoPricePlansInner implements Serializable {
   }
 
 
-  public EventPipelineInfoPricePlansInner id(UUID id) {
+  public EventPipelineInfoPricePlansInner id(String id) {
     
     this.id = id;
     return this;
@@ -115,13 +118,36 @@ public class EventPipelineInfoPricePlansInner implements Serializable {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public UUID getId() {
+  public String getId() {
     return id;
   }
 
 
-  public void setId(UUID id) {
+  public void setId(String id) {
     this.id = id;
+  }
+
+
+  public EventPipelineInfoPricePlansInner scheduleId(String scheduleId) {
+    
+    this.scheduleId = scheduleId;
+    return this;
+  }
+
+   /**
+   * Get scheduleId
+   * @return scheduleId
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public String getScheduleId() {
+    return scheduleId;
+  }
+
+
+  public void setScheduleId(String scheduleId) {
+    this.scheduleId = scheduleId;
   }
 
 
@@ -214,6 +240,7 @@ public class EventPipelineInfoPricePlansInner implements Serializable {
     EventPipelineInfoPricePlansInner eventPipelineInfoPricePlansInner = (EventPipelineInfoPricePlansInner) o;
     return Objects.equals(this.name, eventPipelineInfoPricePlansInner.name) &&
         Objects.equals(this.id, eventPipelineInfoPricePlansInner.id) &&
+        Objects.equals(this.scheduleId, eventPipelineInfoPricePlansInner.scheduleId) &&
         Objects.equals(this.cycleStart, eventPipelineInfoPricePlansInner.cycleStart) &&
         Objects.equals(this.cycleEnd, eventPipelineInfoPricePlansInner.cycleEnd) &&
         Objects.equals(this.usageMeters, eventPipelineInfoPricePlansInner.usageMeters);
@@ -221,7 +248,7 @@ public class EventPipelineInfoPricePlansInner implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, id, cycleStart, cycleEnd, usageMeters);
+    return Objects.hash(name, id, scheduleId, cycleStart, cycleEnd, usageMeters);
   }
 
   @Override
@@ -230,6 +257,7 @@ public class EventPipelineInfoPricePlansInner implements Serializable {
     sb.append("class EventPipelineInfoPricePlansInner {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    scheduleId: ").append(toIndentedString(scheduleId)).append("\n");
     sb.append("    cycleStart: ").append(toIndentedString(cycleStart)).append("\n");
     sb.append("    cycleEnd: ").append(toIndentedString(cycleEnd)).append("\n");
     sb.append("    usageMeters: ").append(toIndentedString(usageMeters)).append("\n");
@@ -257,6 +285,7 @@ public class EventPipelineInfoPricePlansInner implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
     openapiFields.add("id");
+    openapiFields.add("scheduleId");
     openapiFields.add("cycleStart");
     openapiFields.add("cycleEnd");
     openapiFields.add("usageMeters");
@@ -265,6 +294,7 @@ public class EventPipelineInfoPricePlansInner implements Serializable {
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("name");
     openapiRequiredFields.add("id");
+    openapiRequiredFields.add("scheduleId");
     openapiRequiredFields.add("cycleStart");
     openapiRequiredFields.add("cycleEnd");
   }
@@ -303,6 +333,9 @@ public class EventPipelineInfoPricePlansInner implements Serializable {
       }
       if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if ((jsonObj.get("scheduleId") != null && !jsonObj.get("scheduleId").isJsonNull()) && !jsonObj.get("scheduleId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `scheduleId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("scheduleId").toString()));
       }
       // ensure the json data is an array
       if ((jsonObj.get("usageMeters") != null && !jsonObj.get("usageMeters").isJsonNull()) && !jsonObj.get("usageMeters").isJsonArray()) {

@@ -79,7 +79,7 @@ public class UpdateCustomerRequest implements Serializable {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Name of the customer")
+  @ApiModelProperty(example = "ACME Enterprise", value = "Name of the customer")
 
   public String getName() {
     return name;
@@ -102,7 +102,7 @@ public class UpdateCustomerRequest implements Serializable {
    * @return primaryEmail
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Primary email of the customer")
+  @ApiModelProperty(example = "admin@example.com", value = "Primary email of the customer")
 
   public String getPrimaryEmail() {
     return primaryEmail;
@@ -125,7 +125,7 @@ public class UpdateCustomerRequest implements Serializable {
    * @return billingAddress
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "billing address of the customer")
+  @ApiModelProperty(example = "201 Bleeker Street", value = "billing address of the customer")
 
   public String getBillingAddress() {
     return billingAddress;

@@ -8,6 +8,7 @@ Structure of usage meter
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**id** | **String** | Identifier of the usage meter |  |
 |**name** | **String** | Name of the usage meter |  |
 |**description** | **String** |  |  [optional] |
 |**type** | [**TypeEnum**](#TypeEnum) | Type of usage meter |  |
@@ -25,8 +26,6 @@ Structure of usage meter
 | Name | Value |
 |---- | -----|
 | COUNTER | &quot;COUNTER&quot; |
-| GAUGE | &quot;GAUGE&quot; |
-| TIMER | &quot;TIMER&quot; |
 
 
 

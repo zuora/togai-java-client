@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.togai.client.models.RateCard;
+import com.togai.client.models.PricePlanDetailsOverride;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -55,13 +55,17 @@ import com.togai.client.JSON;
 public class PlanOverride implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_PRICE_PLAN_ID = "pricePlanId";
+  @SerializedName(SERIALIZED_NAME_PRICE_PLAN_ID)
+  private String pricePlanId;
+
   public static final String SERIALIZED_NAME_PRICE_PLAN_NAME = "pricePlanName";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_NAME)
   private String pricePlanName;
 
-  public static final String SERIALIZED_NAME_OVERRIDE = "override";
-  @SerializedName(SERIALIZED_NAME_OVERRIDE)
-  private RateCard override;
+  public static final String SERIALIZED_NAME_PRICE_PLAN_DETAILS_OVERRIDE = "pricePlanDetailsOverride";
+  @SerializedName(SERIALIZED_NAME_PRICE_PLAN_DETAILS_OVERRIDE)
+  private PricePlanDetailsOverride pricePlanDetailsOverride;
 
   public static final String SERIALIZED_NAME_START_DATE = "startDate";
   @SerializedName(SERIALIZED_NAME_START_DATE)
@@ -73,6 +77,29 @@ public class PlanOverride implements Serializable {
 
   public PlanOverride() {
   }
+
+  public PlanOverride pricePlanId(String pricePlanId) {
+    
+    this.pricePlanId = pricePlanId;
+    return this;
+  }
+
+   /**
+   * Get pricePlanId
+   * @return pricePlanId
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public String getPricePlanId() {
+    return pricePlanId;
+  }
+
+
+  public void setPricePlanId(String pricePlanId) {
+    this.pricePlanId = pricePlanId;
+  }
+
 
   public PlanOverride pricePlanName(String pricePlanName) {
     
@@ -97,26 +124,26 @@ public class PlanOverride implements Serializable {
   }
 
 
-  public PlanOverride override(RateCard override) {
+  public PlanOverride pricePlanDetailsOverride(PricePlanDetailsOverride pricePlanDetailsOverride) {
     
-    this.override = override;
+    this.pricePlanDetailsOverride = pricePlanDetailsOverride;
     return this;
   }
 
    /**
-   * Get override
-   * @return override
+   * Get pricePlanDetailsOverride
+   * @return pricePlanDetailsOverride
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public RateCard getOverride() {
-    return override;
+  public PricePlanDetailsOverride getPricePlanDetailsOverride() {
+    return pricePlanDetailsOverride;
   }
 
 
-  public void setOverride(RateCard override) {
-    this.override = override;
+  public void setPricePlanDetailsOverride(PricePlanDetailsOverride pricePlanDetailsOverride) {
+    this.pricePlanDetailsOverride = pricePlanDetailsOverride;
   }
 
 
@@ -176,23 +203,25 @@ public class PlanOverride implements Serializable {
       return false;
     }
     PlanOverride planOverride = (PlanOverride) o;
-    return Objects.equals(this.pricePlanName, planOverride.pricePlanName) &&
-        Objects.equals(this.override, planOverride.override) &&
+    return Objects.equals(this.pricePlanId, planOverride.pricePlanId) &&
+        Objects.equals(this.pricePlanName, planOverride.pricePlanName) &&
+        Objects.equals(this.pricePlanDetailsOverride, planOverride.pricePlanDetailsOverride) &&
         Objects.equals(this.startDate, planOverride.startDate) &&
         Objects.equals(this.endDate, planOverride.endDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pricePlanName, override, startDate, endDate);
+    return Objects.hash(pricePlanId, pricePlanName, pricePlanDetailsOverride, startDate, endDate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PlanOverride {\n");
+    sb.append("    pricePlanId: ").append(toIndentedString(pricePlanId)).append("\n");
     sb.append("    pricePlanName: ").append(toIndentedString(pricePlanName)).append("\n");
-    sb.append("    override: ").append(toIndentedString(override)).append("\n");
+    sb.append("    pricePlanDetailsOverride: ").append(toIndentedString(pricePlanDetailsOverride)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("}");
@@ -217,13 +246,15 @@ public class PlanOverride implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("pricePlanId");
     openapiFields.add("pricePlanName");
-    openapiFields.add("override");
+    openapiFields.add("pricePlanDetailsOverride");
     openapiFields.add("startDate");
     openapiFields.add("endDate");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("pricePlanId");
     openapiRequiredFields.add("pricePlanName");
     openapiRequiredFields.add("startDate");
     openapiRequiredFields.add("endDate");
@@ -258,12 +289,15 @@ public class PlanOverride implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      if ((jsonObj.get("pricePlanId") != null && !jsonObj.get("pricePlanId").isJsonNull()) && !jsonObj.get("pricePlanId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `pricePlanId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pricePlanId").toString()));
+      }
       if ((jsonObj.get("pricePlanName") != null && !jsonObj.get("pricePlanName").isJsonNull()) && !jsonObj.get("pricePlanName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `pricePlanName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pricePlanName").toString()));
       }
-      // validate the optional field `override`
-      if (jsonObj.get("override") != null && !jsonObj.get("override").isJsonNull()) {
-        RateCard.validateJsonObject(jsonObj.getAsJsonObject("override"));
+      // validate the optional field `pricePlanDetailsOverride`
+      if (jsonObj.get("pricePlanDetailsOverride") != null && !jsonObj.get("pricePlanDetailsOverride").isJsonNull()) {
+        PricePlanDetailsOverride.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetailsOverride"));
       }
   }
 

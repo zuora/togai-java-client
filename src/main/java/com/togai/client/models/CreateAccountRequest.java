@@ -63,6 +63,10 @@ public class CreateAccountRequest implements Serializable {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
+  public static final String SERIALIZED_NAME_INVOICE_CURRENCY = "invoiceCurrency";
+  @SerializedName(SERIALIZED_NAME_INVOICE_CURRENCY)
+  private String invoiceCurrency;
+
   public static final String SERIALIZED_NAME_ALIASES = "aliases";
   @SerializedName(SERIALIZED_NAME_ALIASES)
   private List<String> aliases = null;
@@ -81,7 +85,7 @@ public class CreateAccountRequest implements Serializable {
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Identifier of the account")
+  @ApiModelProperty(example = "ACC00001", required = true, value = "Identifier of the account")
 
   public String getId() {
     return id;
@@ -104,7 +108,7 @@ public class CreateAccountRequest implements Serializable {
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Name of the customer")
+  @ApiModelProperty(example = "Primary Account", required = true, value = "Name of the customer")
 
   public String getName() {
     return name;
@@ -113,6 +117,29 @@ public class CreateAccountRequest implements Serializable {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+
+  public CreateAccountRequest invoiceCurrency(String invoiceCurrency) {
+    
+    this.invoiceCurrency = invoiceCurrency;
+    return this;
+  }
+
+   /**
+   * [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217) code of the currency in which the account must be invoiced Defaults to Base currency. 
+   * @return invoiceCurrency
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "[ISO_4217](https://en.wikipedia.org/wiki/ISO_4217) code of the currency in which the account must be invoiced Defaults to Base currency. ")
+
+  public String getInvoiceCurrency() {
+    return invoiceCurrency;
+  }
+
+
+  public void setInvoiceCurrency(String invoiceCurrency) {
+    this.invoiceCurrency = invoiceCurrency;
   }
 
 
@@ -131,11 +158,11 @@ public class CreateAccountRequest implements Serializable {
   }
 
    /**
-   * list of aliases for the account. Can be used interchangeably with &#39;id&#39; for event ingestion.
+   * Aliases are tags that are associated with an account. Multiple aliases are allowed for a single account.
    * @return aliases
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "list of aliases for the account. Can be used interchangeably with 'id' for event ingestion.")
+  @ApiModelProperty(example = "acme_primary", value = "Aliases are tags that are associated with an account. Multiple aliases are allowed for a single account.")
 
   public List<String> getAliases() {
     return aliases;
@@ -159,12 +186,13 @@ public class CreateAccountRequest implements Serializable {
     CreateAccountRequest createAccountRequest = (CreateAccountRequest) o;
     return Objects.equals(this.id, createAccountRequest.id) &&
         Objects.equals(this.name, createAccountRequest.name) &&
+        Objects.equals(this.invoiceCurrency, createAccountRequest.invoiceCurrency) &&
         Objects.equals(this.aliases, createAccountRequest.aliases);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, aliases);
+    return Objects.hash(id, name, invoiceCurrency, aliases);
   }
 
   @Override
@@ -173,6 +201,7 @@ public class CreateAccountRequest implements Serializable {
     sb.append("class CreateAccountRequest {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    invoiceCurrency: ").append(toIndentedString(invoiceCurrency)).append("\n");
     sb.append("    aliases: ").append(toIndentedString(aliases)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -198,6 +227,7 @@ public class CreateAccountRequest implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
     openapiFields.add("name");
+    openapiFields.add("invoiceCurrency");
     openapiFields.add("aliases");
 
     // a set of required properties/fields (JSON key names)
@@ -240,6 +270,9 @@ public class CreateAccountRequest implements Serializable {
       }
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("invoiceCurrency") != null && !jsonObj.get("invoiceCurrency").isJsonNull()) && !jsonObj.get("invoiceCurrency").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `invoiceCurrency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceCurrency").toString()));
       }
       // ensure the json data is an array
       if ((jsonObj.get("aliases") != null && !jsonObj.get("aliases").isJsonNull()) && !jsonObj.get("aliases").isJsonArray()) {

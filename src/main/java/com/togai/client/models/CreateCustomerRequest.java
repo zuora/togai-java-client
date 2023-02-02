@@ -88,7 +88,7 @@ public class CreateCustomerRequest implements Serializable {
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Customer identifier")
+  @ApiModelProperty(example = "01BX5ZZKBKACTAV9WEVGEMMVRZ", required = true, value = "Customer identifier")
 
   public String getId() {
     return id;
@@ -111,7 +111,7 @@ public class CreateCustomerRequest implements Serializable {
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Name of the customer")
+  @ApiModelProperty(example = "ACME Enterprise", required = true, value = "Name of the customer")
 
   public String getName() {
     return name;
@@ -134,7 +134,7 @@ public class CreateCustomerRequest implements Serializable {
    * @return primaryEmail
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Primary email of the customer")
+  @ApiModelProperty(example = "admin@example.com", required = true, value = "Primary email of the customer")
 
   public String getPrimaryEmail() {
     return primaryEmail;
@@ -157,7 +157,7 @@ public class CreateCustomerRequest implements Serializable {
    * @return billingAddress
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "billing address of the customer")
+  @ApiModelProperty(example = "201 Boulevard, WA 53123", required = true, value = "billing address of the customer")
 
   public String getBillingAddress() {
     return billingAddress;

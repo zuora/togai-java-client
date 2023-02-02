@@ -27,6 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.togai.client.models.ActivatePricePlanRequest;
+import com.togai.client.models.AddCurrencyToPricePlanRequest;
+import java.math.BigDecimal;
 import com.togai.client.models.CreatePricePlanRequest;
 import com.togai.client.models.ErrorResponse;
 import com.togai.client.models.PricePlan;
@@ -79,7 +82,8 @@ public class PricePlansApi {
 
     /**
      * Build call for activatePricePlan
-     * @param pricePlanName  (required)
+     * @param pricePlanId  (required)
+     * @param activatePricePlanRequest Payload to activate price plan (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -95,7 +99,7 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call activatePricePlanCall(String pricePlanName, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call activatePricePlanCall(String pricePlanId, ActivatePricePlanRequest activatePricePlanRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -109,11 +113,11 @@ public class PricePlansApi {
             basePath = null;
         }
 
-        Object localVarPostBody = null;
+        Object localVarPostBody = activatePricePlanRequest;
 
         // create path and map variables
-        String localVarPath = "/price_plans/{price_plan_name}/activate"
-            .replaceAll("\\{" + "price_plan_name" + "\\}", localVarApiClient.escapeString(pricePlanName.toString()));
+        String localVarPath = "/price_plans/{price_plan_id}/activate"
+            .replaceAll("\\{" + "price_plan_id" + "\\}", localVarApiClient.escapeString(pricePlanId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -130,7 +134,7 @@ public class PricePlansApi {
         }
 
         final String[] localVarContentTypes = {
-            
+            "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -142,23 +146,29 @@ public class PricePlansApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call activatePricePlanValidateBeforeCall(String pricePlanName, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call activatePricePlanValidateBeforeCall(String pricePlanId, ActivatePricePlanRequest activatePricePlanRequest, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'pricePlanName' is set
-        if (pricePlanName == null) {
-            throw new ApiException("Missing the required parameter 'pricePlanName' when calling activatePricePlan(Async)");
+        // verify the required parameter 'pricePlanId' is set
+        if (pricePlanId == null) {
+            throw new ApiException("Missing the required parameter 'pricePlanId' when calling activatePricePlan(Async)");
+        }
+        
+        // verify the required parameter 'activatePricePlanRequest' is set
+        if (activatePricePlanRequest == null) {
+            throw new ApiException("Missing the required parameter 'activatePricePlanRequest' when calling activatePricePlan(Async)");
         }
         
 
-        okhttp3.Call localVarCall = activatePricePlanCall(pricePlanName, _callback);
+        okhttp3.Call localVarCall = activatePricePlanCall(pricePlanId, activatePricePlanRequest, _callback);
         return localVarCall;
 
     }
 
     /**
      * Activate a price plan
-     * Activate a price plan
-     * @param pricePlanName  (required)
+     * Activate a price plan details using price plan id
+     * @param pricePlanId  (required)
+     * @param activatePricePlanRequest Payload to activate price plan (required)
      * @return PricePlan
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -173,15 +183,16 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public PricePlan activatePricePlan(String pricePlanName) throws ApiException {
-        ApiResponse<PricePlan> localVarResp = activatePricePlanWithHttpInfo(pricePlanName);
+    public PricePlan activatePricePlan(String pricePlanId, ActivatePricePlanRequest activatePricePlanRequest) throws ApiException {
+        ApiResponse<PricePlan> localVarResp = activatePricePlanWithHttpInfo(pricePlanId, activatePricePlanRequest);
         return localVarResp.getData();
     }
 
     /**
      * Activate a price plan
-     * Activate a price plan
-     * @param pricePlanName  (required)
+     * Activate a price plan details using price plan id
+     * @param pricePlanId  (required)
+     * @param activatePricePlanRequest Payload to activate price plan (required)
      * @return ApiResponse&lt;PricePlan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -196,16 +207,17 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PricePlan> activatePricePlanWithHttpInfo(String pricePlanName) throws ApiException {
-        okhttp3.Call localVarCall = activatePricePlanValidateBeforeCall(pricePlanName, null);
+    public ApiResponse<PricePlan> activatePricePlanWithHttpInfo(String pricePlanId, ActivatePricePlanRequest activatePricePlanRequest) throws ApiException {
+        okhttp3.Call localVarCall = activatePricePlanValidateBeforeCall(pricePlanId, activatePricePlanRequest, null);
         Type localVarReturnType = new TypeToken<PricePlan>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Activate a price plan (asynchronously)
-     * Activate a price plan
-     * @param pricePlanName  (required)
+     * Activate a price plan details using price plan id
+     * @param pricePlanId  (required)
+     * @param activatePricePlanRequest Payload to activate price plan (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -221,9 +233,169 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call activatePricePlanAsync(String pricePlanName, final ApiCallback<PricePlan> _callback) throws ApiException {
+    public okhttp3.Call activatePricePlanAsync(String pricePlanId, ActivatePricePlanRequest activatePricePlanRequest, final ApiCallback<PricePlan> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = activatePricePlanValidateBeforeCall(pricePlanName, _callback);
+        okhttp3.Call localVarCall = activatePricePlanValidateBeforeCall(pricePlanId, activatePricePlanRequest, _callback);
+        Type localVarReturnType = new TypeToken<PricePlan>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for addCurrencyToPricePlan
+     * @param pricePlanId  (required)
+     * @param addCurrencyToPricePlanRequest Payload to add currency to price plan (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Create and Get price plan requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call addCurrencyToPricePlanCall(String pricePlanId, AddCurrencyToPricePlanRequest addCurrencyToPricePlanRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = addCurrencyToPricePlanRequest;
+
+        // create path and map variables
+        String localVarPath = "/price_plans/{price_plan_id}/currencies"
+            .replaceAll("\\{" + "price_plan_id" + "\\}", localVarApiClient.escapeString(pricePlanId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call addCurrencyToPricePlanValidateBeforeCall(String pricePlanId, AddCurrencyToPricePlanRequest addCurrencyToPricePlanRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'pricePlanId' is set
+        if (pricePlanId == null) {
+            throw new ApiException("Missing the required parameter 'pricePlanId' when calling addCurrencyToPricePlan(Async)");
+        }
+        
+        // verify the required parameter 'addCurrencyToPricePlanRequest' is set
+        if (addCurrencyToPricePlanRequest == null) {
+            throw new ApiException("Missing the required parameter 'addCurrencyToPricePlanRequest' when calling addCurrencyToPricePlan(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = addCurrencyToPricePlanCall(pricePlanId, addCurrencyToPricePlanRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Add currencies to a price plan
+     * Add currencies to a price plan
+     * @param pricePlanId  (required)
+     * @param addCurrencyToPricePlanRequest Payload to add currency to price plan (required)
+     * @return PricePlan
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Create and Get price plan requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public PricePlan addCurrencyToPricePlan(String pricePlanId, AddCurrencyToPricePlanRequest addCurrencyToPricePlanRequest) throws ApiException {
+        ApiResponse<PricePlan> localVarResp = addCurrencyToPricePlanWithHttpInfo(pricePlanId, addCurrencyToPricePlanRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Add currencies to a price plan
+     * Add currencies to a price plan
+     * @param pricePlanId  (required)
+     * @param addCurrencyToPricePlanRequest Payload to add currency to price plan (required)
+     * @return ApiResponse&lt;PricePlan&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Create and Get price plan requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<PricePlan> addCurrencyToPricePlanWithHttpInfo(String pricePlanId, AddCurrencyToPricePlanRequest addCurrencyToPricePlanRequest) throws ApiException {
+        okhttp3.Call localVarCall = addCurrencyToPricePlanValidateBeforeCall(pricePlanId, addCurrencyToPricePlanRequest, null);
+        Type localVarReturnType = new TypeToken<PricePlan>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Add currencies to a price plan (asynchronously)
+     * Add currencies to a price plan
+     * @param pricePlanId  (required)
+     * @param addCurrencyToPricePlanRequest Payload to add currency to price plan (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Create and Get price plan requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call addCurrencyToPricePlanAsync(String pricePlanId, AddCurrencyToPricePlanRequest addCurrencyToPricePlanRequest, final ApiCallback<PricePlan> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = addCurrencyToPricePlanValidateBeforeCall(pricePlanId, addCurrencyToPricePlanRequest, _callback);
         Type localVarReturnType = new TypeToken<PricePlan>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -307,7 +479,7 @@ public class PricePlansApi {
 
     /**
      * Create a price plan
-     * Create a price plan
+     * Create a price plan and associate with customers to it  A price plan is a collection of pre-set conditions with prices that convert usage metrics into billable value. Price Plans and the roll up of items comprising the pricing plans are used to assign a customer to get the final bill value. Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
      * @param createPricePlanRequest Payload to create price plan (required)
      * @return PricePlan
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -330,7 +502,7 @@ public class PricePlansApi {
 
     /**
      * Create a price plan
-     * Create a price plan
+     * Create a price plan and associate with customers to it  A price plan is a collection of pre-set conditions with prices that convert usage metrics into billable value. Price Plans and the roll up of items comprising the pricing plans are used to assign a customer to get the final bill value. Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
      * @param createPricePlanRequest Payload to create price plan (required)
      * @return ApiResponse&lt;PricePlan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -354,7 +526,7 @@ public class PricePlansApi {
 
     /**
      * Create a price plan (asynchronously)
-     * Create a price plan
+     * Create a price plan and associate with customers to it  A price plan is a collection of pre-set conditions with prices that convert usage metrics into billable value. Price Plans and the roll up of items comprising the pricing plans are used to assign a customer to get the final bill value. Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
      * @param createPricePlanRequest Payload to create price plan (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -380,7 +552,7 @@ public class PricePlansApi {
     }
     /**
      * Build call for getPricePlan
-     * @param pricePlanName  (required)
+     * @param pricePlanId  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -396,7 +568,7 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPricePlanCall(String pricePlanName, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getPricePlanCall(String pricePlanId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -413,8 +585,8 @@ public class PricePlansApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/price_plans/{price_plan_name}"
-            .replaceAll("\\{" + "price_plan_name" + "\\}", localVarApiClient.escapeString(pricePlanName.toString()));
+        String localVarPath = "/price_plans/{price_plan_id}"
+            .replaceAll("\\{" + "price_plan_id" + "\\}", localVarApiClient.escapeString(pricePlanId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -443,23 +615,23 @@ public class PricePlansApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getPricePlanValidateBeforeCall(String pricePlanName, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getPricePlanValidateBeforeCall(String pricePlanId, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'pricePlanName' is set
-        if (pricePlanName == null) {
-            throw new ApiException("Missing the required parameter 'pricePlanName' when calling getPricePlan(Async)");
+        // verify the required parameter 'pricePlanId' is set
+        if (pricePlanId == null) {
+            throw new ApiException("Missing the required parameter 'pricePlanId' when calling getPricePlan(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getPricePlanCall(pricePlanName, _callback);
+        okhttp3.Call localVarCall = getPricePlanCall(pricePlanId, _callback);
         return localVarCall;
 
     }
 
     /**
      * Get a price plan
-     * Get a price plan
-     * @param pricePlanName  (required)
+     * Get a price plan details using price plan id
+     * @param pricePlanId  (required)
      * @return PricePlan
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -474,15 +646,15 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public PricePlan getPricePlan(String pricePlanName) throws ApiException {
-        ApiResponse<PricePlan> localVarResp = getPricePlanWithHttpInfo(pricePlanName);
+    public PricePlan getPricePlan(String pricePlanId) throws ApiException {
+        ApiResponse<PricePlan> localVarResp = getPricePlanWithHttpInfo(pricePlanId);
         return localVarResp.getData();
     }
 
     /**
      * Get a price plan
-     * Get a price plan
-     * @param pricePlanName  (required)
+     * Get a price plan details using price plan id
+     * @param pricePlanId  (required)
      * @return ApiResponse&lt;PricePlan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -497,16 +669,16 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PricePlan> getPricePlanWithHttpInfo(String pricePlanName) throws ApiException {
-        okhttp3.Call localVarCall = getPricePlanValidateBeforeCall(pricePlanName, null);
+    public ApiResponse<PricePlan> getPricePlanWithHttpInfo(String pricePlanId) throws ApiException {
+        okhttp3.Call localVarCall = getPricePlanValidateBeforeCall(pricePlanId, null);
         Type localVarReturnType = new TypeToken<PricePlan>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Get a price plan (asynchronously)
-     * Get a price plan
-     * @param pricePlanName  (required)
+     * Get a price plan details using price plan id
+     * @param pricePlanId  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -522,9 +694,9 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPricePlanAsync(String pricePlanName, final ApiCallback<PricePlan> _callback) throws ApiException {
+    public okhttp3.Call getPricePlanAsync(String pricePlanId, final ApiCallback<PricePlan> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getPricePlanValidateBeforeCall(pricePlanName, _callback);
+        okhttp3.Call localVarCall = getPricePlanValidateBeforeCall(pricePlanId, _callback);
         Type localVarReturnType = new TypeToken<PricePlan>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -548,7 +720,7 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPricePlansCall(String nextToken, String pageSize, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getPricePlansCall(String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -602,7 +774,7 @@ public class PricePlansApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getPricePlansValidateBeforeCall(String nextToken, String pageSize, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getPricePlansValidateBeforeCall(String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
         
 
         okhttp3.Call localVarCall = getPricePlansCall(nextToken, pageSize, _callback);
@@ -612,7 +784,7 @@ public class PricePlansApi {
 
     /**
      * List price plans
-     * List price plans with pagination and sort
+     * Get a list of price plans
      * @param nextToken  (optional)
      * @param pageSize  (optional)
      * @return PricePlanPaginatedResponse
@@ -629,14 +801,14 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public PricePlanPaginatedResponse getPricePlans(String nextToken, String pageSize) throws ApiException {
+    public PricePlanPaginatedResponse getPricePlans(String nextToken, BigDecimal pageSize) throws ApiException {
         ApiResponse<PricePlanPaginatedResponse> localVarResp = getPricePlansWithHttpInfo(nextToken, pageSize);
         return localVarResp.getData();
     }
 
     /**
      * List price plans
-     * List price plans with pagination and sort
+     * Get a list of price plans
      * @param nextToken  (optional)
      * @param pageSize  (optional)
      * @return ApiResponse&lt;PricePlanPaginatedResponse&gt;
@@ -653,7 +825,7 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PricePlanPaginatedResponse> getPricePlansWithHttpInfo(String nextToken, String pageSize) throws ApiException {
+    public ApiResponse<PricePlanPaginatedResponse> getPricePlansWithHttpInfo(String nextToken, BigDecimal pageSize) throws ApiException {
         okhttp3.Call localVarCall = getPricePlansValidateBeforeCall(nextToken, pageSize, null);
         Type localVarReturnType = new TypeToken<PricePlanPaginatedResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -661,7 +833,7 @@ public class PricePlansApi {
 
     /**
      * List price plans (asynchronously)
-     * List price plans with pagination and sort
+     * Get a list of price plans
      * @param nextToken  (optional)
      * @param pageSize  (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -679,7 +851,7 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPricePlansAsync(String nextToken, String pageSize, final ApiCallback<PricePlanPaginatedResponse> _callback) throws ApiException {
+    public okhttp3.Call getPricePlansAsync(String nextToken, BigDecimal pageSize, final ApiCallback<PricePlanPaginatedResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getPricePlansValidateBeforeCall(nextToken, pageSize, _callback);
         Type localVarReturnType = new TypeToken<PricePlanPaginatedResponse>(){}.getType();
@@ -687,8 +859,169 @@ public class PricePlansApi {
         return localVarCall;
     }
     /**
+     * Build call for removeCurrencyFromPricePlan
+     * @param pricePlanId  (required)
+     * @param currencyId  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Create and Get price plan requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeCurrencyFromPricePlanCall(String pricePlanId, String currencyId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/price_plans/{price_plan_id}/currencies/{currency_id}"
+            .replaceAll("\\{" + "price_plan_id" + "\\}", localVarApiClient.escapeString(pricePlanId.toString()))
+            .replaceAll("\\{" + "currency_id" + "\\}", localVarApiClient.escapeString(currencyId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call removeCurrencyFromPricePlanValidateBeforeCall(String pricePlanId, String currencyId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'pricePlanId' is set
+        if (pricePlanId == null) {
+            throw new ApiException("Missing the required parameter 'pricePlanId' when calling removeCurrencyFromPricePlan(Async)");
+        }
+        
+        // verify the required parameter 'currencyId' is set
+        if (currencyId == null) {
+            throw new ApiException("Missing the required parameter 'currencyId' when calling removeCurrencyFromPricePlan(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = removeCurrencyFromPricePlanCall(pricePlanId, currencyId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Remove a draft currency from a price plan
+     * Remove a draft currency from a price plan
+     * @param pricePlanId  (required)
+     * @param currencyId  (required)
+     * @return PricePlan
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Create and Get price plan requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public PricePlan removeCurrencyFromPricePlan(String pricePlanId, String currencyId) throws ApiException {
+        ApiResponse<PricePlan> localVarResp = removeCurrencyFromPricePlanWithHttpInfo(pricePlanId, currencyId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Remove a draft currency from a price plan
+     * Remove a draft currency from a price plan
+     * @param pricePlanId  (required)
+     * @param currencyId  (required)
+     * @return ApiResponse&lt;PricePlan&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Create and Get price plan requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<PricePlan> removeCurrencyFromPricePlanWithHttpInfo(String pricePlanId, String currencyId) throws ApiException {
+        okhttp3.Call localVarCall = removeCurrencyFromPricePlanValidateBeforeCall(pricePlanId, currencyId, null);
+        Type localVarReturnType = new TypeToken<PricePlan>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Remove a draft currency from a price plan (asynchronously)
+     * Remove a draft currency from a price plan
+     * @param pricePlanId  (required)
+     * @param currencyId  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Create and Get price plan requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call removeCurrencyFromPricePlanAsync(String pricePlanId, String currencyId, final ApiCallback<PricePlan> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = removeCurrencyFromPricePlanValidateBeforeCall(pricePlanId, currencyId, _callback);
+        Type localVarReturnType = new TypeToken<PricePlan>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for updatePricePlan
-     * @param pricePlanName  (required)
+     * @param pricePlanId  (required)
      * @param updatePricePlanRequest Payload to update price plan (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -705,7 +1038,7 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updatePricePlanCall(String pricePlanName, UpdatePricePlanRequest updatePricePlanRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updatePricePlanCall(String pricePlanId, UpdatePricePlanRequest updatePricePlanRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -722,8 +1055,8 @@ public class PricePlansApi {
         Object localVarPostBody = updatePricePlanRequest;
 
         // create path and map variables
-        String localVarPath = "/price_plans/{price_plan_name}"
-            .replaceAll("\\{" + "price_plan_name" + "\\}", localVarApiClient.escapeString(pricePlanName.toString()));
+        String localVarPath = "/price_plans/{price_plan_id}"
+            .replaceAll("\\{" + "price_plan_id" + "\\}", localVarApiClient.escapeString(pricePlanId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -752,11 +1085,11 @@ public class PricePlansApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updatePricePlanValidateBeforeCall(String pricePlanName, UpdatePricePlanRequest updatePricePlanRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updatePricePlanValidateBeforeCall(String pricePlanId, UpdatePricePlanRequest updatePricePlanRequest, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'pricePlanName' is set
-        if (pricePlanName == null) {
-            throw new ApiException("Missing the required parameter 'pricePlanName' when calling updatePricePlan(Async)");
+        // verify the required parameter 'pricePlanId' is set
+        if (pricePlanId == null) {
+            throw new ApiException("Missing the required parameter 'pricePlanId' when calling updatePricePlan(Async)");
         }
         
         // verify the required parameter 'updatePricePlanRequest' is set
@@ -765,15 +1098,15 @@ public class PricePlansApi {
         }
         
 
-        okhttp3.Call localVarCall = updatePricePlanCall(pricePlanName, updatePricePlanRequest, _callback);
+        okhttp3.Call localVarCall = updatePricePlanCall(pricePlanId, updatePricePlanRequest, _callback);
         return localVarCall;
 
     }
 
     /**
      * Update a price plan
-     * Update a price plan
-     * @param pricePlanName  (required)
+     * Update a draft state price plan  Only DRAFT state Price Plans are allowed to Update. Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
+     * @param pricePlanId  (required)
      * @param updatePricePlanRequest Payload to update price plan (required)
      * @return PricePlan
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -789,15 +1122,15 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public PricePlan updatePricePlan(String pricePlanName, UpdatePricePlanRequest updatePricePlanRequest) throws ApiException {
-        ApiResponse<PricePlan> localVarResp = updatePricePlanWithHttpInfo(pricePlanName, updatePricePlanRequest);
+    public PricePlan updatePricePlan(String pricePlanId, UpdatePricePlanRequest updatePricePlanRequest) throws ApiException {
+        ApiResponse<PricePlan> localVarResp = updatePricePlanWithHttpInfo(pricePlanId, updatePricePlanRequest);
         return localVarResp.getData();
     }
 
     /**
      * Update a price plan
-     * Update a price plan
-     * @param pricePlanName  (required)
+     * Update a draft state price plan  Only DRAFT state Price Plans are allowed to Update. Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
+     * @param pricePlanId  (required)
      * @param updatePricePlanRequest Payload to update price plan (required)
      * @return ApiResponse&lt;PricePlan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -813,16 +1146,16 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PricePlan> updatePricePlanWithHttpInfo(String pricePlanName, UpdatePricePlanRequest updatePricePlanRequest) throws ApiException {
-        okhttp3.Call localVarCall = updatePricePlanValidateBeforeCall(pricePlanName, updatePricePlanRequest, null);
+    public ApiResponse<PricePlan> updatePricePlanWithHttpInfo(String pricePlanId, UpdatePricePlanRequest updatePricePlanRequest) throws ApiException {
+        okhttp3.Call localVarCall = updatePricePlanValidateBeforeCall(pricePlanId, updatePricePlanRequest, null);
         Type localVarReturnType = new TypeToken<PricePlan>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Update a price plan (asynchronously)
-     * Update a price plan
-     * @param pricePlanName  (required)
+     * Update a draft state price plan  Only DRAFT state Price Plans are allowed to Update. Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
+     * @param pricePlanId  (required)
      * @param updatePricePlanRequest Payload to update price plan (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -839,9 +1172,9 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updatePricePlanAsync(String pricePlanName, UpdatePricePlanRequest updatePricePlanRequest, final ApiCallback<PricePlan> _callback) throws ApiException {
+    public okhttp3.Call updatePricePlanAsync(String pricePlanId, UpdatePricePlanRequest updatePricePlanRequest, final ApiCallback<PricePlan> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updatePricePlanValidateBeforeCall(pricePlanName, updatePricePlanRequest, _callback);
+        okhttp3.Call localVarCall = updatePricePlanValidateBeforeCall(pricePlanId, updatePricePlanRequest, _callback);
         Type localVarReturnType = new TypeToken<PricePlan>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

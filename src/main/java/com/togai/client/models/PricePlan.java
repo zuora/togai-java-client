@@ -20,7 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.togai.client.models.PricingCycle;
 import com.togai.client.models.PricingSchedule;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -56,6 +55,10 @@ import com.togai.client.JSON;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PricePlan implements Serializable {
   private static final long serialVersionUID = 1L;
+
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -118,16 +121,35 @@ public class PricePlan implements Serializable {
   @SerializedName(SERIALIZED_NAME_STATUS)
   private StatusEnum status;
 
-  public static final String SERIALIZED_NAME_PRICING_CYCLE = "pricingCycle";
-  @SerializedName(SERIALIZED_NAME_PRICING_CYCLE)
-  private PricingCycle pricingCycle;
-
   public static final String SERIALIZED_NAME_PRICING_SCHEDULE = "pricingSchedule";
   @SerializedName(SERIALIZED_NAME_PRICING_SCHEDULE)
   private List<PricingSchedule> pricingSchedule = new ArrayList<>();
 
   public PricePlan() {
   }
+
+  public PricePlan id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Price plan id
+   * @return id
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Price plan id")
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
 
   public PricePlan name(String name) {
     
@@ -198,29 +220,6 @@ public class PricePlan implements Serializable {
   }
 
 
-  public PricePlan pricingCycle(PricingCycle pricingCycle) {
-    
-    this.pricingCycle = pricingCycle;
-    return this;
-  }
-
-   /**
-   * Get pricingCycle
-   * @return pricingCycle
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public PricingCycle getPricingCycle() {
-    return pricingCycle;
-  }
-
-
-  public void setPricingCycle(PricingCycle pricingCycle) {
-    this.pricingCycle = pricingCycle;
-  }
-
-
   public PricePlan pricingSchedule(List<PricingSchedule> pricingSchedule) {
     
     this.pricingSchedule = pricingSchedule;
@@ -259,26 +258,26 @@ public class PricePlan implements Serializable {
       return false;
     }
     PricePlan pricePlan = (PricePlan) o;
-    return Objects.equals(this.name, pricePlan.name) &&
+    return Objects.equals(this.id, pricePlan.id) &&
+        Objects.equals(this.name, pricePlan.name) &&
         Objects.equals(this.description, pricePlan.description) &&
         Objects.equals(this.status, pricePlan.status) &&
-        Objects.equals(this.pricingCycle, pricePlan.pricingCycle) &&
         Objects.equals(this.pricingSchedule, pricePlan.pricingSchedule);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, status, pricingCycle, pricingSchedule);
+    return Objects.hash(id, name, description, status, pricingSchedule);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PricePlan {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    pricingCycle: ").append(toIndentedString(pricingCycle)).append("\n");
     sb.append("    pricingSchedule: ").append(toIndentedString(pricingSchedule)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -302,17 +301,17 @@ public class PricePlan implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("id");
     openapiFields.add("name");
     openapiFields.add("description");
     openapiFields.add("status");
-    openapiFields.add("pricingCycle");
     openapiFields.add("pricingSchedule");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("id");
     openapiRequiredFields.add("name");
     openapiRequiredFields.add("status");
-    openapiRequiredFields.add("pricingCycle");
     openapiRequiredFields.add("pricingSchedule");
   }
 
@@ -345,6 +344,9 @@ public class PricePlan implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
@@ -353,10 +355,6 @@ public class PricePlan implements Serializable {
       }
       if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
-      }
-      // validate the optional field `pricingCycle`
-      if (jsonObj.get("pricingCycle") != null && !jsonObj.get("pricingCycle").isJsonNull()) {
-        PricingCycle.validateJsonObject(jsonObj.getAsJsonObject("pricingCycle"));
       }
       JsonArray jsonArraypricingSchedule = jsonObj.getAsJsonArray("pricingSchedule");
       if (jsonArraypricingSchedule != null) {

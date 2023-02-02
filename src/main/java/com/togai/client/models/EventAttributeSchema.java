@@ -57,7 +57,7 @@ public class EventAttributeSchema implements Serializable {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
-  public static final String SERIALIZED_NAME_DEFAULT_UNIT = "default_unit";
+  public static final String SERIALIZED_NAME_DEFAULT_UNIT = "defaultUnit";
   @SerializedName(SERIALIZED_NAME_DEFAULT_UNIT)
   private String defaultUnit;
 
@@ -158,7 +158,7 @@ public class EventAttributeSchema implements Serializable {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
-    openapiFields.add("default_unit");
+    openapiFields.add("defaultUnit");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -197,8 +197,8 @@ public class EventAttributeSchema implements Serializable {
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
-      if ((jsonObj.get("default_unit") != null && !jsonObj.get("default_unit").isJsonNull()) && !jsonObj.get("default_unit").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `default_unit` to be a primitive type in the JSON string but got `%s`", jsonObj.get("default_unit").toString()));
+      if ((jsonObj.get("defaultUnit") != null && !jsonObj.get("defaultUnit").isJsonNull()) && !jsonObj.get("defaultUnit").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `defaultUnit` to be a primitive type in the JSON string but got `%s`", jsonObj.get("defaultUnit").toString()));
       }
   }
 

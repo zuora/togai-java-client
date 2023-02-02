@@ -60,7 +60,7 @@ import com.togai.client.auth.ApiKeyAuth;
  */
 public class ApiClient {
 
-    private String basePath = "https://sandbox-api.togai.com";
+    private String basePath = "https://api.togai.com";
     private boolean debugging = false;
     private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
     private Map<String, String> defaultCookieMap = new HashMap<String, String>();
@@ -133,7 +133,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("OpenAPI-Generator/1.0.0/java");
+        setUserAgent("OpenAPI-Generator/1.0.2/java");
 
         authentications = new HashMap<String, Authentication>();
     }
@@ -150,7 +150,7 @@ public class ApiClient {
     /**
      * Set base path
      *
-     * @param basePath Base path of the URL (e.g https://sandbox-api.togai.com
+     * @param basePath Base path of the URL (e.g https://api.togai.com
      * @return An instance of OkHttpClient
      */
     public ApiClient setBasePath(String basePath) {

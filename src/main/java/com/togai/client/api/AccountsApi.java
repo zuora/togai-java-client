@@ -33,6 +33,7 @@ import com.togai.client.models.AddAccountAliasesRequest;
 import com.togai.client.models.AssociatePricePlanRequest;
 import com.togai.client.models.AssociatePricePlanResponse;
 import com.togai.client.models.BaseSuccessResponse;
+import java.math.BigDecimal;
 import com.togai.client.models.CreateAccountRequest;
 import com.togai.client.models.ErrorResponse;
 import com.togai.client.models.RemoveAccountAliasesRequest;
@@ -175,7 +176,7 @@ public class AccountsApi {
 
     /**
      * Add Aliases to account
-     * Add Aliases to an account by id
+     * Add aliases to an account using customer_id and account_id.
      * @param customerId  (required)
      * @param accountId  (required)
      * @param addAccountAliasesRequest Payload to add aliases to account (required)
@@ -200,7 +201,7 @@ public class AccountsApi {
 
     /**
      * Add Aliases to account
-     * Add Aliases to an account by id
+     * Add aliases to an account using customer_id and account_id.
      * @param customerId  (required)
      * @param accountId  (required)
      * @param addAccountAliasesRequest Payload to add aliases to account (required)
@@ -226,7 +227,7 @@ public class AccountsApi {
 
     /**
      * Add Aliases to account (asynchronously)
-     * Add Aliases to an account by id
+     * Add aliases to an account using customer_id and account_id.
      * @param customerId  (required)
      * @param accountId  (required)
      * @param addAccountAliasesRequest Payload to add aliases to account (required)
@@ -345,7 +346,7 @@ public class AccountsApi {
 
     /**
      * Associate a plan to an account
-     * Associate a plan to an account
+     * This API let’s you to assign a price plan to an existing account
      * @param customerId  (required)
      * @param accountId  (required)
      * @param associatePricePlanRequest Payload to associate a price plan to an account (required)
@@ -370,7 +371,7 @@ public class AccountsApi {
 
     /**
      * Associate a plan to an account
-     * Associate a plan to an account
+     * This API let’s you to assign a price plan to an existing account
      * @param customerId  (required)
      * @param accountId  (required)
      * @param associatePricePlanRequest Payload to associate a price plan to an account (required)
@@ -396,7 +397,7 @@ public class AccountsApi {
 
     /**
      * Associate a plan to an account (asynchronously)
-     * Associate a plan to an account
+     * This API let’s you to assign a price plan to an existing account
      * @param customerId  (required)
      * @param accountId  (required)
      * @param associatePricePlanRequest Payload to associate a price plan to an account (required)
@@ -508,7 +509,7 @@ public class AccountsApi {
 
     /**
      * Create an account
-     * Create an account
+     * This API let’s you to create an account for a customer using customer_id.
      * @param customerId  (required)
      * @param createAccountRequest Payload to create account (required)
      * @return Account
@@ -532,7 +533,7 @@ public class AccountsApi {
 
     /**
      * Create an account
-     * Create an account
+     * This API let’s you to create an account for a customer using customer_id.
      * @param customerId  (required)
      * @param createAccountRequest Payload to create account (required)
      * @return ApiResponse&lt;Account&gt;
@@ -557,7 +558,7 @@ public class AccountsApi {
 
     /**
      * Create an account (asynchronously)
-     * Create an account
+     * This API let’s you to create an account for a customer using customer_id.
      * @param customerId  (required)
      * @param createAccountRequest Payload to create account (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -669,7 +670,7 @@ public class AccountsApi {
 
     /**
      * Delete an account
-     * Delete an account by id
+     * This API let’s you to delete a customer using customer_id and account_id.
      * @param customerId  (required)
      * @param accountId  (required)
      * @return BaseSuccessResponse
@@ -693,7 +694,7 @@ public class AccountsApi {
 
     /**
      * Delete an account
-     * Delete an account by id
+     * This API let’s you to delete a customer using customer_id and account_id.
      * @param customerId  (required)
      * @param accountId  (required)
      * @return ApiResponse&lt;BaseSuccessResponse&gt;
@@ -718,7 +719,7 @@ public class AccountsApi {
 
     /**
      * Delete an account (asynchronously)
-     * Delete an account by id
+     * This API let’s you to delete a customer using customer_id and account_id.
      * @param customerId  (required)
      * @param accountId  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -830,7 +831,7 @@ public class AccountsApi {
 
     /**
      * Get an account
-     * Get an account
+     * Get account information using customer_id and account_id.
      * @param customerId  (required)
      * @param accountId  (required)
      * @return Account
@@ -854,7 +855,7 @@ public class AccountsApi {
 
     /**
      * Get an account
-     * Get an account
+     * Get account information using customer_id and account_id.
      * @param customerId  (required)
      * @param accountId  (required)
      * @return ApiResponse&lt;Account&gt;
@@ -879,7 +880,7 @@ public class AccountsApi {
 
     /**
      * Get an account (asynchronously)
-     * Get an account
+     * Get account information using customer_id and account_id.
      * @param customerId  (required)
      * @param accountId  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -924,7 +925,7 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAccountsCall(String customerId, String nextToken, String pageSize, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAccountsCall(String customerId, String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -979,7 +980,7 @@ public class AccountsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getAccountsValidateBeforeCall(String customerId, String nextToken, String pageSize, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getAccountsValidateBeforeCall(String customerId, String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'customerId' is set
         if (customerId == null) {
@@ -994,7 +995,7 @@ public class AccountsApi {
 
     /**
      * List accounts of customer
-     * List accounts with pagination and sort
+     * Returns a list of accounts of a customer with pagination and sort.
      * @param customerId  (required)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
@@ -1012,14 +1013,14 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public AccountPaginatedResponse getAccounts(String customerId, String nextToken, String pageSize) throws ApiException {
+    public AccountPaginatedResponse getAccounts(String customerId, String nextToken, BigDecimal pageSize) throws ApiException {
         ApiResponse<AccountPaginatedResponse> localVarResp = getAccountsWithHttpInfo(customerId, nextToken, pageSize);
         return localVarResp.getData();
     }
 
     /**
      * List accounts of customer
-     * List accounts with pagination and sort
+     * Returns a list of accounts of a customer with pagination and sort.
      * @param customerId  (required)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
@@ -1037,7 +1038,7 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AccountPaginatedResponse> getAccountsWithHttpInfo(String customerId, String nextToken, String pageSize) throws ApiException {
+    public ApiResponse<AccountPaginatedResponse> getAccountsWithHttpInfo(String customerId, String nextToken, BigDecimal pageSize) throws ApiException {
         okhttp3.Call localVarCall = getAccountsValidateBeforeCall(customerId, nextToken, pageSize, null);
         Type localVarReturnType = new TypeToken<AccountPaginatedResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1045,7 +1046,7 @@ public class AccountsApi {
 
     /**
      * List accounts of customer (asynchronously)
-     * List accounts with pagination and sort
+     * Returns a list of accounts of a customer with pagination and sort.
      * @param customerId  (required)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
@@ -1064,7 +1065,7 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAccountsAsync(String customerId, String nextToken, String pageSize, final ApiCallback<AccountPaginatedResponse> _callback) throws ApiException {
+    public okhttp3.Call getAccountsAsync(String customerId, String nextToken, BigDecimal pageSize, final ApiCallback<AccountPaginatedResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getAccountsValidateBeforeCall(customerId, nextToken, pageSize, _callback);
         Type localVarReturnType = new TypeToken<AccountPaginatedResponse>(){}.getType();
@@ -1164,7 +1165,7 @@ public class AccountsApi {
 
     /**
      * Remove Aliases to account
-     * Remove Aliases to an account by id
+     * Remove existing aliases tagged to an account using this API
      * @param customerId  (required)
      * @param accountId  (required)
      * @param removeAccountAliasesRequest Payload to remove aliases from account (required)
@@ -1189,7 +1190,7 @@ public class AccountsApi {
 
     /**
      * Remove Aliases to account
-     * Remove Aliases to an account by id
+     * Remove existing aliases tagged to an account using this API
      * @param customerId  (required)
      * @param accountId  (required)
      * @param removeAccountAliasesRequest Payload to remove aliases from account (required)
@@ -1215,7 +1216,7 @@ public class AccountsApi {
 
     /**
      * Remove Aliases to account (asynchronously)
-     * Remove Aliases to an account by id
+     * Remove existing aliases tagged to an account using this API
      * @param customerId  (required)
      * @param accountId  (required)
      * @param removeAccountAliasesRequest Payload to remove aliases from account (required)
@@ -1334,7 +1335,7 @@ public class AccountsApi {
 
     /**
      * Update an account
-     * Update an account by id
+     * This API let’s you to update an account’s information using customer_id and account_id.
      * @param customerId  (required)
      * @param accountId  (required)
      * @param updateAccountRequest Payload to update account (required)
@@ -1359,7 +1360,7 @@ public class AccountsApi {
 
     /**
      * Update an account
-     * Update an account by id
+     * This API let’s you to update an account’s information using customer_id and account_id.
      * @param customerId  (required)
      * @param accountId  (required)
      * @param updateAccountRequest Payload to update account (required)
@@ -1385,7 +1386,7 @@ public class AccountsApi {
 
     /**
      * Update an account (asynchronously)
-     * Update an account by id
+     * This API let’s you to update an account’s information using customer_id and account_id.
      * @param customerId  (required)
      * @param accountId  (required)
      * @param updateAccountRequest Payload to update account (required)

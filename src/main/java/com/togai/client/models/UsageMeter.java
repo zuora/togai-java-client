@@ -57,6 +57,10 @@ import com.togai.client.JSON;
 public class UsageMeter implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
@@ -70,11 +74,7 @@ public class UsageMeter implements Serializable {
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
-    COUNTER("COUNTER"),
-    
-    GAUGE("GAUGE"),
-    
-    TIMER("TIMER");
+    COUNTER("COUNTER");
 
     private String value;
 
@@ -242,6 +242,29 @@ public class UsageMeter implements Serializable {
 
   public UsageMeter() {
   }
+
+  public UsageMeter id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Identifier of the usage meter
+   * @return id
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Identifier of the usage meter")
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
 
   public UsageMeter name(String name) {
     
@@ -468,7 +491,8 @@ public class UsageMeter implements Serializable {
       return false;
     }
     UsageMeter usageMeter = (UsageMeter) o;
-    return Objects.equals(this.name, usageMeter.name) &&
+    return Objects.equals(this.id, usageMeter.id) &&
+        Objects.equals(this.name, usageMeter.name) &&
         Objects.equals(this.description, usageMeter.description) &&
         Objects.equals(this.type, usageMeter.type) &&
         Objects.equals(this.status, usageMeter.status) &&
@@ -481,13 +505,14 @@ public class UsageMeter implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, type, status, aggregation, computations, createdAt, lastActivatedAt, updatedAt);
+    return Objects.hash(id, name, description, type, status, aggregation, computations, createdAt, lastActivatedAt, updatedAt);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UsageMeter {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
@@ -519,6 +544,7 @@ public class UsageMeter implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("id");
     openapiFields.add("name");
     openapiFields.add("description");
     openapiFields.add("type");
@@ -531,6 +557,7 @@ public class UsageMeter implements Serializable {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("id");
     openapiRequiredFields.add("name");
     openapiRequiredFields.add("type");
     openapiRequiredFields.add("aggregation");
@@ -564,6 +591,9 @@ public class UsageMeter implements Serializable {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
+      }
+      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));

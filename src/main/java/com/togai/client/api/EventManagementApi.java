@@ -80,9 +80,8 @@ public class EventManagementApi {
      * @param nextToken Pagination token used as a marker to get records from next page. (optional)
      * @param status Filter option to filter the events by processed/unprocessed status. (optional)
      * @param accountId Filter option to filter the events based on account id. (optional)
+     * @param schemaName Filter option to filter the events based on schema name. (optional)
      * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
-     * @param startTime Start time filter in epoch milli seconds (optional)
-     * @param endTime End time filter in epoch milli seconds (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -98,7 +97,7 @@ public class EventManagementApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getEventsCall(String nextToken, String status, String accountId, Integer pageSize, Long startTime, Long endTime, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getEventsCall(String nextToken, String status, String accountId, String schemaName, Integer pageSize, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -135,16 +134,12 @@ public class EventManagementApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("account_id", accountId));
         }
 
+        if (schemaName != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("schema_name", schemaName));
+        }
+
         if (pageSize != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pageSize", pageSize));
-        }
-
-        if (startTime != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("start_time", startTime));
-        }
-
-        if (endTime != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("end_time", endTime));
         }
 
         final String[] localVarAccepts = {
@@ -168,23 +163,22 @@ public class EventManagementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getEventsValidateBeforeCall(String nextToken, String status, String accountId, Integer pageSize, Long startTime, Long endTime, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getEventsValidateBeforeCall(String nextToken, String status, String accountId, String schemaName, Integer pageSize, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getEventsCall(nextToken, status, accountId, pageSize, startTime, endTime, _callback);
+        okhttp3.Call localVarCall = getEventsCall(nextToken, status, accountId, schemaName, pageSize, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get usage events from Togai
-     * API to get usage events ingested to Togai.
+     * Get a list of usage events with multiple query options
+     * This API let’s you to fetch a list of events with multiple query parameters
      * @param nextToken Pagination token used as a marker to get records from next page. (optional)
      * @param status Filter option to filter the events by processed/unprocessed status. (optional)
      * @param accountId Filter option to filter the events based on account id. (optional)
+     * @param schemaName Filter option to filter the events based on schema name. (optional)
      * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
-     * @param startTime Start time filter in epoch milli seconds (optional)
-     * @param endTime End time filter in epoch milli seconds (optional)
      * @return GetEventsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -199,20 +193,19 @@ public class EventManagementApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public GetEventsResponse getEvents(String nextToken, String status, String accountId, Integer pageSize, Long startTime, Long endTime) throws ApiException {
-        ApiResponse<GetEventsResponse> localVarResp = getEventsWithHttpInfo(nextToken, status, accountId, pageSize, startTime, endTime);
+    public GetEventsResponse getEvents(String nextToken, String status, String accountId, String schemaName, Integer pageSize) throws ApiException {
+        ApiResponse<GetEventsResponse> localVarResp = getEventsWithHttpInfo(nextToken, status, accountId, schemaName, pageSize);
         return localVarResp.getData();
     }
 
     /**
-     * Get usage events from Togai
-     * API to get usage events ingested to Togai.
+     * Get a list of usage events with multiple query options
+     * This API let’s you to fetch a list of events with multiple query parameters
      * @param nextToken Pagination token used as a marker to get records from next page. (optional)
      * @param status Filter option to filter the events by processed/unprocessed status. (optional)
      * @param accountId Filter option to filter the events based on account id. (optional)
+     * @param schemaName Filter option to filter the events based on schema name. (optional)
      * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
-     * @param startTime Start time filter in epoch milli seconds (optional)
-     * @param endTime End time filter in epoch milli seconds (optional)
      * @return ApiResponse&lt;GetEventsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -227,21 +220,20 @@ public class EventManagementApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetEventsResponse> getEventsWithHttpInfo(String nextToken, String status, String accountId, Integer pageSize, Long startTime, Long endTime) throws ApiException {
-        okhttp3.Call localVarCall = getEventsValidateBeforeCall(nextToken, status, accountId, pageSize, startTime, endTime, null);
+    public ApiResponse<GetEventsResponse> getEventsWithHttpInfo(String nextToken, String status, String accountId, String schemaName, Integer pageSize) throws ApiException {
+        okhttp3.Call localVarCall = getEventsValidateBeforeCall(nextToken, status, accountId, schemaName, pageSize, null);
         Type localVarReturnType = new TypeToken<GetEventsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get usage events from Togai (asynchronously)
-     * API to get usage events ingested to Togai.
+     * Get a list of usage events with multiple query options (asynchronously)
+     * This API let’s you to fetch a list of events with multiple query parameters
      * @param nextToken Pagination token used as a marker to get records from next page. (optional)
      * @param status Filter option to filter the events by processed/unprocessed status. (optional)
      * @param accountId Filter option to filter the events based on account id. (optional)
+     * @param schemaName Filter option to filter the events based on schema name. (optional)
      * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
-     * @param startTime Start time filter in epoch milli seconds (optional)
-     * @param endTime End time filter in epoch milli seconds (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -257,9 +249,9 @@ public class EventManagementApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getEventsAsync(String nextToken, String status, String accountId, Integer pageSize, Long startTime, Long endTime, final ApiCallback<GetEventsResponse> _callback) throws ApiException {
+    public okhttp3.Call getEventsAsync(String nextToken, String status, String accountId, String schemaName, Integer pageSize, final ApiCallback<GetEventsResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getEventsValidateBeforeCall(nextToken, status, accountId, pageSize, startTime, endTime, _callback);
+        okhttp3.Call localVarCall = getEventsValidateBeforeCall(nextToken, status, accountId, schemaName, pageSize, _callback);
         Type localVarReturnType = new TypeToken<GetEventsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -342,8 +334,8 @@ public class EventManagementApi {
     }
 
     /**
-     * Get the usage event given event id.
-     * API to get the event given the event id.
+     * Get an usage event using event id
+     * Fetch details of a particular event using the event ID.
      * @param eventId  (required)
      * @return GetEventResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -364,8 +356,8 @@ public class EventManagementApi {
     }
 
     /**
-     * Get the usage event given event id.
-     * API to get the event given the event id.
+     * Get an usage event using event id
+     * Fetch details of a particular event using the event ID.
      * @param eventId  (required)
      * @return ApiResponse&lt;GetEventResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -387,8 +379,8 @@ public class EventManagementApi {
     }
 
     /**
-     * Get the usage event given event id. (asynchronously)
-     * API to get the event given the event id.
+     * Get an usage event using event id (asynchronously)
+     * Fetch details of a particular event using the event ID.
      * @param eventId  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call

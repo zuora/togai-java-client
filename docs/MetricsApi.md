@@ -1,19 +1,19 @@
 # MetricsApi
 
-All URIs are relative to *https://sandbox-api.togai.com*
+All URIs are relative to *https://api.togai.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getMetrics**](MetricsApi.md#getMetrics) | **POST** /metrics | Get togai metrics. |
+| [**getMetrics**](MetricsApi.md#getMetrics) | **POST** /metrics | Get Togai Metrics |
 
 
 <a name="getMetrics"></a>
 # **getMetrics**
 > GetMetricsResponse getMetrics(getMetricsRequest)
 
-Get togai metrics.
+Get Togai Metrics
 
-To get the metrics, you make a POST request to the /metrics resource. You can query up to five metrics in a single request. Single response dataset can contain a maximum of 100 data points.
+Togai Metrics API allows you to fetch different metrics from Events value, Usage value, revenue metrics with multiple queryable options you may require for your business use case.  Make a POST request to the /metrics resource to get the metrics.  A single request can query up to five metrics.  Single response dataset can contain a maximum of 100 data points. 
 
 ### Example
 ```java
@@ -28,7 +28,7 @@ import com.togai.client.api.MetricsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://sandbox-api.togai.com");
+    defaultClient.setBasePath("https://api.togai.com");
     
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");

@@ -10,6 +10,7 @@ Structure of an account
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | Identifier of the account |  |
 |**name** | **String** | Name of the customer |  |
+|**invoiceCurrency** | **String** | [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217) code of the currency in which the account must be invoiced Defaults to Base currency.  |  |
 |**aliases** | [**List&lt;AccountAliases&gt;**](AccountAliases.md) | list of aliases of the account |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | Status of the account |  |
 

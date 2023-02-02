@@ -83,7 +83,7 @@ public class GetMetricsRequest implements Serializable {
    * @return startTime
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "2017-07-21T00:00Z", required = true, value = "")
 
   public OffsetDateTime getStartTime() {
     return startTime;
@@ -106,7 +106,7 @@ public class GetMetricsRequest implements Serializable {
    * @return endTime
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "2017-07-21T00:00Z", required = true, value = "")
 
   public OffsetDateTime getEndTime() {
     return endTime;

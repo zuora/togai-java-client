@@ -1,6 +1,6 @@
 # EventIngestionApi
 
-All URIs are relative to *https://sandbox-api.togai.com*
+All URIs are relative to *https://api.togai.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -14,7 +14,7 @@ All URIs are relative to *https://sandbox-api.togai.com*
 
 Ingest events to Togai
 
-API to ingest your application event to Togai for billing and usage analytics. To know the limits on the ingestion api, check our docs - https://togai.com/docs/limits.
+This API let’s you to ingest events to your Togai account.  Events ingested using this API will be processed via associated usage meters and further via associated price plans to generate final billable value to invoice the customer  Read more about [Event Ingestion](https://docs.togai.com/docs/event-ingestion) 
 
 ### Example
 ```java
@@ -29,7 +29,7 @@ import com.togai.client.api.EventIngestionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://sandbox-api.togai.com");
+    defaultClient.setBasePath("https://api.togai.com");
     
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -86,7 +86,7 @@ null (empty response body)
 
 Ingest events to Togai in batch
 
-API to ingest your application event in batch to Togai for billing and usage analytics. To know the limits on the ingestion api, check our docs - https://togai.com/docs/limits.
+This API let’s you to ingest events in batch upto 1000 events. Ingest large amounts of events up to 1000 in batches in an array using this API.
 
 ### Example
 ```java
@@ -101,7 +101,7 @@ import com.togai.client.api.EventIngestionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://sandbox-api.togai.com");
+    defaultClient.setBasePath("https://api.togai.com");
     
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");

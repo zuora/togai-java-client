@@ -26,7 +26,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -66,7 +68,7 @@ public class MetricQuery implements Serializable {
   private MetricName name;
 
   /**
-   * Gets or Sets aggregationPeriod
+   * Set the aggregation period. Allowed periods are DAY, WEEK, MONTH
    */
   @JsonAdapter(AggregationPeriodEnum.Adapter.class)
   public enum AggregationPeriodEnum {
@@ -122,6 +124,10 @@ public class MetricQuery implements Serializable {
   @SerializedName(SERIALIZED_NAME_GROUP_BY)
   private String groupBy;
 
+  public static final String SERIALIZED_NAME_CONFIGS = "configs";
+  @SerializedName(SERIALIZED_NAME_CONFIGS)
+  private Map<String, String> configs = null;
+
   public static final String SERIALIZED_NAME_FILTERS = "filters";
   @SerializedName(SERIALIZED_NAME_FILTERS)
   private List<MetricQueryFilterEntry> filters = null;
@@ -136,11 +142,11 @@ public class MetricQuery implements Serializable {
   }
 
    /**
-   * Get id
+   * Mandatory  for all request.  User defined ID for identifying the request for your internal reference 
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Mandatory  for all request.  User defined ID for identifying the request for your internal reference ")
 
   public String getId() {
     return id;
@@ -182,11 +188,11 @@ public class MetricQuery implements Serializable {
   }
 
    /**
-   * Get aggregationPeriod
+   * Set the aggregation period. Allowed periods are DAY, WEEK, MONTH
    * @return aggregationPeriod
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Set the aggregation period. Allowed periods are DAY, WEEK, MONTH")
 
   public AggregationPeriodEnum getAggregationPeriod() {
     return aggregationPeriod;
@@ -205,11 +211,11 @@ public class MetricQuery implements Serializable {
   }
 
    /**
-   * Get groupBy
+   * Group your metric with a groupBy field.  Allowed fields are ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME, USAGE_METER_ID.  Please refer the table above for the list of combinations allowed in the groupBy 
    * @return groupBy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Group your metric with a groupBy field.  Allowed fields are ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME, USAGE_METER_ID.  Please refer the table above for the list of combinations allowed in the groupBy ")
 
   public String getGroupBy() {
     return groupBy;
@@ -218,6 +224,37 @@ public class MetricQuery implements Serializable {
 
   public void setGroupBy(String groupBy) {
     this.groupBy = groupBy;
+  }
+
+
+  public MetricQuery configs(Map<String, String> configs) {
+    
+    this.configs = configs;
+    return this;
+  }
+
+  public MetricQuery putConfigsItem(String key, String configsItem) {
+    if (this.configs == null) {
+      this.configs = new HashMap<>();
+    }
+    this.configs.put(key, configsItem);
+    return this;
+  }
+
+   /**
+   * Configurations. | Metric Name | Config Key | Allowed Values  | Default value |              Description             | |-------------|------------|-----------------|---------------|--------------------------------------| | REVENUE     | CURRENCY   | BASE or INVOICE | BASE          | currency to return the revenue in    | 
+   * @return configs
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Configurations. | Metric Name | Config Key | Allowed Values  | Default value |              Description             | |-------------|------------|-----------------|---------------|--------------------------------------| | REVENUE     | CURRENCY   | BASE or INVOICE | BASE          | currency to return the revenue in    | ")
+
+  public Map<String, String> getConfigs() {
+    return configs;
+  }
+
+
+  public void setConfigs(Map<String, String> configs) {
+    this.configs = configs;
   }
 
 
@@ -236,11 +273,11 @@ public class MetricQuery implements Serializable {
   }
 
    /**
-   * Get filters
+   * Field Values” required when “Field Name” is present.  You can find a list of Field Values (FilterEntry Name) combinations allowed in the table mentioned above the body param. 
    * @return filters
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Field Values” required when “Field Name” is present.  You can find a list of Field Values (FilterEntry Name) combinations allowed in the table mentioned above the body param. ")
 
   public List<MetricQueryFilterEntry> getFilters() {
     return filters;
@@ -266,12 +303,13 @@ public class MetricQuery implements Serializable {
         Objects.equals(this.name, metricQuery.name) &&
         Objects.equals(this.aggregationPeriod, metricQuery.aggregationPeriod) &&
         Objects.equals(this.groupBy, metricQuery.groupBy) &&
+        Objects.equals(this.configs, metricQuery.configs) &&
         Objects.equals(this.filters, metricQuery.filters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, aggregationPeriod, groupBy, filters);
+    return Objects.hash(id, name, aggregationPeriod, groupBy, configs, filters);
   }
 
   @Override
@@ -282,6 +320,7 @@ public class MetricQuery implements Serializable {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    aggregationPeriod: ").append(toIndentedString(aggregationPeriod)).append("\n");
     sb.append("    groupBy: ").append(toIndentedString(groupBy)).append("\n");
+    sb.append("    configs: ").append(toIndentedString(configs)).append("\n");
     sb.append("    filters: ").append(toIndentedString(filters)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -309,6 +348,7 @@ public class MetricQuery implements Serializable {
     openapiFields.add("name");
     openapiFields.add("aggregationPeriod");
     openapiFields.add("groupBy");
+    openapiFields.add("configs");
     openapiFields.add("filters");
 
     // a set of required properties/fields (JSON key names)

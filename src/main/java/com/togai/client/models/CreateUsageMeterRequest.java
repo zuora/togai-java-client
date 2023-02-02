@@ -69,11 +69,7 @@ public class CreateUsageMeterRequest implements Serializable {
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
-    COUNTER("COUNTER"),
-    
-    GAUGE("GAUGE"),
-    
-    TIMER("TIMER");
+    COUNTER("COUNTER");
 
     private String value;
 

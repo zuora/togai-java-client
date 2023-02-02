@@ -64,6 +64,10 @@ public class Account implements Serializable {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
+  public static final String SERIALIZED_NAME_INVOICE_CURRENCY = "invoiceCurrency";
+  @SerializedName(SERIALIZED_NAME_INVOICE_CURRENCY)
+  private String invoiceCurrency;
+
   public static final String SERIALIZED_NAME_ALIASES = "aliases";
   @SerializedName(SERIALIZED_NAME_ALIASES)
   private List<AccountAliases> aliases = null;
@@ -168,6 +172,29 @@ public class Account implements Serializable {
   }
 
 
+  public Account invoiceCurrency(String invoiceCurrency) {
+    
+    this.invoiceCurrency = invoiceCurrency;
+    return this;
+  }
+
+   /**
+   * [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217) code of the currency in which the account must be invoiced Defaults to Base currency. 
+   * @return invoiceCurrency
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "USD", required = true, value = "[ISO_4217](https://en.wikipedia.org/wiki/ISO_4217) code of the currency in which the account must be invoiced Defaults to Base currency. ")
+
+  public String getInvoiceCurrency() {
+    return invoiceCurrency;
+  }
+
+
+  public void setInvoiceCurrency(String invoiceCurrency) {
+    this.invoiceCurrency = invoiceCurrency;
+  }
+
+
   public Account aliases(List<AccountAliases> aliases) {
     
     this.aliases = aliases;
@@ -234,13 +261,14 @@ public class Account implements Serializable {
     Account account = (Account) o;
     return Objects.equals(this.id, account.id) &&
         Objects.equals(this.name, account.name) &&
+        Objects.equals(this.invoiceCurrency, account.invoiceCurrency) &&
         Objects.equals(this.aliases, account.aliases) &&
         Objects.equals(this.status, account.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, aliases, status);
+    return Objects.hash(id, name, invoiceCurrency, aliases, status);
   }
 
   @Override
@@ -249,6 +277,7 @@ public class Account implements Serializable {
     sb.append("class Account {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    invoiceCurrency: ").append(toIndentedString(invoiceCurrency)).append("\n");
     sb.append("    aliases: ").append(toIndentedString(aliases)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
@@ -275,6 +304,7 @@ public class Account implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
     openapiFields.add("name");
+    openapiFields.add("invoiceCurrency");
     openapiFields.add("aliases");
     openapiFields.add("status");
 
@@ -282,6 +312,7 @@ public class Account implements Serializable {
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("id");
     openapiRequiredFields.add("name");
+    openapiRequiredFields.add("invoiceCurrency");
     openapiRequiredFields.add("status");
   }
 
@@ -319,6 +350,9 @@ public class Account implements Serializable {
       }
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("invoiceCurrency") != null && !jsonObj.get("invoiceCurrency").isJsonNull()) && !jsonObj.get("invoiceCurrency").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `invoiceCurrency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceCurrency").toString()));
       }
       JsonArray jsonArrayaliases = jsonObj.getAsJsonArray("aliases");
       if (jsonArrayaliases != null) {

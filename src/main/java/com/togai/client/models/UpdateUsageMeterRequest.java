@@ -61,15 +61,11 @@ public class UpdateUsageMeterRequest implements Serializable {
   private String description;
 
   /**
-   * Type of usage meter * COUNTER - Count usage  * GAUGE - Not supported at the moment * TIMER - Not supported at the moment 
+   * Type of usage meter * COUNTER - Count usage  
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
-    COUNTER("COUNTER"),
-    
-    GAUGE("GAUGE"),
-    
-    TIMER("TIMER");
+    COUNTER("COUNTER");
 
     private String value;
 
@@ -201,11 +197,11 @@ public class UpdateUsageMeterRequest implements Serializable {
   }
 
    /**
-   * Type of usage meter * COUNTER - Count usage  * GAUGE - Not supported at the moment * TIMER - Not supported at the moment 
+   * Type of usage meter * COUNTER - Count usage  
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "COUNTER", required = true, value = "Type of usage meter * COUNTER - Count usage  * GAUGE - Not supported at the moment * TIMER - Not supported at the moment ")
+  @ApiModelProperty(example = "COUNTER", required = true, value = "Type of usage meter * COUNTER - Count usage  ")
 
   public TypeEnum getType() {
     return type;

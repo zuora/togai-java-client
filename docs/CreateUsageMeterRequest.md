@@ -21,8 +21,6 @@ Request to create usage meter
 | Name | Value |
 |---- | -----|
 | COUNTER | &quot;COUNTER&quot; |
-| GAUGE | &quot;GAUGE&quot; |
-| TIMER | &quot;TIMER&quot; |
 
 
 

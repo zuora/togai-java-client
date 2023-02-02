@@ -28,6 +28,7 @@ import java.io.IOException;
 
 
 import com.togai.client.models.BaseSuccessResponse;
+import java.math.BigDecimal;
 import com.togai.client.models.CreateEventSchemaRequest;
 import com.togai.client.models.ErrorResponse;
 import com.togai.client.models.EventSchema;
@@ -309,7 +310,7 @@ public class EventSchemasApi {
 
     /**
      * Create an event schema
-     * Create an event schema
+     * Create an event schema with attributes and dimensions to process events.
      * @param createEventSchemaRequest Payload to create event schema (required)
      * @return EventSchema
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -332,7 +333,7 @@ public class EventSchemasApi {
 
     /**
      * Create an event schema
-     * Create an event schema
+     * Create an event schema with attributes and dimensions to process events.
      * @param createEventSchemaRequest Payload to create event schema (required)
      * @return ApiResponse&lt;EventSchema&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -356,7 +357,7 @@ public class EventSchemasApi {
 
     /**
      * Create an event schema (asynchronously)
-     * Create an event schema
+     * Create an event schema with attributes and dimensions to process events.
      * @param createEventSchemaRequest Payload to create event schema (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -460,7 +461,7 @@ public class EventSchemasApi {
 
     /**
      * Deactivate an event schema
-     * Deactivate an event schema
+     * You can deactivate an event schema using this API. In case you have an activate usage meter associated with the event schema, you will need to deactivate it first and then try deactivating the event schema. 
      * @param eventSchemaName  (required)
      * @return EventSchema
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -483,7 +484,7 @@ public class EventSchemasApi {
 
     /**
      * Deactivate an event schema
-     * Deactivate an event schema
+     * You can deactivate an event schema using this API. In case you have an activate usage meter associated with the event schema, you will need to deactivate it first and then try deactivating the event schema. 
      * @param eventSchemaName  (required)
      * @return ApiResponse&lt;EventSchema&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -507,7 +508,7 @@ public class EventSchemasApi {
 
     /**
      * Deactivate an event schema (asynchronously)
-     * Deactivate an event schema
+     * You can deactivate an event schema using this API. In case you have an activate usage meter associated with the event schema, you will need to deactivate it first and then try deactivating the event schema. 
      * @param eventSchemaName  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -611,7 +612,7 @@ public class EventSchemasApi {
 
     /**
      * Delete an event schema
-     * Delete an event schema
+     * To delete(archive) an event schema, you’re required to archive associated active usage meters if any.
      * @param eventSchemaName  (required)
      * @return BaseSuccessResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -634,7 +635,7 @@ public class EventSchemasApi {
 
     /**
      * Delete an event schema
-     * Delete an event schema
+     * To delete(archive) an event schema, you’re required to archive associated active usage meters if any.
      * @param eventSchemaName  (required)
      * @return ApiResponse&lt;BaseSuccessResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -658,7 +659,7 @@ public class EventSchemasApi {
 
     /**
      * Delete an event schema (asynchronously)
-     * Delete an event schema
+     * To delete(archive) an event schema, you’re required to archive associated active usage meters if any.
      * @param eventSchemaName  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -679,6 +680,166 @@ public class EventSchemasApi {
 
         okhttp3.Call localVarCall = deleteEventSchemaValidateBeforeCall(eventSchemaName, _callback);
         Type localVarReturnType = new TypeToken<BaseSuccessResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for eventSchemaEventSchemaNamePatch
+     * @param eventSchemaName  (required)
+     * @param updateEventSchemaRequest Payload to update event schema (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call eventSchemaEventSchemaNamePatchCall(String eventSchemaName, UpdateEventSchemaRequest updateEventSchemaRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = updateEventSchemaRequest;
+
+        // create path and map variables
+        String localVarPath = "/event_schema/{event_schema_name}"
+            .replaceAll("\\{" + "event_schema_name" + "\\}", localVarApiClient.escapeString(eventSchemaName.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call eventSchemaEventSchemaNamePatchValidateBeforeCall(String eventSchemaName, UpdateEventSchemaRequest updateEventSchemaRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'eventSchemaName' is set
+        if (eventSchemaName == null) {
+            throw new ApiException("Missing the required parameter 'eventSchemaName' when calling eventSchemaEventSchemaNamePatch(Async)");
+        }
+        
+        // verify the required parameter 'updateEventSchemaRequest' is set
+        if (updateEventSchemaRequest == null) {
+            throw new ApiException("Missing the required parameter 'updateEventSchemaRequest' when calling eventSchemaEventSchemaNamePatch(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = eventSchemaEventSchemaNamePatchCall(eventSchemaName, updateEventSchemaRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Update an event schema
+     * Update an event schema and add new attributes and dimensions  Once an event schema is activated, you cannot update or delete existing attributes and dimensions however you can add new attributes and dimensions and update event schema description.     operationId: updateEventSchema 
+     * @param eventSchemaName  (required)
+     * @param updateEventSchemaRequest Payload to update event schema (required)
+     * @return EventSchema
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public EventSchema eventSchemaEventSchemaNamePatch(String eventSchemaName, UpdateEventSchemaRequest updateEventSchemaRequest) throws ApiException {
+        ApiResponse<EventSchema> localVarResp = eventSchemaEventSchemaNamePatchWithHttpInfo(eventSchemaName, updateEventSchemaRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update an event schema
+     * Update an event schema and add new attributes and dimensions  Once an event schema is activated, you cannot update or delete existing attributes and dimensions however you can add new attributes and dimensions and update event schema description.     operationId: updateEventSchema 
+     * @param eventSchemaName  (required)
+     * @param updateEventSchemaRequest Payload to update event schema (required)
+     * @return ApiResponse&lt;EventSchema&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<EventSchema> eventSchemaEventSchemaNamePatchWithHttpInfo(String eventSchemaName, UpdateEventSchemaRequest updateEventSchemaRequest) throws ApiException {
+        okhttp3.Call localVarCall = eventSchemaEventSchemaNamePatchValidateBeforeCall(eventSchemaName, updateEventSchemaRequest, null);
+        Type localVarReturnType = new TypeToken<EventSchema>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update an event schema (asynchronously)
+     * Update an event schema and add new attributes and dimensions  Once an event schema is activated, you cannot update or delete existing attributes and dimensions however you can add new attributes and dimensions and update event schema description.     operationId: updateEventSchema 
+     * @param eventSchemaName  (required)
+     * @param updateEventSchemaRequest Payload to update event schema (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call eventSchemaEventSchemaNamePatchAsync(String eventSchemaName, UpdateEventSchemaRequest updateEventSchemaRequest, final ApiCallback<EventSchema> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = eventSchemaEventSchemaNamePatchValidateBeforeCall(eventSchemaName, updateEventSchemaRequest, _callback);
+        Type localVarReturnType = new TypeToken<EventSchema>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -921,7 +1082,7 @@ public class EventSchemasApi {
 
     /**
      * List all event schema versions
-     * List all event schema versions
+     * Get a list of all the versions of an event schema
      * @param eventSchemaName  (required)
      * @return EventSchemaVersionsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -944,7 +1105,7 @@ public class EventSchemasApi {
 
     /**
      * List all event schema versions
-     * List all event schema versions
+     * Get a list of all the versions of an event schema
      * @param eventSchemaName  (required)
      * @return ApiResponse&lt;EventSchemaVersionsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -968,7 +1129,7 @@ public class EventSchemasApi {
 
     /**
      * List all event schema versions (asynchronously)
-     * List all event schema versions
+     * Get a list of all the versions of an event schema
      * @param eventSchemaName  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1013,7 +1174,7 @@ public class EventSchemasApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listEventSchemasCall(String statuses, String nextToken, String pageSize, String sortOrder, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listEventSchemasCall(String statuses, String nextToken, BigDecimal pageSize, String sortOrder, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1075,7 +1236,7 @@ public class EventSchemasApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listEventSchemasValidateBeforeCall(String statuses, String nextToken, String pageSize, String sortOrder, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listEventSchemasValidateBeforeCall(String statuses, String nextToken, BigDecimal pageSize, String sortOrder, final ApiCallback _callback) throws ApiException {
         
 
         okhttp3.Call localVarCall = listEventSchemasCall(statuses, nextToken, pageSize, sortOrder, _callback);
@@ -1085,7 +1246,7 @@ public class EventSchemasApi {
 
     /**
      * List event schemas
-     * List event schemas with pagination and sort
+     * Returns a list of event schema with pagination and sort.
      * @param statuses Filter by provided statuses (optional)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
@@ -1104,14 +1265,14 @@ public class EventSchemasApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public EventSchemaListPaginatedResponse listEventSchemas(String statuses, String nextToken, String pageSize, String sortOrder) throws ApiException {
+    public EventSchemaListPaginatedResponse listEventSchemas(String statuses, String nextToken, BigDecimal pageSize, String sortOrder) throws ApiException {
         ApiResponse<EventSchemaListPaginatedResponse> localVarResp = listEventSchemasWithHttpInfo(statuses, nextToken, pageSize, sortOrder);
         return localVarResp.getData();
     }
 
     /**
      * List event schemas
-     * List event schemas with pagination and sort
+     * Returns a list of event schema with pagination and sort.
      * @param statuses Filter by provided statuses (optional)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
@@ -1130,7 +1291,7 @@ public class EventSchemasApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<EventSchemaListPaginatedResponse> listEventSchemasWithHttpInfo(String statuses, String nextToken, String pageSize, String sortOrder) throws ApiException {
+    public ApiResponse<EventSchemaListPaginatedResponse> listEventSchemasWithHttpInfo(String statuses, String nextToken, BigDecimal pageSize, String sortOrder) throws ApiException {
         okhttp3.Call localVarCall = listEventSchemasValidateBeforeCall(statuses, nextToken, pageSize, sortOrder, null);
         Type localVarReturnType = new TypeToken<EventSchemaListPaginatedResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1138,7 +1299,7 @@ public class EventSchemasApi {
 
     /**
      * List event schemas (asynchronously)
-     * List event schemas with pagination and sort
+     * Returns a list of event schema with pagination and sort.
      * @param statuses Filter by provided statuses (optional)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
@@ -1158,170 +1319,10 @@ public class EventSchemasApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listEventSchemasAsync(String statuses, String nextToken, String pageSize, String sortOrder, final ApiCallback<EventSchemaListPaginatedResponse> _callback) throws ApiException {
+    public okhttp3.Call listEventSchemasAsync(String statuses, String nextToken, BigDecimal pageSize, String sortOrder, final ApiCallback<EventSchemaListPaginatedResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listEventSchemasValidateBeforeCall(statuses, nextToken, pageSize, sortOrder, _callback);
         Type localVarReturnType = new TypeToken<EventSchemaListPaginatedResponse>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for updateEventSchema
-     * @param eventSchemaName  (required)
-     * @param updateEventSchemaRequest Payload to update event schema (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call updateEventSchemaCall(String eventSchemaName, UpdateEventSchemaRequest updateEventSchemaRequest, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = updateEventSchemaRequest;
-
-        // create path and map variables
-        String localVarPath = "/event_schema/{event_schema_name}"
-            .replaceAll("\\{" + "event_schema_name" + "\\}", localVarApiClient.escapeString(eventSchemaName.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "bearerAuth" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateEventSchemaValidateBeforeCall(String eventSchemaName, UpdateEventSchemaRequest updateEventSchemaRequest, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'eventSchemaName' is set
-        if (eventSchemaName == null) {
-            throw new ApiException("Missing the required parameter 'eventSchemaName' when calling updateEventSchema(Async)");
-        }
-        
-        // verify the required parameter 'updateEventSchemaRequest' is set
-        if (updateEventSchemaRequest == null) {
-            throw new ApiException("Missing the required parameter 'updateEventSchemaRequest' when calling updateEventSchema(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = updateEventSchemaCall(eventSchemaName, updateEventSchemaRequest, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Update an event schema
-     * Update an event schema
-     * @param eventSchemaName  (required)
-     * @param updateEventSchemaRequest Payload to update event schema (required)
-     * @return EventSchema
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
-     </table>
-     */
-    public EventSchema updateEventSchema(String eventSchemaName, UpdateEventSchemaRequest updateEventSchemaRequest) throws ApiException {
-        ApiResponse<EventSchema> localVarResp = updateEventSchemaWithHttpInfo(eventSchemaName, updateEventSchemaRequest);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Update an event schema
-     * Update an event schema
-     * @param eventSchemaName  (required)
-     * @param updateEventSchemaRequest Payload to update event schema (required)
-     * @return ApiResponse&lt;EventSchema&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<EventSchema> updateEventSchemaWithHttpInfo(String eventSchemaName, UpdateEventSchemaRequest updateEventSchemaRequest) throws ApiException {
-        okhttp3.Call localVarCall = updateEventSchemaValidateBeforeCall(eventSchemaName, updateEventSchemaRequest, null);
-        Type localVarReturnType = new TypeToken<EventSchema>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Update an event schema (asynchronously)
-     * Update an event schema
-     * @param eventSchemaName  (required)
-     * @param updateEventSchemaRequest Payload to update event schema (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call updateEventSchemaAsync(String eventSchemaName, UpdateEventSchemaRequest updateEventSchemaRequest, final ApiCallback<EventSchema> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = updateEventSchemaValidateBeforeCall(eventSchemaName, updateEventSchemaRequest, _callback);
-        Type localVarReturnType = new TypeToken<EventSchema>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

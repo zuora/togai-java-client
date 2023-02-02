@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.togai.client.models.PricingCycle;
+import com.togai.client.models.PricePlanDetails;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -56,6 +56,10 @@ import com.togai.client.JSON;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PricePlanListData implements Serializable {
   private static final long serialVersionUID = 1L;
+
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -118,17 +122,13 @@ public class PricePlanListData implements Serializable {
   @SerializedName(SERIALIZED_NAME_STATUS)
   private StatusEnum status;
 
-  public static final String SERIALIZED_NAME_PRICING_CYCLE = "pricingCycle";
-  @SerializedName(SERIALIZED_NAME_PRICING_CYCLE)
-  private PricingCycle pricingCycle;
-
   public static final String SERIALIZED_NAME_USAGE_METERS = "usageMeters";
   @SerializedName(SERIALIZED_NAME_USAGE_METERS)
   private List<String> usageMeters = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_PRICING_TYPE = "pricingType";
-  @SerializedName(SERIALIZED_NAME_PRICING_TYPE)
-  private String pricingType;
+  public static final String SERIALIZED_NAME_PRICE_PLAN_DETAILS = "pricePlanDetails";
+  @SerializedName(SERIALIZED_NAME_PRICE_PLAN_DETAILS)
+  private PricePlanDetails pricePlanDetails;
 
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
@@ -140,6 +140,29 @@ public class PricePlanListData implements Serializable {
 
   public PricePlanListData() {
   }
+
+  public PricePlanListData id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Identifier of price plan
+   * @return id
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Identifier of price plan")
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
 
   public PricePlanListData name(String name) {
     
@@ -210,29 +233,6 @@ public class PricePlanListData implements Serializable {
   }
 
 
-  public PricePlanListData pricingCycle(PricingCycle pricingCycle) {
-    
-    this.pricingCycle = pricingCycle;
-    return this;
-  }
-
-   /**
-   * Get pricingCycle
-   * @return pricingCycle
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public PricingCycle getPricingCycle() {
-    return pricingCycle;
-  }
-
-
-  public void setPricingCycle(PricingCycle pricingCycle) {
-    this.pricingCycle = pricingCycle;
-  }
-
-
   public PricePlanListData usageMeters(List<String> usageMeters) {
     
     this.usageMeters = usageMeters;
@@ -245,11 +245,11 @@ public class PricePlanListData implements Serializable {
   }
 
    /**
-   * Usage meters name linked to the price plan
+   * Usage meters id linked to the price plan
    * @return usageMeters
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Usage meters name linked to the price plan")
+  @ApiModelProperty(required = true, value = "Usage meters id linked to the price plan")
 
   public List<String> getUsageMeters() {
     return usageMeters;
@@ -261,26 +261,26 @@ public class PricePlanListData implements Serializable {
   }
 
 
-  public PricePlanListData pricingType(String pricingType) {
+  public PricePlanListData pricePlanDetails(PricePlanDetails pricePlanDetails) {
     
-    this.pricingType = pricingType;
+    this.pricePlanDetails = pricePlanDetails;
     return this;
   }
 
    /**
-   * Pricing type of the price plan
-   * @return pricingType
+   * Get pricePlanDetails
+   * @return pricePlanDetails
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Pricing type of the price plan")
+  @ApiModelProperty(required = true, value = "")
 
-  public String getPricingType() {
-    return pricingType;
+  public PricePlanDetails getPricePlanDetails() {
+    return pricePlanDetails;
   }
 
 
-  public void setPricingType(String pricingType) {
-    this.pricingType = pricingType;
+  public void setPricePlanDetails(PricePlanDetails pricePlanDetails) {
+    this.pricePlanDetails = pricePlanDetails;
   }
 
 
@@ -340,31 +340,31 @@ public class PricePlanListData implements Serializable {
       return false;
     }
     PricePlanListData pricePlanListData = (PricePlanListData) o;
-    return Objects.equals(this.name, pricePlanListData.name) &&
+    return Objects.equals(this.id, pricePlanListData.id) &&
+        Objects.equals(this.name, pricePlanListData.name) &&
         Objects.equals(this.description, pricePlanListData.description) &&
         Objects.equals(this.status, pricePlanListData.status) &&
-        Objects.equals(this.pricingCycle, pricePlanListData.pricingCycle) &&
         Objects.equals(this.usageMeters, pricePlanListData.usageMeters) &&
-        Objects.equals(this.pricingType, pricePlanListData.pricingType) &&
+        Objects.equals(this.pricePlanDetails, pricePlanListData.pricePlanDetails) &&
         Objects.equals(this.createdAt, pricePlanListData.createdAt) &&
         Objects.equals(this.updatedAt, pricePlanListData.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, status, pricingCycle, usageMeters, pricingType, createdAt, updatedAt);
+    return Objects.hash(id, name, description, status, usageMeters, pricePlanDetails, createdAt, updatedAt);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PricePlanListData {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    pricingCycle: ").append(toIndentedString(pricingCycle)).append("\n");
     sb.append("    usageMeters: ").append(toIndentedString(usageMeters)).append("\n");
-    sb.append("    pricingType: ").append(toIndentedString(pricingType)).append("\n");
+    sb.append("    pricePlanDetails: ").append(toIndentedString(pricePlanDetails)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
@@ -389,22 +389,22 @@ public class PricePlanListData implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("id");
     openapiFields.add("name");
     openapiFields.add("description");
     openapiFields.add("status");
-    openapiFields.add("pricingCycle");
     openapiFields.add("usageMeters");
-    openapiFields.add("pricingType");
+    openapiFields.add("pricePlanDetails");
     openapiFields.add("createdAt");
     openapiFields.add("updatedAt");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("id");
     openapiRequiredFields.add("name");
     openapiRequiredFields.add("status");
-    openapiRequiredFields.add("pricingCycle");
     openapiRequiredFields.add("usageMeters");
-    openapiRequiredFields.add("pricingType");
+    openapiRequiredFields.add("pricePlanDetails");
     openapiRequiredFields.add("createdAt");
     openapiRequiredFields.add("updatedAt");
   }
@@ -438,6 +438,9 @@ public class PricePlanListData implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
@@ -447,16 +450,13 @@ public class PricePlanListData implements Serializable {
       if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
       }
-      // validate the optional field `pricingCycle`
-      if (jsonObj.get("pricingCycle") != null && !jsonObj.get("pricingCycle").isJsonNull()) {
-        PricingCycle.validateJsonObject(jsonObj.getAsJsonObject("pricingCycle"));
-      }
       // ensure the json data is an array
       if ((jsonObj.get("usageMeters") != null && !jsonObj.get("usageMeters").isJsonNull()) && !jsonObj.get("usageMeters").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `usageMeters` to be an array in the JSON string but got `%s`", jsonObj.get("usageMeters").toString()));
       }
-      if ((jsonObj.get("pricingType") != null && !jsonObj.get("pricingType").isJsonNull()) && !jsonObj.get("pricingType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `pricingType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pricingType").toString()));
+      // validate the optional field `pricePlanDetails`
+      if (jsonObj.get("pricePlanDetails") != null && !jsonObj.get("pricePlanDetails").isJsonNull()) {
+        PricePlanDetails.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetails"));
       }
   }
 

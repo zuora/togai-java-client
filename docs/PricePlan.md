@@ -8,10 +8,10 @@ Price plan entity
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**id** | **String** | Price plan id |  |
 |**name** | **String** | Name of the price plan |  |
 |**description** | **String** | Description of price plan |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | Status of Price plan |  |
-|**pricingCycle** | [**PricingCycle**](PricingCycle.md) |  |  |
 |**pricingSchedule** | [**List&lt;PricingSchedule&gt;**](PricingSchedule.md) |  |  |
 
 

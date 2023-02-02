@@ -15,6 +15,7 @@ package com.togai.client.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import io.swagger.annotations.ApiModel;
 import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
@@ -25,7 +26,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets MetricName
+ * Define the metric you would like to get - allowed options are EVENTS - Aggregation of raw events, USAGE - Aggregated usage value from Usage meters, REVENUE - Aggregated of revenue value from Pricing Plans 
  */
 @JsonAdapter(MetricName.Adapter.class)
 public enum MetricName {

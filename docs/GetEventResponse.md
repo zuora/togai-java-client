@@ -8,7 +8,7 @@ Get single event response
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**events** | [**List&lt;EventWithStatusAndEventPipelineInfo&gt;**](EventWithStatusAndEventPipelineInfo.md) |  |  [optional] |
+|**events** | [**List&lt;EventWithStatusAndEventPipelineInfo&gt;**](EventWithStatusAndEventPipelineInfo.md) |  |  |
 
 
 ## Implemented Interfaces

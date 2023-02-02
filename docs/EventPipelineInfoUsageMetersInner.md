@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**id** | **String** |  |  |
 |**name** | **String** |  |  |
 |**version** | **Integer** |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |

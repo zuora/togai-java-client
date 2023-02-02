@@ -28,6 +28,7 @@ import java.io.IOException;
 
 
 import com.togai.client.models.BaseSuccessResponse;
+import java.math.BigDecimal;
 import com.togai.client.models.CreateCustomerRequest;
 import com.togai.client.models.CreateCustomerResponse;
 import com.togai.client.models.Customer;
@@ -158,7 +159,7 @@ public class CustomersApi {
 
     /**
      * Create a customer
-     * Create a customer and a default account corresponding to it
+     * This API let’s you to create customers and corresponding accounts.
      * @param createCustomerRequest Payload to create customer (required)
      * @return CreateCustomerResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -181,7 +182,7 @@ public class CustomersApi {
 
     /**
      * Create a customer
-     * Create a customer and a default account corresponding to it
+     * This API let’s you to create customers and corresponding accounts.
      * @param createCustomerRequest Payload to create customer (required)
      * @return ApiResponse&lt;CreateCustomerResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -205,7 +206,7 @@ public class CustomersApi {
 
     /**
      * Create a customer (asynchronously)
-     * Create a customer and a default account corresponding to it
+     * This API let’s you to create customers and corresponding accounts.
      * @param createCustomerRequest Payload to create customer (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -309,7 +310,7 @@ public class CustomersApi {
 
     /**
      * Delete a customer
-     * Delete a customer by id
+     * This API let’s you to delete a customer using customer_id.
      * @param customerId  (required)
      * @return BaseSuccessResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -332,7 +333,7 @@ public class CustomersApi {
 
     /**
      * Delete a customer
-     * Delete a customer by id
+     * This API let’s you to delete a customer using customer_id.
      * @param customerId  (required)
      * @return ApiResponse&lt;BaseSuccessResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -356,7 +357,7 @@ public class CustomersApi {
 
     /**
      * Delete a customer (asynchronously)
-     * Delete a customer by id
+     * This API let’s you to delete a customer using customer_id.
      * @param customerId  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -460,7 +461,7 @@ public class CustomersApi {
 
     /**
      * Get a customer
-     * Get a customer by id
+     * Get customer information using customer_id.
      * @param customerId  (required)
      * @return Customer
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -483,7 +484,7 @@ public class CustomersApi {
 
     /**
      * Get a customer
-     * Get a customer by id
+     * Get customer information using customer_id.
      * @param customerId  (required)
      * @return ApiResponse&lt;Customer&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -507,7 +508,7 @@ public class CustomersApi {
 
     /**
      * Get a customer (asynchronously)
-     * Get a customer by id
+     * Get customer information using customer_id.
      * @param customerId  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -550,7 +551,7 @@ public class CustomersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCustomersCall(String nextToken, String pageSize, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getCustomersCall(String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -604,7 +605,7 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getCustomersValidateBeforeCall(String nextToken, String pageSize, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getCustomersValidateBeforeCall(String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
         
 
         okhttp3.Call localVarCall = getCustomersCall(nextToken, pageSize, _callback);
@@ -614,7 +615,7 @@ public class CustomersApi {
 
     /**
      * List customers
-     * List customers with pagination and sort
+     * Returns a list of customers with pagination and sort.
      * @param nextToken  (optional)
      * @param pageSize  (optional)
      * @return CustomerPaginatedResponse
@@ -631,14 +632,14 @@ public class CustomersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public CustomerPaginatedResponse getCustomers(String nextToken, String pageSize) throws ApiException {
+    public CustomerPaginatedResponse getCustomers(String nextToken, BigDecimal pageSize) throws ApiException {
         ApiResponse<CustomerPaginatedResponse> localVarResp = getCustomersWithHttpInfo(nextToken, pageSize);
         return localVarResp.getData();
     }
 
     /**
      * List customers
-     * List customers with pagination and sort
+     * Returns a list of customers with pagination and sort.
      * @param nextToken  (optional)
      * @param pageSize  (optional)
      * @return ApiResponse&lt;CustomerPaginatedResponse&gt;
@@ -655,7 +656,7 @@ public class CustomersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CustomerPaginatedResponse> getCustomersWithHttpInfo(String nextToken, String pageSize) throws ApiException {
+    public ApiResponse<CustomerPaginatedResponse> getCustomersWithHttpInfo(String nextToken, BigDecimal pageSize) throws ApiException {
         okhttp3.Call localVarCall = getCustomersValidateBeforeCall(nextToken, pageSize, null);
         Type localVarReturnType = new TypeToken<CustomerPaginatedResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -663,7 +664,7 @@ public class CustomersApi {
 
     /**
      * List customers (asynchronously)
-     * List customers with pagination and sort
+     * Returns a list of customers with pagination and sort.
      * @param nextToken  (optional)
      * @param pageSize  (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -681,7 +682,7 @@ public class CustomersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCustomersAsync(String nextToken, String pageSize, final ApiCallback<CustomerPaginatedResponse> _callback) throws ApiException {
+    public okhttp3.Call getCustomersAsync(String nextToken, BigDecimal pageSize, final ApiCallback<CustomerPaginatedResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getCustomersValidateBeforeCall(nextToken, pageSize, _callback);
         Type localVarReturnType = new TypeToken<CustomerPaginatedResponse>(){}.getType();
@@ -774,7 +775,7 @@ public class CustomersApi {
 
     /**
      * Update a customer
-     * Update a customer by id
+     * This API let’s you to update a customer’s information using customer_id.
      * @param customerId  (required)
      * @param updateCustomerRequest Payload to update customer (required)
      * @return Customer
@@ -798,7 +799,7 @@ public class CustomersApi {
 
     /**
      * Update a customer
-     * Update a customer by id
+     * This API let’s you to update a customer’s information using customer_id.
      * @param customerId  (required)
      * @param updateCustomerRequest Payload to update customer (required)
      * @return ApiResponse&lt;Customer&gt;
@@ -823,7 +824,7 @@ public class CustomersApi {
 
     /**
      * Update a customer (asynchronously)
-     * Update a customer by id
+     * This API let’s you to update a customer’s information using customer_id.
      * @param customerId  (required)
      * @param updateCustomerRequest Payload to update customer (required)
      * @param _callback The callback to be executed when the API call finishes

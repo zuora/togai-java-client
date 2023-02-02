@@ -155,7 +155,7 @@ public class EventIngestionApi {
 
     /**
      * Ingest events to Togai
-     * API to ingest your application event to Togai for billing and usage analytics. To know the limits on the ingestion api, check our docs - https://togai.com/docs/limits.
+     * This API let’s you to ingest events to your Togai account.  Events ingested using this API will be processed via associated usage meters and further via associated price plans to generate final billable value to invoice the customer  Read more about [Event Ingestion](https://docs.togai.com/docs/event-ingestion) 
      * @param ingestEventRequest Request body to ingest events to Togai usage and billing management service. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -176,7 +176,7 @@ public class EventIngestionApi {
 
     /**
      * Ingest events to Togai
-     * API to ingest your application event to Togai for billing and usage analytics. To know the limits on the ingestion api, check our docs - https://togai.com/docs/limits.
+     * This API let’s you to ingest events to your Togai account.  Events ingested using this API will be processed via associated usage meters and further via associated price plans to generate final billable value to invoice the customer  Read more about [Event Ingestion](https://docs.togai.com/docs/event-ingestion) 
      * @param ingestEventRequest Request body to ingest events to Togai usage and billing management service. (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -199,7 +199,7 @@ public class EventIngestionApi {
 
     /**
      * Ingest events to Togai (asynchronously)
-     * API to ingest your application event to Togai for billing and usage analytics. To know the limits on the ingestion api, check our docs - https://togai.com/docs/limits.
+     * This API let’s you to ingest events to your Togai account.  Events ingested using this API will be processed via associated usage meters and further via associated price plans to generate final billable value to invoice the customer  Read more about [Event Ingestion](https://docs.togai.com/docs/event-ingestion) 
      * @param ingestEventRequest Request body to ingest events to Togai usage and billing management service. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -302,7 +302,7 @@ public class EventIngestionApi {
 
     /**
      * Ingest events to Togai in batch
-     * API to ingest your application event in batch to Togai for billing and usage analytics. To know the limits on the ingestion api, check our docs - https://togai.com/docs/limits.
+     * This API let’s you to ingest events in batch upto 1000 events. Ingest large amounts of events up to 1000 in batches in an array using this API.
      * @param ingestBatchEventRequest Request body to ingest events in batch to Togai usage and billing management service. (required)
      * @return IngestBatchEventResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -326,7 +326,7 @@ public class EventIngestionApi {
 
     /**
      * Ingest events to Togai in batch
-     * API to ingest your application event in batch to Togai for billing and usage analytics. To know the limits on the ingestion api, check our docs - https://togai.com/docs/limits.
+     * This API let’s you to ingest events in batch upto 1000 events. Ingest large amounts of events up to 1000 in batches in an array using this API.
      * @param ingestBatchEventRequest Request body to ingest events in batch to Togai usage and billing management service. (required)
      * @return ApiResponse&lt;IngestBatchEventResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -351,7 +351,7 @@ public class EventIngestionApi {
 
     /**
      * Ingest events to Togai in batch (asynchronously)
-     * API to ingest your application event in batch to Togai for billing and usage analytics. To know the limits on the ingestion api, check our docs - https://togai.com/docs/limits.
+     * This API let’s you to ingest events in batch upto 1000 events. Ingest large amounts of events up to 1000 in batches in an array using this API.
      * @param ingestBatchEventRequest Request body to ingest events in batch to Togai usage and billing management service. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call

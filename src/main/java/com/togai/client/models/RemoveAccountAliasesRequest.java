@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +39,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -50,14 +49,13 @@ import com.togai.client.JSON;
 /**
  * Payload to remove aliases from account
  */
-@ApiModel(description = "Payload to remove aliases from account")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RemoveAccountAliasesRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ALIASES = "aliases";
   @SerializedName(SERIALIZED_NAME_ALIASES)
-  private List<String> aliases = null;
+  private List<String> aliases = new ArrayList<>();
 
   public RemoveAccountAliasesRequest() {
   }
@@ -81,7 +79,6 @@ public class RemoveAccountAliasesRequest implements Serializable {
    * @return aliases
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "List of aliases to remove")
 
   public List<String> getAliases() {
     return aliases;
@@ -152,9 +149,7 @@ public class RemoveAccountAliasesRequest implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (RemoveAccountAliasesRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!RemoveAccountAliasesRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in RemoveAccountAliasesRequest is not found in the empty JSON string", RemoveAccountAliasesRequest.openapiRequiredFields.toString()));
         }
       }
@@ -166,8 +161,8 @@ public class RemoveAccountAliasesRequest implements Serializable {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RemoveAccountAliasesRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      // ensure the json data is an array
-      if ((jsonObj.get("aliases") != null && !jsonObj.get("aliases").isJsonNull()) && !jsonObj.get("aliases").isJsonArray()) {
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("aliases") != null && !jsonObj.get("aliases").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `aliases` to be an array in the JSON string but got `%s`", jsonObj.get("aliases").toString()));
       }
   }

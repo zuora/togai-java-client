@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -39,6 +37,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -48,7 +47,6 @@ import com.togai.client.JSON;
 /**
  * Status about the event ingestion.
  */
-@ApiModel(description = "Status about the event ingestion.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class IngestionStatus implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -63,6 +61,8 @@ public class IngestionStatus implements Serializable {
     INGESTION_FAILED("INGESTION_FAILED"),
     
     INGESTION_FAILED_SCHEMA_NOT_DEFINED("INGESTION_FAILED_SCHEMA_NOT_DEFINED"),
+    
+    INGESTION_FAILED_ENRICHMENT_FAILED("INGESTION_FAILED_ENRICHMENT_FAILED"),
     
     INGESTION_FAILED_UNITS_INVALID("INGESTION_FAILED_UNITS_INVALID"),
     
@@ -136,7 +136,6 @@ public class IngestionStatus implements Serializable {
    * @return status
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "INGESTION_COMPLETED", required = true, value = "Ingestion status")
 
   public StatusEnum getStatus() {
     return status;
@@ -159,7 +158,6 @@ public class IngestionStatus implements Serializable {
    * @return statusDescription
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Ingestion Completed successfully", value = "")
 
   public String getStatusDescription() {
     return statusDescription;
@@ -234,9 +232,7 @@ public class IngestionStatus implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (IngestionStatus.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!IngestionStatus.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in IngestionStatus is not found in the empty JSON string", IngestionStatus.openapiRequiredFields.toString()));
         }
       }
@@ -255,7 +251,7 @@ public class IngestionStatus implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
+      if (!jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
       }
       if ((jsonObj.get("statusDescription") != null && !jsonObj.get("statusDescription").isJsonNull()) && !jsonObj.get("statusDescription").isJsonPrimitive()) {

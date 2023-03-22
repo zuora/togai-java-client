@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.CreatePricePlanDetails;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -40,6 +38,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -49,7 +48,6 @@ import com.togai.client.JSON;
 /**
  * Request to create a price plan
  */
-@ApiModel(description = "Request to create a price plan")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreatePricePlanRequest implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -80,7 +78,6 @@ public class CreatePricePlanRequest implements Serializable {
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Name of the price plan")
 
   public String getName() {
     return name;
@@ -103,7 +100,6 @@ public class CreatePricePlanRequest implements Serializable {
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Description of price plan")
 
   public String getDescription() {
     return description;
@@ -126,7 +122,6 @@ public class CreatePricePlanRequest implements Serializable {
    * @return pricePlanDetails
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public CreatePricePlanDetails getPricePlanDetails() {
     return pricePlanDetails;
@@ -205,9 +200,7 @@ public class CreatePricePlanRequest implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (CreatePricePlanRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!CreatePricePlanRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreatePricePlanRequest is not found in the empty JSON string", CreatePricePlanRequest.openapiRequiredFields.toString()));
         }
       }
@@ -226,16 +219,14 @@ public class CreatePricePlanRequest implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
       if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
       }
-      // validate the optional field `pricePlanDetails`
-      if (jsonObj.get("pricePlanDetails") != null && !jsonObj.get("pricePlanDetails").isJsonNull()) {
-        CreatePricePlanDetails.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetails"));
-      }
+      // validate the required field `pricePlanDetails`
+      CreatePricePlanDetails.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetails"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

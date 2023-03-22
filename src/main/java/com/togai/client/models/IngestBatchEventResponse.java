@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.IngestError;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -78,7 +77,6 @@ public class IngestBatchEventResponse implements Serializable {
    * @return errors
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public List<IngestError> getErrors() {
     return errors;
@@ -150,9 +148,7 @@ public class IngestBatchEventResponse implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (IngestBatchEventResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!IngestBatchEventResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in IngestBatchEventResponse is not found in the empty JSON string", IngestBatchEventResponse.openapiRequiredFields.toString()));
         }
       }
@@ -171,18 +167,16 @@ public class IngestBatchEventResponse implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      JsonArray jsonArrayerrors = jsonObj.getAsJsonArray("errors");
-      if (jsonArrayerrors != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("errors").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `errors` to be an array in the JSON string but got `%s`", jsonObj.get("errors").toString()));
-        }
-
-        // validate the optional field `errors` (array)
-        for (int i = 0; i < jsonArrayerrors.size(); i++) {
-          IngestError.validateJsonObject(jsonArrayerrors.get(i).getAsJsonObject());
-        };
+      // ensure the json data is an array
+      if (!jsonObj.get("errors").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `errors` to be an array in the JSON string but got `%s`", jsonObj.get("errors").toString()));
       }
+
+      JsonArray jsonArrayerrors = jsonObj.getAsJsonArray("errors");
+      // validate the required field `errors` (array)
+      for (int i = 0; i < jsonArrayerrors.size(); i++) {
+        IngestError.validateJsonObject(jsonArrayerrors.get(i).getAsJsonObject());
+      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

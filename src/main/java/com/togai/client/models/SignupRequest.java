@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.UserDetails;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -40,6 +38,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -49,7 +48,6 @@ import com.togai.client.JSON;
 /**
  * Payload to signup
  */
-@ApiModel(description = "Payload to signup")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SignupRequest implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -80,7 +78,6 @@ public class SignupRequest implements Serializable {
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public String getName() {
     return name;
@@ -103,7 +100,6 @@ public class SignupRequest implements Serializable {
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public String getDescription() {
     return description;
@@ -126,7 +122,6 @@ public class SignupRequest implements Serializable {
    * @return userDetails
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public UserDetails getUserDetails() {
     return userDetails;
@@ -205,9 +200,7 @@ public class SignupRequest implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (SignupRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!SignupRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SignupRequest is not found in the empty JSON string", SignupRequest.openapiRequiredFields.toString()));
         }
       }
@@ -226,16 +219,14 @@ public class SignupRequest implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
       if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
       }
-      // validate the optional field `userDetails`
-      if (jsonObj.get("userDetails") != null && !jsonObj.get("userDetails").isJsonNull()) {
-        UserDetails.validateJsonObject(jsonObj.getAsJsonObject("userDetails"));
-      }
+      // validate the required field `userDetails`
+      UserDetails.validateJsonObject(jsonObj.getAsJsonObject("userDetails"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

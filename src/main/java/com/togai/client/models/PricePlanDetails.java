@@ -20,10 +20,10 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.togai.client.models.FixedFeeRateCard;
+import com.togai.client.models.MinimumCommitment;
 import com.togai.client.models.PricingCycleConfig;
 import com.togai.client.models.UsageRateCard;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -45,6 +45,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -74,7 +75,23 @@ public class PricePlanDetails implements Serializable {
   @SerializedName(SERIALIZED_NAME_USAGE_RATE_CARDS)
   private List<UsageRateCard> usageRateCards = new ArrayList<>();
 
+  public static final String SERIALIZED_NAME_FIXED_FEE_RATE_CARDS = "fixedFeeRateCards";
+  @SerializedName(SERIALIZED_NAME_FIXED_FEE_RATE_CARDS)
+  private List<FixedFeeRateCard> fixedFeeRateCards = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_MINIMUM_COMMITMENT = "minimumCommitment";
+  @SerializedName(SERIALIZED_NAME_MINIMUM_COMMITMENT)
+  private MinimumCommitment minimumCommitment;
+
   public PricePlanDetails() {
+  }
+
+  
+  public PricePlanDetails(
+     Set<String> activeCurrencies
+  ) {
+    this();
+    this.activeCurrencies = activeCurrencies;
   }
 
   public PricePlanDetails supportedCurrencies(Set<String> supportedCurrencies) {
@@ -93,7 +110,6 @@ public class PricePlanDetails implements Serializable {
    * @return supportedCurrencies
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public Set<String> getSupportedCurrencies() {
     return supportedCurrencies;
@@ -105,32 +121,17 @@ public class PricePlanDetails implements Serializable {
   }
 
 
-  public PricePlanDetails activeCurrencies(Set<String> activeCurrencies) {
-    
-    this.activeCurrencies = activeCurrencies;
-    return this;
-  }
-
-  public PricePlanDetails addActiveCurrenciesItem(String activeCurrenciesItem) {
-    this.activeCurrencies.add(activeCurrenciesItem);
-    return this;
-  }
-
    /**
    * Get activeCurrencies
    * @return activeCurrencies
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public Set<String> getActiveCurrencies() {
     return activeCurrencies;
   }
 
 
-  public void setActiveCurrencies(Set<String> activeCurrencies) {
-    this.activeCurrencies = activeCurrencies;
-  }
 
 
   public PricePlanDetails pricingCycleConfig(PricingCycleConfig pricingCycleConfig) {
@@ -144,7 +145,6 @@ public class PricePlanDetails implements Serializable {
    * @return pricingCycleConfig
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public PricingCycleConfig getPricingCycleConfig() {
     return pricingCycleConfig;
@@ -163,6 +163,9 @@ public class PricePlanDetails implements Serializable {
   }
 
   public PricePlanDetails addUsageRateCardsItem(UsageRateCard usageRateCardsItem) {
+    if (this.usageRateCards == null) {
+      this.usageRateCards = new ArrayList<>();
+    }
     this.usageRateCards.add(usageRateCardsItem);
     return this;
   }
@@ -171,8 +174,7 @@ public class PricePlanDetails implements Serializable {
    * Get usageRateCards
    * @return usageRateCards
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
 
   public List<UsageRateCard> getUsageRateCards() {
     return usageRateCards;
@@ -181,6 +183,58 @@ public class PricePlanDetails implements Serializable {
 
   public void setUsageRateCards(List<UsageRateCard> usageRateCards) {
     this.usageRateCards = usageRateCards;
+  }
+
+
+  public PricePlanDetails fixedFeeRateCards(List<FixedFeeRateCard> fixedFeeRateCards) {
+    
+    this.fixedFeeRateCards = fixedFeeRateCards;
+    return this;
+  }
+
+  public PricePlanDetails addFixedFeeRateCardsItem(FixedFeeRateCard fixedFeeRateCardsItem) {
+    if (this.fixedFeeRateCards == null) {
+      this.fixedFeeRateCards = new ArrayList<>();
+    }
+    this.fixedFeeRateCards.add(fixedFeeRateCardsItem);
+    return this;
+  }
+
+   /**
+   * Get fixedFeeRateCards
+   * @return fixedFeeRateCards
+  **/
+  @javax.annotation.Nullable
+
+  public List<FixedFeeRateCard> getFixedFeeRateCards() {
+    return fixedFeeRateCards;
+  }
+
+
+  public void setFixedFeeRateCards(List<FixedFeeRateCard> fixedFeeRateCards) {
+    this.fixedFeeRateCards = fixedFeeRateCards;
+  }
+
+
+  public PricePlanDetails minimumCommitment(MinimumCommitment minimumCommitment) {
+    
+    this.minimumCommitment = minimumCommitment;
+    return this;
+  }
+
+   /**
+   * Get minimumCommitment
+   * @return minimumCommitment
+  **/
+  @javax.annotation.Nullable
+
+  public MinimumCommitment getMinimumCommitment() {
+    return minimumCommitment;
+  }
+
+
+  public void setMinimumCommitment(MinimumCommitment minimumCommitment) {
+    this.minimumCommitment = minimumCommitment;
   }
 
 
@@ -197,12 +251,14 @@ public class PricePlanDetails implements Serializable {
     return Objects.equals(this.supportedCurrencies, pricePlanDetails.supportedCurrencies) &&
         Objects.equals(this.activeCurrencies, pricePlanDetails.activeCurrencies) &&
         Objects.equals(this.pricingCycleConfig, pricePlanDetails.pricingCycleConfig) &&
-        Objects.equals(this.usageRateCards, pricePlanDetails.usageRateCards);
+        Objects.equals(this.usageRateCards, pricePlanDetails.usageRateCards) &&
+        Objects.equals(this.fixedFeeRateCards, pricePlanDetails.fixedFeeRateCards) &&
+        Objects.equals(this.minimumCommitment, pricePlanDetails.minimumCommitment);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(supportedCurrencies, activeCurrencies, pricingCycleConfig, usageRateCards);
+    return Objects.hash(supportedCurrencies, activeCurrencies, pricingCycleConfig, usageRateCards, fixedFeeRateCards, minimumCommitment);
   }
 
   @Override
@@ -213,6 +269,8 @@ public class PricePlanDetails implements Serializable {
     sb.append("    activeCurrencies: ").append(toIndentedString(activeCurrencies)).append("\n");
     sb.append("    pricingCycleConfig: ").append(toIndentedString(pricingCycleConfig)).append("\n");
     sb.append("    usageRateCards: ").append(toIndentedString(usageRateCards)).append("\n");
+    sb.append("    fixedFeeRateCards: ").append(toIndentedString(fixedFeeRateCards)).append("\n");
+    sb.append("    minimumCommitment: ").append(toIndentedString(minimumCommitment)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -239,13 +297,14 @@ public class PricePlanDetails implements Serializable {
     openapiFields.add("activeCurrencies");
     openapiFields.add("pricingCycleConfig");
     openapiFields.add("usageRateCards");
+    openapiFields.add("fixedFeeRateCards");
+    openapiFields.add("minimumCommitment");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("supportedCurrencies");
     openapiRequiredFields.add("activeCurrencies");
     openapiRequiredFields.add("pricingCycleConfig");
-    openapiRequiredFields.add("usageRateCards");
   }
 
  /**
@@ -256,9 +315,7 @@ public class PricePlanDetails implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (PricePlanDetails.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!PricePlanDetails.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PricePlanDetails is not found in the empty JSON string", PricePlanDetails.openapiRequiredFields.toString()));
         }
       }
@@ -277,29 +334,51 @@ public class PricePlanDetails implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      // ensure the json data is an array
-      if ((jsonObj.get("supportedCurrencies") != null && !jsonObj.get("supportedCurrencies").isJsonNull()) && !jsonObj.get("supportedCurrencies").isJsonArray()) {
+      // ensure the required json array is present
+      if (jsonObj.get("supportedCurrencies") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("supportedCurrencies").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `supportedCurrencies` to be an array in the JSON string but got `%s`", jsonObj.get("supportedCurrencies").toString()));
       }
-      // ensure the json data is an array
-      if ((jsonObj.get("activeCurrencies") != null && !jsonObj.get("activeCurrencies").isJsonNull()) && !jsonObj.get("activeCurrencies").isJsonArray()) {
+      // ensure the required json array is present
+      if (jsonObj.get("activeCurrencies") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("activeCurrencies").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `activeCurrencies` to be an array in the JSON string but got `%s`", jsonObj.get("activeCurrencies").toString()));
       }
-      // validate the optional field `pricingCycleConfig`
-      if (jsonObj.get("pricingCycleConfig") != null && !jsonObj.get("pricingCycleConfig").isJsonNull()) {
-        PricingCycleConfig.validateJsonObject(jsonObj.getAsJsonObject("pricingCycleConfig"));
-      }
-      JsonArray jsonArrayusageRateCards = jsonObj.getAsJsonArray("usageRateCards");
-      if (jsonArrayusageRateCards != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("usageRateCards").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `usageRateCards` to be an array in the JSON string but got `%s`", jsonObj.get("usageRateCards").toString()));
-        }
+      // validate the required field `pricingCycleConfig`
+      PricingCycleConfig.validateJsonObject(jsonObj.getAsJsonObject("pricingCycleConfig"));
+      if (jsonObj.get("usageRateCards") != null && !jsonObj.get("usageRateCards").isJsonNull()) {
+        JsonArray jsonArrayusageRateCards = jsonObj.getAsJsonArray("usageRateCards");
+        if (jsonArrayusageRateCards != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("usageRateCards").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `usageRateCards` to be an array in the JSON string but got `%s`", jsonObj.get("usageRateCards").toString()));
+          }
 
-        // validate the optional field `usageRateCards` (array)
-        for (int i = 0; i < jsonArrayusageRateCards.size(); i++) {
-          UsageRateCard.validateJsonObject(jsonArrayusageRateCards.get(i).getAsJsonObject());
-        };
+          // validate the optional field `usageRateCards` (array)
+          for (int i = 0; i < jsonArrayusageRateCards.size(); i++) {
+            UsageRateCard.validateJsonObject(jsonArrayusageRateCards.get(i).getAsJsonObject());
+          };
+        }
+      }
+      if (jsonObj.get("fixedFeeRateCards") != null && !jsonObj.get("fixedFeeRateCards").isJsonNull()) {
+        JsonArray jsonArrayfixedFeeRateCards = jsonObj.getAsJsonArray("fixedFeeRateCards");
+        if (jsonArrayfixedFeeRateCards != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("fixedFeeRateCards").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `fixedFeeRateCards` to be an array in the JSON string but got `%s`", jsonObj.get("fixedFeeRateCards").toString()));
+          }
+
+          // validate the optional field `fixedFeeRateCards` (array)
+          for (int i = 0; i < jsonArrayfixedFeeRateCards.size(); i++) {
+            FixedFeeRateCard.validateJsonObject(jsonArrayfixedFeeRateCards.get(i).getAsJsonObject());
+          };
+        }
+      }
+      // validate the optional field `minimumCommitment`
+      if (jsonObj.get("minimumCommitment") != null && !jsonObj.get("minimumCommitment").isJsonNull()) {
+        MinimumCommitment.validateJsonObject(jsonObj.getAsJsonObject("minimumCommitment"));
       }
   }
 

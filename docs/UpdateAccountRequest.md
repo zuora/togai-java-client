@@ -8,7 +8,7 @@ Payload to update account
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**name** | **String** | Name of the customer |  [optional] |
+|**name** | **String** | Name of the Account |  [optional] |
 
 
 ## Implemented Interfaces

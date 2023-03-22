@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -39,6 +37,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -121,7 +120,6 @@ public class AccountAliases implements Serializable {
    * @return alias
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public String getAlias() {
     return alias;
@@ -144,7 +142,6 @@ public class AccountAliases implements Serializable {
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public StatusEnum getStatus() {
     return status;
@@ -218,9 +215,7 @@ public class AccountAliases implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (AccountAliases.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!AccountAliases.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AccountAliases is not found in the empty JSON string", AccountAliases.openapiRequiredFields.toString()));
         }
       }

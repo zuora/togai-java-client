@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.MetricQuery;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.LinkedHashSet;
@@ -43,6 +41,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -52,7 +51,6 @@ import com.togai.client.JSON;
 /**
  * Request to get metrics from togai
  */
-@ApiModel(description = "Request to get metrics from togai")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GetMetricsRequest implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -83,7 +81,6 @@ public class GetMetricsRequest implements Serializable {
    * @return startTime
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2017-07-21T00:00Z", required = true, value = "")
 
   public OffsetDateTime getStartTime() {
     return startTime;
@@ -106,7 +103,6 @@ public class GetMetricsRequest implements Serializable {
    * @return endTime
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2017-07-21T00:00Z", required = true, value = "")
 
   public OffsetDateTime getEndTime() {
     return endTime;
@@ -134,7 +130,6 @@ public class GetMetricsRequest implements Serializable {
    * @return metricQueries
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public Set<MetricQuery> getMetricQueries() {
     return metricQueries;
@@ -214,9 +209,7 @@ public class GetMetricsRequest implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (GetMetricsRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!GetMetricsRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetMetricsRequest is not found in the empty JSON string", GetMetricsRequest.openapiRequiredFields.toString()));
         }
       }
@@ -235,18 +228,16 @@ public class GetMetricsRequest implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      JsonArray jsonArraymetricQueries = jsonObj.getAsJsonArray("metricQueries");
-      if (jsonArraymetricQueries != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("metricQueries").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `metricQueries` to be an array in the JSON string but got `%s`", jsonObj.get("metricQueries").toString()));
-        }
-
-        // validate the optional field `metricQueries` (array)
-        for (int i = 0; i < jsonArraymetricQueries.size(); i++) {
-          MetricQuery.validateJsonObject(jsonArraymetricQueries.get(i).getAsJsonObject());
-        };
+      // ensure the json data is an array
+      if (!jsonObj.get("metricQueries").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `metricQueries` to be an array in the JSON string but got `%s`", jsonObj.get("metricQueries").toString()));
       }
+
+      JsonArray jsonArraymetricQueries = jsonObj.getAsJsonArray("metricQueries");
+      // validate the required field `metricQueries` (array)
+      for (int i = 0; i < jsonArraymetricQueries.size(); i++) {
+        MetricQuery.validateJsonObject(jsonArraymetricQueries.get(i).getAsJsonObject());
+      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

@@ -97,7 +97,7 @@ public class Example {
 
     AccountsApi apiInstance = new AccountsApi(defaultClient);
     String customerId = "customerId_example"; // String | 
-    String accountId = "accountId_example"; // String | 
+    String accountId = "accountId_example"; // String | account_id corresponding to an account
     AddAccountAliasesRequest addAccountAliasesRequest = new AddAccountAliasesRequest(); // AddAccountAliasesRequest | Payload to add aliases to account
     try {
       Account result = apiInstance.addAliases(customerId, accountId, addAccountAliasesRequest);
@@ -121,13 +121,23 @@ All URIs are relative to *https://api.togai.com*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AccountsApi* | [**addAliases**](docs/AccountsApi.md#addAliases) | **POST** /customers/{customer_id}/accounts/{account_id}/add_aliases | Add Aliases to account
-*AccountsApi* | [**associatePricePlan**](docs/AccountsApi.md#associatePricePlan) | **POST** /customers/{customer_id}/accounts/{account_id}/price_plans | Associate a plan to an account
 *AccountsApi* | [**createAccount**](docs/AccountsApi.md#createAccount) | **POST** /customers/{customer_id}/accounts | Create an account
 *AccountsApi* | [**deleteAccount**](docs/AccountsApi.md#deleteAccount) | **DELETE** /customers/{customer_id}/accounts/{account_id} | Delete an account
 *AccountsApi* | [**getAccount**](docs/AccountsApi.md#getAccount) | **GET** /customers/{customer_id}/accounts/{account_id} | Get an account
 *AccountsApi* | [**getAccounts**](docs/AccountsApi.md#getAccounts) | **GET** /customers/{customer_id}/accounts | List accounts of customer
 *AccountsApi* | [**removeAliases**](docs/AccountsApi.md#removeAliases) | **POST** /customers/{customer_id}/accounts/{account_id}/remove_aliases | Remove Aliases to account
 *AccountsApi* | [**updateAccount**](docs/AccountsApi.md#updateAccount) | **PATCH** /customers/{customer_id}/accounts/{account_id} | Update an account
+*AccountsApi* | [**updatePricingSchedule**](docs/AccountsApi.md#updatePricingSchedule) | **POST** /customers/{customer_id}/accounts/{account_id}/price_plans | Dis/associate a plan from/to an account
+*AddOnsApi* | [**createAddOn**](docs/AddOnsApi.md#createAddOn) | **POST** /addons | Create an AddOn
+*AddOnsApi* | [**deleteAddOn**](docs/AddOnsApi.md#deleteAddOn) | **DELETE** /addons/{addon_id} | Delete an addon
+*AddOnsApi* | [**getAddOn**](docs/AddOnsApi.md#getAddOn) | **GET** /addons/{addon_id} | Get an addon
+*AddOnsApi* | [**getAddOns**](docs/AddOnsApi.md#getAddOns) | **GET** /addons | List addOns
+*AddOnsApi* | [**updateAddOn**](docs/AddOnsApi.md#updateAddOn) | **PATCH** /addons/{addon_id} | Update an addon
+*CreditsApi* | [**createCredit**](docs/CreditsApi.md#createCredit) | **POST** /credits | Grant credit
+*CreditsApi* | [**creditBalanceForAccount**](docs/CreditsApi.md#creditBalanceForAccount) | **GET** /accounts/{account_id}/credit_balance | Credit balance for Account
+*CreditsApi* | [**getCreditDetails**](docs/CreditsApi.md#getCreditDetails) | **GET** /credits/{credit_id} | Get credit details
+*CreditsApi* | [**listCredits**](docs/CreditsApi.md#listCredits) | **GET** /credits | List credits
+*CreditsApi* | [**voidCredit**](docs/CreditsApi.md#voidCredit) | **POST** /credits/{credit_id}/void | Void credit
 *CustomersApi* | [**createCustomer**](docs/CustomersApi.md#createCustomer) | **POST** /customers | Create a customer
 *CustomersApi* | [**deleteCustomer**](docs/CustomersApi.md#deleteCustomer) | **DELETE** /customers/{customer_id} | Delete a customer
 *CustomersApi* | [**getCustomer**](docs/CustomersApi.md#getCustomer) | **GET** /customers/{customer_id} | Get a customer
@@ -145,7 +155,10 @@ Class | Method | HTTP request | Description
 *EventSchemasApi* | [**getEventSchema**](docs/EventSchemasApi.md#getEventSchema) | **GET** /event_schema/{event_schema_name} | Get an event schema
 *EventSchemasApi* | [**listEventSchemaVersions**](docs/EventSchemasApi.md#listEventSchemaVersions) | **GET** /event_schema/{event_schema_name}/versions | List all event schema versions
 *EventSchemasApi* | [**listEventSchemas**](docs/EventSchemasApi.md#listEventSchemas) | **GET** /event_schema | List event schemas
+*InvoicesApi* | [**getInvoice**](docs/InvoicesApi.md#getInvoice) | **GET** /invoices/{invoice_id} | Get an invoice
+*InvoicesApi* | [**listInvoices**](docs/InvoicesApi.md#listInvoices) | **GET** /invoices | List invoices
 *MetricsApi* | [**getMetrics**](docs/MetricsApi.md#getMetrics) | **POST** /metrics | Get Togai Metrics
+*MiscellaneousApi* | [**calculateRevenue**](docs/MiscellaneousApi.md#calculateRevenue) | **POST** /revenue_calculator | Calculate and return the revenue for a existing or new price plan
 *PricePlansApi* | [**activatePricePlan**](docs/PricePlansApi.md#activatePricePlan) | **POST** /price_plans/{price_plan_id}/activate | Activate a price plan
 *PricePlansApi* | [**addCurrencyToPricePlan**](docs/PricePlansApi.md#addCurrencyToPricePlan) | **POST** /price_plans/{price_plan_id}/currencies | Add currencies to a price plan
 *PricePlansApi* | [**createPricePlan**](docs/PricePlansApi.md#createPricePlan) | **POST** /price_plans | Create a price plan
@@ -153,6 +166,10 @@ Class | Method | HTTP request | Description
 *PricePlansApi* | [**getPricePlans**](docs/PricePlansApi.md#getPricePlans) | **GET** /price_plans | List price plans
 *PricePlansApi* | [**removeCurrencyFromPricePlan**](docs/PricePlansApi.md#removeCurrencyFromPricePlan) | **DELETE** /price_plans/{price_plan_id}/currencies/{currency_id} | Remove a draft currency from a price plan
 *PricePlansApi* | [**updatePricePlan**](docs/PricePlansApi.md#updatePricePlan) | **PATCH** /price_plans/{price_plan_id} | Update a price plan
+*SettingsApi* | [**getSetting**](docs/SettingsApi.md#getSetting) | **GET** /settings/{setting_id_str} | Get a setting
+*SettingsApi* | [**insertSetting**](docs/SettingsApi.md#insertSetting) | **POST** /settings | Create a setting
+*SettingsApi* | [**listSetting**](docs/SettingsApi.md#listSetting) | **GET** /settings | Lists settings
+*SettingsApi* | [**updateSetting**](docs/SettingsApi.md#updateSetting) | **PATCH** /settings/{setting_id_str} | Update a setting
 *UsageMetersApi* | [**activateUsageMeter**](docs/UsageMetersApi.md#activateUsageMeter) | **POST** /event_schema/{event_schema_name}/usage_meters/{usage_meter_id}/activate | Activate usage meter
 *UsageMetersApi* | [**createUsageMeter**](docs/UsageMetersApi.md#createUsageMeter) | **POST** /event_schema/{event_schema_name}/usage_meters | Create an usage meter
 *UsageMetersApi* | [**deactivateUsageMeter**](docs/UsageMetersApi.md#deactivateUsageMeter) | **POST** /event_schema/{event_schema_name}/usage_meters/{usage_meter_id}/deactivate | Deactivate usage meter
@@ -169,30 +186,52 @@ Class | Method | HTTP request | Description
  - [ActivatePricePlanRequest](docs/ActivatePricePlanRequest.md)
  - [AddAccountAliasesRequest](docs/AddAccountAliasesRequest.md)
  - [AddCurrencyToPricePlanRequest](docs/AddCurrencyToPricePlanRequest.md)
- - [AssociatePricePlanRequest](docs/AssociatePricePlanRequest.md)
- - [AssociatePricePlanResponse](docs/AssociatePricePlanResponse.md)
+ - [AddOn](docs/AddOn.md)
+ - [AddOnAllOf](docs/AddOnAllOf.md)
+ - [AddOnPaginatedResponse](docs/AddOnPaginatedResponse.md)
  - [Attribute](docs/Attribute.md)
  - [BaseSuccessResponse](docs/BaseSuccessResponse.md)
+ - [CalculateRevenueRequest](docs/CalculateRevenueRequest.md)
+ - [CalculateRevenueResponse](docs/CalculateRevenueResponse.md)
  - [Computation](docs/Computation.md)
+ - [ComputeRevenueSummaryRequest](docs/ComputeRevenueSummaryRequest.md)
+ - [ComputeRevenueSummaryResponse](docs/ComputeRevenueSummaryResponse.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
+ - [CreateAddOnRequest](docs/CreateAddOnRequest.md)
+ - [CreateCreditRequest](docs/CreateCreditRequest.md)
  - [CreateCustomerRequest](docs/CreateCustomerRequest.md)
  - [CreateCustomerResponse](docs/CreateCustomerResponse.md)
+ - [CreateEntitySetting](docs/CreateEntitySetting.md)
  - [CreateEventSchemaRequest](docs/CreateEventSchemaRequest.md)
  - [CreatePricePlanDetails](docs/CreatePricePlanDetails.md)
+ - [CreatePricePlanDetailsOverride](docs/CreatePricePlanDetailsOverride.md)
  - [CreatePricePlanRequest](docs/CreatePricePlanRequest.md)
  - [CreateUsageMeterRequest](docs/CreateUsageMeterRequest.md)
+ - [Credit](docs/Credit.md)
+ - [CreditAllOf](docs/CreditAllOf.md)
+ - [CreditBalanceResponse](docs/CreditBalanceResponse.md)
+ - [CreditDetailsResponse](docs/CreditDetailsResponse.md)
+ - [CreditDetailsResponseAllOf](docs/CreditDetailsResponseAllOf.md)
+ - [CreditTransaction](docs/CreditTransaction.md)
+ - [CurrencyConfig](docs/CurrencyConfig.md)
+ - [CurrencyRateValue](docs/CurrencyRateValue.md)
  - [Customer](docs/Customer.md)
  - [CustomerPaginatedResponse](docs/CustomerPaginatedResponse.md)
+ - [Dependency](docs/Dependency.md)
  - [DimensionsSchema](docs/DimensionsSchema.md)
+ - [EnrichedField](docs/EnrichedField.md)
+ - [EnrichmentDependency](docs/EnrichmentDependency.md)
+ - [Enrichments](docs/Enrichments.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [Event](docs/Event.md)
  - [EventAttributeSchema](docs/EventAttributeSchema.md)
  - [EventPipelineInfo](docs/EventPipelineInfo.md)
  - [EventPipelineInfoAccount](docs/EventPipelineInfoAccount.md)
  - [EventPipelineInfoCustomer](docs/EventPipelineInfoCustomer.md)
+ - [EventPipelineInfoEnrichments](docs/EventPipelineInfoEnrichments.md)
  - [EventPipelineInfoEventSchema](docs/EventPipelineInfoEventSchema.md)
- - [EventPipelineInfoPricePlansInner](docs/EventPipelineInfoPricePlansInner.md)
- - [EventPipelineInfoUsageMetersInner](docs/EventPipelineInfoUsageMetersInner.md)
+ - [EventPipelineInfoPricePlans](docs/EventPipelineInfoPricePlans.md)
+ - [EventPipelineInfoUsageMeters](docs/EventPipelineInfoUsageMeters.md)
  - [EventSchema](docs/EventSchema.md)
  - [EventSchemaListData](docs/EventSchemaListData.md)
  - [EventSchemaListDataAllOf](docs/EventSchemaListDataAllOf.md)
@@ -201,6 +240,9 @@ Class | Method | HTTP request | Description
  - [EventWithStatus](docs/EventWithStatus.md)
  - [EventWithStatusAndEventPipelineInfo](docs/EventWithStatusAndEventPipelineInfo.md)
  - [EventWithStatusAndEventPipelineInfoAllOf](docs/EventWithStatusAndEventPipelineInfoAllOf.md)
+ - [Field](docs/Field.md)
+ - [FixedFeeRate](docs/FixedFeeRate.md)
+ - [FixedFeeRateCard](docs/FixedFeeRateCard.md)
  - [GetEventResponse](docs/GetEventResponse.md)
  - [GetEventsResponse](docs/GetEventsResponse.md)
  - [GetMetricsRequest](docs/GetMetricsRequest.md)
@@ -211,18 +253,33 @@ Class | Method | HTTP request | Description
  - [IngestEventRequest](docs/IngestEventRequest.md)
  - [IngestEventResponse](docs/IngestEventResponse.md)
  - [IngestionStatus](docs/IngestionStatus.md)
+ - [InternalFixedFeeRateCard](docs/InternalFixedFeeRateCard.md)
+ - [InternalSlab](docs/InternalSlab.md)
+ - [InternalSlabAllOf](docs/InternalSlabAllOf.md)
+ - [InternalUsageRateCard](docs/InternalUsageRateCard.md)
+ - [Invoice](docs/Invoice.md)
+ - [InvoiceDetails](docs/InvoiceDetails.md)
+ - [InvoiceDetailsAccount](docs/InvoiceDetailsAccount.md)
+ - [InvoiceDetailsCustomer](docs/InvoiceDetailsCustomer.md)
+ - [InvoiceLineItem](docs/InvoiceLineItem.md)
+ - [InvoiceTiming](docs/InvoiceTiming.md)
+ - [ListCreditsResponse](docs/ListCreditsResponse.md)
+ - [ListInvoicesResponse](docs/ListInvoicesResponse.md)
  - [MetricDataPoints](docs/MetricDataPoints.md)
  - [MetricDataPointsGroupedBy](docs/MetricDataPointsGroupedBy.md)
  - [MetricName](docs/MetricName.md)
  - [MetricQuery](docs/MetricQuery.md)
  - [MetricQueryFilterEntry](docs/MetricQueryFilterEntry.md)
  - [MetricQueryResponse](docs/MetricQueryResponse.md)
+ - [MinimumCommitment](docs/MinimumCommitment.md)
  - [OrganizationSetting](docs/OrganizationSetting.md)
  - [PaginationOptions](docs/PaginationOptions.md)
  - [PlanOverride](docs/PlanOverride.md)
  - [PricePlan](docs/PricePlan.md)
  - [PricePlanDetails](docs/PricePlanDetails.md)
+ - [PricePlanDetailsConfig](docs/PricePlanDetailsConfig.md)
  - [PricePlanDetailsOverride](docs/PricePlanDetailsOverride.md)
+ - [PricePlanDetailsOverrideAllOf](docs/PricePlanDetailsOverrideAllOf.md)
  - [PricePlanListData](docs/PricePlanListData.md)
  - [PricePlanPaginatedResponse](docs/PricePlanPaginatedResponse.md)
  - [PriceType](docs/PriceType.md)
@@ -233,19 +290,40 @@ Class | Method | HTTP request | Description
  - [RatePlan](docs/RatePlan.md)
  - [RateValue](docs/RateValue.md)
  - [RemoveAccountAliasesRequest](docs/RemoveAccountAliasesRequest.md)
+ - [RevenueInfo](docs/RevenueInfo.md)
+ - [RevenueInfoFixedFeeRevenueSummary](docs/RevenueInfoFixedFeeRevenueSummary.md)
+ - [RevenueSummaryQuery](docs/RevenueSummaryQuery.md)
+ - [RevenueSummaryQueryUsages](docs/RevenueSummaryQueryUsages.md)
+ - [RevenueSummaryQueryUsagesCustomConfig](docs/RevenueSummaryQueryUsagesCustomConfig.md)
+ - [RevenueSummaryQueryUsagesLookupConfig](docs/RevenueSummaryQueryUsagesLookupConfig.md)
+ - [RevenueSummaryResponse](docs/RevenueSummaryResponse.md)
+ - [RevenueSummaryResponseRevenueSummary](docs/RevenueSummaryResponseRevenueSummary.md)
  - [Setting](docs/Setting.md)
+ - [SettingDataType](docs/SettingDataType.md)
+ - [SettingPaginatedResponse](docs/SettingPaginatedResponse.md)
  - [SignupRequest](docs/SignupRequest.md)
  - [SignupResponse](docs/SignupResponse.md)
  - [Slab](docs/Slab.md)
  - [SlabRate](docs/SlabRate.md)
+ - [SlabRevenue](docs/SlabRevenue.md)
+ - [SlabRevenueMetadata](docs/SlabRevenueMetadata.md)
+ - [SlabRevenueSummary](docs/SlabRevenueSummary.md)
  - [StatusResponse](docs/StatusResponse.md)
  - [StatusResponseHeaders](docs/StatusResponseHeaders.md)
  - [UpdateAccountRequest](docs/UpdateAccountRequest.md)
+ - [UpdateAddOnRequest](docs/UpdateAddOnRequest.md)
  - [UpdateCustomerRequest](docs/UpdateCustomerRequest.md)
  - [UpdateEventSchemaRequest](docs/UpdateEventSchemaRequest.md)
  - [UpdateOrganizationSettingRequest](docs/UpdateOrganizationSettingRequest.md)
  - [UpdatePricePlanRequest](docs/UpdatePricePlanRequest.md)
+ - [UpdatePricingScheduleRequest](docs/UpdatePricingScheduleRequest.md)
+ - [UpdatePricingScheduleResponse](docs/UpdatePricingScheduleResponse.md)
+ - [UpdateSettingRequest](docs/UpdateSettingRequest.md)
  - [UpdateUsageMeterRequest](docs/UpdateUsageMeterRequest.md)
+ - [UsageConfig](docs/UsageConfig.md)
+ - [UsageConfigLookupCycle](docs/UsageConfigLookupCycle.md)
+ - [UsageConfigLookupRange](docs/UsageConfigLookupRange.md)
+ - [UsageLookupRange](docs/UsageLookupRange.md)
  - [UsageMeter](docs/UsageMeter.md)
  - [UsageMeterPaginatedResponse](docs/UsageMeterPaginatedResponse.md)
  - [UsageRate](docs/UsageRate.md)
@@ -256,15 +334,15 @@ Class | Method | HTTP request | Description
 ## Documentation for Authorization
 
 Authentication schemes defined for the API:
+### bearerAuth
+
+- **Type**: HTTP basic authentication
+
 ### apiKeyAuth
 
 - **Type**: API key
 - **API key parameter name**: X-API-Key
 - **Location**: HTTP header
-
-### bearerAuth
-
-- **Type**: HTTP basic authentication
 
 
 ## Recommendation

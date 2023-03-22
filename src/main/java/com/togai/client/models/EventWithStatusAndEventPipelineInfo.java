@@ -23,8 +23,6 @@ import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.Event;
 import com.togai.client.models.EventPipelineInfo;
 import com.togai.client.models.IngestionStatus;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -42,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -63,6 +62,10 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
   @SerializedName(SERIALIZED_NAME_INGESTION_STATUS)
   private IngestionStatus ingestionStatus;
 
+  public static final String SERIALIZED_NAME_CUSTOMER_ID = "customerId";
+  @SerializedName(SERIALIZED_NAME_CUSTOMER_ID)
+  private String customerId;
+
   public static final String SERIALIZED_NAME_EVENT_PIPELINE_INFO = "EventPipelineInfo";
   @SerializedName(SERIALIZED_NAME_EVENT_PIPELINE_INFO)
   private EventPipelineInfo eventPipelineInfo;
@@ -81,7 +84,6 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
    * @return eventPayload
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public Event getEventPayload() {
     return eventPayload;
@@ -104,7 +106,6 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
    * @return ingestionStatus
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public IngestionStatus getIngestionStatus() {
     return ingestionStatus;
@@ -113,6 +114,28 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
 
   public void setIngestionStatus(IngestionStatus ingestionStatus) {
     this.ingestionStatus = ingestionStatus;
+  }
+
+
+  public EventWithStatusAndEventPipelineInfo customerId(String customerId) {
+    
+    this.customerId = customerId;
+    return this;
+  }
+
+   /**
+   * The associated account belongs to this customer
+   * @return customerId
+  **/
+  @javax.annotation.Nullable
+
+  public String getCustomerId() {
+    return customerId;
+  }
+
+
+  public void setCustomerId(String customerId) {
+    this.customerId = customerId;
   }
 
 
@@ -127,7 +150,6 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
    * @return eventPipelineInfo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public EventPipelineInfo getEventPipelineInfo() {
     return eventPipelineInfo;
@@ -151,12 +173,13 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
     EventWithStatusAndEventPipelineInfo eventWithStatusAndEventPipelineInfo = (EventWithStatusAndEventPipelineInfo) o;
     return Objects.equals(this.eventPayload, eventWithStatusAndEventPipelineInfo.eventPayload) &&
         Objects.equals(this.ingestionStatus, eventWithStatusAndEventPipelineInfo.ingestionStatus) &&
+        Objects.equals(this.customerId, eventWithStatusAndEventPipelineInfo.customerId) &&
         Objects.equals(this.eventPipelineInfo, eventWithStatusAndEventPipelineInfo.eventPipelineInfo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(eventPayload, ingestionStatus, eventPipelineInfo);
+    return Objects.hash(eventPayload, ingestionStatus, customerId, eventPipelineInfo);
   }
 
   @Override
@@ -165,6 +188,7 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
     sb.append("class EventWithStatusAndEventPipelineInfo {\n");
     sb.append("    eventPayload: ").append(toIndentedString(eventPayload)).append("\n");
     sb.append("    ingestionStatus: ").append(toIndentedString(ingestionStatus)).append("\n");
+    sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("    eventPipelineInfo: ").append(toIndentedString(eventPipelineInfo)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -190,6 +214,7 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("eventPayload");
     openapiFields.add("ingestionStatus");
+    openapiFields.add("customerId");
     openapiFields.add("EventPipelineInfo");
 
     // a set of required properties/fields (JSON key names)
@@ -206,9 +231,7 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (EventWithStatusAndEventPipelineInfo.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!EventWithStatusAndEventPipelineInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in EventWithStatusAndEventPipelineInfo is not found in the empty JSON string", EventWithStatusAndEventPipelineInfo.openapiRequiredFields.toString()));
         }
       }
@@ -227,13 +250,12 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      // validate the optional field `eventPayload`
-      if (jsonObj.get("eventPayload") != null && !jsonObj.get("eventPayload").isJsonNull()) {
-        Event.validateJsonObject(jsonObj.getAsJsonObject("eventPayload"));
-      }
-      // validate the optional field `ingestionStatus`
-      if (jsonObj.get("ingestionStatus") != null && !jsonObj.get("ingestionStatus").isJsonNull()) {
-        IngestionStatus.validateJsonObject(jsonObj.getAsJsonObject("ingestionStatus"));
+      // validate the required field `eventPayload`
+      Event.validateJsonObject(jsonObj.getAsJsonObject("eventPayload"));
+      // validate the required field `ingestionStatus`
+      IngestionStatus.validateJsonObject(jsonObj.getAsJsonObject("ingestionStatus"));
+      if ((jsonObj.get("customerId") != null && !jsonObj.get("customerId").isJsonNull()) && !jsonObj.get("customerId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `customerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customerId").toString()));
       }
       // validate the optional field `EventPipelineInfo`
       if (jsonObj.get("EventPipelineInfo") != null && !jsonObj.get("EventPipelineInfo").isJsonNull()) {

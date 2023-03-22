@@ -20,8 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.togai.client.models.CreateEntitySetting;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -50,7 +50,6 @@ import com.togai.client.JSON;
 /**
  * Payload to create account
  */
-@ApiModel(description = "Payload to create account")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateAccountRequest implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -69,7 +68,11 @@ public class CreateAccountRequest implements Serializable {
 
   public static final String SERIALIZED_NAME_ALIASES = "aliases";
   @SerializedName(SERIALIZED_NAME_ALIASES)
-  private List<String> aliases = null;
+  private List<String> aliases = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_SETTINGS = "settings";
+  @SerializedName(SERIALIZED_NAME_SETTINGS)
+  private List<CreateEntitySetting> settings = new ArrayList<>();
 
   public CreateAccountRequest() {
   }
@@ -85,7 +88,6 @@ public class CreateAccountRequest implements Serializable {
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "ACC00001", required = true, value = "Identifier of the account")
 
   public String getId() {
     return id;
@@ -104,11 +106,10 @@ public class CreateAccountRequest implements Serializable {
   }
 
    /**
-   * Name of the customer
+   * Name of the Account
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "Primary Account", required = true, value = "Name of the customer")
 
   public String getName() {
     return name;
@@ -127,11 +128,10 @@ public class CreateAccountRequest implements Serializable {
   }
 
    /**
-   * [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217) code of the currency in which the account must be invoiced Defaults to Base currency. 
+   * Use [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code in which the account must be invoiced.   For example: AED is the currency code for United Arab Emirates dirham. 
    * @return invoiceCurrency
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "[ISO_4217](https://en.wikipedia.org/wiki/ISO_4217) code of the currency in which the account must be invoiced Defaults to Base currency. ")
 
   public String getInvoiceCurrency() {
     return invoiceCurrency;
@@ -162,7 +162,6 @@ public class CreateAccountRequest implements Serializable {
    * @return aliases
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "acme_primary", value = "Aliases are tags that are associated with an account. Multiple aliases are allowed for a single account.")
 
   public List<String> getAliases() {
     return aliases;
@@ -171,6 +170,36 @@ public class CreateAccountRequest implements Serializable {
 
   public void setAliases(List<String> aliases) {
     this.aliases = aliases;
+  }
+
+
+  public CreateAccountRequest settings(List<CreateEntitySetting> settings) {
+    
+    this.settings = settings;
+    return this;
+  }
+
+  public CreateAccountRequest addSettingsItem(CreateEntitySetting settingsItem) {
+    if (this.settings == null) {
+      this.settings = new ArrayList<>();
+    }
+    this.settings.add(settingsItem);
+    return this;
+  }
+
+   /**
+   * Get settings
+   * @return settings
+  **/
+  @javax.annotation.Nullable
+
+  public List<CreateEntitySetting> getSettings() {
+    return settings;
+  }
+
+
+  public void setSettings(List<CreateEntitySetting> settings) {
+    this.settings = settings;
   }
 
 
@@ -187,12 +216,13 @@ public class CreateAccountRequest implements Serializable {
     return Objects.equals(this.id, createAccountRequest.id) &&
         Objects.equals(this.name, createAccountRequest.name) &&
         Objects.equals(this.invoiceCurrency, createAccountRequest.invoiceCurrency) &&
-        Objects.equals(this.aliases, createAccountRequest.aliases);
+        Objects.equals(this.aliases, createAccountRequest.aliases) &&
+        Objects.equals(this.settings, createAccountRequest.settings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, invoiceCurrency, aliases);
+    return Objects.hash(id, name, invoiceCurrency, aliases, settings);
   }
 
   @Override
@@ -203,6 +233,7 @@ public class CreateAccountRequest implements Serializable {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    invoiceCurrency: ").append(toIndentedString(invoiceCurrency)).append("\n");
     sb.append("    aliases: ").append(toIndentedString(aliases)).append("\n");
+    sb.append("    settings: ").append(toIndentedString(settings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -229,6 +260,7 @@ public class CreateAccountRequest implements Serializable {
     openapiFields.add("name");
     openapiFields.add("invoiceCurrency");
     openapiFields.add("aliases");
+    openapiFields.add("settings");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -244,9 +276,7 @@ public class CreateAccountRequest implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (CreateAccountRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!CreateAccountRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreateAccountRequest is not found in the empty JSON string", CreateAccountRequest.openapiRequiredFields.toString()));
         }
       }
@@ -265,18 +295,32 @@ public class CreateAccountRequest implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+      if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
       if ((jsonObj.get("invoiceCurrency") != null && !jsonObj.get("invoiceCurrency").isJsonNull()) && !jsonObj.get("invoiceCurrency").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `invoiceCurrency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceCurrency").toString()));
       }
-      // ensure the json data is an array
-      if ((jsonObj.get("aliases") != null && !jsonObj.get("aliases").isJsonNull()) && !jsonObj.get("aliases").isJsonArray()) {
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("aliases") != null && !jsonObj.get("aliases").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `aliases` to be an array in the JSON string but got `%s`", jsonObj.get("aliases").toString()));
+      }
+      if (jsonObj.get("settings") != null && !jsonObj.get("settings").isJsonNull()) {
+        JsonArray jsonArraysettings = jsonObj.getAsJsonArray("settings");
+        if (jsonArraysettings != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("settings").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `settings` to be an array in the JSON string but got `%s`", jsonObj.get("settings").toString()));
+          }
+
+          // validate the optional field `settings` (array)
+          for (int i = 0; i < jsonArraysettings.size(); i++) {
+            CreateEntitySetting.validateJsonObject(jsonArraysettings.get(i).getAsJsonObject());
+          };
+        }
       }
   }
 

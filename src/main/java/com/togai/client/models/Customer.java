@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
@@ -40,6 +38,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -49,7 +48,6 @@ import com.togai.client.JSON;
 /**
  * Structure of customer
  */
-@ApiModel(description = "Structure of customer")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Customer implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -143,7 +141,6 @@ public class Customer implements Serializable {
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Identifier of customer")
 
   public String getId() {
     return id;
@@ -162,11 +159,10 @@ public class Customer implements Serializable {
   }
 
    /**
-   * Name of the customer
+   * Name of the Customer
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Name of the customer")
 
   public String getName() {
     return name;
@@ -189,7 +185,6 @@ public class Customer implements Serializable {
    * @return primaryEmail
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Primary email of the customer")
 
   public String getPrimaryEmail() {
     return primaryEmail;
@@ -212,7 +207,6 @@ public class Customer implements Serializable {
    * @return billingAddress
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "billing address of the customer")
 
   public String getBillingAddress() {
     return billingAddress;
@@ -235,7 +229,6 @@ public class Customer implements Serializable {
    * @return status
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "ACTIVE", required = true, value = "Status of the customer")
 
   public StatusEnum getStatus() {
     return status;
@@ -258,7 +251,6 @@ public class Customer implements Serializable {
    * @return createdAt
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -281,7 +273,6 @@ public class Customer implements Serializable {
    * @return updatedAt
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public OffsetDateTime getUpdatedAt() {
     return updatedAt;
@@ -377,9 +368,7 @@ public class Customer implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (Customer.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!Customer.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Customer is not found in the empty JSON string", Customer.openapiRequiredFields.toString()));
         }
       }
@@ -398,19 +387,19 @@ public class Customer implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+      if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
-      if ((jsonObj.get("primaryEmail") != null && !jsonObj.get("primaryEmail").isJsonNull()) && !jsonObj.get("primaryEmail").isJsonPrimitive()) {
+      if (!jsonObj.get("primaryEmail").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `primaryEmail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("primaryEmail").toString()));
       }
-      if ((jsonObj.get("billingAddress") != null && !jsonObj.get("billingAddress").isJsonNull()) && !jsonObj.get("billingAddress").isJsonPrimitive()) {
+      if (!jsonObj.get("billingAddress").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `billingAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("billingAddress").toString()));
       }
-      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
+      if (!jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
       }
   }

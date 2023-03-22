@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.EventPipelineInfo;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -40,6 +38,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -71,7 +70,6 @@ public class EventWithStatusAndEventPipelineInfoAllOf implements Serializable {
    * @return eventPipelineInfo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public EventPipelineInfo getEventPipelineInfo() {
     return eventPipelineInfo;
@@ -142,9 +140,7 @@ public class EventWithStatusAndEventPipelineInfoAllOf implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (EventWithStatusAndEventPipelineInfoAllOf.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!EventWithStatusAndEventPipelineInfoAllOf.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in EventWithStatusAndEventPipelineInfoAllOf is not found in the empty JSON string", EventWithStatusAndEventPipelineInfoAllOf.openapiRequiredFields.toString()));
         }
       }

@@ -115,8 +115,8 @@ public class UsageMetersApi {
 
         // create path and map variables
         String localVarPath = "/event_schema/{event_schema_name}/usage_meters/{usage_meter_id}/activate"
-            .replaceAll("\\{" + "event_schema_name" + "\\}", localVarApiClient.escapeString(eventSchemaName.toString()))
-            .replaceAll("\\{" + "usage_meter_id" + "\\}", localVarApiClient.escapeString(usageMeterId.toString()));
+            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()))
+            .replace("{" + "usage_meter_id" + "}", localVarApiClient.escapeString(usageMeterId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -133,7 +133,6 @@ public class UsageMetersApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -146,20 +145,17 @@ public class UsageMetersApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call activateUsageMeterValidateBeforeCall(String eventSchemaName, String usageMeterId, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'eventSchemaName' is set
         if (eventSchemaName == null) {
             throw new ApiException("Missing the required parameter 'eventSchemaName' when calling activateUsageMeter(Async)");
         }
-        
+
         // verify the required parameter 'usageMeterId' is set
         if (usageMeterId == null) {
             throw new ApiException("Missing the required parameter 'usageMeterId' when calling activateUsageMeter(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = activateUsageMeterCall(eventSchemaName, usageMeterId, _callback);
-        return localVarCall;
+        return activateUsageMeterCall(eventSchemaName, usageMeterId, _callback);
 
     }
 
@@ -276,7 +272,7 @@ public class UsageMetersApi {
 
         // create path and map variables
         String localVarPath = "/event_schema/{event_schema_name}/usage_meters"
-            .replaceAll("\\{" + "event_schema_name" + "\\}", localVarApiClient.escapeString(eventSchemaName.toString()));
+            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -306,20 +302,17 @@ public class UsageMetersApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createUsageMeterValidateBeforeCall(String eventSchemaName, CreateUsageMeterRequest createUsageMeterRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'eventSchemaName' is set
         if (eventSchemaName == null) {
             throw new ApiException("Missing the required parameter 'eventSchemaName' when calling createUsageMeter(Async)");
         }
-        
+
         // verify the required parameter 'createUsageMeterRequest' is set
         if (createUsageMeterRequest == null) {
             throw new ApiException("Missing the required parameter 'createUsageMeterRequest' when calling createUsageMeter(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createUsageMeterCall(eventSchemaName, createUsageMeterRequest, _callback);
-        return localVarCall;
+        return createUsageMeterCall(eventSchemaName, createUsageMeterRequest, _callback);
 
     }
 
@@ -436,8 +429,8 @@ public class UsageMetersApi {
 
         // create path and map variables
         String localVarPath = "/event_schema/{event_schema_name}/usage_meters/{usage_meter_id}/deactivate"
-            .replaceAll("\\{" + "event_schema_name" + "\\}", localVarApiClient.escapeString(eventSchemaName.toString()))
-            .replaceAll("\\{" + "usage_meter_id" + "\\}", localVarApiClient.escapeString(usageMeterId.toString()));
+            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()))
+            .replace("{" + "usage_meter_id" + "}", localVarApiClient.escapeString(usageMeterId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -454,7 +447,6 @@ public class UsageMetersApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -467,26 +459,23 @@ public class UsageMetersApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deactivateUsageMeterValidateBeforeCall(String eventSchemaName, String usageMeterId, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'eventSchemaName' is set
         if (eventSchemaName == null) {
             throw new ApiException("Missing the required parameter 'eventSchemaName' when calling deactivateUsageMeter(Async)");
         }
-        
+
         // verify the required parameter 'usageMeterId' is set
         if (usageMeterId == null) {
             throw new ApiException("Missing the required parameter 'usageMeterId' when calling deactivateUsageMeter(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = deactivateUsageMeterCall(eventSchemaName, usageMeterId, _callback);
-        return localVarCall;
+        return deactivateUsageMeterCall(eventSchemaName, usageMeterId, _callback);
 
     }
 
     /**
      * Deactivate usage meter
-     * Make an existing active usage meter to be inactive  Only active Usage Meters are allowed to deactivate. Active Usage Meters with active Pricing Plan attached can also be deactivated. 
+     * Make an existing active usage meter to be inactive Active Usage Meters with active Pricing Plan attached can also be deactivated. 
      * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @return UsageMeter
@@ -510,7 +499,7 @@ public class UsageMetersApi {
 
     /**
      * Deactivate usage meter
-     * Make an existing active usage meter to be inactive  Only active Usage Meters are allowed to deactivate. Active Usage Meters with active Pricing Plan attached can also be deactivated. 
+     * Make an existing active usage meter to be inactive Active Usage Meters with active Pricing Plan attached can also be deactivated. 
      * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @return ApiResponse&lt;UsageMeter&gt;
@@ -535,7 +524,7 @@ public class UsageMetersApi {
 
     /**
      * Deactivate usage meter (asynchronously)
-     * Make an existing active usage meter to be inactive  Only active Usage Meters are allowed to deactivate. Active Usage Meters with active Pricing Plan attached can also be deactivated. 
+     * Make an existing active usage meter to be inactive Active Usage Meters with active Pricing Plan attached can also be deactivated. 
      * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -597,8 +586,8 @@ public class UsageMetersApi {
 
         // create path and map variables
         String localVarPath = "/event_schema/{event_schema_name}/usage_meters/{usage_meter_id}"
-            .replaceAll("\\{" + "event_schema_name" + "\\}", localVarApiClient.escapeString(eventSchemaName.toString()))
-            .replaceAll("\\{" + "usage_meter_id" + "\\}", localVarApiClient.escapeString(usageMeterId.toString()));
+            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()))
+            .replace("{" + "usage_meter_id" + "}", localVarApiClient.escapeString(usageMeterId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -615,7 +604,6 @@ public class UsageMetersApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -628,20 +616,17 @@ public class UsageMetersApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getUsageMeterValidateBeforeCall(String eventSchemaName, String usageMeterId, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'eventSchemaName' is set
         if (eventSchemaName == null) {
             throw new ApiException("Missing the required parameter 'eventSchemaName' when calling getUsageMeter(Async)");
         }
-        
+
         // verify the required parameter 'usageMeterId' is set
         if (usageMeterId == null) {
             throw new ApiException("Missing the required parameter 'usageMeterId' when calling getUsageMeter(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getUsageMeterCall(eventSchemaName, usageMeterId, _callback);
-        return localVarCall;
+        return getUsageMeterCall(eventSchemaName, usageMeterId, _callback);
 
     }
 
@@ -724,8 +709,8 @@ public class UsageMetersApi {
     /**
      * Build call for getUsageMetersForEventSchema
      * @param eventSchemaName  (required)
-     * @param statuses Filter usage meter by it’s current active/inactive state to aggregate across state level usage meters. Aggregation param is mandatory if you’re passing value in this.  (optional)
-     * @param aggregations This parameter will aggregate across usage meter level using the processed usage meter value. Read more about [usage meter](https://docs.togai.com/docs/usagemeter). Statuses param is mandatory if you’re passing value in this.  (optional)
+     * @param status Filter by status  (optional)
+     * @param aggregations Filter by aggregations  (optional)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
      * @param _callback Callback for upload/download progress
@@ -743,7 +728,7 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getUsageMetersForEventSchemaCall(String eventSchemaName, String statuses, String aggregations, String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getUsageMetersForEventSchemaCall(String eventSchemaName, String status, String aggregations, String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -761,7 +746,7 @@ public class UsageMetersApi {
 
         // create path and map variables
         String localVarPath = "/event_schema/{event_schema_name}/usage_meters"
-            .replaceAll("\\{" + "event_schema_name" + "\\}", localVarApiClient.escapeString(eventSchemaName.toString()));
+            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -769,8 +754,8 @@ public class UsageMetersApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (statuses != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("statuses", statuses));
+        if (status != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("status", status));
         }
 
         if (aggregations != null) {
@@ -794,7 +779,6 @@ public class UsageMetersApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -806,16 +790,13 @@ public class UsageMetersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getUsageMetersForEventSchemaValidateBeforeCall(String eventSchemaName, String statuses, String aggregations, String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
-        
+    private okhttp3.Call getUsageMetersForEventSchemaValidateBeforeCall(String eventSchemaName, String status, String aggregations, String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'eventSchemaName' is set
         if (eventSchemaName == null) {
             throw new ApiException("Missing the required parameter 'eventSchemaName' when calling getUsageMetersForEventSchema(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getUsageMetersForEventSchemaCall(eventSchemaName, statuses, aggregations, nextToken, pageSize, _callback);
-        return localVarCall;
+        return getUsageMetersForEventSchemaCall(eventSchemaName, status, aggregations, nextToken, pageSize, _callback);
 
     }
 
@@ -823,8 +804,8 @@ public class UsageMetersApi {
      * List usage meters for event schema
      * Get a list of usage meters associated with an event schema
      * @param eventSchemaName  (required)
-     * @param statuses Filter usage meter by it’s current active/inactive state to aggregate across state level usage meters. Aggregation param is mandatory if you’re passing value in this.  (optional)
-     * @param aggregations This parameter will aggregate across usage meter level using the processed usage meter value. Read more about [usage meter](https://docs.togai.com/docs/usagemeter). Statuses param is mandatory if you’re passing value in this.  (optional)
+     * @param status Filter by status  (optional)
+     * @param aggregations Filter by aggregations  (optional)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
      * @return UsageMeterPaginatedResponse
@@ -841,8 +822,8 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public UsageMeterPaginatedResponse getUsageMetersForEventSchema(String eventSchemaName, String statuses, String aggregations, String nextToken, BigDecimal pageSize) throws ApiException {
-        ApiResponse<UsageMeterPaginatedResponse> localVarResp = getUsageMetersForEventSchemaWithHttpInfo(eventSchemaName, statuses, aggregations, nextToken, pageSize);
+    public UsageMeterPaginatedResponse getUsageMetersForEventSchema(String eventSchemaName, String status, String aggregations, String nextToken, BigDecimal pageSize) throws ApiException {
+        ApiResponse<UsageMeterPaginatedResponse> localVarResp = getUsageMetersForEventSchemaWithHttpInfo(eventSchemaName, status, aggregations, nextToken, pageSize);
         return localVarResp.getData();
     }
 
@@ -850,8 +831,8 @@ public class UsageMetersApi {
      * List usage meters for event schema
      * Get a list of usage meters associated with an event schema
      * @param eventSchemaName  (required)
-     * @param statuses Filter usage meter by it’s current active/inactive state to aggregate across state level usage meters. Aggregation param is mandatory if you’re passing value in this.  (optional)
-     * @param aggregations This parameter will aggregate across usage meter level using the processed usage meter value. Read more about [usage meter](https://docs.togai.com/docs/usagemeter). Statuses param is mandatory if you’re passing value in this.  (optional)
+     * @param status Filter by status  (optional)
+     * @param aggregations Filter by aggregations  (optional)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
      * @return ApiResponse&lt;UsageMeterPaginatedResponse&gt;
@@ -868,8 +849,8 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UsageMeterPaginatedResponse> getUsageMetersForEventSchemaWithHttpInfo(String eventSchemaName, String statuses, String aggregations, String nextToken, BigDecimal pageSize) throws ApiException {
-        okhttp3.Call localVarCall = getUsageMetersForEventSchemaValidateBeforeCall(eventSchemaName, statuses, aggregations, nextToken, pageSize, null);
+    public ApiResponse<UsageMeterPaginatedResponse> getUsageMetersForEventSchemaWithHttpInfo(String eventSchemaName, String status, String aggregations, String nextToken, BigDecimal pageSize) throws ApiException {
+        okhttp3.Call localVarCall = getUsageMetersForEventSchemaValidateBeforeCall(eventSchemaName, status, aggregations, nextToken, pageSize, null);
         Type localVarReturnType = new TypeToken<UsageMeterPaginatedResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -878,8 +859,8 @@ public class UsageMetersApi {
      * List usage meters for event schema (asynchronously)
      * Get a list of usage meters associated with an event schema
      * @param eventSchemaName  (required)
-     * @param statuses Filter usage meter by it’s current active/inactive state to aggregate across state level usage meters. Aggregation param is mandatory if you’re passing value in this.  (optional)
-     * @param aggregations This parameter will aggregate across usage meter level using the processed usage meter value. Read more about [usage meter](https://docs.togai.com/docs/usagemeter). Statuses param is mandatory if you’re passing value in this.  (optional)
+     * @param status Filter by status  (optional)
+     * @param aggregations Filter by aggregations  (optional)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -897,9 +878,9 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getUsageMetersForEventSchemaAsync(String eventSchemaName, String statuses, String aggregations, String nextToken, BigDecimal pageSize, final ApiCallback<UsageMeterPaginatedResponse> _callback) throws ApiException {
+    public okhttp3.Call getUsageMetersForEventSchemaAsync(String eventSchemaName, String status, String aggregations, String nextToken, BigDecimal pageSize, final ApiCallback<UsageMeterPaginatedResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getUsageMetersForEventSchemaValidateBeforeCall(eventSchemaName, statuses, aggregations, nextToken, pageSize, _callback);
+        okhttp3.Call localVarCall = getUsageMetersForEventSchemaValidateBeforeCall(eventSchemaName, status, aggregations, nextToken, pageSize, _callback);
         Type localVarReturnType = new TypeToken<UsageMeterPaginatedResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -942,8 +923,8 @@ public class UsageMetersApi {
 
         // create path and map variables
         String localVarPath = "/event_schema/{event_schema_name}/usage_meters/{usage_meter_id}"
-            .replaceAll("\\{" + "event_schema_name" + "\\}", localVarApiClient.escapeString(eventSchemaName.toString()))
-            .replaceAll("\\{" + "usage_meter_id" + "\\}", localVarApiClient.escapeString(usageMeterId.toString()));
+            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()))
+            .replace("{" + "usage_meter_id" + "}", localVarApiClient.escapeString(usageMeterId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -973,31 +954,28 @@ public class UsageMetersApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call updateUsageMeterValidateBeforeCall(String eventSchemaName, String usageMeterId, UpdateUsageMeterRequest updateUsageMeterRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'eventSchemaName' is set
         if (eventSchemaName == null) {
             throw new ApiException("Missing the required parameter 'eventSchemaName' when calling updateUsageMeter(Async)");
         }
-        
+
         // verify the required parameter 'usageMeterId' is set
         if (usageMeterId == null) {
             throw new ApiException("Missing the required parameter 'usageMeterId' when calling updateUsageMeter(Async)");
         }
-        
+
         // verify the required parameter 'updateUsageMeterRequest' is set
         if (updateUsageMeterRequest == null) {
             throw new ApiException("Missing the required parameter 'updateUsageMeterRequest' when calling updateUsageMeter(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = updateUsageMeterCall(eventSchemaName, usageMeterId, updateUsageMeterRequest, _callback);
-        return localVarCall;
+        return updateUsageMeterCall(eventSchemaName, usageMeterId, updateUsageMeterRequest, _callback);
 
     }
 
     /**
      * Update an usage meter
-     * Updating an usage meter is supported only for usage meters in the DRAFT state currently. In case you like to update an usage meter, we suggest you create a new usage meter and associate it with accounts. 
+     * This API lets you update an existing usage meter.
      * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @param updateUsageMeterRequest Payload to create usage meter (required)
@@ -1022,7 +1000,7 @@ public class UsageMetersApi {
 
     /**
      * Update an usage meter
-     * Updating an usage meter is supported only for usage meters in the DRAFT state currently. In case you like to update an usage meter, we suggest you create a new usage meter and associate it with accounts. 
+     * This API lets you update an existing usage meter.
      * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @param updateUsageMeterRequest Payload to create usage meter (required)
@@ -1048,7 +1026,7 @@ public class UsageMetersApi {
 
     /**
      * Update an usage meter (asynchronously)
-     * Updating an usage meter is supported only for usage meters in the DRAFT state currently. In case you like to update an usage meter, we suggest you create a new usage meter and associate it with accounts. 
+     * This API lets you update an existing usage meter.
      * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @param updateUsageMeterRequest Payload to create usage meter (required)

@@ -3,8 +3,7 @@ import com.togai.client.Configuration;
 import com.togai.client.ApiException;
 import com.togai.client.models.*;
 import com.togai.client.api.*;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.time.*;
 import java.util.*;
 import java.math.BigDecimal;
 
@@ -52,7 +51,7 @@ public class Example {
                 .aggregation(CreateUsageMeterRequest.AggregationEnum.COUNT)
                 .computations(Arrays.asList(
                     new Computation()
-                        .matcher("{'==': [{'var': 'dimensions.country'}, 'US']}")
+                        .matcher("{\"==\":[{\"var\":\"dimensions.country\"},\"US\"]}")
                         .computation("1")
                 ));
             System.out.println(eventSchema.getName());
@@ -68,13 +67,18 @@ public class Example {
             exampleSlabRate.add(new SlabRate()
                     .order(1)
                     .rate(BigDecimal.valueOf(10))
-                    .slabRateConfig(new HashMap<>()));
+                    .slabRateConfig(new HashMap<String,String>()));
             List<RateValue> exampleRateValue = new ArrayList<>();
             exampleRateValue.add(new RateValue()
                     .currency("USD")
                     .slabRates(exampleSlabRate));
             List<Slab> exampleSlab = new ArrayList<>();
-            exampleSlab.add(new Slab().priceType(PriceType.PER_UNIT).startAfter(BigDecimal.valueOf(0)).order(1));
+            exampleSlab.add(new Slab().priceType(PriceType.PER_UNIT).startAfter(BigDecimal.valueOf(0)).order(1).slabConfig(new HashMap<String,String>()));
+            Set<String> supportedCurrencies = new LinkedHashSet<>();
+            supportedCurrencies.add("USD");
+            List<FixedFeeRateCard> fixedFeeRateCardList = new ArrayList<>();
+            List<CurrencyRateValue> minCommitmentRateValues = new ArrayList<>();
+            minCommitmentRateValues.add(new CurrencyRateValue().currency("USD").rate(BigDecimal.valueOf(0)));
             List<UsageRateCard> exampleUsageRateCard = new ArrayList<>();
             exampleUsageRateCard.add(new UsageRateCard().usageMeterId(usageMeter.getId())
                     .displayName("AfterShip Shipments1"+seed)
@@ -91,7 +95,10 @@ public class Example {
                         .monthOffset("NIL")
                     )
                     .gracePeriod(1)
-                ).usageRateCards(exampleUsageRateCard));
+                ).supportedCurrencies(supportedCurrencies)
+                .usageRateCards(exampleUsageRateCard)
+                .fixedFeeRateCards(fixedFeeRateCardList)
+                .minimumCommitment(new MinimumCommitment().displayName("Minimum Commitment").rateValues(minCommitmentRateValues)));
             final PricePlan pricePlan = pricePlansApi.createPricePlan(createPricePlanRequest);
             System.out.println(pricePlan);
 
@@ -100,20 +107,22 @@ public class Example {
 
             // Step 7: Create customers to associate price plans
             final CustomersApi customersApi = new CustomersApi(apiClient);
+            List<String> aliases = new ArrayList<String>();
             final CreateCustomerRequest createCustomerRequest = new CreateCustomerRequest()
                 .name("customer1"+seed)
                 .id("1"+seed)
                 .primaryEmail("email@togai.com")
                 .billingAddress("221B Baker Street, Marylebone, London NW1 6XE, United Kingdom");
+            System.out.println(createCustomerRequest);
             final CreateCustomerResponse customer = customersApi.createCustomer(createCustomerRequest);
             System.out.println(customer);
 
             // Step 8: Associate the customer/account to the price plan
             final AccountsApi accountsApi = new AccountsApi(apiClient);
-            final AssociatePricePlanRequest associatePricePlanRequest = new AssociatePricePlanRequest()
+            final UpdatePricingScheduleRequest updatePricingScheduleRequest = new UpdatePricingScheduleRequest()
                 .pricePlanId(pricePlan.getId())
                     .effectiveFrom(LocalDate.now()).effectiveUntil(LocalDate.parse("9999-01-01"));
-            final AssociatePricePlanResponse account = accountsApi.associatePricePlan(customer.getId(), customer.getAccount().getId(), associatePricePlanRequest);
+            final UpdatePricingScheduleResponse account = accountsApi.updatePricingSchedule(customer.getId(), customer.getAccount().getId(), updatePricingScheduleRequest);
             System.out.println(account);
 
             // Step 9: Ingest events
@@ -122,15 +131,16 @@ public class Example {
                 .event(new Event()
                     .id("random-string" + Math.random())
                     .schemaName(eventSchema.getName())
-                    .timestamp(OffsetDateTime.now())
+                    .timestamp(OffsetDateTime.now(ZoneOffset.UTC))
                     .accountId(customer.getId())
                     .attributes(Arrays.asList(
                         new Attribute()
                             .name("sms_id"+seed)
-                            .value("random-string" + Math.random())
+                            .value("1" + Math.random())
                     ))
                     .dimensions(Collections.singletonMap("country", "US"))
                 );
+            System.out.println(ingestEventRequest);
             eventIngestionApi.ingest(ingestEventRequest);
 
             // Step 10: Get the usage metrics
@@ -165,6 +175,12 @@ public class Example {
             System.out.println(revenueMetrics);
 
             // Revenue metrics for a specific customer
+            System.out.println("Waiting for revenue metrics - 1 min");
+            try {
+                Thread.sleep(60000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
             final GetMetricsRequest customerRevenueMetricsRequest = new GetMetricsRequest()
                 .startTime(yesterday)
                 .endTime(now)

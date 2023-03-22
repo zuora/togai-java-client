@@ -13,7 +13,7 @@ Contents of the event
 |**timestamp** | **OffsetDateTime** | Source time stamp of the event. This timestamp must be in ISO 8601 format. |  |
 |**accountId** | **String** | The event will be associated with the provided account |  |
 |**attributes** | [**List&lt;Attribute&gt;**](Attribute.md) | Attributes are numeric values. It can be usage metric which you push to Togai |  |
-|**dimensions** | **Map&lt;String, String&gt;** | Dimensions are tags/labels associated with the events. This dimensions can be used to configure billing, for queries, analytics and reports. |  |
+|**dimensions** | **Map&lt;String, String&gt;** | Dimensions are tags/labels associated with the events. |  |
 
 
 ## Implemented Interfaces

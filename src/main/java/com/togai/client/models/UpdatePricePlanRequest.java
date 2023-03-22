@@ -20,9 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.togai.client.models.PricePlanDetailsOverride;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.togai.client.models.CreatePricePlanDetailsOverride;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -40,6 +38,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -49,7 +48,6 @@ import com.togai.client.JSON;
 /**
  * Request to update a price plan
  */
-@ApiModel(description = "Request to update a price plan")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdatePricePlanRequest implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -60,7 +58,7 @@ public class UpdatePricePlanRequest implements Serializable {
 
   public static final String SERIALIZED_NAME_PRICE_PLAN_DETAILS = "pricePlanDetails";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_DETAILS)
-  private PricePlanDetailsOverride pricePlanDetails;
+  private CreatePricePlanDetailsOverride pricePlanDetails;
 
   public UpdatePricePlanRequest() {
   }
@@ -76,7 +74,6 @@ public class UpdatePricePlanRequest implements Serializable {
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Description of price plan")
 
   public String getDescription() {
     return description;
@@ -88,7 +85,7 @@ public class UpdatePricePlanRequest implements Serializable {
   }
 
 
-  public UpdatePricePlanRequest pricePlanDetails(PricePlanDetailsOverride pricePlanDetails) {
+  public UpdatePricePlanRequest pricePlanDetails(CreatePricePlanDetailsOverride pricePlanDetails) {
     
     this.pricePlanDetails = pricePlanDetails;
     return this;
@@ -99,14 +96,13 @@ public class UpdatePricePlanRequest implements Serializable {
    * @return pricePlanDetails
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
-  public PricePlanDetailsOverride getPricePlanDetails() {
+  public CreatePricePlanDetailsOverride getPricePlanDetails() {
     return pricePlanDetails;
   }
 
 
-  public void setPricePlanDetails(PricePlanDetailsOverride pricePlanDetails) {
+  public void setPricePlanDetails(CreatePricePlanDetailsOverride pricePlanDetails) {
     this.pricePlanDetails = pricePlanDetails;
   }
 
@@ -173,9 +169,7 @@ public class UpdatePricePlanRequest implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (UpdatePricePlanRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!UpdatePricePlanRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UpdatePricePlanRequest is not found in the empty JSON string", UpdatePricePlanRequest.openapiRequiredFields.toString()));
         }
       }
@@ -192,7 +186,7 @@ public class UpdatePricePlanRequest implements Serializable {
       }
       // validate the optional field `pricePlanDetails`
       if (jsonObj.get("pricePlanDetails") != null && !jsonObj.get("pricePlanDetails").isJsonNull()) {
-        PricePlanDetailsOverride.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetails"));
+        CreatePricePlanDetailsOverride.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetails"));
       }
   }
 

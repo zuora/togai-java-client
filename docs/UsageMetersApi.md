@@ -168,7 +168,7 @@ public class Example {
 
 Deactivate usage meter
 
-Make an existing active usage meter to be inactive  Only active Usage Meters are allowed to deactivate. Active Usage Meters with active Pricing Plan attached can also be deactivated. 
+Make an existing active usage meter to be inactive Active Usage Meters with active Pricing Plan attached can also be deactivated. 
 
 ### Example
 ```java
@@ -314,7 +314,7 @@ public class Example {
 
 <a name="getUsageMetersForEventSchema"></a>
 # **getUsageMetersForEventSchema**
-> UsageMeterPaginatedResponse getUsageMetersForEventSchema(eventSchemaName, statuses, aggregations, nextToken, pageSize)
+> UsageMeterPaginatedResponse getUsageMetersForEventSchema(eventSchemaName, status, aggregations, nextToken, pageSize)
 
 List usage meters for event schema
 
@@ -341,12 +341,12 @@ public class Example {
 
     UsageMetersApi apiInstance = new UsageMetersApi(defaultClient);
     String eventSchemaName = "eventSchemaName_example"; // String | 
-    String statuses = "ACTIVE"; // String | Filter usage meter by it’s current active/inactive state to aggregate across state level usage meters. Aggregation param is mandatory if you’re passing value in this. 
-    String aggregations = "SUM"; // String | This parameter will aggregate across usage meter level using the processed usage meter value. Read more about [usage meter](https://docs.togai.com/docs/usagemeter). Statuses param is mandatory if you’re passing value in this. 
+    String status = "ACTIVE"; // String | Filter by status 
+    String aggregations = "COUNT"; // String | Filter by aggregations 
     String nextToken = "eyJsYXN0SXRlbUlkIjogInN0cmluZyIsICJwYWdlU2l6ZSI6IDEwMCwgInNvcnRPcmRlciI6ICJhc2MifQ=="; // String | 
     BigDecimal pageSize = new BigDecimal("10"); // BigDecimal | 
     try {
-      UsageMeterPaginatedResponse result = apiInstance.getUsageMetersForEventSchema(eventSchemaName, statuses, aggregations, nextToken, pageSize);
+      UsageMeterPaginatedResponse result = apiInstance.getUsageMetersForEventSchema(eventSchemaName, status, aggregations, nextToken, pageSize);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UsageMetersApi#getUsageMetersForEventSchema");
@@ -364,8 +364,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **eventSchemaName** | **String**|  | |
-| **statuses** | **String**| Filter usage meter by it’s current active/inactive state to aggregate across state level usage meters. Aggregation param is mandatory if you’re passing value in this.  | [optional] [enum: ACTIVE, INACTIVE] |
-| **aggregations** | **String**| This parameter will aggregate across usage meter level using the processed usage meter value. Read more about [usage meter](https://docs.togai.com/docs/usagemeter). Statuses param is mandatory if you’re passing value in this.  | [optional] [enum: SUM, COUNT] |
+| **status** | **String**| Filter by status  | [optional] [enum: ACTIVE, INACTIVE] |
+| **aggregations** | **String**| Filter by aggregations  | [optional] [enum: COUNT, SUM] |
 | **nextToken** | **String**|  | [optional] |
 | **pageSize** | **BigDecimal**|  | [optional] |
 
@@ -399,7 +399,7 @@ public class Example {
 
 Update an usage meter
 
-Updating an usage meter is supported only for usage meters in the DRAFT state currently. In case you like to update an usage meter, we suggest you create a new usage meter and associate it with accounts. 
+This API lets you update an existing usage meter.
 
 ### Example
 ```java

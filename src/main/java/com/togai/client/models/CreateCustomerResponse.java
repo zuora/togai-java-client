@@ -21,9 +21,10 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.Account;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.togai.client.models.CreateEntitySetting;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -40,6 +41,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -69,6 +71,10 @@ public class CreateCustomerResponse implements Serializable {
   @SerializedName(SERIALIZED_NAME_BILLING_ADDRESS)
   private String billingAddress;
 
+  public static final String SERIALIZED_NAME_SETTINGS = "settings";
+  @SerializedName(SERIALIZED_NAME_SETTINGS)
+  private List<CreateEntitySetting> settings = new ArrayList<>();
+
   public static final String SERIALIZED_NAME_ACCOUNT = "account";
   @SerializedName(SERIALIZED_NAME_ACCOUNT)
   private Account account;
@@ -87,7 +93,6 @@ public class CreateCustomerResponse implements Serializable {
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Identifier of customer")
 
   public String getId() {
     return id;
@@ -106,11 +111,10 @@ public class CreateCustomerResponse implements Serializable {
   }
 
    /**
-   * Name of the customer
+   * Name of the Customer
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Name of the customer")
 
   public String getName() {
     return name;
@@ -133,7 +137,6 @@ public class CreateCustomerResponse implements Serializable {
    * @return primaryEmail
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Primary email of the customer")
 
   public String getPrimaryEmail() {
     return primaryEmail;
@@ -156,7 +159,6 @@ public class CreateCustomerResponse implements Serializable {
    * @return billingAddress
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "billing address of the customer")
 
   public String getBillingAddress() {
     return billingAddress;
@@ -165,6 +167,36 @@ public class CreateCustomerResponse implements Serializable {
 
   public void setBillingAddress(String billingAddress) {
     this.billingAddress = billingAddress;
+  }
+
+
+  public CreateCustomerResponse settings(List<CreateEntitySetting> settings) {
+    
+    this.settings = settings;
+    return this;
+  }
+
+  public CreateCustomerResponse addSettingsItem(CreateEntitySetting settingsItem) {
+    if (this.settings == null) {
+      this.settings = new ArrayList<>();
+    }
+    this.settings.add(settingsItem);
+    return this;
+  }
+
+   /**
+   * Get settings
+   * @return settings
+  **/
+  @javax.annotation.Nullable
+
+  public List<CreateEntitySetting> getSettings() {
+    return settings;
+  }
+
+
+  public void setSettings(List<CreateEntitySetting> settings) {
+    this.settings = settings;
   }
 
 
@@ -179,7 +211,6 @@ public class CreateCustomerResponse implements Serializable {
    * @return account
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Account getAccount() {
     return account;
@@ -205,12 +236,13 @@ public class CreateCustomerResponse implements Serializable {
         Objects.equals(this.name, createCustomerResponse.name) &&
         Objects.equals(this.primaryEmail, createCustomerResponse.primaryEmail) &&
         Objects.equals(this.billingAddress, createCustomerResponse.billingAddress) &&
+        Objects.equals(this.settings, createCustomerResponse.settings) &&
         Objects.equals(this.account, createCustomerResponse.account);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, primaryEmail, billingAddress, account);
+    return Objects.hash(id, name, primaryEmail, billingAddress, settings, account);
   }
 
   @Override
@@ -221,6 +253,7 @@ public class CreateCustomerResponse implements Serializable {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    primaryEmail: ").append(toIndentedString(primaryEmail)).append("\n");
     sb.append("    billingAddress: ").append(toIndentedString(billingAddress)).append("\n");
+    sb.append("    settings: ").append(toIndentedString(settings)).append("\n");
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -248,6 +281,7 @@ public class CreateCustomerResponse implements Serializable {
     openapiFields.add("name");
     openapiFields.add("primaryEmail");
     openapiFields.add("billingAddress");
+    openapiFields.add("settings");
     openapiFields.add("account");
 
     // a set of required properties/fields (JSON key names)
@@ -266,9 +300,7 @@ public class CreateCustomerResponse implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (CreateCustomerResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!CreateCustomerResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreateCustomerResponse is not found in the empty JSON string", CreateCustomerResponse.openapiRequiredFields.toString()));
         }
       }
@@ -287,17 +319,31 @@ public class CreateCustomerResponse implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+      if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
-      if ((jsonObj.get("primaryEmail") != null && !jsonObj.get("primaryEmail").isJsonNull()) && !jsonObj.get("primaryEmail").isJsonPrimitive()) {
+      if (!jsonObj.get("primaryEmail").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `primaryEmail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("primaryEmail").toString()));
       }
-      if ((jsonObj.get("billingAddress") != null && !jsonObj.get("billingAddress").isJsonNull()) && !jsonObj.get("billingAddress").isJsonPrimitive()) {
+      if (!jsonObj.get("billingAddress").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `billingAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("billingAddress").toString()));
+      }
+      if (jsonObj.get("settings") != null && !jsonObj.get("settings").isJsonNull()) {
+        JsonArray jsonArraysettings = jsonObj.getAsJsonArray("settings");
+        if (jsonArraysettings != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("settings").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `settings` to be an array in the JSON string but got `%s`", jsonObj.get("settings").toString()));
+          }
+
+          // validate the optional field `settings` (array)
+          for (int i = 0; i < jsonArraysettings.size(); i++) {
+            CreateEntitySetting.validateJsonObject(jsonArraysettings.get(i).getAsJsonObject());
+          };
+        }
       }
       // validate the optional field `account`
       if (jsonObj.get("account") != null && !jsonObj.get("account").isJsonNull()) {

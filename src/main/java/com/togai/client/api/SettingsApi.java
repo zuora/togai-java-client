@@ -28,9 +28,9 @@ import java.io.IOException;
 
 
 import com.togai.client.models.ErrorResponse;
-import com.togai.client.models.OrganizationSetting;
 import com.togai.client.models.Setting;
-import com.togai.client.models.UpdateOrganizationSettingRequest;
+import com.togai.client.models.SettingPaginatedResponse;
+import com.togai.client.models.UpdateSettingRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -77,158 +77,15 @@ public class SettingsApi {
     }
 
     /**
-     * Build call for getOrganizationSetting
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for update organization settings request </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getOrganizationSettingCall(final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/organization_settings";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "bearerAuth" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getOrganizationSettingValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = getOrganizationSettingCall(_callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Get an organization setting
-     * Get an organization setting
-     * @return OrganizationSetting
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for update organization settings request </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
-     </table>
-     */
-    public OrganizationSetting getOrganizationSetting() throws ApiException {
-        ApiResponse<OrganizationSetting> localVarResp = getOrganizationSettingWithHttpInfo();
-        return localVarResp.getData();
-    }
-
-    /**
-     * Get an organization setting
-     * Get an organization setting
-     * @return ApiResponse&lt;OrganizationSetting&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for update organization settings request </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<OrganizationSetting> getOrganizationSettingWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = getOrganizationSettingValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<OrganizationSetting>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Get an organization setting (asynchronously)
-     * Get an organization setting
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for update organization settings request </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getOrganizationSettingAsync(final ApiCallback<OrganizationSetting> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getOrganizationSettingValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<OrganizationSetting>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
      * Build call for getSetting
-     * @param entityType  (required)
-     * @param entityId  (required)
-     * @param settingName  (required)
+     * @param settingIdStr  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for upsert settings request </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
@@ -237,7 +94,7 @@ public class SettingsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSettingCall(String entityType, String entityId, String settingName, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSettingCall(String settingIdStr, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -254,25 +111,14 @@ public class SettingsApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/settings";
+        String localVarPath = "/settings/{setting_id_str}"
+            .replace("{" + "setting_id_str" + "}", localVarApiClient.escapeString(settingIdStr.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (entityType != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("entity_type", entityType));
-        }
-
-        if (entityId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("entity_id", entityId));
-        }
-
-        if (settingName != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("setting_name", settingName));
-        }
 
         final String[] localVarAccepts = {
             "application/json"
@@ -283,7 +129,6 @@ public class SettingsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -295,41 +140,26 @@ public class SettingsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSettingValidateBeforeCall(String entityType, String entityId, String settingName, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'entityType' is set
-        if (entityType == null) {
-            throw new ApiException("Missing the required parameter 'entityType' when calling getSetting(Async)");
+    private okhttp3.Call getSettingValidateBeforeCall(String settingIdStr, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'settingIdStr' is set
+        if (settingIdStr == null) {
+            throw new ApiException("Missing the required parameter 'settingIdStr' when calling getSetting(Async)");
         }
-        
-        // verify the required parameter 'entityId' is set
-        if (entityId == null) {
-            throw new ApiException("Missing the required parameter 'entityId' when calling getSetting(Async)");
-        }
-        
-        // verify the required parameter 'settingName' is set
-        if (settingName == null) {
-            throw new ApiException("Missing the required parameter 'settingName' when calling getSetting(Async)");
-        }
-        
 
-        okhttp3.Call localVarCall = getSettingCall(entityType, entityId, settingName, _callback);
-        return localVarCall;
+        return getSettingCall(settingIdStr, _callback);
 
     }
 
     /**
      * Get a setting
      * Get a setting
-     * @param entityType  (required)
-     * @param entityId  (required)
-     * @param settingName  (required)
+     * @param settingIdStr  (required)
      * @return Setting
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for upsert settings request </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
@@ -338,23 +168,21 @@ public class SettingsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public Setting getSetting(String entityType, String entityId, String settingName) throws ApiException {
-        ApiResponse<Setting> localVarResp = getSettingWithHttpInfo(entityType, entityId, settingName);
+    public Setting getSetting(String settingIdStr) throws ApiException {
+        ApiResponse<Setting> localVarResp = getSettingWithHttpInfo(settingIdStr);
         return localVarResp.getData();
     }
 
     /**
      * Get a setting
      * Get a setting
-     * @param entityType  (required)
-     * @param entityId  (required)
-     * @param settingName  (required)
+     * @param settingIdStr  (required)
      * @return ApiResponse&lt;Setting&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for upsert settings request </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
@@ -363,8 +191,8 @@ public class SettingsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Setting> getSettingWithHttpInfo(String entityType, String entityId, String settingName) throws ApiException {
-        okhttp3.Call localVarCall = getSettingValidateBeforeCall(entityType, entityId, settingName, null);
+    public ApiResponse<Setting> getSettingWithHttpInfo(String settingIdStr) throws ApiException {
+        okhttp3.Call localVarCall = getSettingValidateBeforeCall(settingIdStr, null);
         Type localVarReturnType = new TypeToken<Setting>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -372,16 +200,14 @@ public class SettingsApi {
     /**
      * Get a setting (asynchronously)
      * Get a setting
-     * @param entityType  (required)
-     * @param entityId  (required)
-     * @param settingName  (required)
+     * @param settingIdStr  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for upsert settings request </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
@@ -390,23 +216,24 @@ public class SettingsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSettingAsync(String entityType, String entityId, String settingName, final ApiCallback<Setting> _callback) throws ApiException {
+    public okhttp3.Call getSettingAsync(String settingIdStr, final ApiCallback<Setting> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSettingValidateBeforeCall(entityType, entityId, settingName, _callback);
+        okhttp3.Call localVarCall = getSettingValidateBeforeCall(settingIdStr, _callback);
         Type localVarReturnType = new TypeToken<Setting>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for updateOrganizationSetting
-     * @param updateOrganizationSettingRequest Payload to update organization setting (required)
+     * Build call for insertSetting
+     * @param setting Payload to insert setting (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for update organization settings request </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
@@ -415,158 +242,7 @@ public class SettingsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateOrganizationSettingCall(UpdateOrganizationSettingRequest updateOrganizationSettingRequest, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = updateOrganizationSettingRequest;
-
-        // create path and map variables
-        String localVarPath = "/organization_settings";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "bearerAuth" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateOrganizationSettingValidateBeforeCall(UpdateOrganizationSettingRequest updateOrganizationSettingRequest, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'updateOrganizationSettingRequest' is set
-        if (updateOrganizationSettingRequest == null) {
-            throw new ApiException("Missing the required parameter 'updateOrganizationSettingRequest' when calling updateOrganizationSetting(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = updateOrganizationSettingCall(updateOrganizationSettingRequest, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Update an organization setting
-     * Update an organization setting
-     * @param updateOrganizationSettingRequest Payload to update organization setting (required)
-     * @return OrganizationSetting
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for update organization settings request </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
-     </table>
-     */
-    public OrganizationSetting updateOrganizationSetting(UpdateOrganizationSettingRequest updateOrganizationSettingRequest) throws ApiException {
-        ApiResponse<OrganizationSetting> localVarResp = updateOrganizationSettingWithHttpInfo(updateOrganizationSettingRequest);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Update an organization setting
-     * Update an organization setting
-     * @param updateOrganizationSettingRequest Payload to update organization setting (required)
-     * @return ApiResponse&lt;OrganizationSetting&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for update organization settings request </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<OrganizationSetting> updateOrganizationSettingWithHttpInfo(UpdateOrganizationSettingRequest updateOrganizationSettingRequest) throws ApiException {
-        okhttp3.Call localVarCall = updateOrganizationSettingValidateBeforeCall(updateOrganizationSettingRequest, null);
-        Type localVarReturnType = new TypeToken<OrganizationSetting>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Update an organization setting (asynchronously)
-     * Update an organization setting
-     * @param updateOrganizationSettingRequest Payload to update organization setting (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for update organization settings request </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call updateOrganizationSettingAsync(UpdateOrganizationSettingRequest updateOrganizationSettingRequest, final ApiCallback<OrganizationSetting> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = updateOrganizationSettingValidateBeforeCall(updateOrganizationSettingRequest, _callback);
-        Type localVarReturnType = new TypeToken<OrganizationSetting>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for upsertSetting
-     * @param setting Payload to insert or update setting (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Response for upsert settings request </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> Response for upsert settings request </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call upsertSettingCall(Setting setting, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call insertSettingCall(Setting setting, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -608,34 +284,31 @@ public class SettingsApi {
         }
 
         String[] localVarAuthNames = new String[] { "bearerAuth" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call upsertSettingValidateBeforeCall(Setting setting, final ApiCallback _callback) throws ApiException {
-        
+    private okhttp3.Call insertSettingValidateBeforeCall(Setting setting, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'setting' is set
         if (setting == null) {
-            throw new ApiException("Missing the required parameter 'setting' when calling upsertSetting(Async)");
+            throw new ApiException("Missing the required parameter 'setting' when calling insertSetting(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = upsertSettingCall(setting, _callback);
-        return localVarCall;
+        return insertSettingCall(setting, _callback);
 
     }
 
     /**
-     * Create or Update a setting
-     * Create or Update a setting
-     * @param setting Payload to insert or update setting (required)
+     * Create a setting
+     * Create a setting
+     * @param setting Payload to insert setting (required)
      * @return Setting
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Response for upsert settings request </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> Response for upsert settings request </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
@@ -644,22 +317,22 @@ public class SettingsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public Setting upsertSetting(Setting setting) throws ApiException {
-        ApiResponse<Setting> localVarResp = upsertSettingWithHttpInfo(setting);
+    public Setting insertSetting(Setting setting) throws ApiException {
+        ApiResponse<Setting> localVarResp = insertSettingWithHttpInfo(setting);
         return localVarResp.getData();
     }
 
     /**
-     * Create or Update a setting
-     * Create or Update a setting
-     * @param setting Payload to insert or update setting (required)
+     * Create a setting
+     * Create a setting
+     * @param setting Payload to insert setting (required)
      * @return ApiResponse&lt;Setting&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Response for upsert settings request </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> Response for upsert settings request </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
@@ -668,24 +341,24 @@ public class SettingsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Setting> upsertSettingWithHttpInfo(Setting setting) throws ApiException {
-        okhttp3.Call localVarCall = upsertSettingValidateBeforeCall(setting, null);
+    public ApiResponse<Setting> insertSettingWithHttpInfo(Setting setting) throws ApiException {
+        okhttp3.Call localVarCall = insertSettingValidateBeforeCall(setting, null);
         Type localVarReturnType = new TypeToken<Setting>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Create or Update a setting (asynchronously)
-     * Create or Update a setting
-     * @param setting Payload to insert or update setting (required)
+     * Create a setting (asynchronously)
+     * Create a setting
+     * @param setting Payload to insert setting (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Response for upsert settings request </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> Response for upsert settings request </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
@@ -694,9 +367,339 @@ public class SettingsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call upsertSettingAsync(Setting setting, final ApiCallback<Setting> _callback) throws ApiException {
+    public okhttp3.Call insertSettingAsync(Setting setting, final ApiCallback<Setting> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = upsertSettingValidateBeforeCall(setting, _callback);
+        okhttp3.Call localVarCall = insertSettingValidateBeforeCall(setting, _callback);
+        Type localVarReturnType = new TypeToken<Setting>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for listSetting
+     * @param entityType  (optional)
+     * @param entityId  (optional)
+     * @param settingId  (optional)
+     * @param namespace  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for list setting request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listSettingCall(String entityType, String entityId, String settingId, String namespace, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/settings";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (entityType != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("entity_type", entityType));
+        }
+
+        if (entityId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("entity_id", entityId));
+        }
+
+        if (settingId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("setting_id", settingId));
+        }
+
+        if (namespace != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("namespace", namespace));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call listSettingValidateBeforeCall(String entityType, String entityId, String settingId, String namespace, final ApiCallback _callback) throws ApiException {
+        return listSettingCall(entityType, entityId, settingId, namespace, _callback);
+
+    }
+
+    /**
+     * Lists settings
+     * List settings
+     * @param entityType  (optional)
+     * @param entityId  (optional)
+     * @param settingId  (optional)
+     * @param namespace  (optional)
+     * @return SettingPaginatedResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for list setting request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public SettingPaginatedResponse listSetting(String entityType, String entityId, String settingId, String namespace) throws ApiException {
+        ApiResponse<SettingPaginatedResponse> localVarResp = listSettingWithHttpInfo(entityType, entityId, settingId, namespace);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Lists settings
+     * List settings
+     * @param entityType  (optional)
+     * @param entityId  (optional)
+     * @param settingId  (optional)
+     * @param namespace  (optional)
+     * @return ApiResponse&lt;SettingPaginatedResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for list setting request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SettingPaginatedResponse> listSettingWithHttpInfo(String entityType, String entityId, String settingId, String namespace) throws ApiException {
+        okhttp3.Call localVarCall = listSettingValidateBeforeCall(entityType, entityId, settingId, namespace, null);
+        Type localVarReturnType = new TypeToken<SettingPaginatedResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Lists settings (asynchronously)
+     * List settings
+     * @param entityType  (optional)
+     * @param entityId  (optional)
+     * @param settingId  (optional)
+     * @param namespace  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for list setting request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listSettingAsync(String entityType, String entityId, String settingId, String namespace, final ApiCallback<SettingPaginatedResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listSettingValidateBeforeCall(entityType, entityId, settingId, namespace, _callback);
+        Type localVarReturnType = new TypeToken<SettingPaginatedResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateSetting
+     * @param settingIdStr  (required)
+     * @param updateSettingRequest Payload to update setting (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateSettingCall(String settingIdStr, UpdateSettingRequest updateSettingRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = updateSettingRequest;
+
+        // create path and map variables
+        String localVarPath = "/settings/{setting_id_str}"
+            .replace("{" + "setting_id_str" + "}", localVarApiClient.escapeString(settingIdStr.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateSettingValidateBeforeCall(String settingIdStr, UpdateSettingRequest updateSettingRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'settingIdStr' is set
+        if (settingIdStr == null) {
+            throw new ApiException("Missing the required parameter 'settingIdStr' when calling updateSetting(Async)");
+        }
+
+        // verify the required parameter 'updateSettingRequest' is set
+        if (updateSettingRequest == null) {
+            throw new ApiException("Missing the required parameter 'updateSettingRequest' when calling updateSetting(Async)");
+        }
+
+        return updateSettingCall(settingIdStr, updateSettingRequest, _callback);
+
+    }
+
+    /**
+     * Update a setting
+     * Update a setting
+     * @param settingIdStr  (required)
+     * @param updateSettingRequest Payload to update setting (required)
+     * @return Setting
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public Setting updateSetting(String settingIdStr, UpdateSettingRequest updateSettingRequest) throws ApiException {
+        ApiResponse<Setting> localVarResp = updateSettingWithHttpInfo(settingIdStr, updateSettingRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update a setting
+     * Update a setting
+     * @param settingIdStr  (required)
+     * @param updateSettingRequest Payload to update setting (required)
+     * @return ApiResponse&lt;Setting&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Setting> updateSettingWithHttpInfo(String settingIdStr, UpdateSettingRequest updateSettingRequest) throws ApiException {
+        okhttp3.Call localVarCall = updateSettingValidateBeforeCall(settingIdStr, updateSettingRequest, null);
+        Type localVarReturnType = new TypeToken<Setting>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update a setting (asynchronously)
+     * Update a setting
+     * @param settingIdStr  (required)
+     * @param updateSettingRequest Payload to update setting (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateSettingAsync(String settingIdStr, UpdateSettingRequest updateSettingRequest, final ApiCallback<Setting> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateSettingValidateBeforeCall(settingIdStr, updateSettingRequest, _callback);
         Type localVarReturnType = new TypeToken<Setting>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -39,6 +37,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -70,7 +69,6 @@ public class OrganizationSetting implements Serializable {
    * @return baseCurrency
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Base currency of the organization")
 
   public String getBaseCurrency() {
     return baseCurrency;
@@ -141,9 +139,7 @@ public class OrganizationSetting implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (OrganizationSetting.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!OrganizationSetting.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in OrganizationSetting is not found in the empty JSON string", OrganizationSetting.openapiRequiredFields.toString()));
         }
       }

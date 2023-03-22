@@ -22,8 +22,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.PaginationOptions;
 import com.togai.client.models.PricePlanListData;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +41,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -87,7 +86,6 @@ public class PricePlanPaginatedResponse implements Serializable {
    * @return data
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public List<PricePlanListData> getData() {
     return data;
@@ -110,7 +108,6 @@ public class PricePlanPaginatedResponse implements Serializable {
    * @return nextToken
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public String getNextToken() {
     return nextToken;
@@ -133,7 +130,6 @@ public class PricePlanPaginatedResponse implements Serializable {
    * @return context
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public PaginationOptions getContext() {
     return context;
@@ -211,9 +207,7 @@ public class PricePlanPaginatedResponse implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (PricePlanPaginatedResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!PricePlanPaginatedResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PricePlanPaginatedResponse is not found in the empty JSON string", PricePlanPaginatedResponse.openapiRequiredFields.toString()));
         }
       }
@@ -232,18 +226,16 @@ public class PricePlanPaginatedResponse implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
-      if (jsonArraydata != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("data").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
-        }
-
-        // validate the optional field `data` (array)
-        for (int i = 0; i < jsonArraydata.size(); i++) {
-          PricePlanListData.validateJsonObject(jsonArraydata.get(i).getAsJsonObject());
-        };
+      // ensure the json data is an array
+      if (!jsonObj.get("data").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
       }
+
+      JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
+      // validate the required field `data` (array)
+      for (int i = 0; i < jsonArraydata.size(); i++) {
+        PricePlanListData.validateJsonObject(jsonArraydata.get(i).getAsJsonObject());
+      };
       if ((jsonObj.get("nextToken") != null && !jsonObj.get("nextToken").isJsonNull()) && !jsonObj.get("nextToken").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `nextToken` to be a primitive type in the JSON string but got `%s`", jsonObj.get("nextToken").toString()));
       }

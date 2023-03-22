@@ -139,16 +139,13 @@ public class MetricsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getMetricsValidateBeforeCall(GetMetricsRequest getMetricsRequest, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = getMetricsCall(getMetricsRequest, _callback);
-        return localVarCall;
+        return getMetricsCall(getMetricsRequest, _callback);
 
     }
 
     /**
      * Get Togai Metrics
-     * Togai Metrics API allows you to fetch different metrics from Events value, Usage value, revenue metrics with multiple queryable options you may require for your business use case.  Make a POST request to the /metrics resource to get the metrics.  A single request can query up to five metrics.  Single response dataset can contain a maximum of 100 data points. 
+     * Togai Metrics API allows you to fetch different metrics from Events , Usage Meters and PricePlans with multiple queryable options. A single request can query up to five metrics.  Single response can contain a maximum of 100 data points. 
      * @param getMetricsRequest  (optional)
      * @return GetMetricsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -170,7 +167,7 @@ public class MetricsApi {
 
     /**
      * Get Togai Metrics
-     * Togai Metrics API allows you to fetch different metrics from Events value, Usage value, revenue metrics with multiple queryable options you may require for your business use case.  Make a POST request to the /metrics resource to get the metrics.  A single request can query up to five metrics.  Single response dataset can contain a maximum of 100 data points. 
+     * Togai Metrics API allows you to fetch different metrics from Events , Usage Meters and PricePlans with multiple queryable options. A single request can query up to five metrics.  Single response can contain a maximum of 100 data points. 
      * @param getMetricsRequest  (optional)
      * @return ApiResponse&lt;GetMetricsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -193,7 +190,7 @@ public class MetricsApi {
 
     /**
      * Get Togai Metrics (asynchronously)
-     * Togai Metrics API allows you to fetch different metrics from Events value, Usage value, revenue metrics with multiple queryable options you may require for your business use case.  Make a POST request to the /metrics resource to get the metrics.  A single request can query up to five metrics.  Single response dataset can contain a maximum of 100 data points. 
+     * Togai Metrics API allows you to fetch different metrics from Events , Usage Meters and PricePlans with multiple queryable options. A single request can query up to five metrics.  Single response can contain a maximum of 100 data points. 
      * @param getMetricsRequest  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call

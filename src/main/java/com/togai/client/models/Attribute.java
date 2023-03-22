@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -39,6 +37,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -48,7 +47,6 @@ import com.togai.client.JSON;
 /**
  * Metric to be recorded
  */
-@ApiModel(description = "Metric to be recorded")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Attribute implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -79,7 +77,6 @@ public class Attribute implements Serializable {
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "message", required = true, value = "Name of the event attribute")
 
   public String getName() {
     return name;
@@ -102,7 +99,6 @@ public class Attribute implements Serializable {
    * @return value
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "100", required = true, value = "Value of the event attribute")
 
   public String getValue() {
     return value;
@@ -125,7 +121,6 @@ public class Attribute implements Serializable {
    * @return unit
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "characters", value = "Unit with which the attribute value was measured. Natively supported units - \"Meters, Miles, Kilometers, Grams, Kilograms, ounces, Pounds, Minutes, Hours, Seconds, Milliseconds, Microseconds, None\". Clients are free to add any other custom units.")
 
   public String getUnit() {
     return unit;
@@ -204,9 +199,7 @@ public class Attribute implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (Attribute.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!Attribute.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Attribute is not found in the empty JSON string", Attribute.openapiRequiredFields.toString()));
         }
       }
@@ -225,10 +218,10 @@ public class Attribute implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
-      if ((jsonObj.get("value") != null && !jsonObj.get("value").isJsonNull()) && !jsonObj.get("value").isJsonPrimitive()) {
+      if (!jsonObj.get("value").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
       }
       if ((jsonObj.get("unit") != null && !jsonObj.get("unit").isJsonNull()) && !jsonObj.get("unit").isJsonPrimitive()) {

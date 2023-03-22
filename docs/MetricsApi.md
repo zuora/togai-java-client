@@ -13,7 +13,7 @@ All URIs are relative to *https://api.togai.com*
 
 Get Togai Metrics
 
-Togai Metrics API allows you to fetch different metrics from Events value, Usage value, revenue metrics with multiple queryable options you may require for your business use case.  Make a POST request to the /metrics resource to get the metrics.  A single request can query up to five metrics.  Single response dataset can contain a maximum of 100 data points. 
+Togai Metrics API allows you to fetch different metrics from Events , Usage Meters and PricePlans with multiple queryable options. A single request can query up to five metrics.  Single response can contain a maximum of 100 data points. 
 
 ### Example
 ```java

@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.PricingCycleConfigStartOffset;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -40,6 +38,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -49,7 +48,6 @@ import com.togai.client.JSON;
 /**
  * Represents configurations related to pricing cycle
  */
-@ApiModel(description = "Represents configurations related to pricing cycle")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PricingCycleConfig implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -131,7 +129,6 @@ public class PricingCycleConfig implements Serializable {
    * @return interval
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Interval field allow you to define the billing interval you would like to set")
 
   public IntervalEnum getInterval() {
     return interval;
@@ -154,7 +151,6 @@ public class PricingCycleConfig implements Serializable {
    * @return startOffset
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public PricingCycleConfigStartOffset getStartOffset() {
     return startOffset;
@@ -177,7 +173,6 @@ public class PricingCycleConfig implements Serializable {
    * @return gracePeriod
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "3", required = true, value = "Togai allows you to ingest past dated events that will be processed by a pricing cycle till the end grace period.  For example: Pricing cycle is Monthly from 1st to 30th and gracePeriod is 5 days which next month 1 to 5th date, you can ingest past dated events during this grace period. ")
 
   public Integer getGracePeriod() {
     return gracePeriod;
@@ -257,9 +252,7 @@ public class PricingCycleConfig implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (PricingCycleConfig.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!PricingCycleConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PricingCycleConfig is not found in the empty JSON string", PricingCycleConfig.openapiRequiredFields.toString()));
         }
       }
@@ -278,13 +271,11 @@ public class PricingCycleConfig implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("interval") != null && !jsonObj.get("interval").isJsonNull()) && !jsonObj.get("interval").isJsonPrimitive()) {
+      if (!jsonObj.get("interval").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `interval` to be a primitive type in the JSON string but got `%s`", jsonObj.get("interval").toString()));
       }
-      // validate the optional field `startOffset`
-      if (jsonObj.get("startOffset") != null && !jsonObj.get("startOffset").isJsonNull()) {
-        PricingCycleConfigStartOffset.validateJsonObject(jsonObj.getAsJsonObject("startOffset"));
-      }
+      // validate the required field `startOffset`
+      PricingCycleConfigStartOffset.validateJsonObject(jsonObj.getAsJsonObject("startOffset"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

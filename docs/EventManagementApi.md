@@ -37,8 +37,8 @@ public class Example {
 
     EventManagementApi apiInstance = new EventManagementApi(defaultClient);
     String nextToken = "eyJsYXN0SXRlbUlkIjogInN0cmluZyIsICJwYWdlU2l6ZSI6IDEyMywgInNvcnRPcmRlciI6ICJhc2MifQ=="; // String | Pagination token used as a marker to get records from next page.
-    String status = "PROCESSED"; // String | Filter option to filter the events by processed/unprocessed status.
-    String accountId = "1234"; // String | Filter option to filter the events based on account id.
+    String status = "PROCESSED"; // String | Filter option to filter by status.
+    String accountId = "1234"; // String | Filter option to filter based on account id.
     String schemaName = "Rides"; // String | Filter option to filter the events based on schema name.
     Integer pageSize = 10; // Integer | Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided.
     try {
@@ -60,8 +60,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **nextToken** | **String**| Pagination token used as a marker to get records from next page. | [optional] |
-| **status** | **String**| Filter option to filter the events by processed/unprocessed status. | [optional] |
-| **accountId** | **String**| Filter option to filter the events based on account id. | [optional] |
+| **status** | **String**| Filter option to filter by status. | [optional] |
+| **accountId** | **String**| Filter option to filter based on account id. | [optional] |
 | **schemaName** | **String**| Filter option to filter the events based on schema name. | [optional] |
 | **pageSize** | **Integer**| Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. | [optional] |
 

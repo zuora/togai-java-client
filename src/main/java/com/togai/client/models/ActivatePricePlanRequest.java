@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -41,6 +39,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -50,7 +49,6 @@ import com.togai.client.JSON;
 /**
  * Request to activate currencies of a price plan
  */
-@ApiModel(description = "Request to activate currencies of a price plan")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ActivatePricePlanRequest implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -78,7 +76,6 @@ public class ActivatePricePlanRequest implements Serializable {
    * @return currencies
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "List of currencies to activate")
 
   public Set<String> getCurrencies() {
     return currencies;
@@ -150,9 +147,7 @@ public class ActivatePricePlanRequest implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (ActivatePricePlanRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!ActivatePricePlanRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ActivatePricePlanRequest is not found in the empty JSON string", ActivatePricePlanRequest.openapiRequiredFields.toString()));
         }
       }
@@ -171,8 +166,10 @@ public class ActivatePricePlanRequest implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      // ensure the json data is an array
-      if ((jsonObj.get("currencies") != null && !jsonObj.get("currencies").isJsonNull()) && !jsonObj.get("currencies").isJsonArray()) {
+      // ensure the required json array is present
+      if (jsonObj.get("currencies") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("currencies").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `currencies` to be an array in the JSON string but got `%s`", jsonObj.get("currencies").toString()));
       }
   }

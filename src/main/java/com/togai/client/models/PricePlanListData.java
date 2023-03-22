@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.PricePlanDetails;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -43,6 +41,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -52,7 +51,6 @@ import com.togai.client.JSON;
 /**
  * Data of price plan list
  */
-@ApiModel(description = "Data of price plan list")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PricePlanListData implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -152,7 +150,6 @@ public class PricePlanListData implements Serializable {
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Identifier of price plan")
 
   public String getId() {
     return id;
@@ -175,7 +172,6 @@ public class PricePlanListData implements Serializable {
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Name of the price plan")
 
   public String getName() {
     return name;
@@ -198,7 +194,6 @@ public class PricePlanListData implements Serializable {
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Description of price plan")
 
   public String getDescription() {
     return description;
@@ -221,7 +216,6 @@ public class PricePlanListData implements Serializable {
    * @return status
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Status of Price plan")
 
   public StatusEnum getStatus() {
     return status;
@@ -249,7 +243,6 @@ public class PricePlanListData implements Serializable {
    * @return usageMeters
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Usage meters id linked to the price plan")
 
   public List<String> getUsageMeters() {
     return usageMeters;
@@ -272,7 +265,6 @@ public class PricePlanListData implements Serializable {
    * @return pricePlanDetails
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public PricePlanDetails getPricePlanDetails() {
     return pricePlanDetails;
@@ -295,7 +287,6 @@ public class PricePlanListData implements Serializable {
    * @return createdAt
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -318,7 +309,6 @@ public class PricePlanListData implements Serializable {
    * @return updatedAt
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public OffsetDateTime getUpdatedAt() {
     return updatedAt;
@@ -417,9 +407,7 @@ public class PricePlanListData implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (PricePlanListData.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!PricePlanListData.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PricePlanListData is not found in the empty JSON string", PricePlanListData.openapiRequiredFields.toString()));
         }
       }
@@ -438,26 +426,26 @@ public class PricePlanListData implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+      if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
       if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
       }
-      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
+      if (!jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
       }
-      // ensure the json data is an array
-      if ((jsonObj.get("usageMeters") != null && !jsonObj.get("usageMeters").isJsonNull()) && !jsonObj.get("usageMeters").isJsonArray()) {
+      // ensure the required json array is present
+      if (jsonObj.get("usageMeters") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("usageMeters").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `usageMeters` to be an array in the JSON string but got `%s`", jsonObj.get("usageMeters").toString()));
       }
-      // validate the optional field `pricePlanDetails`
-      if (jsonObj.get("pricePlanDetails") != null && !jsonObj.get("pricePlanDetails").isJsonNull()) {
-        PricePlanDetails.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetails"));
-      }
+      // validate the required field `pricePlanDetails`
+      PricePlanDetails.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetails"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

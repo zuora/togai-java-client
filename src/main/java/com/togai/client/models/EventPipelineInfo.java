@@ -22,11 +22,10 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.EventPipelineInfoAccount;
 import com.togai.client.models.EventPipelineInfoCustomer;
+import com.togai.client.models.EventPipelineInfoEnrichments;
 import com.togai.client.models.EventPipelineInfoEventSchema;
-import com.togai.client.models.EventPipelineInfoPricePlansInner;
-import com.togai.client.models.EventPipelineInfoUsageMetersInner;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.togai.client.models.EventPipelineInfoPricePlans;
+import com.togai.client.models.EventPipelineInfoUsageMeters;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +45,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -55,7 +55,6 @@ import com.togai.client.JSON;
 /**
  * Information related to ingestion of an event
  */
-@ApiModel(description = "Information related to ingestion of an event")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EventPipelineInfo implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -66,11 +65,11 @@ public class EventPipelineInfo implements Serializable {
 
   public static final String SERIALIZED_NAME_USAGE_METERS = "usageMeters";
   @SerializedName(SERIALIZED_NAME_USAGE_METERS)
-  private List<EventPipelineInfoUsageMetersInner> usageMeters = null;
+  private List<EventPipelineInfoUsageMeters> usageMeters = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PRICE_PLANS = "pricePlans";
   @SerializedName(SERIALIZED_NAME_PRICE_PLANS)
-  private List<EventPipelineInfoPricePlansInner> pricePlans = null;
+  private List<EventPipelineInfoPricePlans> pricePlans = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ACCOUNT = "account";
   @SerializedName(SERIALIZED_NAME_ACCOUNT)
@@ -79,6 +78,10 @@ public class EventPipelineInfo implements Serializable {
   public static final String SERIALIZED_NAME_CUSTOMER = "customer";
   @SerializedName(SERIALIZED_NAME_CUSTOMER)
   private EventPipelineInfoCustomer customer;
+
+  public static final String SERIALIZED_NAME_ENRICHMENTS = "enrichments";
+  @SerializedName(SERIALIZED_NAME_ENRICHMENTS)
+  private EventPipelineInfoEnrichments enrichments;
 
   public EventPipelineInfo() {
   }
@@ -94,7 +97,6 @@ public class EventPipelineInfo implements Serializable {
    * @return eventSchema
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public EventPipelineInfoEventSchema getEventSchema() {
     return eventSchema;
@@ -106,13 +108,13 @@ public class EventPipelineInfo implements Serializable {
   }
 
 
-  public EventPipelineInfo usageMeters(List<EventPipelineInfoUsageMetersInner> usageMeters) {
+  public EventPipelineInfo usageMeters(List<EventPipelineInfoUsageMeters> usageMeters) {
     
     this.usageMeters = usageMeters;
     return this;
   }
 
-  public EventPipelineInfo addUsageMetersItem(EventPipelineInfoUsageMetersInner usageMetersItem) {
+  public EventPipelineInfo addUsageMetersItem(EventPipelineInfoUsageMeters usageMetersItem) {
     if (this.usageMeters == null) {
       this.usageMeters = new ArrayList<>();
     }
@@ -125,25 +127,24 @@ public class EventPipelineInfo implements Serializable {
    * @return usageMeters
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
-  public List<EventPipelineInfoUsageMetersInner> getUsageMeters() {
+  public List<EventPipelineInfoUsageMeters> getUsageMeters() {
     return usageMeters;
   }
 
 
-  public void setUsageMeters(List<EventPipelineInfoUsageMetersInner> usageMeters) {
+  public void setUsageMeters(List<EventPipelineInfoUsageMeters> usageMeters) {
     this.usageMeters = usageMeters;
   }
 
 
-  public EventPipelineInfo pricePlans(List<EventPipelineInfoPricePlansInner> pricePlans) {
+  public EventPipelineInfo pricePlans(List<EventPipelineInfoPricePlans> pricePlans) {
     
     this.pricePlans = pricePlans;
     return this;
   }
 
-  public EventPipelineInfo addPricePlansItem(EventPipelineInfoPricePlansInner pricePlansItem) {
+  public EventPipelineInfo addPricePlansItem(EventPipelineInfoPricePlans pricePlansItem) {
     if (this.pricePlans == null) {
       this.pricePlans = new ArrayList<>();
     }
@@ -156,14 +157,13 @@ public class EventPipelineInfo implements Serializable {
    * @return pricePlans
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
-  public List<EventPipelineInfoPricePlansInner> getPricePlans() {
+  public List<EventPipelineInfoPricePlans> getPricePlans() {
     return pricePlans;
   }
 
 
-  public void setPricePlans(List<EventPipelineInfoPricePlansInner> pricePlans) {
+  public void setPricePlans(List<EventPipelineInfoPricePlans> pricePlans) {
     this.pricePlans = pricePlans;
   }
 
@@ -179,7 +179,6 @@ public class EventPipelineInfo implements Serializable {
    * @return account
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public EventPipelineInfoAccount getAccount() {
     return account;
@@ -202,7 +201,6 @@ public class EventPipelineInfo implements Serializable {
    * @return customer
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public EventPipelineInfoCustomer getCustomer() {
     return customer;
@@ -211,6 +209,28 @@ public class EventPipelineInfo implements Serializable {
 
   public void setCustomer(EventPipelineInfoCustomer customer) {
     this.customer = customer;
+  }
+
+
+  public EventPipelineInfo enrichments(EventPipelineInfoEnrichments enrichments) {
+    
+    this.enrichments = enrichments;
+    return this;
+  }
+
+   /**
+   * Get enrichments
+   * @return enrichments
+  **/
+  @javax.annotation.Nullable
+
+  public EventPipelineInfoEnrichments getEnrichments() {
+    return enrichments;
+  }
+
+
+  public void setEnrichments(EventPipelineInfoEnrichments enrichments) {
+    this.enrichments = enrichments;
   }
 
 
@@ -228,12 +248,13 @@ public class EventPipelineInfo implements Serializable {
         Objects.equals(this.usageMeters, eventPipelineInfo.usageMeters) &&
         Objects.equals(this.pricePlans, eventPipelineInfo.pricePlans) &&
         Objects.equals(this.account, eventPipelineInfo.account) &&
-        Objects.equals(this.customer, eventPipelineInfo.customer);
+        Objects.equals(this.customer, eventPipelineInfo.customer) &&
+        Objects.equals(this.enrichments, eventPipelineInfo.enrichments);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(eventSchema, usageMeters, pricePlans, account, customer);
+    return Objects.hash(eventSchema, usageMeters, pricePlans, account, customer, enrichments);
   }
 
   @Override
@@ -245,6 +266,7 @@ public class EventPipelineInfo implements Serializable {
     sb.append("    pricePlans: ").append(toIndentedString(pricePlans)).append("\n");
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
     sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
+    sb.append("    enrichments: ").append(toIndentedString(enrichments)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -272,6 +294,7 @@ public class EventPipelineInfo implements Serializable {
     openapiFields.add("pricePlans");
     openapiFields.add("account");
     openapiFields.add("customer");
+    openapiFields.add("enrichments");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -285,9 +308,7 @@ public class EventPipelineInfo implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (EventPipelineInfo.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!EventPipelineInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in EventPipelineInfo is not found in the empty JSON string", EventPipelineInfo.openapiRequiredFields.toString()));
         }
       }
@@ -303,29 +324,33 @@ public class EventPipelineInfo implements Serializable {
       if (jsonObj.get("eventSchema") != null && !jsonObj.get("eventSchema").isJsonNull()) {
         EventPipelineInfoEventSchema.validateJsonObject(jsonObj.getAsJsonObject("eventSchema"));
       }
-      JsonArray jsonArrayusageMeters = jsonObj.getAsJsonArray("usageMeters");
-      if (jsonArrayusageMeters != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("usageMeters").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `usageMeters` to be an array in the JSON string but got `%s`", jsonObj.get("usageMeters").toString()));
-        }
+      if (jsonObj.get("usageMeters") != null && !jsonObj.get("usageMeters").isJsonNull()) {
+        JsonArray jsonArrayusageMeters = jsonObj.getAsJsonArray("usageMeters");
+        if (jsonArrayusageMeters != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("usageMeters").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `usageMeters` to be an array in the JSON string but got `%s`", jsonObj.get("usageMeters").toString()));
+          }
 
-        // validate the optional field `usageMeters` (array)
-        for (int i = 0; i < jsonArrayusageMeters.size(); i++) {
-          EventPipelineInfoUsageMetersInner.validateJsonObject(jsonArrayusageMeters.get(i).getAsJsonObject());
-        };
+          // validate the optional field `usageMeters` (array)
+          for (int i = 0; i < jsonArrayusageMeters.size(); i++) {
+            EventPipelineInfoUsageMeters.validateJsonObject(jsonArrayusageMeters.get(i).getAsJsonObject());
+          };
+        }
       }
-      JsonArray jsonArraypricePlans = jsonObj.getAsJsonArray("pricePlans");
-      if (jsonArraypricePlans != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("pricePlans").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `pricePlans` to be an array in the JSON string but got `%s`", jsonObj.get("pricePlans").toString()));
-        }
+      if (jsonObj.get("pricePlans") != null && !jsonObj.get("pricePlans").isJsonNull()) {
+        JsonArray jsonArraypricePlans = jsonObj.getAsJsonArray("pricePlans");
+        if (jsonArraypricePlans != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("pricePlans").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `pricePlans` to be an array in the JSON string but got `%s`", jsonObj.get("pricePlans").toString()));
+          }
 
-        // validate the optional field `pricePlans` (array)
-        for (int i = 0; i < jsonArraypricePlans.size(); i++) {
-          EventPipelineInfoPricePlansInner.validateJsonObject(jsonArraypricePlans.get(i).getAsJsonObject());
-        };
+          // validate the optional field `pricePlans` (array)
+          for (int i = 0; i < jsonArraypricePlans.size(); i++) {
+            EventPipelineInfoPricePlans.validateJsonObject(jsonArraypricePlans.get(i).getAsJsonObject());
+          };
+        }
       }
       // validate the optional field `account`
       if (jsonObj.get("account") != null && !jsonObj.get("account").isJsonNull()) {
@@ -334,6 +359,10 @@ public class EventPipelineInfo implements Serializable {
       // validate the optional field `customer`
       if (jsonObj.get("customer") != null && !jsonObj.get("customer").isJsonNull()) {
         EventPipelineInfoCustomer.validateJsonObject(jsonObj.getAsJsonObject("customer"));
+      }
+      // validate the optional field `enrichments`
+      if (jsonObj.get("enrichments") != null && !jsonObj.get("enrichments").isJsonNull()) {
+        EventPipelineInfoEnrichments.validateJsonObject(jsonObj.getAsJsonObject("enrichments"));
       }
   }
 

@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.SlabRate;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -77,7 +76,6 @@ public class UsageRate implements Serializable {
    * @return usageMeterId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "01BX5ZZKBKACTAV9WEVG", required = true, value = "The usage meter will be associated with the rate card to transform the usage value to billable value")
 
   public String getUsageMeterId() {
     return usageMeterId;
@@ -105,7 +103,6 @@ public class UsageRate implements Serializable {
    * @return slabRates
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "List of slab rates")
 
   public List<SlabRate> getSlabRates() {
     return slabRates;
@@ -181,9 +178,7 @@ public class UsageRate implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (UsageRate.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!UsageRate.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UsageRate is not found in the empty JSON string", UsageRate.openapiRequiredFields.toString()));
         }
       }
@@ -202,21 +197,19 @@ public class UsageRate implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("usageMeterId") != null && !jsonObj.get("usageMeterId").isJsonNull()) && !jsonObj.get("usageMeterId").isJsonPrimitive()) {
+      if (!jsonObj.get("usageMeterId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `usageMeterId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("usageMeterId").toString()));
       }
-      JsonArray jsonArrayslabRates = jsonObj.getAsJsonArray("slabRates");
-      if (jsonArrayslabRates != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("slabRates").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `slabRates` to be an array in the JSON string but got `%s`", jsonObj.get("slabRates").toString()));
-        }
-
-        // validate the optional field `slabRates` (array)
-        for (int i = 0; i < jsonArrayslabRates.size(); i++) {
-          SlabRate.validateJsonObject(jsonArrayslabRates.get(i).getAsJsonObject());
-        };
+      // ensure the json data is an array
+      if (!jsonObj.get("slabRates").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `slabRates` to be an array in the JSON string but got `%s`", jsonObj.get("slabRates").toString()));
       }
+
+      JsonArray jsonArrayslabRates = jsonObj.getAsJsonArray("slabRates");
+      // validate the required field `slabRates` (array)
+      for (int i = 0; i < jsonArrayslabRates.size(); i++) {
+        SlabRate.validateJsonObject(jsonArrayslabRates.get(i).getAsJsonObject());
+      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

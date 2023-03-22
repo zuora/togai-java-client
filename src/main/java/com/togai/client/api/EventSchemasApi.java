@@ -116,7 +116,7 @@ public class EventSchemasApi {
 
         // create path and map variables
         String localVarPath = "/event_schema/{event_schema_name}/activate"
-            .replaceAll("\\{" + "event_schema_name" + "\\}", localVarApiClient.escapeString(eventSchemaName.toString()));
+            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -133,7 +133,6 @@ public class EventSchemasApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -146,15 +145,12 @@ public class EventSchemasApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call activateEventSchemaValidateBeforeCall(String eventSchemaName, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'eventSchemaName' is set
         if (eventSchemaName == null) {
             throw new ApiException("Missing the required parameter 'eventSchemaName' when calling activateEventSchema(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = activateEventSchemaCall(eventSchemaName, _callback);
-        return localVarCall;
+        return activateEventSchemaCall(eventSchemaName, _callback);
 
     }
 
@@ -296,15 +292,12 @@ public class EventSchemasApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createEventSchemaValidateBeforeCall(CreateEventSchemaRequest createEventSchemaRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'createEventSchemaRequest' is set
         if (createEventSchemaRequest == null) {
             throw new ApiException("Missing the required parameter 'createEventSchemaRequest' when calling createEventSchema(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createEventSchemaCall(createEventSchemaRequest, _callback);
-        return localVarCall;
+        return createEventSchemaCall(createEventSchemaRequest, _callback);
 
     }
 
@@ -417,7 +410,7 @@ public class EventSchemasApi {
 
         // create path and map variables
         String localVarPath = "/event_schema/{event_schema_name}/deactivate"
-            .replaceAll("\\{" + "event_schema_name" + "\\}", localVarApiClient.escapeString(eventSchemaName.toString()));
+            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -434,7 +427,6 @@ public class EventSchemasApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -447,15 +439,12 @@ public class EventSchemasApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deactivateEventSchemaValidateBeforeCall(String eventSchemaName, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'eventSchemaName' is set
         if (eventSchemaName == null) {
             throw new ApiException("Missing the required parameter 'eventSchemaName' when calling deactivateEventSchema(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = deactivateEventSchemaCall(eventSchemaName, _callback);
-        return localVarCall;
+        return deactivateEventSchemaCall(eventSchemaName, _callback);
 
     }
 
@@ -568,7 +557,7 @@ public class EventSchemasApi {
 
         // create path and map variables
         String localVarPath = "/event_schema/{event_schema_name}"
-            .replaceAll("\\{" + "event_schema_name" + "\\}", localVarApiClient.escapeString(eventSchemaName.toString()));
+            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -585,7 +574,6 @@ public class EventSchemasApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -598,15 +586,12 @@ public class EventSchemasApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteEventSchemaValidateBeforeCall(String eventSchemaName, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'eventSchemaName' is set
         if (eventSchemaName == null) {
             throw new ApiException("Missing the required parameter 'eventSchemaName' when calling deleteEventSchema(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = deleteEventSchemaCall(eventSchemaName, _callback);
-        return localVarCall;
+        return deleteEventSchemaCall(eventSchemaName, _callback);
 
     }
 
@@ -720,7 +705,7 @@ public class EventSchemasApi {
 
         // create path and map variables
         String localVarPath = "/event_schema/{event_schema_name}"
-            .replaceAll("\\{" + "event_schema_name" + "\\}", localVarApiClient.escapeString(eventSchemaName.toString()));
+            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -750,20 +735,17 @@ public class EventSchemasApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call eventSchemaEventSchemaNamePatchValidateBeforeCall(String eventSchemaName, UpdateEventSchemaRequest updateEventSchemaRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'eventSchemaName' is set
         if (eventSchemaName == null) {
             throw new ApiException("Missing the required parameter 'eventSchemaName' when calling eventSchemaEventSchemaNamePatch(Async)");
         }
-        
+
         // verify the required parameter 'updateEventSchemaRequest' is set
         if (updateEventSchemaRequest == null) {
             throw new ApiException("Missing the required parameter 'updateEventSchemaRequest' when calling eventSchemaEventSchemaNamePatch(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = eventSchemaEventSchemaNamePatchCall(eventSchemaName, updateEventSchemaRequest, _callback);
-        return localVarCall;
+        return eventSchemaEventSchemaNamePatchCall(eventSchemaName, updateEventSchemaRequest, _callback);
 
     }
 
@@ -880,7 +862,7 @@ public class EventSchemasApi {
 
         // create path and map variables
         String localVarPath = "/event_schema/{event_schema_name}"
-            .replaceAll("\\{" + "event_schema_name" + "\\}", localVarApiClient.escapeString(eventSchemaName.toString()));
+            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -901,7 +883,6 @@ public class EventSchemasApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -914,15 +895,12 @@ public class EventSchemasApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getEventSchemaValidateBeforeCall(String eventSchemaName, Integer version, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'eventSchemaName' is set
         if (eventSchemaName == null) {
             throw new ApiException("Missing the required parameter 'eventSchemaName' when calling getEventSchema(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getEventSchemaCall(eventSchemaName, version, _callback);
-        return localVarCall;
+        return getEventSchemaCall(eventSchemaName, version, _callback);
 
     }
 
@@ -1038,7 +1016,7 @@ public class EventSchemasApi {
 
         // create path and map variables
         String localVarPath = "/event_schema/{event_schema_name}/versions"
-            .replaceAll("\\{" + "event_schema_name" + "\\}", localVarApiClient.escapeString(eventSchemaName.toString()));
+            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1055,7 +1033,6 @@ public class EventSchemasApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1068,15 +1045,12 @@ public class EventSchemasApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call listEventSchemaVersionsValidateBeforeCall(String eventSchemaName, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'eventSchemaName' is set
         if (eventSchemaName == null) {
             throw new ApiException("Missing the required parameter 'eventSchemaName' when calling listEventSchemaVersions(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = listEventSchemaVersionsCall(eventSchemaName, _callback);
-        return localVarCall;
+        return listEventSchemaVersionsCall(eventSchemaName, _callback);
 
     }
 
@@ -1155,10 +1129,9 @@ public class EventSchemasApi {
     }
     /**
      * Build call for listEventSchemas
-     * @param statuses Filter by provided statuses (optional)
+     * @param status Filter by provided status (optional)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
-     * @param sortOrder  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1174,7 +1147,7 @@ public class EventSchemasApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listEventSchemasCall(String statuses, String nextToken, BigDecimal pageSize, String sortOrder, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listEventSchemasCall(String status, String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1199,8 +1172,8 @@ public class EventSchemasApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (statuses != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("statuses", statuses));
+        if (status != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("status", status));
         }
 
         if (nextToken != null) {
@@ -1209,10 +1182,6 @@ public class EventSchemasApi {
 
         if (pageSize != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pageSize", pageSize));
-        }
-
-        if (sortOrder != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sortOrder", sortOrder));
         }
 
         final String[] localVarAccepts = {
@@ -1224,7 +1193,6 @@ public class EventSchemasApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1236,21 +1204,17 @@ public class EventSchemasApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listEventSchemasValidateBeforeCall(String statuses, String nextToken, BigDecimal pageSize, String sortOrder, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = listEventSchemasCall(statuses, nextToken, pageSize, sortOrder, _callback);
-        return localVarCall;
+    private okhttp3.Call listEventSchemasValidateBeforeCall(String status, String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
+        return listEventSchemasCall(status, nextToken, pageSize, _callback);
 
     }
 
     /**
      * List event schemas
-     * Returns a list of event schema with pagination and sort.
-     * @param statuses Filter by provided statuses (optional)
+     * Returns a list of event schema with pagination.
+     * @param status Filter by provided status (optional)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
-     * @param sortOrder  (optional)
      * @return EventSchemaListPaginatedResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1265,18 +1229,17 @@ public class EventSchemasApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public EventSchemaListPaginatedResponse listEventSchemas(String statuses, String nextToken, BigDecimal pageSize, String sortOrder) throws ApiException {
-        ApiResponse<EventSchemaListPaginatedResponse> localVarResp = listEventSchemasWithHttpInfo(statuses, nextToken, pageSize, sortOrder);
+    public EventSchemaListPaginatedResponse listEventSchemas(String status, String nextToken, BigDecimal pageSize) throws ApiException {
+        ApiResponse<EventSchemaListPaginatedResponse> localVarResp = listEventSchemasWithHttpInfo(status, nextToken, pageSize);
         return localVarResp.getData();
     }
 
     /**
      * List event schemas
-     * Returns a list of event schema with pagination and sort.
-     * @param statuses Filter by provided statuses (optional)
+     * Returns a list of event schema with pagination.
+     * @param status Filter by provided status (optional)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
-     * @param sortOrder  (optional)
      * @return ApiResponse&lt;EventSchemaListPaginatedResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1291,19 +1254,18 @@ public class EventSchemasApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<EventSchemaListPaginatedResponse> listEventSchemasWithHttpInfo(String statuses, String nextToken, BigDecimal pageSize, String sortOrder) throws ApiException {
-        okhttp3.Call localVarCall = listEventSchemasValidateBeforeCall(statuses, nextToken, pageSize, sortOrder, null);
+    public ApiResponse<EventSchemaListPaginatedResponse> listEventSchemasWithHttpInfo(String status, String nextToken, BigDecimal pageSize) throws ApiException {
+        okhttp3.Call localVarCall = listEventSchemasValidateBeforeCall(status, nextToken, pageSize, null);
         Type localVarReturnType = new TypeToken<EventSchemaListPaginatedResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * List event schemas (asynchronously)
-     * Returns a list of event schema with pagination and sort.
-     * @param statuses Filter by provided statuses (optional)
+     * Returns a list of event schema with pagination.
+     * @param status Filter by provided status (optional)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
-     * @param sortOrder  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1319,9 +1281,9 @@ public class EventSchemasApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listEventSchemasAsync(String statuses, String nextToken, BigDecimal pageSize, String sortOrder, final ApiCallback<EventSchemaListPaginatedResponse> _callback) throws ApiException {
+    public okhttp3.Call listEventSchemasAsync(String status, String nextToken, BigDecimal pageSize, final ApiCallback<EventSchemaListPaginatedResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listEventSchemasValidateBeforeCall(statuses, nextToken, pageSize, sortOrder, _callback);
+        okhttp3.Call localVarCall = listEventSchemasValidateBeforeCall(status, nextToken, pageSize, _callback);
         Type localVarReturnType = new TypeToken<EventSchemaListPaginatedResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

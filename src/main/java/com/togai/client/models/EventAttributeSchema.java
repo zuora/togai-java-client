@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -39,6 +37,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -48,7 +47,6 @@ import com.togai.client.JSON;
 /**
  * Structure of an event attribute
  */
-@ApiModel(description = "Structure of an event attribute")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EventAttributeSchema implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -75,7 +73,6 @@ public class EventAttributeSchema implements Serializable {
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "distance", required = true, value = "Name of the event attribute.")
 
   public String getName() {
     return name;
@@ -98,7 +95,6 @@ public class EventAttributeSchema implements Serializable {
    * @return defaultUnit
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "kms", value = "Unit for the attribute")
 
   public String getDefaultUnit() {
     return defaultUnit;
@@ -173,9 +169,7 @@ public class EventAttributeSchema implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (EventAttributeSchema.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!EventAttributeSchema.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in EventAttributeSchema is not found in the empty JSON string", EventAttributeSchema.openapiRequiredFields.toString()));
         }
       }
@@ -194,7 +188,7 @@ public class EventAttributeSchema implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
       if ((jsonObj.get("defaultUnit") != null && !jsonObj.get("defaultUnit").isJsonNull()) && !jsonObj.get("defaultUnit").isJsonPrimitive()) {

@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -39,6 +37,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -64,6 +63,10 @@ public class Computation implements Serializable {
   @SerializedName(SERIALIZED_NAME_COMPUTATION)
   private String computation;
 
+  public static final String SERIALIZED_NAME_ORDER = "order";
+  @SerializedName(SERIALIZED_NAME_ORDER)
+  private Integer order;
+
   public Computation() {
   }
 
@@ -78,7 +81,6 @@ public class Computation implements Serializable {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Optional identifier describing the matcher and computation pair")
 
   public String getId() {
     return id;
@@ -97,11 +99,10 @@ public class Computation implements Serializable {
   }
 
    /**
-   * Condition to be applied on event. Upon matching it the corresponding computation will be considered for usage_meter unit calculation. The result of the matcher needs to be truthy (https://jsonlogic.com/truthy.html) in order to be considered as a match. 
+   * Condition to be applied on event. Upon matching it the corresponding computation will be considered for usage_meter unit calculation. The result of the matcher needs to be [truthy](https://jsonlogic.com/truthy.html) in order to be considered as a match. 
    * @return matcher
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{   \"and\": [     {\"in\": [{\"var\": \"dimension.city\"}, \"chennai\", \"mumbai\"]},     \"or\": [       {\">\": [{\"var\": \"attribute.distance\"}, 100]},       {\"<\": [{\"var\": \"attribute.distance\"}, 20]}     ]   ] } ", value = "Condition to be applied on event. Upon matching it the corresponding computation will be considered for usage_meter unit calculation. The result of the matcher needs to be truthy (https://jsonlogic.com/truthy.html) in order to be considered as a match. ")
 
   public String getMatcher() {
     return matcher;
@@ -120,11 +121,10 @@ public class Computation implements Serializable {
   }
 
    /**
-   * Computation to be applied on an event if it matches the matcher In case of a COUNT aggregation type, computation should be passed as &#39;1&#39; 
+   * Computation to be applied on an event if it matches the matcher. In case of a COUNT aggregation type, computation should be passed as &#39;1&#39; 
    * @return computation
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "{\"*\":[{\"var\":\"attributes.distance\"},0.4]}", required = true, value = "Computation to be applied on an event if it matches the matcher In case of a COUNT aggregation type, computation should be passed as '1' ")
 
   public String getComputation() {
     return computation;
@@ -133,6 +133,28 @@ public class Computation implements Serializable {
 
   public void setComputation(String computation) {
     this.computation = computation;
+  }
+
+
+  public Computation order(Integer order) {
+    
+    this.order = order;
+    return this;
+  }
+
+   /**
+   * The order in which multiple matched computations will get evaluated
+   * @return order
+  **/
+  @javax.annotation.Nonnull
+
+  public Integer getOrder() {
+    return order;
+  }
+
+
+  public void setOrder(Integer order) {
+    this.order = order;
   }
 
 
@@ -148,12 +170,13 @@ public class Computation implements Serializable {
     Computation computation = (Computation) o;
     return Objects.equals(this.id, computation.id) &&
         Objects.equals(this.matcher, computation.matcher) &&
-        Objects.equals(this.computation, computation.computation);
+        Objects.equals(this.computation, computation.computation) &&
+        Objects.equals(this.order, computation.order);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, matcher, computation);
+    return Objects.hash(id, matcher, computation, order);
   }
 
   @Override
@@ -163,6 +186,7 @@ public class Computation implements Serializable {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    matcher: ").append(toIndentedString(matcher)).append("\n");
     sb.append("    computation: ").append(toIndentedString(computation)).append("\n");
+    sb.append("    order: ").append(toIndentedString(order)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -188,10 +212,12 @@ public class Computation implements Serializable {
     openapiFields.add("id");
     openapiFields.add("matcher");
     openapiFields.add("computation");
+    openapiFields.add("order");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("computation");
+    openapiRequiredFields.add("order");
   }
 
  /**
@@ -202,9 +228,7 @@ public class Computation implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (Computation.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!Computation.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Computation is not found in the empty JSON string", Computation.openapiRequiredFields.toString()));
         }
       }
@@ -229,7 +253,7 @@ public class Computation implements Serializable {
       if ((jsonObj.get("matcher") != null && !jsonObj.get("matcher").isJsonNull()) && !jsonObj.get("matcher").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `matcher` to be a primitive type in the JSON string but got `%s`", jsonObj.get("matcher").toString()));
       }
-      if ((jsonObj.get("computation") != null && !jsonObj.get("computation").isJsonNull()) && !jsonObj.get("computation").isJsonPrimitive()) {
+      if (!jsonObj.get("computation").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `computation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("computation").toString()));
       }
   }

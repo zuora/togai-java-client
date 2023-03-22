@@ -141,21 +141,18 @@ public class EventIngestionApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call ingestValidateBeforeCall(IngestEventRequest ingestEventRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'ingestEventRequest' is set
         if (ingestEventRequest == null) {
             throw new ApiException("Missing the required parameter 'ingestEventRequest' when calling ingest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = ingestCall(ingestEventRequest, _callback);
-        return localVarCall;
+        return ingestCall(ingestEventRequest, _callback);
 
     }
 
     /**
      * Ingest events to Togai
-     * This API let’s you to ingest events to your Togai account.  Events ingested using this API will be processed via associated usage meters and further via associated price plans to generate final billable value to invoice the customer  Read more about [Event Ingestion](https://docs.togai.com/docs/event-ingestion) 
+     * This API let’s you to ingest events to your Togai account. Events ingested using this API will be processed via associated usage meters and further via associated price plans to generate final billable value to invoice the customer Read more about [Event Ingestion](https://docs.togai.com/docs/event-ingestion) 
      * @param ingestEventRequest Request body to ingest events to Togai usage and billing management service. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -176,7 +173,7 @@ public class EventIngestionApi {
 
     /**
      * Ingest events to Togai
-     * This API let’s you to ingest events to your Togai account.  Events ingested using this API will be processed via associated usage meters and further via associated price plans to generate final billable value to invoice the customer  Read more about [Event Ingestion](https://docs.togai.com/docs/event-ingestion) 
+     * This API let’s you to ingest events to your Togai account. Events ingested using this API will be processed via associated usage meters and further via associated price plans to generate final billable value to invoice the customer Read more about [Event Ingestion](https://docs.togai.com/docs/event-ingestion) 
      * @param ingestEventRequest Request body to ingest events to Togai usage and billing management service. (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -199,7 +196,7 @@ public class EventIngestionApi {
 
     /**
      * Ingest events to Togai (asynchronously)
-     * This API let’s you to ingest events to your Togai account.  Events ingested using this API will be processed via associated usage meters and further via associated price plans to generate final billable value to invoice the customer  Read more about [Event Ingestion](https://docs.togai.com/docs/event-ingestion) 
+     * This API let’s you to ingest events to your Togai account. Events ingested using this API will be processed via associated usage meters and further via associated price plans to generate final billable value to invoice the customer Read more about [Event Ingestion](https://docs.togai.com/docs/event-ingestion) 
      * @param ingestEventRequest Request body to ingest events to Togai usage and billing management service. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -288,15 +285,12 @@ public class EventIngestionApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call ingestBatchValidateBeforeCall(IngestBatchEventRequest ingestBatchEventRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'ingestBatchEventRequest' is set
         if (ingestBatchEventRequest == null) {
             throw new ApiException("Missing the required parameter 'ingestBatchEventRequest' when calling ingestBatch(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = ingestBatchCall(ingestBatchEventRequest, _callback);
-        return localVarCall;
+        return ingestBatchCall(ingestBatchEventRequest, _callback);
 
     }
 

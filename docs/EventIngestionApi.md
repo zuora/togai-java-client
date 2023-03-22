@@ -14,7 +14,7 @@ All URIs are relative to *https://api.togai.com*
 
 Ingest events to Togai
 
-This API let’s you to ingest events to your Togai account.  Events ingested using this API will be processed via associated usage meters and further via associated price plans to generate final billable value to invoice the customer  Read more about [Event Ingestion](https://docs.togai.com/docs/event-ingestion) 
+This API let’s you to ingest events to your Togai account. Events ingested using this API will be processed via associated usage meters and further via associated price plans to generate final billable value to invoice the customer Read more about [Event Ingestion](https://docs.togai.com/docs/event-ingestion) 
 
 ### Example
 ```java

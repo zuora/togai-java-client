@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.PriceType;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -43,6 +41,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -52,7 +51,6 @@ import com.togai.client.JSON;
 /**
  * Represents a pricing priceType (rates + slabs) for usage price plan
  */
-@ApiModel(description = "Represents a pricing priceType (rates + slabs) for usage price plan")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Slab implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -71,7 +69,7 @@ public class Slab implements Serializable {
 
   public static final String SERIALIZED_NAME_SLAB_CONFIG = "slabConfig";
   @SerializedName(SERIALIZED_NAME_SLAB_CONFIG)
-  private Map<String, String> slabConfig = null;
+  private Map<String, String> slabConfig = new HashMap<>();
 
   public Slab() {
   }
@@ -89,7 +87,6 @@ public class Slab implements Serializable {
    * @return order
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public Integer getOrder() {
     return order;
@@ -112,7 +109,6 @@ public class Slab implements Serializable {
    * @return startAfter
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public BigDecimal getStartAfter() {
     return startAfter;
@@ -135,7 +131,6 @@ public class Slab implements Serializable {
    * @return priceType
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public PriceType getPriceType() {
     return priceType;
@@ -166,7 +161,6 @@ public class Slab implements Serializable {
    * @return slabConfig
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Map<String, String> getSlabConfig() {
     return slabConfig;
@@ -249,9 +243,7 @@ public class Slab implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (Slab.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!Slab.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Slab is not found in the empty JSON string", Slab.openapiRequiredFields.toString()));
         }
       }

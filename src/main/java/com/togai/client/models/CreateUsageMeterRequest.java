@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.Computation;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -51,7 +50,6 @@ import com.togai.client.JSON;
 /**
  * Request to create usage meter
  */
-@ApiModel(description = "Request to create usage meter")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateUsageMeterRequest implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -166,7 +164,7 @@ public class CreateUsageMeterRequest implements Serializable {
 
   public static final String SERIALIZED_NAME_COMPUTATIONS = "computations";
   @SerializedName(SERIALIZED_NAME_COMPUTATIONS)
-  private List<Computation> computations = null;
+  private List<Computation> computations = new ArrayList<>();
 
   public CreateUsageMeterRequest() {
   }
@@ -182,7 +180,6 @@ public class CreateUsageMeterRequest implements Serializable {
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Name of the event. Must be unique for an organization.")
 
   public String getName() {
     return name;
@@ -205,7 +202,6 @@ public class CreateUsageMeterRequest implements Serializable {
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Description of the event")
 
   public String getDescription() {
     return description;
@@ -228,7 +224,6 @@ public class CreateUsageMeterRequest implements Serializable {
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "COUNTER", required = true, value = "Type of usage meter")
 
   public TypeEnum getType() {
     return type;
@@ -251,7 +246,6 @@ public class CreateUsageMeterRequest implements Serializable {
    * @return aggregation
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "DRAFT", required = true, value = "Aggregation to be applied on usage meter result")
 
   public AggregationEnum getAggregation() {
     return aggregation;
@@ -282,7 +276,6 @@ public class CreateUsageMeterRequest implements Serializable {
    * @return computations
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public List<Computation> getComputations() {
     return computations;
@@ -368,9 +361,7 @@ public class CreateUsageMeterRequest implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (CreateUsageMeterRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!CreateUsageMeterRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreateUsageMeterRequest is not found in the empty JSON string", CreateUsageMeterRequest.openapiRequiredFields.toString()));
         }
       }
@@ -389,29 +380,31 @@ public class CreateUsageMeterRequest implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
       if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
       }
-      if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) && !jsonObj.get("type").isJsonPrimitive()) {
+      if (!jsonObj.get("type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
       }
-      if ((jsonObj.get("aggregation") != null && !jsonObj.get("aggregation").isJsonNull()) && !jsonObj.get("aggregation").isJsonPrimitive()) {
+      if (!jsonObj.get("aggregation").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `aggregation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("aggregation").toString()));
       }
-      JsonArray jsonArraycomputations = jsonObj.getAsJsonArray("computations");
-      if (jsonArraycomputations != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("computations").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `computations` to be an array in the JSON string but got `%s`", jsonObj.get("computations").toString()));
-        }
+      if (jsonObj.get("computations") != null && !jsonObj.get("computations").isJsonNull()) {
+        JsonArray jsonArraycomputations = jsonObj.getAsJsonArray("computations");
+        if (jsonArraycomputations != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("computations").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `computations` to be an array in the JSON string but got `%s`", jsonObj.get("computations").toString()));
+          }
 
-        // validate the optional field `computations` (array)
-        for (int i = 0; i < jsonArraycomputations.size(); i++) {
-          Computation.validateJsonObject(jsonArraycomputations.get(i).getAsJsonObject());
-        };
+          // validate the optional field `computations` (array)
+          for (int i = 0; i < jsonArraycomputations.size(); i++) {
+            Computation.validateJsonObject(jsonArraycomputations.get(i).getAsJsonObject());
+          };
+        }
       }
   }
 

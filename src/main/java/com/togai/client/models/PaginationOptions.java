@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -39,6 +37,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -121,7 +120,6 @@ public class PaginationOptions implements Serializable {
    * @return pageSize
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Integer getPageSize() {
     return pageSize;
@@ -144,7 +142,6 @@ public class PaginationOptions implements Serializable {
    * @return sortOrder
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public SortOrderEnum getSortOrder() {
     return sortOrder;
@@ -218,9 +215,7 @@ public class PaginationOptions implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (PaginationOptions.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!PaginationOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaginationOptions is not found in the empty JSON string", PaginationOptions.openapiRequiredFields.toString()));
         }
       }

@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +39,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -48,9 +47,8 @@ import java.util.Set;
 import com.togai.client.JSON;
 
 /**
- *  | Metric Name | FilterEntry Name |    Allowed groupBy fields                 |      Default Values      |                 Allowed Values                  | |-------------|------------------|-------------------------------------------|--------------------------|-------------------------------------------------| | EVENTS      | ACCOUNT_ID       | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME     | None                     | *\\&lt;one or more valid accounts IDs&gt;              | | EVENTS      | CUSTOMER_ID      | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME     | None                     | *\\&lt;at most one valid customer ID&gt;               | | EVENTS      | SCHEMA_NAME      | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME     | None                     | *\\&lt;at most one valid schema names&gt;              | | EVENTS      | EVENT_STATUS     | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME     | [PROCESSED, UNPROCESSED] | oneOrMoreOf PROCESSED, UNPROCESSED, IN_PROGRESS | | USAGE       | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID                | None                     | *\\&lt;one or more valid accounts ID&gt;               | | USAGE       | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID                | None                     | *\\&lt;at most one valid customer ID&gt;               | | USAGE       | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID                | None                     | *\\&lt;one or more valid usage meter name&gt;          | | REVENUE     | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID                | None                     | *\\&lt;one or more valid accounts ID&gt;               | | REVENUE     | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID                | None                     | *\\&lt;at most one valid customer ID&gt;               | | REVENUE     | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID                | None                     | *\\&lt;one or more valid usage meter name&gt;          | | EVENTS      | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID                | &lt;From auth token&gt;        |                                                 | | USAGE       | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID                | &lt;From auth token&gt;        |                                                 | | REVENUE     | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID                | &lt;From auth token&gt;        |                                                 | 
+ *  | Metric Name | FilterEntry Name |    Allowed groupBy fields                 |      Default Values      |                 Allowed Values                  | |-------------|------------------|-------------------------------------------|--------------------------|-------------------------------------------------| | EVENTS      | ACCOUNT_ID       | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | None                     | *\\&lt;one or more valid account IDs&gt;               |                                    CUSTOMER_ID                                                                                                            | | EVENTS      | CUSTOMER_ID      | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | None                     | *\\&lt;one or more valid customer IDs&gt;              |                                    CUSTOMER_ID                                                                                                            | | EVENTS      | SCHEMA_NAME      | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | None                     | *\\&lt;at most one valid schema names&gt;              |                                    CUSTOMER_ID                                                                                                            | | EVENTS      | EVENT_STATUS     | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | [PROCESSED, UNPROCESSED] | oneOrMoreOf PROCESSED, UNPROCESSED, IN_PROGRESS |                                    CUSTOMER_ID                                                                                                            | | USAGE       | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\\&lt;one or more valid account IDs&gt;               | | USAGE       | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\\&lt;one or more valid customer IDs&gt;              | | USAGE       | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\\&lt;one or more valid usage meter name&gt;          | | REVENUE     | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\\&lt;one or more valid account IDs&gt;               | | REVENUE     | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\\&lt;one or more valid customer IDs&gt;              | | REVENUE     | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\\&lt;one or more valid usage meter name&gt;          | | EVENTS      | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | &lt;From auth token&gt;        |                                                 | | USAGE       | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | &lt;From auth token&gt;        |                                                 | | REVENUE     | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | &lt;From auth token&gt;        |                                                 | 
  */
-@ApiModel(description = " | Metric Name | FilterEntry Name |    Allowed groupBy fields                 |      Default Values      |                 Allowed Values                  | |-------------|------------------|-------------------------------------------|--------------------------|-------------------------------------------------| | EVENTS      | ACCOUNT_ID       | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME     | None                     | *\\<one or more valid accounts IDs>              | | EVENTS      | CUSTOMER_ID      | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME     | None                     | *\\<at most one valid customer ID>               | | EVENTS      | SCHEMA_NAME      | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME     | None                     | *\\<at most one valid schema names>              | | EVENTS      | EVENT_STATUS     | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME     | [PROCESSED, UNPROCESSED] | oneOrMoreOf PROCESSED, UNPROCESSED, IN_PROGRESS | | USAGE       | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID                | None                     | *\\<one or more valid accounts ID>               | | USAGE       | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID                | None                     | *\\<at most one valid customer ID>               | | USAGE       | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID                | None                     | *\\<one or more valid usage meter name>          | | REVENUE     | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID                | None                     | *\\<one or more valid accounts ID>               | | REVENUE     | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID                | None                     | *\\<at most one valid customer ID>               | | REVENUE     | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID                | None                     | *\\<one or more valid usage meter name>          | | EVENTS      | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID                | <From auth token>        |                                                 | | USAGE       | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID                | <From auth token>        |                                                 | | REVENUE     | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID                | <From auth token>        |                                                 | ")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class MetricQueryFilterEntry implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -77,7 +75,6 @@ public class MetricQueryFilterEntry implements Serializable {
    * @return fieldName
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "ACCOUNT_ID", required = true, value = "")
 
   public String getFieldName() {
     return fieldName;
@@ -105,7 +102,6 @@ public class MetricQueryFilterEntry implements Serializable {
    * @return fieldValues
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public List<String> getFieldValues() {
     return fieldValues;
@@ -181,9 +177,7 @@ public class MetricQueryFilterEntry implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (MetricQueryFilterEntry.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!MetricQueryFilterEntry.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in MetricQueryFilterEntry is not found in the empty JSON string", MetricQueryFilterEntry.openapiRequiredFields.toString()));
         }
       }
@@ -202,11 +196,13 @@ public class MetricQueryFilterEntry implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("fieldName") != null && !jsonObj.get("fieldName").isJsonNull()) && !jsonObj.get("fieldName").isJsonPrimitive()) {
+      if (!jsonObj.get("fieldName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `fieldName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fieldName").toString()));
       }
-      // ensure the json data is an array
-      if ((jsonObj.get("fieldValues") != null && !jsonObj.get("fieldValues").isJsonNull()) && !jsonObj.get("fieldValues").isJsonArray()) {
+      // ensure the required json array is present
+      if (jsonObj.get("fieldValues") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("fieldValues").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `fieldValues` to be an array in the JSON string but got `%s`", jsonObj.get("fieldValues").toString()));
       }
   }

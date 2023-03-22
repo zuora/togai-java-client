@@ -20,10 +20,10 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.togai.client.models.FixedFeeRate;
 import com.togai.client.models.UsageRate;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
@@ -42,6 +42,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -51,7 +52,6 @@ import com.togai.client.JSON;
 /**
  * Request to adding currency to a price plan
  */
-@ApiModel(description = "Request to adding currency to a price plan")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AddCurrencyToPricePlanRequest implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -63,6 +63,14 @@ public class AddCurrencyToPricePlanRequest implements Serializable {
   public static final String SERIALIZED_NAME_USAGE_RATES = "usageRates";
   @SerializedName(SERIALIZED_NAME_USAGE_RATES)
   private List<UsageRate> usageRates = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_FIXED_FEE_RATES = "fixedFeeRates";
+  @SerializedName(SERIALIZED_NAME_FIXED_FEE_RATES)
+  private List<FixedFeeRate> fixedFeeRates = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_MINIMUM_COMMITMENT_RATE = "minimumCommitmentRate";
+  @SerializedName(SERIALIZED_NAME_MINIMUM_COMMITMENT_RATE)
+  private BigDecimal minimumCommitmentRate;
 
   public AddCurrencyToPricePlanRequest() {
   }
@@ -78,7 +86,6 @@ public class AddCurrencyToPricePlanRequest implements Serializable {
    * @return currency
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Currency to be added")
 
   public String getCurrency() {
     return currency;
@@ -106,7 +113,6 @@ public class AddCurrencyToPricePlanRequest implements Serializable {
    * @return usageRates
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "List of usage rates")
 
   public List<UsageRate> getUsageRates() {
     return usageRates;
@@ -115,6 +121,58 @@ public class AddCurrencyToPricePlanRequest implements Serializable {
 
   public void setUsageRates(List<UsageRate> usageRates) {
     this.usageRates = usageRates;
+  }
+
+
+  public AddCurrencyToPricePlanRequest fixedFeeRates(List<FixedFeeRate> fixedFeeRates) {
+    
+    this.fixedFeeRates = fixedFeeRates;
+    return this;
+  }
+
+  public AddCurrencyToPricePlanRequest addFixedFeeRatesItem(FixedFeeRate fixedFeeRatesItem) {
+    if (this.fixedFeeRates == null) {
+      this.fixedFeeRates = new ArrayList<>();
+    }
+    this.fixedFeeRates.add(fixedFeeRatesItem);
+    return this;
+  }
+
+   /**
+   * Rates for fixed fee rate cards
+   * @return fixedFeeRates
+  **/
+  @javax.annotation.Nullable
+
+  public List<FixedFeeRate> getFixedFeeRates() {
+    return fixedFeeRates;
+  }
+
+
+  public void setFixedFeeRates(List<FixedFeeRate> fixedFeeRates) {
+    this.fixedFeeRates = fixedFeeRates;
+  }
+
+
+  public AddCurrencyToPricePlanRequest minimumCommitmentRate(BigDecimal minimumCommitmentRate) {
+    
+    this.minimumCommitmentRate = minimumCommitmentRate;
+    return this;
+  }
+
+   /**
+   * Rates for minimum commitment.
+   * @return minimumCommitmentRate
+  **/
+  @javax.annotation.Nullable
+
+  public BigDecimal getMinimumCommitmentRate() {
+    return minimumCommitmentRate;
+  }
+
+
+  public void setMinimumCommitmentRate(BigDecimal minimumCommitmentRate) {
+    this.minimumCommitmentRate = minimumCommitmentRate;
   }
 
 
@@ -129,12 +187,14 @@ public class AddCurrencyToPricePlanRequest implements Serializable {
     }
     AddCurrencyToPricePlanRequest addCurrencyToPricePlanRequest = (AddCurrencyToPricePlanRequest) o;
     return Objects.equals(this.currency, addCurrencyToPricePlanRequest.currency) &&
-        Objects.equals(this.usageRates, addCurrencyToPricePlanRequest.usageRates);
+        Objects.equals(this.usageRates, addCurrencyToPricePlanRequest.usageRates) &&
+        Objects.equals(this.fixedFeeRates, addCurrencyToPricePlanRequest.fixedFeeRates) &&
+        Objects.equals(this.minimumCommitmentRate, addCurrencyToPricePlanRequest.minimumCommitmentRate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currency, usageRates);
+    return Objects.hash(currency, usageRates, fixedFeeRates, minimumCommitmentRate);
   }
 
   @Override
@@ -143,6 +203,8 @@ public class AddCurrencyToPricePlanRequest implements Serializable {
     sb.append("class AddCurrencyToPricePlanRequest {\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    usageRates: ").append(toIndentedString(usageRates)).append("\n");
+    sb.append("    fixedFeeRates: ").append(toIndentedString(fixedFeeRates)).append("\n");
+    sb.append("    minimumCommitmentRate: ").append(toIndentedString(minimumCommitmentRate)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -167,6 +229,8 @@ public class AddCurrencyToPricePlanRequest implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("currency");
     openapiFields.add("usageRates");
+    openapiFields.add("fixedFeeRates");
+    openapiFields.add("minimumCommitmentRate");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -182,9 +246,7 @@ public class AddCurrencyToPricePlanRequest implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (AddCurrencyToPricePlanRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!AddCurrencyToPricePlanRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AddCurrencyToPricePlanRequest is not found in the empty JSON string", AddCurrencyToPricePlanRequest.openapiRequiredFields.toString()));
         }
       }
@@ -203,20 +265,32 @@ public class AddCurrencyToPricePlanRequest implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) && !jsonObj.get("currency").isJsonPrimitive()) {
+      if (!jsonObj.get("currency").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
       }
-      JsonArray jsonArrayusageRates = jsonObj.getAsJsonArray("usageRates");
-      if (jsonArrayusageRates != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("usageRates").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `usageRates` to be an array in the JSON string but got `%s`", jsonObj.get("usageRates").toString()));
-        }
+      // ensure the json data is an array
+      if (!jsonObj.get("usageRates").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `usageRates` to be an array in the JSON string but got `%s`", jsonObj.get("usageRates").toString()));
+      }
 
-        // validate the optional field `usageRates` (array)
-        for (int i = 0; i < jsonArrayusageRates.size(); i++) {
-          UsageRate.validateJsonObject(jsonArrayusageRates.get(i).getAsJsonObject());
-        };
+      JsonArray jsonArrayusageRates = jsonObj.getAsJsonArray("usageRates");
+      // validate the required field `usageRates` (array)
+      for (int i = 0; i < jsonArrayusageRates.size(); i++) {
+        UsageRate.validateJsonObject(jsonArrayusageRates.get(i).getAsJsonObject());
+      };
+      if (jsonObj.get("fixedFeeRates") != null && !jsonObj.get("fixedFeeRates").isJsonNull()) {
+        JsonArray jsonArrayfixedFeeRates = jsonObj.getAsJsonArray("fixedFeeRates");
+        if (jsonArrayfixedFeeRates != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("fixedFeeRates").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `fixedFeeRates` to be an array in the JSON string but got `%s`", jsonObj.get("fixedFeeRates").toString()));
+          }
+
+          // validate the optional field `fixedFeeRates` (array)
+          for (int i = 0; i < jsonArrayfixedFeeRates.size(); i++) {
+            FixedFeeRate.validateJsonObject(jsonArrayfixedFeeRates.get(i).getAsJsonObject());
+          };
+        }
       }
   }
 

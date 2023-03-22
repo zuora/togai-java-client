@@ -2,16 +2,19 @@
 
 # Setting
 
-Represents user_setting
+Represents a setting
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**settingName** | **String** |  |  |
-|**settingValue** | **String** |  |  |
+|**id** | **String** |  |  |
+|**value** | **String** |  |  |
 |**entityType** | **String** |  |  |
 |**entityId** | **String** |  |  |
+|**namespace** | **String** |  |  |
+|**name** | **String** |  |  |
+|**dataType** | **SettingDataType** |  |  |
 
 
 ## Implemented Interfaces

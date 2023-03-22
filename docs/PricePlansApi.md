@@ -169,7 +169,7 @@ public class Example {
 
 Create a price plan
 
-Create a price plan and associate with customers to it  A price plan is a collection of pre-set conditions with prices that convert usage metrics into billable value. Price Plans and the roll up of items comprising the pricing plans are used to assign a customer to get the final bill value. Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
+This API let&#39;s you create and price plan Learn more about [Price Plans](https://docs.togai.com/docs/priceplan) 
 
 ### Example
 ```java
@@ -465,7 +465,7 @@ public class Example {
 
 Update a price plan
 
-Update a draft state price plan  Only DRAFT state Price Plans are allowed to Update. Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
+Update an existing price plan Price Plans with status as DRAFT alone can be updated . Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
 
 ### Example
 ```java

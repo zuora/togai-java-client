@@ -21,9 +21,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.DimensionsSchema;
+import com.togai.client.models.Enrichments;
 import com.togai.client.models.EventAttributeSchema;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.LinkedHashSet;
@@ -44,6 +43,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -53,7 +53,6 @@ import com.togai.client.JSON;
 /**
  * Structure of an event schema
  */
-@ApiModel(description = "Structure of an event schema")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EventSchema implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -131,7 +130,11 @@ public class EventSchema implements Serializable {
 
   public static final String SERIALIZED_NAME_DIMENSIONS = "dimensions";
   @SerializedName(SERIALIZED_NAME_DIMENSIONS)
-  private Set<DimensionsSchema> dimensions = null;
+  private Set<DimensionsSchema> dimensions = new LinkedHashSet<>();
+
+  public static final String SERIALIZED_NAME_ENRICHMENTS = "enrichments";
+  @SerializedName(SERIALIZED_NAME_ENRICHMENTS)
+  private Enrichments enrichments;
 
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
@@ -155,7 +158,6 @@ public class EventSchema implements Serializable {
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Name of the event. Must be unique for an organization.")
 
   public String getName() {
     return name;
@@ -178,7 +180,6 @@ public class EventSchema implements Serializable {
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Description of the event")
 
   public String getDescription() {
     return description;
@@ -202,7 +203,6 @@ public class EventSchema implements Serializable {
    * @return version
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1", required = true, value = "Version of event schema")
 
   public Integer getVersion() {
     return version;
@@ -225,7 +225,6 @@ public class EventSchema implements Serializable {
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "DRAFT", value = "Status of event schema * DRAFT - Schema is in draft state  * ACTIVE - Schema is currently active  * INACTIVE - Schema is currently inactive * ARCHIVED - Older version of event schema ")
 
   public StatusEnum getStatus() {
     return status;
@@ -244,6 +243,9 @@ public class EventSchema implements Serializable {
   }
 
   public EventSchema addAttributesItem(EventAttributeSchema attributesItem) {
+    if (this.attributes == null) {
+      this.attributes = new LinkedHashSet<>();
+    }
     this.attributes.add(attributesItem);
     return this;
   }
@@ -252,8 +254,7 @@ public class EventSchema implements Serializable {
    * Get attributes
    * @return attributes
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
 
   public Set<EventAttributeSchema> getAttributes() {
     return attributes;
@@ -284,7 +285,6 @@ public class EventSchema implements Serializable {
    * @return dimensions
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public Set<DimensionsSchema> getDimensions() {
     return dimensions;
@@ -293,6 +293,28 @@ public class EventSchema implements Serializable {
 
   public void setDimensions(Set<DimensionsSchema> dimensions) {
     this.dimensions = dimensions;
+  }
+
+
+  public EventSchema enrichments(Enrichments enrichments) {
+    
+    this.enrichments = enrichments;
+    return this;
+  }
+
+   /**
+   * Get enrichments
+   * @return enrichments
+  **/
+  @javax.annotation.Nullable
+
+  public Enrichments getEnrichments() {
+    return enrichments;
+  }
+
+
+  public void setEnrichments(Enrichments enrichments) {
+    this.enrichments = enrichments;
   }
 
 
@@ -307,7 +329,6 @@ public class EventSchema implements Serializable {
    * @return createdAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -330,7 +351,6 @@ public class EventSchema implements Serializable {
    * @return updatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public OffsetDateTime getUpdatedAt() {
     return updatedAt;
@@ -358,13 +378,14 @@ public class EventSchema implements Serializable {
         Objects.equals(this.status, eventSchema.status) &&
         Objects.equals(this.attributes, eventSchema.attributes) &&
         Objects.equals(this.dimensions, eventSchema.dimensions) &&
+        Objects.equals(this.enrichments, eventSchema.enrichments) &&
         Objects.equals(this.createdAt, eventSchema.createdAt) &&
         Objects.equals(this.updatedAt, eventSchema.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, version, status, attributes, dimensions, createdAt, updatedAt);
+    return Objects.hash(name, description, version, status, attributes, dimensions, enrichments, createdAt, updatedAt);
   }
 
   @Override
@@ -377,6 +398,7 @@ public class EventSchema implements Serializable {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    dimensions: ").append(toIndentedString(dimensions)).append("\n");
+    sb.append("    enrichments: ").append(toIndentedString(enrichments)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
@@ -407,6 +429,7 @@ public class EventSchema implements Serializable {
     openapiFields.add("status");
     openapiFields.add("attributes");
     openapiFields.add("dimensions");
+    openapiFields.add("enrichments");
     openapiFields.add("createdAt");
     openapiFields.add("updatedAt");
 
@@ -414,7 +437,6 @@ public class EventSchema implements Serializable {
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("name");
     openapiRequiredFields.add("version");
-    openapiRequiredFields.add("attributes");
   }
 
  /**
@@ -425,9 +447,7 @@ public class EventSchema implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (EventSchema.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!EventSchema.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in EventSchema is not found in the empty JSON string", EventSchema.openapiRequiredFields.toString()));
         }
       }
@@ -446,7 +466,7 @@ public class EventSchema implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
       if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
@@ -455,29 +475,37 @@ public class EventSchema implements Serializable {
       if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
       }
-      JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
-      if (jsonArrayattributes != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("attributes").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `attributes` to be an array in the JSON string but got `%s`", jsonObj.get("attributes").toString()));
-        }
+      if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
+        JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
+        if (jsonArrayattributes != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("attributes").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `attributes` to be an array in the JSON string but got `%s`", jsonObj.get("attributes").toString()));
+          }
 
-        // validate the optional field `attributes` (array)
-        for (int i = 0; i < jsonArrayattributes.size(); i++) {
-          EventAttributeSchema.validateJsonObject(jsonArrayattributes.get(i).getAsJsonObject());
-        };
+          // validate the optional field `attributes` (array)
+          for (int i = 0; i < jsonArrayattributes.size(); i++) {
+            EventAttributeSchema.validateJsonObject(jsonArrayattributes.get(i).getAsJsonObject());
+          };
+        }
       }
-      JsonArray jsonArraydimensions = jsonObj.getAsJsonArray("dimensions");
-      if (jsonArraydimensions != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("dimensions").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `dimensions` to be an array in the JSON string but got `%s`", jsonObj.get("dimensions").toString()));
-        }
+      if (jsonObj.get("dimensions") != null && !jsonObj.get("dimensions").isJsonNull()) {
+        JsonArray jsonArraydimensions = jsonObj.getAsJsonArray("dimensions");
+        if (jsonArraydimensions != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("dimensions").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `dimensions` to be an array in the JSON string but got `%s`", jsonObj.get("dimensions").toString()));
+          }
 
-        // validate the optional field `dimensions` (array)
-        for (int i = 0; i < jsonArraydimensions.size(); i++) {
-          DimensionsSchema.validateJsonObject(jsonArraydimensions.get(i).getAsJsonObject());
-        };
+          // validate the optional field `dimensions` (array)
+          for (int i = 0; i < jsonArraydimensions.size(); i++) {
+            DimensionsSchema.validateJsonObject(jsonArraydimensions.get(i).getAsJsonObject());
+          };
+        }
+      }
+      // validate the optional field `enrichments`
+      if (jsonObj.get("enrichments") != null && !jsonObj.get("enrichments").isJsonNull()) {
+        Enrichments.validateJsonObject(jsonObj.getAsJsonObject("enrichments"));
       }
   }
 

@@ -78,8 +78,8 @@ public class EventManagementApi {
     /**
      * Build call for getEvents
      * @param nextToken Pagination token used as a marker to get records from next page. (optional)
-     * @param status Filter option to filter the events by processed/unprocessed status. (optional)
-     * @param accountId Filter option to filter the events based on account id. (optional)
+     * @param status Filter option to filter by status. (optional)
+     * @param accountId Filter option to filter based on account id. (optional)
      * @param schemaName Filter option to filter the events based on schema name. (optional)
      * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
      * @param _callback Callback for upload/download progress
@@ -151,7 +151,6 @@ public class EventManagementApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -164,10 +163,7 @@ public class EventManagementApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getEventsValidateBeforeCall(String nextToken, String status, String accountId, String schemaName, Integer pageSize, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = getEventsCall(nextToken, status, accountId, schemaName, pageSize, _callback);
-        return localVarCall;
+        return getEventsCall(nextToken, status, accountId, schemaName, pageSize, _callback);
 
     }
 
@@ -175,8 +171,8 @@ public class EventManagementApi {
      * Get a list of usage events with multiple query options
      * This API let’s you to fetch a list of events with multiple query parameters
      * @param nextToken Pagination token used as a marker to get records from next page. (optional)
-     * @param status Filter option to filter the events by processed/unprocessed status. (optional)
-     * @param accountId Filter option to filter the events based on account id. (optional)
+     * @param status Filter option to filter by status. (optional)
+     * @param accountId Filter option to filter based on account id. (optional)
      * @param schemaName Filter option to filter the events based on schema name. (optional)
      * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
      * @return GetEventsResponse
@@ -202,8 +198,8 @@ public class EventManagementApi {
      * Get a list of usage events with multiple query options
      * This API let’s you to fetch a list of events with multiple query parameters
      * @param nextToken Pagination token used as a marker to get records from next page. (optional)
-     * @param status Filter option to filter the events by processed/unprocessed status. (optional)
-     * @param accountId Filter option to filter the events based on account id. (optional)
+     * @param status Filter option to filter by status. (optional)
+     * @param accountId Filter option to filter based on account id. (optional)
      * @param schemaName Filter option to filter the events based on schema name. (optional)
      * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
      * @return ApiResponse&lt;GetEventsResponse&gt;
@@ -230,8 +226,8 @@ public class EventManagementApi {
      * Get a list of usage events with multiple query options (asynchronously)
      * This API let’s you to fetch a list of events with multiple query parameters
      * @param nextToken Pagination token used as a marker to get records from next page. (optional)
-     * @param status Filter option to filter the events by processed/unprocessed status. (optional)
-     * @param accountId Filter option to filter the events based on account id. (optional)
+     * @param status Filter option to filter by status. (optional)
+     * @param accountId Filter option to filter based on account id. (optional)
      * @param schemaName Filter option to filter the events based on schema name. (optional)
      * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -291,7 +287,7 @@ public class EventManagementApi {
 
         // create path and map variables
         String localVarPath = "/events/{event_id}"
-            .replaceAll("\\{" + "event_id" + "\\}", localVarApiClient.escapeString(eventId.toString()));
+            .replace("{" + "event_id" + "}", localVarApiClient.escapeString(eventId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -308,7 +304,6 @@ public class EventManagementApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -321,15 +316,12 @@ public class EventManagementApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getSingleEventValidateBeforeCall(String eventId, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'eventId' is set
         if (eventId == null) {
             throw new ApiException("Missing the required parameter 'eventId' when calling getSingleEvent(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getSingleEventCall(eventId, _callback);
-        return localVarCall;
+        return getSingleEventCall(eventId, _callback);
 
     }
 

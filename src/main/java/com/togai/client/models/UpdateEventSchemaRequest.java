@@ -21,9 +21,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.DimensionsSchema;
+import com.togai.client.models.Enrichments;
 import com.togai.client.models.EventAttributeSchema;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +42,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -52,7 +52,6 @@ import com.togai.client.JSON;
 /**
  * Request to update event schema
  */
-@ApiModel(description = "Request to update event schema")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateEventSchemaRequest implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -69,6 +68,10 @@ public class UpdateEventSchemaRequest implements Serializable {
   @SerializedName(SERIALIZED_NAME_DIMENSIONS)
   private List<DimensionsSchema> dimensions = new ArrayList<>();
 
+  public static final String SERIALIZED_NAME_ENRICHMENTS = "enrichments";
+  @SerializedName(SERIALIZED_NAME_ENRICHMENTS)
+  private Enrichments enrichments;
+
   public UpdateEventSchemaRequest() {
   }
 
@@ -83,7 +86,6 @@ public class UpdateEventSchemaRequest implements Serializable {
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Description of the event")
 
   public String getDescription() {
     return description;
@@ -102,6 +104,9 @@ public class UpdateEventSchemaRequest implements Serializable {
   }
 
   public UpdateEventSchemaRequest addAttributesItem(EventAttributeSchema attributesItem) {
+    if (this.attributes == null) {
+      this.attributes = new ArrayList<>();
+    }
     this.attributes.add(attributesItem);
     return this;
   }
@@ -110,8 +115,7 @@ public class UpdateEventSchemaRequest implements Serializable {
    * Get attributes
    * @return attributes
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
 
   public List<EventAttributeSchema> getAttributes() {
     return attributes;
@@ -130,6 +134,9 @@ public class UpdateEventSchemaRequest implements Serializable {
   }
 
   public UpdateEventSchemaRequest addDimensionsItem(DimensionsSchema dimensionsItem) {
+    if (this.dimensions == null) {
+      this.dimensions = new ArrayList<>();
+    }
     this.dimensions.add(dimensionsItem);
     return this;
   }
@@ -138,8 +145,7 @@ public class UpdateEventSchemaRequest implements Serializable {
    * Get dimensions
    * @return dimensions
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
 
   public List<DimensionsSchema> getDimensions() {
     return dimensions;
@@ -148,6 +154,28 @@ public class UpdateEventSchemaRequest implements Serializable {
 
   public void setDimensions(List<DimensionsSchema> dimensions) {
     this.dimensions = dimensions;
+  }
+
+
+  public UpdateEventSchemaRequest enrichments(Enrichments enrichments) {
+    
+    this.enrichments = enrichments;
+    return this;
+  }
+
+   /**
+   * Get enrichments
+   * @return enrichments
+  **/
+  @javax.annotation.Nullable
+
+  public Enrichments getEnrichments() {
+    return enrichments;
+  }
+
+
+  public void setEnrichments(Enrichments enrichments) {
+    this.enrichments = enrichments;
   }
 
 
@@ -163,12 +191,13 @@ public class UpdateEventSchemaRequest implements Serializable {
     UpdateEventSchemaRequest updateEventSchemaRequest = (UpdateEventSchemaRequest) o;
     return Objects.equals(this.description, updateEventSchemaRequest.description) &&
         Objects.equals(this.attributes, updateEventSchemaRequest.attributes) &&
-        Objects.equals(this.dimensions, updateEventSchemaRequest.dimensions);
+        Objects.equals(this.dimensions, updateEventSchemaRequest.dimensions) &&
+        Objects.equals(this.enrichments, updateEventSchemaRequest.enrichments);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, attributes, dimensions);
+    return Objects.hash(description, attributes, dimensions, enrichments);
   }
 
   @Override
@@ -178,6 +207,7 @@ public class UpdateEventSchemaRequest implements Serializable {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    dimensions: ").append(toIndentedString(dimensions)).append("\n");
+    sb.append("    enrichments: ").append(toIndentedString(enrichments)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -203,11 +233,10 @@ public class UpdateEventSchemaRequest implements Serializable {
     openapiFields.add("description");
     openapiFields.add("attributes");
     openapiFields.add("dimensions");
+    openapiFields.add("enrichments");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("attributes");
-    openapiRequiredFields.add("dimensions");
   }
 
  /**
@@ -218,9 +247,7 @@ public class UpdateEventSchemaRequest implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (UpdateEventSchemaRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!UpdateEventSchemaRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateEventSchemaRequest is not found in the empty JSON string", UpdateEventSchemaRequest.openapiRequiredFields.toString()));
         }
       }
@@ -232,39 +259,40 @@ public class UpdateEventSchemaRequest implements Serializable {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateEventSchemaRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : UpdateEventSchemaRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-        }
-      }
       if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
       }
-      JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
-      if (jsonArrayattributes != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("attributes").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `attributes` to be an array in the JSON string but got `%s`", jsonObj.get("attributes").toString()));
-        }
+      if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
+        JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
+        if (jsonArrayattributes != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("attributes").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `attributes` to be an array in the JSON string but got `%s`", jsonObj.get("attributes").toString()));
+          }
 
-        // validate the optional field `attributes` (array)
-        for (int i = 0; i < jsonArrayattributes.size(); i++) {
-          EventAttributeSchema.validateJsonObject(jsonArrayattributes.get(i).getAsJsonObject());
-        };
+          // validate the optional field `attributes` (array)
+          for (int i = 0; i < jsonArrayattributes.size(); i++) {
+            EventAttributeSchema.validateJsonObject(jsonArrayattributes.get(i).getAsJsonObject());
+          };
+        }
       }
-      JsonArray jsonArraydimensions = jsonObj.getAsJsonArray("dimensions");
-      if (jsonArraydimensions != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("dimensions").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `dimensions` to be an array in the JSON string but got `%s`", jsonObj.get("dimensions").toString()));
-        }
+      if (jsonObj.get("dimensions") != null && !jsonObj.get("dimensions").isJsonNull()) {
+        JsonArray jsonArraydimensions = jsonObj.getAsJsonArray("dimensions");
+        if (jsonArraydimensions != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("dimensions").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `dimensions` to be an array in the JSON string but got `%s`", jsonObj.get("dimensions").toString()));
+          }
 
-        // validate the optional field `dimensions` (array)
-        for (int i = 0; i < jsonArraydimensions.size(); i++) {
-          DimensionsSchema.validateJsonObject(jsonArraydimensions.get(i).getAsJsonObject());
-        };
+          // validate the optional field `dimensions` (array)
+          for (int i = 0; i < jsonArraydimensions.size(); i++) {
+            DimensionsSchema.validateJsonObject(jsonArraydimensions.get(i).getAsJsonObject());
+          };
+        }
+      }
+      // validate the optional field `enrichments`
+      if (jsonObj.get("enrichments") != null && !jsonObj.get("enrichments").isJsonNull()) {
+        Enrichments.validateJsonObject(jsonObj.getAsJsonObject("enrichments"));
       }
   }
 

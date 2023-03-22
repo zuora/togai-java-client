@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.EventSchema;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -51,7 +50,6 @@ import com.togai.client.JSON;
 /**
  * Response for event schema versions
  */
-@ApiModel(description = "Response for event schema versions")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EventSchemaVersionsResponse implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -79,7 +77,6 @@ public class EventSchemaVersionsResponse implements Serializable {
    * @return data
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public List<EventSchema> getData() {
     return data;
@@ -151,9 +148,7 @@ public class EventSchemaVersionsResponse implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (EventSchemaVersionsResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!EventSchemaVersionsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in EventSchemaVersionsResponse is not found in the empty JSON string", EventSchemaVersionsResponse.openapiRequiredFields.toString()));
         }
       }
@@ -172,18 +167,16 @@ public class EventSchemaVersionsResponse implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
-      if (jsonArraydata != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("data").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
-        }
-
-        // validate the optional field `data` (array)
-        for (int i = 0; i < jsonArraydata.size(); i++) {
-          EventSchema.validateJsonObject(jsonArraydata.get(i).getAsJsonObject());
-        };
+      // ensure the json data is an array
+      if (!jsonObj.get("data").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
       }
+
+      JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
+      // validate the required field `data` (array)
+      for (int i = 0; i < jsonArraydata.size(); i++) {
+        EventSchema.validateJsonObject(jsonArraydata.get(i).getAsJsonObject());
+      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

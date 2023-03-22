@@ -117,7 +117,7 @@ public class PricePlansApi {
 
         // create path and map variables
         String localVarPath = "/price_plans/{price_plan_id}/activate"
-            .replaceAll("\\{" + "price_plan_id" + "\\}", localVarApiClient.escapeString(pricePlanId.toString()));
+            .replace("{" + "price_plan_id" + "}", localVarApiClient.escapeString(pricePlanId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -147,20 +147,17 @@ public class PricePlansApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call activatePricePlanValidateBeforeCall(String pricePlanId, ActivatePricePlanRequest activatePricePlanRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'pricePlanId' is set
         if (pricePlanId == null) {
             throw new ApiException("Missing the required parameter 'pricePlanId' when calling activatePricePlan(Async)");
         }
-        
+
         // verify the required parameter 'activatePricePlanRequest' is set
         if (activatePricePlanRequest == null) {
             throw new ApiException("Missing the required parameter 'activatePricePlanRequest' when calling activatePricePlan(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = activatePricePlanCall(pricePlanId, activatePricePlanRequest, _callback);
-        return localVarCall;
+        return activatePricePlanCall(pricePlanId, activatePricePlanRequest, _callback);
 
     }
 
@@ -277,7 +274,7 @@ public class PricePlansApi {
 
         // create path and map variables
         String localVarPath = "/price_plans/{price_plan_id}/currencies"
-            .replaceAll("\\{" + "price_plan_id" + "\\}", localVarApiClient.escapeString(pricePlanId.toString()));
+            .replace("{" + "price_plan_id" + "}", localVarApiClient.escapeString(pricePlanId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -307,20 +304,17 @@ public class PricePlansApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call addCurrencyToPricePlanValidateBeforeCall(String pricePlanId, AddCurrencyToPricePlanRequest addCurrencyToPricePlanRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'pricePlanId' is set
         if (pricePlanId == null) {
             throw new ApiException("Missing the required parameter 'pricePlanId' when calling addCurrencyToPricePlan(Async)");
         }
-        
+
         // verify the required parameter 'addCurrencyToPricePlanRequest' is set
         if (addCurrencyToPricePlanRequest == null) {
             throw new ApiException("Missing the required parameter 'addCurrencyToPricePlanRequest' when calling addCurrencyToPricePlan(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = addCurrencyToPricePlanCall(pricePlanId, addCurrencyToPricePlanRequest, _callback);
-        return localVarCall;
+        return addCurrencyToPricePlanCall(pricePlanId, addCurrencyToPricePlanRequest, _callback);
 
     }
 
@@ -465,21 +459,18 @@ public class PricePlansApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createPricePlanValidateBeforeCall(CreatePricePlanRequest createPricePlanRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'createPricePlanRequest' is set
         if (createPricePlanRequest == null) {
             throw new ApiException("Missing the required parameter 'createPricePlanRequest' when calling createPricePlan(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createPricePlanCall(createPricePlanRequest, _callback);
-        return localVarCall;
+        return createPricePlanCall(createPricePlanRequest, _callback);
 
     }
 
     /**
      * Create a price plan
-     * Create a price plan and associate with customers to it  A price plan is a collection of pre-set conditions with prices that convert usage metrics into billable value. Price Plans and the roll up of items comprising the pricing plans are used to assign a customer to get the final bill value. Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
+     * This API let&#39;s you create and price plan Learn more about [Price Plans](https://docs.togai.com/docs/priceplan) 
      * @param createPricePlanRequest Payload to create price plan (required)
      * @return PricePlan
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -502,7 +493,7 @@ public class PricePlansApi {
 
     /**
      * Create a price plan
-     * Create a price plan and associate with customers to it  A price plan is a collection of pre-set conditions with prices that convert usage metrics into billable value. Price Plans and the roll up of items comprising the pricing plans are used to assign a customer to get the final bill value. Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
+     * This API let&#39;s you create and price plan Learn more about [Price Plans](https://docs.togai.com/docs/priceplan) 
      * @param createPricePlanRequest Payload to create price plan (required)
      * @return ApiResponse&lt;PricePlan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -526,7 +517,7 @@ public class PricePlansApi {
 
     /**
      * Create a price plan (asynchronously)
-     * Create a price plan and associate with customers to it  A price plan is a collection of pre-set conditions with prices that convert usage metrics into billable value. Price Plans and the roll up of items comprising the pricing plans are used to assign a customer to get the final bill value. Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
+     * This API let&#39;s you create and price plan Learn more about [Price Plans](https://docs.togai.com/docs/priceplan) 
      * @param createPricePlanRequest Payload to create price plan (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -586,7 +577,7 @@ public class PricePlansApi {
 
         // create path and map variables
         String localVarPath = "/price_plans/{price_plan_id}"
-            .replaceAll("\\{" + "price_plan_id" + "\\}", localVarApiClient.escapeString(pricePlanId.toString()));
+            .replace("{" + "price_plan_id" + "}", localVarApiClient.escapeString(pricePlanId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -603,7 +594,6 @@ public class PricePlansApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -616,15 +606,12 @@ public class PricePlansApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getPricePlanValidateBeforeCall(String pricePlanId, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'pricePlanId' is set
         if (pricePlanId == null) {
             throw new ApiException("Missing the required parameter 'pricePlanId' when calling getPricePlan(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getPricePlanCall(pricePlanId, _callback);
-        return localVarCall;
+        return getPricePlanCall(pricePlanId, _callback);
 
     }
 
@@ -762,7 +749,6 @@ public class PricePlansApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -775,10 +761,7 @@ public class PricePlansApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getPricePlansValidateBeforeCall(String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = getPricePlansCall(nextToken, pageSize, _callback);
-        return localVarCall;
+        return getPricePlansCall(nextToken, pageSize, _callback);
 
     }
 
@@ -895,8 +878,8 @@ public class PricePlansApi {
 
         // create path and map variables
         String localVarPath = "/price_plans/{price_plan_id}/currencies/{currency_id}"
-            .replaceAll("\\{" + "price_plan_id" + "\\}", localVarApiClient.escapeString(pricePlanId.toString()))
-            .replaceAll("\\{" + "currency_id" + "\\}", localVarApiClient.escapeString(currencyId.toString()));
+            .replace("{" + "price_plan_id" + "}", localVarApiClient.escapeString(pricePlanId.toString()))
+            .replace("{" + "currency_id" + "}", localVarApiClient.escapeString(currencyId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -913,7 +896,6 @@ public class PricePlansApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -926,20 +908,17 @@ public class PricePlansApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call removeCurrencyFromPricePlanValidateBeforeCall(String pricePlanId, String currencyId, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'pricePlanId' is set
         if (pricePlanId == null) {
             throw new ApiException("Missing the required parameter 'pricePlanId' when calling removeCurrencyFromPricePlan(Async)");
         }
-        
+
         // verify the required parameter 'currencyId' is set
         if (currencyId == null) {
             throw new ApiException("Missing the required parameter 'currencyId' when calling removeCurrencyFromPricePlan(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = removeCurrencyFromPricePlanCall(pricePlanId, currencyId, _callback);
-        return localVarCall;
+        return removeCurrencyFromPricePlanCall(pricePlanId, currencyId, _callback);
 
     }
 
@@ -1056,7 +1035,7 @@ public class PricePlansApi {
 
         // create path and map variables
         String localVarPath = "/price_plans/{price_plan_id}"
-            .replaceAll("\\{" + "price_plan_id" + "\\}", localVarApiClient.escapeString(pricePlanId.toString()));
+            .replace("{" + "price_plan_id" + "}", localVarApiClient.escapeString(pricePlanId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1086,26 +1065,23 @@ public class PricePlansApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call updatePricePlanValidateBeforeCall(String pricePlanId, UpdatePricePlanRequest updatePricePlanRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'pricePlanId' is set
         if (pricePlanId == null) {
             throw new ApiException("Missing the required parameter 'pricePlanId' when calling updatePricePlan(Async)");
         }
-        
+
         // verify the required parameter 'updatePricePlanRequest' is set
         if (updatePricePlanRequest == null) {
             throw new ApiException("Missing the required parameter 'updatePricePlanRequest' when calling updatePricePlan(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = updatePricePlanCall(pricePlanId, updatePricePlanRequest, _callback);
-        return localVarCall;
+        return updatePricePlanCall(pricePlanId, updatePricePlanRequest, _callback);
 
     }
 
     /**
      * Update a price plan
-     * Update a draft state price plan  Only DRAFT state Price Plans are allowed to Update. Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
+     * Update an existing price plan Price Plans with status as DRAFT alone can be updated . Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
      * @param pricePlanId  (required)
      * @param updatePricePlanRequest Payload to update price plan (required)
      * @return PricePlan
@@ -1129,7 +1105,7 @@ public class PricePlansApi {
 
     /**
      * Update a price plan
-     * Update a draft state price plan  Only DRAFT state Price Plans are allowed to Update. Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
+     * Update an existing price plan Price Plans with status as DRAFT alone can be updated . Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
      * @param pricePlanId  (required)
      * @param updatePricePlanRequest Payload to update price plan (required)
      * @return ApiResponse&lt;PricePlan&gt;
@@ -1154,7 +1130,7 @@ public class PricePlansApi {
 
     /**
      * Update a price plan (asynchronously)
-     * Update a draft state price plan  Only DRAFT state Price Plans are allowed to Update. Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
+     * Update an existing price plan Price Plans with status as DRAFT alone can be updated . Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
      * @param pricePlanId  (required)
      * @param updatePricePlanRequest Payload to update price plan (required)
      * @param _callback The callback to be executed when the API call finishes

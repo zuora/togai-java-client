@@ -145,15 +145,12 @@ public class CustomersApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createCustomerValidateBeforeCall(CreateCustomerRequest createCustomerRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'createCustomerRequest' is set
         if (createCustomerRequest == null) {
             throw new ApiException("Missing the required parameter 'createCustomerRequest' when calling createCustomer(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = createCustomerCall(createCustomerRequest, _callback);
-        return localVarCall;
+        return createCustomerCall(createCustomerRequest, _callback);
 
     }
 
@@ -266,7 +263,7 @@ public class CustomersApi {
 
         // create path and map variables
         String localVarPath = "/customers/{customer_id}"
-            .replaceAll("\\{" + "customer_id" + "\\}", localVarApiClient.escapeString(customerId.toString()));
+            .replace("{" + "customer_id" + "}", localVarApiClient.escapeString(customerId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -283,7 +280,6 @@ public class CustomersApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -296,15 +292,12 @@ public class CustomersApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call deleteCustomerValidateBeforeCall(String customerId, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'customerId' is set
         if (customerId == null) {
             throw new ApiException("Missing the required parameter 'customerId' when calling deleteCustomer(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = deleteCustomerCall(customerId, _callback);
-        return localVarCall;
+        return deleteCustomerCall(customerId, _callback);
 
     }
 
@@ -417,7 +410,7 @@ public class CustomersApi {
 
         // create path and map variables
         String localVarPath = "/customers/{customer_id}"
-            .replaceAll("\\{" + "customer_id" + "\\}", localVarApiClient.escapeString(customerId.toString()));
+            .replace("{" + "customer_id" + "}", localVarApiClient.escapeString(customerId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -434,7 +427,6 @@ public class CustomersApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -447,15 +439,12 @@ public class CustomersApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getCustomerValidateBeforeCall(String customerId, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'customerId' is set
         if (customerId == null) {
             throw new ApiException("Missing the required parameter 'customerId' when calling getCustomer(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = getCustomerCall(customerId, _callback);
-        return localVarCall;
+        return getCustomerCall(customerId, _callback);
 
     }
 
@@ -593,7 +582,6 @@ public class CustomersApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -606,10 +594,7 @@ public class CustomersApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getCustomersValidateBeforeCall(String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = getCustomersCall(nextToken, pageSize, _callback);
-        return localVarCall;
+        return getCustomersCall(nextToken, pageSize, _callback);
 
     }
 
@@ -726,7 +711,7 @@ public class CustomersApi {
 
         // create path and map variables
         String localVarPath = "/customers/{customer_id}"
-            .replaceAll("\\{" + "customer_id" + "\\}", localVarApiClient.escapeString(customerId.toString()));
+            .replace("{" + "customer_id" + "}", localVarApiClient.escapeString(customerId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -756,20 +741,17 @@ public class CustomersApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call updateCustomerValidateBeforeCall(String customerId, UpdateCustomerRequest updateCustomerRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'customerId' is set
         if (customerId == null) {
             throw new ApiException("Missing the required parameter 'customerId' when calling updateCustomer(Async)");
         }
-        
+
         // verify the required parameter 'updateCustomerRequest' is set
         if (updateCustomerRequest == null) {
             throw new ApiException("Missing the required parameter 'updateCustomerRequest' when calling updateCustomer(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = updateCustomerCall(customerId, updateCustomerRequest, _callback);
-        return localVarCall;
+        return updateCustomerCall(customerId, updateCustomerRequest, _callback);
 
     }
 

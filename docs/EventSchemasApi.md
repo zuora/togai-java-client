@@ -531,11 +531,11 @@ public class Example {
 
 <a name="listEventSchemas"></a>
 # **listEventSchemas**
-> EventSchemaListPaginatedResponse listEventSchemas(statuses, nextToken, pageSize, sortOrder)
+> EventSchemaListPaginatedResponse listEventSchemas(status, nextToken, pageSize)
 
 List event schemas
 
-Returns a list of event schema with pagination and sort.
+Returns a list of event schema with pagination.
 
 ### Example
 ```java
@@ -557,12 +557,11 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     EventSchemasApi apiInstance = new EventSchemasApi(defaultClient);
-    String statuses = "statuses_example"; // String | Filter by provided statuses
+    String status = "ACTIVE"; // String | Filter by provided status
     String nextToken = "eyJsYXN0SXRlbUlkIjogInN0cmluZyIsICJwYWdlU2l6ZSI6IDEwMCwgInNvcnRPcmRlciI6ICJhc2MifQ=="; // String | 
     BigDecimal pageSize = new BigDecimal("10"); // BigDecimal | 
-    String sortOrder = "ASC"; // String | 
     try {
-      EventSchemaListPaginatedResponse result = apiInstance.listEventSchemas(statuses, nextToken, pageSize, sortOrder);
+      EventSchemaListPaginatedResponse result = apiInstance.listEventSchemas(status, nextToken, pageSize);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EventSchemasApi#listEventSchemas");
@@ -579,10 +578,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **statuses** | **String**| Filter by provided statuses | [optional] |
+| **status** | **String**| Filter by provided status | [optional] [enum: ACTIVE, INACTIVE] |
 | **nextToken** | **String**|  | [optional] |
 | **pageSize** | **BigDecimal**|  | [optional] |
-| **sortOrder** | **String**|  | [optional] [enum: ASC, DESC] |
 
 ### Return type
 

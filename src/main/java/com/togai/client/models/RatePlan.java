@@ -22,8 +22,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.PricingModel;
 import com.togai.client.models.Slab;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +41,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -52,7 +51,6 @@ import com.togai.client.JSON;
 /**
  * Contains all rate related configurations
  */
-@ApiModel(description = "Contains all rate related configurations")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RatePlan implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -79,7 +77,6 @@ public class RatePlan implements Serializable {
    * @return pricingModel
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public PricingModel getPricingModel() {
     return pricingModel;
@@ -107,7 +104,6 @@ public class RatePlan implements Serializable {
    * @return slabs
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Rate cards can have single or multiple slab up to 100.")
 
   public List<Slab> getSlabs() {
     return slabs;
@@ -183,9 +179,7 @@ public class RatePlan implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (RatePlan.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!RatePlan.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in RatePlan is not found in the empty JSON string", RatePlan.openapiRequiredFields.toString()));
         }
       }
@@ -204,18 +198,16 @@ public class RatePlan implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      JsonArray jsonArrayslabs = jsonObj.getAsJsonArray("slabs");
-      if (jsonArrayslabs != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("slabs").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `slabs` to be an array in the JSON string but got `%s`", jsonObj.get("slabs").toString()));
-        }
-
-        // validate the optional field `slabs` (array)
-        for (int i = 0; i < jsonArrayslabs.size(); i++) {
-          Slab.validateJsonObject(jsonArrayslabs.get(i).getAsJsonObject());
-        };
+      // ensure the json data is an array
+      if (!jsonObj.get("slabs").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `slabs` to be an array in the JSON string but got `%s`", jsonObj.get("slabs").toString()));
       }
+
+      JsonArray jsonArrayslabs = jsonObj.getAsJsonArray("slabs");
+      // validate the required field `slabs` (array)
+      for (int i = 0; i < jsonArrayslabs.size(); i++) {
+        Slab.validateJsonObject(jsonArrayslabs.get(i).getAsJsonObject());
+      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

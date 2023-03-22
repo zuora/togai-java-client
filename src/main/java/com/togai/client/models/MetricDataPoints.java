@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.MetricDataPointsGroupedBy;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -44,6 +42,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -83,7 +82,6 @@ public class MetricDataPoints implements Serializable {
    * @return groupedBy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public MetricDataPointsGroupedBy getGroupedBy() {
     return groupedBy;
@@ -111,7 +109,6 @@ public class MetricDataPoints implements Serializable {
    * @return timestamps
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public List<OffsetDateTime> getTimestamps() {
     return timestamps;
@@ -139,7 +136,6 @@ public class MetricDataPoints implements Serializable {
    * @return metricValues
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public List<BigDecimal> getMetricValues() {
     return metricValues;
@@ -218,9 +214,7 @@ public class MetricDataPoints implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (MetricDataPoints.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!MetricDataPoints.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in MetricDataPoints is not found in the empty JSON string", MetricDataPoints.openapiRequiredFields.toString()));
         }
       }
@@ -243,12 +237,16 @@ public class MetricDataPoints implements Serializable {
       if (jsonObj.get("groupedBy") != null && !jsonObj.get("groupedBy").isJsonNull()) {
         MetricDataPointsGroupedBy.validateJsonObject(jsonObj.getAsJsonObject("groupedBy"));
       }
-      // ensure the json data is an array
-      if ((jsonObj.get("timestamps") != null && !jsonObj.get("timestamps").isJsonNull()) && !jsonObj.get("timestamps").isJsonArray()) {
+      // ensure the required json array is present
+      if (jsonObj.get("timestamps") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("timestamps").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `timestamps` to be an array in the JSON string but got `%s`", jsonObj.get("timestamps").toString()));
       }
-      // ensure the json data is an array
-      if ((jsonObj.get("metricValues") != null && !jsonObj.get("metricValues").isJsonNull()) && !jsonObj.get("metricValues").isJsonArray()) {
+      // ensure the required json array is present
+      if (jsonObj.get("metricValues") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("metricValues").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `metricValues` to be an array in the JSON string but got `%s`", jsonObj.get("metricValues").toString()));
       }
   }

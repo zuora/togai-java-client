@@ -21,9 +21,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.StatusResponseHeaders;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -40,6 +39,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -59,7 +59,7 @@ public class StatusResponse implements Serializable {
 
   public static final String SERIALIZED_NAME_DATE = "date";
   @SerializedName(SERIALIZED_NAME_DATE)
-  private String date;
+  private OffsetDateTime date;
 
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
@@ -83,7 +83,6 @@ public class StatusResponse implements Serializable {
    * @return greeting
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public String getGreeting() {
     return greeting;
@@ -95,7 +94,7 @@ public class StatusResponse implements Serializable {
   }
 
 
-  public StatusResponse date(String date) {
+  public StatusResponse date(OffsetDateTime date) {
     
     this.date = date;
     return this;
@@ -106,14 +105,13 @@ public class StatusResponse implements Serializable {
    * @return date
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
-  public String getDate() {
+  public OffsetDateTime getDate() {
     return date;
   }
 
 
-  public void setDate(String date) {
+  public void setDate(OffsetDateTime date) {
     this.date = date;
   }
 
@@ -129,7 +127,6 @@ public class StatusResponse implements Serializable {
    * @return url
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public String getUrl() {
     return url;
@@ -152,7 +149,6 @@ public class StatusResponse implements Serializable {
    * @return headers
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public StatusResponseHeaders getHeaders() {
     return headers;
@@ -232,9 +228,7 @@ public class StatusResponse implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (StatusResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!StatusResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in StatusResponse is not found in the empty JSON string", StatusResponse.openapiRequiredFields.toString()));
         }
       }
@@ -248,9 +242,6 @@ public class StatusResponse implements Serializable {
       }
       if ((jsonObj.get("greeting") != null && !jsonObj.get("greeting").isJsonNull()) && !jsonObj.get("greeting").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `greeting` to be a primitive type in the JSON string but got `%s`", jsonObj.get("greeting").toString()));
-      }
-      if ((jsonObj.get("date") != null && !jsonObj.get("date").isJsonNull()) && !jsonObj.get("date").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `date` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date").toString()));
       }
       if ((jsonObj.get("url") != null && !jsonObj.get("url").isJsonNull()) && !jsonObj.get("url").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("url").toString()));

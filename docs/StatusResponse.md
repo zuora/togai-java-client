@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**greeting** | **String** |  |  [optional] |
-|**date** | **String** |  |  [optional] |
+|**date** | **OffsetDateTime** |  |  [optional] |
 |**url** | **String** |  |  [optional] |
 |**headers** | **StatusResponseHeaders** |  |  [optional] |
 

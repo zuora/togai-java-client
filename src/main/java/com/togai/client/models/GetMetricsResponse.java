@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.MetricQueryResponse;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -51,7 +50,6 @@ import com.togai.client.JSON;
 /**
  * Response to GetMetrics Request
  */
-@ApiModel(description = "Response to GetMetrics Request")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GetMetricsResponse implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -79,7 +77,6 @@ public class GetMetricsResponse implements Serializable {
    * @return results
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public List<MetricQueryResponse> getResults() {
     return results;
@@ -151,9 +148,7 @@ public class GetMetricsResponse implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (GetMetricsResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!GetMetricsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetMetricsResponse is not found in the empty JSON string", GetMetricsResponse.openapiRequiredFields.toString()));
         }
       }
@@ -172,18 +167,16 @@ public class GetMetricsResponse implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      JsonArray jsonArrayresults = jsonObj.getAsJsonArray("results");
-      if (jsonArrayresults != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("results").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `results` to be an array in the JSON string but got `%s`", jsonObj.get("results").toString()));
-        }
-
-        // validate the optional field `results` (array)
-        for (int i = 0; i < jsonArrayresults.size(); i++) {
-          MetricQueryResponse.validateJsonObject(jsonArrayresults.get(i).getAsJsonObject());
-        };
+      // ensure the json data is an array
+      if (!jsonObj.get("results").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `results` to be an array in the JSON string but got `%s`", jsonObj.get("results").toString()));
       }
+
+      JsonArray jsonArrayresults = jsonObj.getAsJsonArray("results");
+      // validate the required field `results` (array)
+      for (int i = 0; i < jsonArrayresults.size(); i++) {
+        MetricQueryResponse.validateJsonObject(jsonArrayresults.get(i).getAsJsonObject());
+      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -39,6 +37,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -48,7 +47,6 @@ import com.togai.client.JSON;
 /**
  * Root user details for the organization
  */
-@ApiModel(description = "Root user details for the organization")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UserDetails implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -87,7 +85,6 @@ public class UserDetails implements Serializable {
    * @return preferredUsername
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public String getPreferredUsername() {
     return preferredUsername;
@@ -110,7 +107,6 @@ public class UserDetails implements Serializable {
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public String getName() {
     return name;
@@ -133,7 +129,6 @@ public class UserDetails implements Serializable {
    * @return password
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public String getPassword() {
     return password;
@@ -156,7 +151,6 @@ public class UserDetails implements Serializable {
    * @return email
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public String getEmail() {
     return email;
@@ -179,7 +173,6 @@ public class UserDetails implements Serializable {
    * @return phone
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public String getPhone() {
     return phone;
@@ -265,9 +258,7 @@ public class UserDetails implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (UserDetails.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!UserDetails.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UserDetails is not found in the empty JSON string", UserDetails.openapiRequiredFields.toString()));
         }
       }
@@ -289,13 +280,13 @@ public class UserDetails implements Serializable {
       if ((jsonObj.get("preferredUsername") != null && !jsonObj.get("preferredUsername").isJsonNull()) && !jsonObj.get("preferredUsername").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `preferredUsername` to be a primitive type in the JSON string but got `%s`", jsonObj.get("preferredUsername").toString()));
       }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
-      if ((jsonObj.get("password") != null && !jsonObj.get("password").isJsonNull()) && !jsonObj.get("password").isJsonPrimitive()) {
+      if (!jsonObj.get("password").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `password` to be a primitive type in the JSON string but got `%s`", jsonObj.get("password").toString()));
       }
-      if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
+      if (!jsonObj.get("email").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
       }
       if ((jsonObj.get("phone") != null && !jsonObj.get("phone").isJsonNull()) && !jsonObj.get("phone").isJsonPrimitive()) {

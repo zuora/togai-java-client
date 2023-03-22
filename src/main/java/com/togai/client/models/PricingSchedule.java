@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.PricePlanDetails;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
@@ -41,6 +39,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -50,7 +49,6 @@ import com.togai.client.JSON;
 /**
  * Represents effectiveness period and config of a price plan. i.e, price plan bound by time.
  */
-@ApiModel(description = "Represents effectiveness period and config of a price plan. i.e, price plan bound by time.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PricingSchedule implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -81,7 +79,6 @@ public class PricingSchedule implements Serializable {
    * @return pricePlanDetails
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public PricePlanDetails getPricePlanDetails() {
     return pricePlanDetails;
@@ -104,7 +101,6 @@ public class PricingSchedule implements Serializable {
    * @return startDate
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public OffsetDateTime getStartDate() {
     return startDate;
@@ -127,7 +123,6 @@ public class PricingSchedule implements Serializable {
    * @return endDate
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public OffsetDateTime getEndDate() {
     return endDate;
@@ -206,9 +201,7 @@ public class PricingSchedule implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (PricingSchedule.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!PricingSchedule.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PricingSchedule is not found in the empty JSON string", PricingSchedule.openapiRequiredFields.toString()));
         }
       }

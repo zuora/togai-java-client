@@ -22,8 +22,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.PaginationOptions;
 import com.togai.client.models.UsageMeter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +41,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -58,7 +57,7 @@ public class UsageMeterPaginatedResponse implements Serializable {
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private List<UsageMeter> data = null;
+  private List<UsageMeter> data = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_NEXT_TOKEN = "nextToken";
   @SerializedName(SERIALIZED_NAME_NEXT_TOKEN)
@@ -90,7 +89,6 @@ public class UsageMeterPaginatedResponse implements Serializable {
    * @return data
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public List<UsageMeter> getData() {
     return data;
@@ -113,7 +111,6 @@ public class UsageMeterPaginatedResponse implements Serializable {
    * @return nextToken
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public String getNextToken() {
     return nextToken;
@@ -136,7 +133,6 @@ public class UsageMeterPaginatedResponse implements Serializable {
    * @return context
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
 
   public PaginationOptions getContext() {
     return context;
@@ -213,9 +209,7 @@ public class UsageMeterPaginatedResponse implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (UsageMeterPaginatedResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!UsageMeterPaginatedResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UsageMeterPaginatedResponse is not found in the empty JSON string", UsageMeterPaginatedResponse.openapiRequiredFields.toString()));
         }
       }
@@ -227,17 +221,19 @@ public class UsageMeterPaginatedResponse implements Serializable {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UsageMeterPaginatedResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
-      if (jsonArraydata != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("data").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
-        }
+      if (jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull()) {
+        JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
+        if (jsonArraydata != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("data").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
+          }
 
-        // validate the optional field `data` (array)
-        for (int i = 0; i < jsonArraydata.size(); i++) {
-          UsageMeter.validateJsonObject(jsonArraydata.get(i).getAsJsonObject());
-        };
+          // validate the optional field `data` (array)
+          for (int i = 0; i < jsonArraydata.size(); i++) {
+            UsageMeter.validateJsonObject(jsonArraydata.get(i).getAsJsonObject());
+          };
+        }
       }
       if ((jsonObj.get("nextToken") != null && !jsonObj.get("nextToken").isJsonNull()) && !jsonObj.get("nextToken").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `nextToken` to be a primitive type in the JSON string but got `%s`", jsonObj.get("nextToken").toString()));

@@ -21,8 +21,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.EventWithStatus;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -51,7 +50,6 @@ import com.togai.client.JSON;
 /**
  * Get batch events response
  */
-@ApiModel(description = "Get batch events response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GetEventsResponse implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -83,7 +81,6 @@ public class GetEventsResponse implements Serializable {
    * @return events
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public List<EventWithStatus> getEvents() {
     return events;
@@ -106,7 +103,6 @@ public class GetEventsResponse implements Serializable {
    * @return nextToken
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "eyJsYXN0SXRlbUlkIjogInN0cmluZyIsICJwYWdlU2l6ZSI6IDEyMywgInNvcnRPcmRlciI6ICJhc2MifQ==", value = "")
 
   public String getNextToken() {
     return nextToken;
@@ -181,9 +177,7 @@ public class GetEventsResponse implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (GetEventsResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!GetEventsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetEventsResponse is not found in the empty JSON string", GetEventsResponse.openapiRequiredFields.toString()));
         }
       }
@@ -202,18 +196,16 @@ public class GetEventsResponse implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      JsonArray jsonArrayevents = jsonObj.getAsJsonArray("events");
-      if (jsonArrayevents != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("events").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `events` to be an array in the JSON string but got `%s`", jsonObj.get("events").toString()));
-        }
-
-        // validate the optional field `events` (array)
-        for (int i = 0; i < jsonArrayevents.size(); i++) {
-          EventWithStatus.validateJsonObject(jsonArrayevents.get(i).getAsJsonObject());
-        };
+      // ensure the json data is an array
+      if (!jsonObj.get("events").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `events` to be an array in the JSON string but got `%s`", jsonObj.get("events").toString()));
       }
+
+      JsonArray jsonArrayevents = jsonObj.getAsJsonArray("events");
+      // validate the required field `events` (array)
+      for (int i = 0; i < jsonArrayevents.size(); i++) {
+        EventWithStatus.validateJsonObject(jsonArrayevents.get(i).getAsJsonObject());
+      };
       if ((jsonObj.get("nextToken") != null && !jsonObj.get("nextToken").isJsonNull()) && !jsonObj.get("nextToken").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `nextToken` to be a primitive type in the JSON string but got `%s`", jsonObj.get("nextToken").toString()));
       }

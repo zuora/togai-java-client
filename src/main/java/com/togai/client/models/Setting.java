@@ -20,8 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.togai.client.models.SettingDataType;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -39,6 +38,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -46,20 +46,19 @@ import java.util.Set;
 import com.togai.client.JSON;
 
 /**
- * Represents user_setting
+ * Represents a setting
  */
-@ApiModel(description = "Represents user_setting")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Setting implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_SETTING_NAME = "settingName";
-  @SerializedName(SERIALIZED_NAME_SETTING_NAME)
-  private String settingName;
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
 
-  public static final String SERIALIZED_NAME_SETTING_VALUE = "settingValue";
-  @SerializedName(SERIALIZED_NAME_SETTING_VALUE)
-  private String settingValue;
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private String value;
 
   public static final String SERIALIZED_NAME_ENTITY_TYPE = "entityType";
   @SerializedName(SERIALIZED_NAME_ENTITY_TYPE)
@@ -69,52 +68,62 @@ public class Setting implements Serializable {
   @SerializedName(SERIALIZED_NAME_ENTITY_ID)
   private String entityId;
 
+  public static final String SERIALIZED_NAME_NAMESPACE = "namespace";
+  @SerializedName(SERIALIZED_NAME_NAMESPACE)
+  private String namespace;
+
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
+  public static final String SERIALIZED_NAME_DATA_TYPE = "dataType";
+  @SerializedName(SERIALIZED_NAME_DATA_TYPE)
+  private SettingDataType dataType;
+
   public Setting() {
   }
 
-  public Setting settingName(String settingName) {
+  public Setting id(String id) {
     
-    this.settingName = settingName;
+    this.id = id;
     return this;
   }
 
    /**
-   * Get settingName
-   * @return settingName
+   * Get id
+   * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
-  public String getSettingName() {
-    return settingName;
+  public String getId() {
+    return id;
   }
 
 
-  public void setSettingName(String settingName) {
-    this.settingName = settingName;
+  public void setId(String id) {
+    this.id = id;
   }
 
 
-  public Setting settingValue(String settingValue) {
+  public Setting value(String value) {
     
-    this.settingValue = settingValue;
+    this.value = value;
     return this;
   }
 
    /**
-   * Get settingValue
-   * @return settingValue
+   * Get value
+   * @return value
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
-  public String getSettingValue() {
-    return settingValue;
+  public String getValue() {
+    return value;
   }
 
 
-  public void setSettingValue(String settingValue) {
-    this.settingValue = settingValue;
+  public void setValue(String value) {
+    this.value = value;
   }
 
 
@@ -129,7 +138,6 @@ public class Setting implements Serializable {
    * @return entityType
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public String getEntityType() {
     return entityType;
@@ -152,7 +160,6 @@ public class Setting implements Serializable {
    * @return entityId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public String getEntityId() {
     return entityId;
@@ -161,6 +168,72 @@ public class Setting implements Serializable {
 
   public void setEntityId(String entityId) {
     this.entityId = entityId;
+  }
+
+
+  public Setting namespace(String namespace) {
+    
+    this.namespace = namespace;
+    return this;
+  }
+
+   /**
+   * Get namespace
+   * @return namespace
+  **/
+  @javax.annotation.Nonnull
+
+  public String getNamespace() {
+    return namespace;
+  }
+
+
+  public void setNamespace(String namespace) {
+    this.namespace = namespace;
+  }
+
+
+  public Setting name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * Get name
+   * @return name
+  **/
+  @javax.annotation.Nonnull
+
+  public String getName() {
+    return name;
+  }
+
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public Setting dataType(SettingDataType dataType) {
+    
+    this.dataType = dataType;
+    return this;
+  }
+
+   /**
+   * Get dataType
+   * @return dataType
+  **/
+  @javax.annotation.Nonnull
+
+  public SettingDataType getDataType() {
+    return dataType;
+  }
+
+
+  public void setDataType(SettingDataType dataType) {
+    this.dataType = dataType;
   }
 
 
@@ -174,25 +247,31 @@ public class Setting implements Serializable {
       return false;
     }
     Setting setting = (Setting) o;
-    return Objects.equals(this.settingName, setting.settingName) &&
-        Objects.equals(this.settingValue, setting.settingValue) &&
+    return Objects.equals(this.id, setting.id) &&
+        Objects.equals(this.value, setting.value) &&
         Objects.equals(this.entityType, setting.entityType) &&
-        Objects.equals(this.entityId, setting.entityId);
+        Objects.equals(this.entityId, setting.entityId) &&
+        Objects.equals(this.namespace, setting.namespace) &&
+        Objects.equals(this.name, setting.name) &&
+        Objects.equals(this.dataType, setting.dataType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(settingName, settingValue, entityType, entityId);
+    return Objects.hash(id, value, entityType, entityId, namespace, name, dataType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Setting {\n");
-    sb.append("    settingName: ").append(toIndentedString(settingName)).append("\n");
-    sb.append("    settingValue: ").append(toIndentedString(settingValue)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    entityType: ").append(toIndentedString(entityType)).append("\n");
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
+    sb.append("    namespace: ").append(toIndentedString(namespace)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    dataType: ").append(toIndentedString(dataType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -215,17 +294,23 @@ public class Setting implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("settingName");
-    openapiFields.add("settingValue");
+    openapiFields.add("id");
+    openapiFields.add("value");
     openapiFields.add("entityType");
     openapiFields.add("entityId");
+    openapiFields.add("namespace");
+    openapiFields.add("name");
+    openapiFields.add("dataType");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("settingName");
-    openapiRequiredFields.add("settingValue");
+    openapiRequiredFields.add("id");
+    openapiRequiredFields.add("value");
     openapiRequiredFields.add("entityType");
     openapiRequiredFields.add("entityId");
+    openapiRequiredFields.add("namespace");
+    openapiRequiredFields.add("name");
+    openapiRequiredFields.add("dataType");
   }
 
  /**
@@ -236,9 +321,7 @@ public class Setting implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (Setting.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!Setting.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Setting is not found in the empty JSON string", Setting.openapiRequiredFields.toString()));
         }
       }
@@ -257,17 +340,23 @@ public class Setting implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("settingName") != null && !jsonObj.get("settingName").isJsonNull()) && !jsonObj.get("settingName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `settingName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("settingName").toString()));
+      if (!jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
-      if ((jsonObj.get("settingValue") != null && !jsonObj.get("settingValue").isJsonNull()) && !jsonObj.get("settingValue").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `settingValue` to be a primitive type in the JSON string but got `%s`", jsonObj.get("settingValue").toString()));
+      if (!jsonObj.get("value").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
       }
-      if ((jsonObj.get("entityType") != null && !jsonObj.get("entityType").isJsonNull()) && !jsonObj.get("entityType").isJsonPrimitive()) {
+      if (!jsonObj.get("entityType").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `entityType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("entityType").toString()));
       }
-      if ((jsonObj.get("entityId") != null && !jsonObj.get("entityId").isJsonNull()) && !jsonObj.get("entityId").isJsonPrimitive()) {
+      if (!jsonObj.get("entityId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `entityId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("entityId").toString()));
+      }
+      if (!jsonObj.get("namespace").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `namespace` to be a primitive type in the JSON string but got `%s`", jsonObj.get("namespace").toString()));
+      }
+      if (!jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
   }
 

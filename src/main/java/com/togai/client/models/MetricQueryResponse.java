@@ -22,8 +22,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.MetricDataPoints;
 import com.togai.client.models.MetricName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +41,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -52,7 +51,6 @@ import com.togai.client.JSON;
 /**
  * Response to GetMetrics Request
  */
-@ApiModel(description = "Response to GetMetrics Request")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class MetricQueryResponse implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -63,7 +61,7 @@ public class MetricQueryResponse implements Serializable {
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
-  private MetricName name;
+  private MetricName name = MetricName.EVENTS;
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
@@ -83,7 +81,6 @@ public class MetricQueryResponse implements Serializable {
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public String getId() {
     return id;
@@ -106,7 +103,6 @@ public class MetricQueryResponse implements Serializable {
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public MetricName getName() {
     return name;
@@ -134,7 +130,6 @@ public class MetricQueryResponse implements Serializable {
    * @return data
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public List<MetricDataPoints> getData() {
     return data;
@@ -214,9 +209,7 @@ public class MetricQueryResponse implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (MetricQueryResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!MetricQueryResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in MetricQueryResponse is not found in the empty JSON string", MetricQueryResponse.openapiRequiredFields.toString()));
         }
       }
@@ -235,21 +228,19 @@ public class MetricQueryResponse implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+      if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
-      JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
-      if (jsonArraydata != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("data").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
-        }
-
-        // validate the optional field `data` (array)
-        for (int i = 0; i < jsonArraydata.size(); i++) {
-          MetricDataPoints.validateJsonObject(jsonArraydata.get(i).getAsJsonObject());
-        };
+      // ensure the json data is an array
+      if (!jsonObj.get("data").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
       }
+
+      JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
+      // validate the required field `data` (array)
+      for (int i = 0; i < jsonArraydata.size(); i++) {
+        MetricDataPoints.validateJsonObject(jsonArraydata.get(i).getAsJsonObject());
+      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -39,6 +37,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -48,7 +47,6 @@ import com.togai.client.JSON;
 /**
  * Signup response
  */
-@ApiModel(description = "Signup response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SignupResponse implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -75,7 +73,6 @@ public class SignupResponse implements Serializable {
    * @return organizationId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Organization Identifier")
 
   public String getOrganizationId() {
     return organizationId;
@@ -98,7 +95,6 @@ public class SignupResponse implements Serializable {
    * @return jwtToken
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Token which can be used for authentication")
 
   public String getJwtToken() {
     return jwtToken;
@@ -174,9 +170,7 @@ public class SignupResponse implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (SignupResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!SignupResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SignupResponse is not found in the empty JSON string", SignupResponse.openapiRequiredFields.toString()));
         }
       }
@@ -195,10 +189,10 @@ public class SignupResponse implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("organizationId") != null && !jsonObj.get("organizationId").isJsonNull()) && !jsonObj.get("organizationId").isJsonPrimitive()) {
+      if (!jsonObj.get("organizationId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `organizationId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("organizationId").toString()));
       }
-      if ((jsonObj.get("jwtToken") != null && !jsonObj.get("jwtToken").isJsonNull()) && !jsonObj.get("jwtToken").isJsonPrimitive()) {
+      if (!jsonObj.get("jwtToken").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `jwtToken` to be a primitive type in the JSON string but got `%s`", jsonObj.get("jwtToken").toString()));
       }
   }

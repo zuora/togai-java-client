@@ -22,8 +22,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.RatePlan;
 import com.togai.client.models.RateValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +41,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -85,8 +84,7 @@ public class UsageRateCard implements Serializable {
    * Name your rate card, this will be displayed in the Togai App
    * @return displayName
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Name your rate card, this will be displayed in the Togai App")
+  @javax.annotation.Nonnull
 
   public String getDisplayName() {
     return displayName;
@@ -105,11 +103,10 @@ public class UsageRateCard implements Serializable {
   }
 
    /**
-   * The usage meter will be associated with the rate card to transform the usage value to billable value
+   * Get usageMeterId
    * @return usageMeterId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "01BX5ZZKBKACTAV9WEVG", required = true, value = "The usage meter will be associated with the rate card to transform the usage value to billable value")
 
   public String getUsageMeterId() {
     return usageMeterId;
@@ -132,7 +129,6 @@ public class UsageRateCard implements Serializable {
    * @return ratePlan
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public RatePlan getRatePlan() {
     return ratePlan;
@@ -160,7 +156,6 @@ public class UsageRateCard implements Serializable {
    * @return rateValues
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
 
   public List<RateValue> getRateValues() {
     return rateValues;
@@ -230,6 +225,7 @@ public class UsageRateCard implements Serializable {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("displayName");
     openapiRequiredFields.add("usageMeterId");
     openapiRequiredFields.add("ratePlan");
     openapiRequiredFields.add("rateValues");
@@ -243,9 +239,7 @@ public class UsageRateCard implements Serializable {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (UsageRateCard.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!UsageRateCard.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UsageRateCard is not found in the empty JSON string", UsageRateCard.openapiRequiredFields.toString()));
         }
       }
@@ -264,28 +258,24 @@ public class UsageRateCard implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("displayName") != null && !jsonObj.get("displayName").isJsonNull()) && !jsonObj.get("displayName").isJsonPrimitive()) {
+      if (!jsonObj.get("displayName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `displayName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("displayName").toString()));
       }
-      if ((jsonObj.get("usageMeterId") != null && !jsonObj.get("usageMeterId").isJsonNull()) && !jsonObj.get("usageMeterId").isJsonPrimitive()) {
+      if (!jsonObj.get("usageMeterId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `usageMeterId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("usageMeterId").toString()));
       }
-      // validate the optional field `ratePlan`
-      if (jsonObj.get("ratePlan") != null && !jsonObj.get("ratePlan").isJsonNull()) {
-        RatePlan.validateJsonObject(jsonObj.getAsJsonObject("ratePlan"));
+      // validate the required field `ratePlan`
+      RatePlan.validateJsonObject(jsonObj.getAsJsonObject("ratePlan"));
+      // ensure the json data is an array
+      if (!jsonObj.get("rateValues").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `rateValues` to be an array in the JSON string but got `%s`", jsonObj.get("rateValues").toString()));
       }
-      JsonArray jsonArrayrateValues = jsonObj.getAsJsonArray("rateValues");
-      if (jsonArrayrateValues != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("rateValues").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `rateValues` to be an array in the JSON string but got `%s`", jsonObj.get("rateValues").toString()));
-        }
 
-        // validate the optional field `rateValues` (array)
-        for (int i = 0; i < jsonArrayrateValues.size(); i++) {
-          RateValue.validateJsonObject(jsonArrayrateValues.get(i).getAsJsonObject());
-        };
-      }
+      JsonArray jsonArrayrateValues = jsonObj.getAsJsonArray("rateValues");
+      // validate the required field `rateValues` (array)
+      for (int i = 0; i < jsonArrayrateValues.size(); i++) {
+        RateValue.validateJsonObject(jsonArrayrateValues.get(i).getAsJsonObject());
+      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

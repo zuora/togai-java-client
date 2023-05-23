@@ -1,10 +1,13 @@
 ### These are the steps for running the examples 
+
 ```
-./gradlew build
-./gradlew build shadowJar
+mvn clean package
 ```
-Replace the '{{Version}}' with the actual version
+Then manually install the following JARs:
+
+* `target/togai-java-client-1.0.2.jar`
+* `target/lib/*.jar`
+
 ```
-javac -cp ".:build/libs/togai-java-client-{{version}}.jar" examples/Example.java
-java -cp ".:examples:build/libs/togai-java-client-{{version}}-all.jar" Example
+mvn compile exec:java -Dexec.mainClass="Example"
 ```

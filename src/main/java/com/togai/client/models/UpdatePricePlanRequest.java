@@ -60,6 +60,114 @@ public class UpdatePricePlanRequest implements Serializable {
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_DETAILS)
   private CreatePricePlanDetailsOverride pricePlanDetails;
 
+  /**
+   * Gets or Sets migrationMode
+   */
+  @JsonAdapter(MigrationModeEnum.Adapter.class)
+  public enum MigrationModeEnum {
+    IMMEDIATE("IMMEDIATE"),
+    
+    IMMEDIATE_IGNORE_OVERRIDE("IMMEDIATE_IGNORE_OVERRIDE"),
+    
+    NEXT_CYCLE("NEXT_CYCLE"),
+    
+    NEXT_CYCLE_IGNORE_OVERRIDE("NEXT_CYCLE_IGNORE_OVERRIDE"),
+    
+    NONE("NONE");
+
+    private String value;
+
+    MigrationModeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static MigrationModeEnum fromValue(String value) {
+      for (MigrationModeEnum b : MigrationModeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<MigrationModeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final MigrationModeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public MigrationModeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return MigrationModeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_MIGRATION_MODE = "migrationMode";
+  @SerializedName(SERIALIZED_NAME_MIGRATION_MODE)
+  private MigrationModeEnum migrationMode;
+
+  /**
+   * Gets or Sets versionsToMigrate
+   */
+  @JsonAdapter(VersionsToMigrateEnum.Adapter.class)
+  public enum VersionsToMigrateEnum {
+    LATEST_VERSION("LATEST_VERSION"),
+    
+    ALL_VERSION("ALL_VERSION");
+
+    private String value;
+
+    VersionsToMigrateEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static VersionsToMigrateEnum fromValue(String value) {
+      for (VersionsToMigrateEnum b : VersionsToMigrateEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<VersionsToMigrateEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final VersionsToMigrateEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public VersionsToMigrateEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return VersionsToMigrateEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_VERSIONS_TO_MIGRATE = "versionsToMigrate";
+  @SerializedName(SERIALIZED_NAME_VERSIONS_TO_MIGRATE)
+  private VersionsToMigrateEnum versionsToMigrate;
+
   public UpdatePricePlanRequest() {
   }
 
@@ -107,6 +215,50 @@ public class UpdatePricePlanRequest implements Serializable {
   }
 
 
+  public UpdatePricePlanRequest migrationMode(MigrationModeEnum migrationMode) {
+    
+    this.migrationMode = migrationMode;
+    return this;
+  }
+
+   /**
+   * Get migrationMode
+   * @return migrationMode
+  **/
+  @javax.annotation.Nullable
+
+  public MigrationModeEnum getMigrationMode() {
+    return migrationMode;
+  }
+
+
+  public void setMigrationMode(MigrationModeEnum migrationMode) {
+    this.migrationMode = migrationMode;
+  }
+
+
+  public UpdatePricePlanRequest versionsToMigrate(VersionsToMigrateEnum versionsToMigrate) {
+    
+    this.versionsToMigrate = versionsToMigrate;
+    return this;
+  }
+
+   /**
+   * Get versionsToMigrate
+   * @return versionsToMigrate
+  **/
+  @javax.annotation.Nullable
+
+  public VersionsToMigrateEnum getVersionsToMigrate() {
+    return versionsToMigrate;
+  }
+
+
+  public void setVersionsToMigrate(VersionsToMigrateEnum versionsToMigrate) {
+    this.versionsToMigrate = versionsToMigrate;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -118,12 +270,14 @@ public class UpdatePricePlanRequest implements Serializable {
     }
     UpdatePricePlanRequest updatePricePlanRequest = (UpdatePricePlanRequest) o;
     return Objects.equals(this.description, updatePricePlanRequest.description) &&
-        Objects.equals(this.pricePlanDetails, updatePricePlanRequest.pricePlanDetails);
+        Objects.equals(this.pricePlanDetails, updatePricePlanRequest.pricePlanDetails) &&
+        Objects.equals(this.migrationMode, updatePricePlanRequest.migrationMode) &&
+        Objects.equals(this.versionsToMigrate, updatePricePlanRequest.versionsToMigrate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, pricePlanDetails);
+    return Objects.hash(description, pricePlanDetails, migrationMode, versionsToMigrate);
   }
 
   @Override
@@ -132,6 +286,8 @@ public class UpdatePricePlanRequest implements Serializable {
     sb.append("class UpdatePricePlanRequest {\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    pricePlanDetails: ").append(toIndentedString(pricePlanDetails)).append("\n");
+    sb.append("    migrationMode: ").append(toIndentedString(migrationMode)).append("\n");
+    sb.append("    versionsToMigrate: ").append(toIndentedString(versionsToMigrate)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -156,6 +312,8 @@ public class UpdatePricePlanRequest implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("description");
     openapiFields.add("pricePlanDetails");
+    openapiFields.add("migrationMode");
+    openapiFields.add("versionsToMigrate");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -187,6 +345,12 @@ public class UpdatePricePlanRequest implements Serializable {
       // validate the optional field `pricePlanDetails`
       if (jsonObj.get("pricePlanDetails") != null && !jsonObj.get("pricePlanDetails").isJsonNull()) {
         CreatePricePlanDetailsOverride.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetails"));
+      }
+      if ((jsonObj.get("migrationMode") != null && !jsonObj.get("migrationMode").isJsonNull()) && !jsonObj.get("migrationMode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `migrationMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("migrationMode").toString()));
+      }
+      if ((jsonObj.get("versionsToMigrate") != null && !jsonObj.get("versionsToMigrate").isJsonNull()) && !jsonObj.get("versionsToMigrate").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `versionsToMigrate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("versionsToMigrate").toString()));
       }
   }
 

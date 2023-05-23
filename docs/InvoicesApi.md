@@ -6,6 +6,8 @@ All URIs are relative to *https://api.togai.com*
 |------------- | ------------- | -------------|
 | [**getInvoice**](InvoicesApi.md#getInvoice) | **GET** /invoices/{invoice_id} | Get an invoice |
 | [**listInvoices**](InvoicesApi.md#listInvoices) | **GET** /invoices | List invoices |
+| [**manageMiscellaneousChargesInAccount**](InvoicesApi.md#manageMiscellaneousChargesInAccount) | **PUT** /accounts/{account_id}/miscellaneous_charges | Add or update miscellaneous charges in upcoming Invoice for a account |
+| [**manageMiscellaneousChargesInInvoice**](InvoicesApi.md#manageMiscellaneousChargesInInvoice) | **PUT** /invoices/{invoice_id}/miscellaneous_charges | Add or update miscellaneous charges in Invoice |
 
 
 <a name="getInvoice"></a>
@@ -164,5 +166,155 @@ public class Example {
 | **403** | Credential does not have access to this operation. |  -  |
 | **422** | Unable to process the query parameters provided. Please check our docs for the api limits - https://togai.io/docs/limits. |  -  |
 | **429** | Request throttled. Please check the response message on the failure details. |  -  |
+| **0** | Error response |  -  |
+
+<a name="manageMiscellaneousChargesInAccount"></a>
+# **manageMiscellaneousChargesInAccount**
+> MiscellaneousChargesResponse manageMiscellaneousChargesInAccount(accountId, manageMiscellaneousChargesRequest)
+
+Add or update miscellaneous charges in upcoming Invoice for a account
+
+Add or update miscellaneous charges in upcoming Invoice for a account
+
+### Example
+```java
+// Import classes:
+import com.togai.client.ApiClient;
+import com.togai.client.ApiException;
+import com.togai.client.Configuration;
+import com.togai.client.auth.*;
+import com.togai.client.models.*;
+import com.togai.client.api.InvoicesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.togai.com");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    InvoicesApi apiInstance = new InvoicesApi(defaultClient);
+    String accountId = "accountId_example"; // String | account_id corresponding to an account
+    ManageMiscellaneousChargesRequest manageMiscellaneousChargesRequest = new ManageMiscellaneousChargesRequest(); // ManageMiscellaneousChargesRequest | Payload to update custom line items
+    try {
+      MiscellaneousChargesResponse result = apiInstance.manageMiscellaneousChargesInAccount(accountId, manageMiscellaneousChargesRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling InvoicesApi#manageMiscellaneousChargesInAccount");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| account_id corresponding to an account | |
+| **manageMiscellaneousChargesRequest** | [**ManageMiscellaneousChargesRequest**](ManageMiscellaneousChargesRequest.md)| Payload to update custom line items | [optional] |
+
+### Return type
+
+[**MiscellaneousChargesResponse**](MiscellaneousChargesResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Response for Miscellaneous Charges Request |  -  |
+| **400** | Error response |  -  |
+| **401** | Error response |  -  |
+| **403** | Error response |  -  |
+| **404** | Error response |  -  |
+| **429** | Error response |  -  |
+| **0** | Error response |  -  |
+
+<a name="manageMiscellaneousChargesInInvoice"></a>
+# **manageMiscellaneousChargesInInvoice**
+> MiscellaneousChargesResponse manageMiscellaneousChargesInInvoice(invoiceId, manageMiscellaneousChargesRequest)
+
+Add or update miscellaneous charges in Invoice
+
+Add or update miscellaneous charges in Invoice
+
+### Example
+```java
+// Import classes:
+import com.togai.client.ApiClient;
+import com.togai.client.ApiException;
+import com.togai.client.Configuration;
+import com.togai.client.auth.*;
+import com.togai.client.models.*;
+import com.togai.client.api.InvoicesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.togai.com");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    InvoicesApi apiInstance = new InvoicesApi(defaultClient);
+    String invoiceId = "invoiceId_example"; // String | 
+    ManageMiscellaneousChargesRequest manageMiscellaneousChargesRequest = new ManageMiscellaneousChargesRequest(); // ManageMiscellaneousChargesRequest | Payload to update custom line items
+    try {
+      MiscellaneousChargesResponse result = apiInstance.manageMiscellaneousChargesInInvoice(invoiceId, manageMiscellaneousChargesRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling InvoicesApi#manageMiscellaneousChargesInInvoice");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **invoiceId** | **String**|  | |
+| **manageMiscellaneousChargesRequest** | [**ManageMiscellaneousChargesRequest**](ManageMiscellaneousChargesRequest.md)| Payload to update custom line items | [optional] |
+
+### Return type
+
+[**MiscellaneousChargesResponse**](MiscellaneousChargesResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Response for Miscellaneous Charges Request |  -  |
+| **400** | Error response |  -  |
+| **401** | Error response |  -  |
+| **403** | Error response |  -  |
+| **404** | Error response |  -  |
+| **429** | Error response |  -  |
 | **0** | Error response |  -  |
 

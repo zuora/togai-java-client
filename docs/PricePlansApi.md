@@ -238,7 +238,7 @@ public class Example {
 
 <a name="getPricePlan"></a>
 # **getPricePlan**
-> PricePlan getPricePlan(pricePlanId)
+> PricePlan getPricePlan(pricePlanId, version)
 
 Get a price plan
 
@@ -265,8 +265,9 @@ public class Example {
 
     PricePlansApi apiInstance = new PricePlansApi(defaultClient);
     String pricePlanId = "pricePlanId_example"; // String | 
+    Integer version = 56; // Integer | Optional version to get a specific version. Gets latest version if it is not provided.
     try {
-      PricePlan result = apiInstance.getPricePlan(pricePlanId);
+      PricePlan result = apiInstance.getPricePlan(pricePlanId, version);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PricePlansApi#getPricePlan");
@@ -284,6 +285,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **pricePlanId** | **String**|  | |
+| **version** | **Integer**| Optional version to get a specific version. Gets latest version if it is not provided. | [optional] |
 
 ### Return type
 

@@ -30,6 +30,7 @@
 |---- | -----|
 | VALUE | &quot;VALUE&quot; |
 | JSON_LOGIC | &quot;JSON_LOGIC&quot; |
+| JSON_LOGIC_FROM_DEPENDENCY | &quot;JSON_LOGIC_FROM_DEPENDENCY&quot; |
 
 
 ## Implemented Interfaces

@@ -56,6 +56,10 @@ import com.togai.client.JSON;
 public class InvoiceLineItem implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
@@ -90,6 +94,28 @@ public class InvoiceLineItem implements Serializable {
 
   public InvoiceLineItem() {
   }
+
+  public InvoiceLineItem id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Get id
+   * @return id
+  **/
+  @javax.annotation.Nullable
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
 
   public InvoiceLineItem description(String description) {
     
@@ -290,7 +316,8 @@ public class InvoiceLineItem implements Serializable {
       return false;
     }
     InvoiceLineItem invoiceLineItem = (InvoiceLineItem) o;
-    return Objects.equals(this.description, invoiceLineItem.description) &&
+    return Objects.equals(this.id, invoiceLineItem.id) &&
+        Objects.equals(this.description, invoiceLineItem.description) &&
         Objects.equals(this.type, invoiceLineItem.type) &&
         Objects.equals(this.valuePerQuantity, invoiceLineItem.valuePerQuantity) &&
         Objects.equals(this.quantity, invoiceLineItem.quantity) &&
@@ -302,13 +329,14 @@ public class InvoiceLineItem implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, type, valuePerQuantity, quantity, units, value, metadata, lineItems);
+    return Objects.hash(id, description, type, valuePerQuantity, quantity, units, value, metadata, lineItems);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InvoiceLineItem {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    valuePerQuantity: ").append(toIndentedString(valuePerQuantity)).append("\n");
@@ -339,6 +367,7 @@ public class InvoiceLineItem implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("id");
     openapiFields.add("description");
     openapiFields.add("type");
     openapiFields.add("valuePerQuantity");
@@ -381,6 +410,9 @@ public class InvoiceLineItem implements Serializable {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
+      }
+      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       if (!jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));

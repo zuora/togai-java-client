@@ -13,6 +13,7 @@ Request to create usage meter
 |**type** | [**TypeEnum**](#TypeEnum) | Type of usage meter |  |
 |**aggregation** | [**AggregationEnum**](#AggregationEnum) | Aggregation to be applied on usage meter result |  |
 |**computations** | [**List&lt;Computation&gt;**](Computation.md) |  |  [optional] |
+|**eventSchemaName** | **String** | Event Schema Identifier |  |
 
 
 

@@ -8,8 +8,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**statusCode** | **BigDecimal** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
 |**message** | **String** |  |  [optional] |
-|**eventPayload** | [**Event**](Event.md) |  |  [optional] |
+|**code** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

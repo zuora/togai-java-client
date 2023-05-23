@@ -21,6 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.CurrencyRateValue;
+import com.togai.client.models.FixedFeeType;
 import com.togai.client.models.InvoiceTiming;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -67,6 +68,10 @@ public class FixedFeeRateCard implements Serializable {
   @SerializedName(SERIALIZED_NAME_INVOICE_TIMING)
   private InvoiceTiming invoiceTiming;
 
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private FixedFeeType type = FixedFeeType.RECURRING;
+
   public static final String SERIALIZED_NAME_RATE_VALUES = "rateValues";
   @SerializedName(SERIALIZED_NAME_RATE_VALUES)
   private List<CurrencyRateValue> rateValues = new ArrayList<>();
@@ -81,7 +86,7 @@ public class FixedFeeRateCard implements Serializable {
   }
 
    /**
-   * Auto generated unique identifier for fixed fees.
+   * Unique Identifier of the attached AddOn
    * @return id
   **/
   @javax.annotation.Nonnull
@@ -103,7 +108,7 @@ public class FixedFeeRateCard implements Serializable {
   }
 
    /**
-   * Name of the fixed fee.
+   * Name of the attached AddOn
    * @return displayName
   **/
   @javax.annotation.Nullable
@@ -137,6 +142,28 @@ public class FixedFeeRateCard implements Serializable {
 
   public void setInvoiceTiming(InvoiceTiming invoiceTiming) {
     this.invoiceTiming = invoiceTiming;
+  }
+
+
+  public FixedFeeRateCard type(FixedFeeType type) {
+    
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Get type
+   * @return type
+  **/
+  @javax.annotation.Nullable
+
+  public FixedFeeType getType() {
+    return type;
+  }
+
+
+  public void setType(FixedFeeType type) {
+    this.type = type;
   }
 
 
@@ -180,12 +207,13 @@ public class FixedFeeRateCard implements Serializable {
     return Objects.equals(this.id, fixedFeeRateCard.id) &&
         Objects.equals(this.displayName, fixedFeeRateCard.displayName) &&
         Objects.equals(this.invoiceTiming, fixedFeeRateCard.invoiceTiming) &&
+        Objects.equals(this.type, fixedFeeRateCard.type) &&
         Objects.equals(this.rateValues, fixedFeeRateCard.rateValues);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, displayName, invoiceTiming, rateValues);
+    return Objects.hash(id, displayName, invoiceTiming, type, rateValues);
   }
 
   @Override
@@ -195,6 +223,7 @@ public class FixedFeeRateCard implements Serializable {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    invoiceTiming: ").append(toIndentedString(invoiceTiming)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    rateValues: ").append(toIndentedString(rateValues)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -221,6 +250,7 @@ public class FixedFeeRateCard implements Serializable {
     openapiFields.add("id");
     openapiFields.add("displayName");
     openapiFields.add("invoiceTiming");
+    openapiFields.add("type");
     openapiFields.add("rateValues");
 
     // a set of required properties/fields (JSON key names)

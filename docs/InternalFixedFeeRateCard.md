@@ -12,6 +12,7 @@
 |**currency** | **String** |  |  |
 |**rate** | **BigDecimal** |  |  |
 |**invoiceTiming** | **InvoiceTiming** |  |  |
+|**type** | **FixedFeeType** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -13,6 +13,7 @@ Configuration for getting the usage rate card
 |**pricePlanId** | **String** | Id of the price plan, this will be considered if mode is PRICE_PLAN |  [optional] |
 |**accountId** | **String** | Id of the account, this will be considered if mode is ACCOUNT |  [optional] |
 |**effectiveOn** | **OffsetDateTime** | Will be used for getting the usage rate card, only used if mode is ACCOUNT or PRICE_PLAN |  [optional] |
+|**pricingCycleOrdinal** | **Integer** | nth cycle, will be used to calculate revenue for the particular cycle, only used if mode is CUSTOM or PRICE_PLAN |  [optional] |
 
 
 

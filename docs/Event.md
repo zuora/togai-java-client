@@ -14,6 +14,7 @@ Contents of the event
 |**accountId** | **String** | The event will be associated with the provided account |  |
 |**attributes** | [**List&lt;Attribute&gt;**](Attribute.md) | Attributes are numeric values. It can be usage metric which you push to Togai |  |
 |**dimensions** | **Map&lt;String, String&gt;** | Dimensions are tags/labels associated with the events. |  |
+|**createdAt** | **OffsetDateTime** | Created time stamp of the event. This timestamp must be in ISO 8601 format. |  |
 
 
 ## Implemented Interfaces

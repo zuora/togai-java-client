@@ -56,57 +56,6 @@ public class AddOn implements Serializable {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
-  /**
-   * Type of addon
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    ONE_TIME("ONE_TIME"),
-    
-    RECURRING("RECURRING");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return TypeEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private TypeEnum type;
-
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
@@ -191,28 +140,6 @@ public class AddOn implements Serializable {
   }
 
 
-  public AddOn type(TypeEnum type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Type of addon
-   * @return type
-  **/
-  @javax.annotation.Nonnull
-
-  public TypeEnum getType() {
-    return type;
-  }
-
-
-  public void setType(TypeEnum type) {
-    this.type = type;
-  }
-
-
   public AddOn id(String id) {
     
     this.id = id;
@@ -290,7 +217,6 @@ public class AddOn implements Serializable {
     }
     AddOn addOn = (AddOn) o;
     return Objects.equals(this.name, addOn.name) &&
-        Objects.equals(this.type, addOn.type) &&
         Objects.equals(this.id, addOn.id) &&
         Objects.equals(this.createdAt, addOn.createdAt) &&
         Objects.equals(this.status, addOn.status);
@@ -298,7 +224,7 @@ public class AddOn implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, type, id, createdAt, status);
+    return Objects.hash(name, id, createdAt, status);
   }
 
   @Override
@@ -306,7 +232,6 @@ public class AddOn implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddOn {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
@@ -333,7 +258,6 @@ public class AddOn implements Serializable {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
-    openapiFields.add("type");
     openapiFields.add("id");
     openapiFields.add("createdAt");
     openapiFields.add("status");
@@ -341,7 +265,6 @@ public class AddOn implements Serializable {
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("name");
-    openapiRequiredFields.add("type");
     openapiRequiredFields.add("id");
     openapiRequiredFields.add("createdAt");
     openapiRequiredFields.add("status");
@@ -376,9 +299,6 @@ public class AddOn implements Serializable {
       }
       if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if (!jsonObj.get("type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
       }
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));

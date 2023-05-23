@@ -55,57 +55,6 @@ public class CreateAddOnRequest implements Serializable {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
-  /**
-   * Type of addon
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    ONE_TIME("ONE_TIME"),
-    
-    RECURRING("RECURRING");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return TypeEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private TypeEnum type;
-
   public CreateAddOnRequest() {
   }
 
@@ -131,28 +80,6 @@ public class CreateAddOnRequest implements Serializable {
   }
 
 
-  public CreateAddOnRequest type(TypeEnum type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Type of addon
-   * @return type
-  **/
-  @javax.annotation.Nonnull
-
-  public TypeEnum getType() {
-    return type;
-  }
-
-
-  public void setType(TypeEnum type) {
-    this.type = type;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -163,13 +90,12 @@ public class CreateAddOnRequest implements Serializable {
       return false;
     }
     CreateAddOnRequest createAddOnRequest = (CreateAddOnRequest) o;
-    return Objects.equals(this.name, createAddOnRequest.name) &&
-        Objects.equals(this.type, createAddOnRequest.type);
+    return Objects.equals(this.name, createAddOnRequest.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, type);
+    return Objects.hash(name);
   }
 
   @Override
@@ -177,7 +103,6 @@ public class CreateAddOnRequest implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateAddOnRequest {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -201,12 +126,10 @@ public class CreateAddOnRequest implements Serializable {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
-    openapiFields.add("type");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("name");
-    openapiRequiredFields.add("type");
   }
 
  /**
@@ -238,9 +161,6 @@ public class CreateAddOnRequest implements Serializable {
       }
       if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if (!jsonObj.get("type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
       }
   }
 

@@ -110,6 +110,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.ComputeRevenueSummaryRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.ComputeRevenueSummaryResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.CreateAccountRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.CreateAccountRequestWithoutCustomerId.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.CreateAddOnRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.CreateCreditRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.CreateCustomerRequest.CustomTypeAdapterFactory());
@@ -132,6 +133,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.CustomerPaginatedResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.Dependency.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.DimensionsSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.EditPricingScheduleRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.EnrichedField.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.EnrichmentDependency.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.Enrichments.CustomTypeAdapterFactory());
@@ -150,6 +152,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.EventSchemaListDataAllOf.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.EventSchemaListPaginatedResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.EventSchemaVersionsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.EventSource.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.EventWithStatus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.EventWithStatusAndEventPipelineInfo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.EventWithStatusAndEventPipelineInfoAllOf.CustomTypeAdapterFactory());
@@ -161,8 +164,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.GetMetricsRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.GetMetricsResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.IngestBatchEventRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.IngestBatchEventResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.IngestError.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.IngestEventRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.IngestEventResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.IngestionStatus.CustomTypeAdapterFactory());
@@ -177,12 +178,15 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.InvoiceLineItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.ListCreditsResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.ListInvoicesResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.ManageMiscellaneousChargesRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.MetricDataPoints.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.MetricDataPointsGroupedBy.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.MetricQuery.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.MetricQueryFilterEntry.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.MetricQueryResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.MinimumCommitment.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.MiscellaneousCharge.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.MiscellaneousChargesResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.OrganizationSetting.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.PaginationOptions.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.PlanOverride.CustomTypeAdapterFactory());
@@ -196,6 +200,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.PricingCycleConfig.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.PricingCycleConfigStartOffset.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.PricingSchedule.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.PricingSchedulePaginatedResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.PricingScheduleWithPricePlanId.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.PricingScheduleWithPricePlanIdAllOf.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.RatePlan.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.RateValue.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.togai.client.models.RemoveAccountAliasesRequest.CustomTypeAdapterFactory());

@@ -25,7 +25,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Define the metric you would like to get - allowed options are EVENTS - Aggregation of raw events, USAGE - Aggregated usage value from Usage meters, REVENUE - Aggregated of revenue value from Pricing Plans 
+ * Define the metric you would like to get - allowed options are EVENTS - Aggregation of raw events, USAGE - Aggregated usage value from Usage meters, REVENUE - Aggregated revenue value from Pricing Plans USAGE_FOR_CYCLE - Usage in pricing cycle REVENUE_FOR_CYCLE - Revenue in pricing cycle 
  */
 @JsonAdapter(MetricName.Adapter.class)
 public enum MetricName {
@@ -34,7 +34,11 @@ public enum MetricName {
   
   USAGE("USAGE"),
   
-  REVENUE("REVENUE");
+  REVENUE("REVENUE"),
+  
+  USAGE_FOR_CYCLE("USAGE_FOR_CYCLE"),
+  
+  REVENUE_FOR_CYCLE("REVENUE_FOR_CYCLE");
 
   private String value;
 

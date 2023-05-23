@@ -74,6 +74,10 @@ public class CreateAccountRequest implements Serializable {
   @SerializedName(SERIALIZED_NAME_SETTINGS)
   private List<CreateEntitySetting> settings = new ArrayList<>();
 
+  public static final String SERIALIZED_NAME_CUSTOMER_ID = "customerId";
+  @SerializedName(SERIALIZED_NAME_CUSTOMER_ID)
+  private String customerId;
+
   public CreateAccountRequest() {
   }
 
@@ -203,6 +207,28 @@ public class CreateAccountRequest implements Serializable {
   }
 
 
+  public CreateAccountRequest customerId(String customerId) {
+    
+    this.customerId = customerId;
+    return this;
+  }
+
+   /**
+   * Customer Identifier for whom the account is being created
+   * @return customerId
+  **/
+  @javax.annotation.Nonnull
+
+  public String getCustomerId() {
+    return customerId;
+  }
+
+
+  public void setCustomerId(String customerId) {
+    this.customerId = customerId;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -217,12 +243,13 @@ public class CreateAccountRequest implements Serializable {
         Objects.equals(this.name, createAccountRequest.name) &&
         Objects.equals(this.invoiceCurrency, createAccountRequest.invoiceCurrency) &&
         Objects.equals(this.aliases, createAccountRequest.aliases) &&
-        Objects.equals(this.settings, createAccountRequest.settings);
+        Objects.equals(this.settings, createAccountRequest.settings) &&
+        Objects.equals(this.customerId, createAccountRequest.customerId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, invoiceCurrency, aliases, settings);
+    return Objects.hash(id, name, invoiceCurrency, aliases, settings, customerId);
   }
 
   @Override
@@ -234,6 +261,7 @@ public class CreateAccountRequest implements Serializable {
     sb.append("    invoiceCurrency: ").append(toIndentedString(invoiceCurrency)).append("\n");
     sb.append("    aliases: ").append(toIndentedString(aliases)).append("\n");
     sb.append("    settings: ").append(toIndentedString(settings)).append("\n");
+    sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -261,11 +289,13 @@ public class CreateAccountRequest implements Serializable {
     openapiFields.add("invoiceCurrency");
     openapiFields.add("aliases");
     openapiFields.add("settings");
+    openapiFields.add("customerId");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("id");
     openapiRequiredFields.add("name");
+    openapiRequiredFields.add("customerId");
   }
 
  /**
@@ -321,6 +351,9 @@ public class CreateAccountRequest implements Serializable {
             CreateEntitySetting.validateJsonObject(jsonArraysettings.get(i).getAsJsonObject());
           };
         }
+      }
+      if (!jsonObj.get("customerId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `customerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customerId").toString()));
       }
   }
 

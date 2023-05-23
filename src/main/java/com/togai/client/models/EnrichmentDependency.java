@@ -104,9 +104,9 @@ public class EnrichmentDependency implements Serializable {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
-  public static final String SERIALIZED_NAME_ALIAS = "alias";
-  @SerializedName(SERIALIZED_NAME_ALIAS)
-  private String alias;
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -159,25 +159,25 @@ public class EnrichmentDependency implements Serializable {
   }
 
 
-  public EnrichmentDependency alias(String alias) {
+  public EnrichmentDependency name(String name) {
     
-    this.alias = alias;
+    this.name = name;
     return this;
   }
 
    /**
-   * Get alias
-   * @return alias
+   * Get name
+   * @return name
   **/
   @javax.annotation.Nullable
 
-  public String getAlias() {
-    return alias;
+  public String getName() {
+    return name;
   }
 
 
-  public void setAlias(String alias) {
-    this.alias = alias;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -215,13 +215,13 @@ public class EnrichmentDependency implements Serializable {
     EnrichmentDependency enrichmentDependency = (EnrichmentDependency) o;
     return Objects.equals(this.key, enrichmentDependency.key) &&
         Objects.equals(this.type, enrichmentDependency.type) &&
-        Objects.equals(this.alias, enrichmentDependency.alias) &&
+        Objects.equals(this.name, enrichmentDependency.name) &&
         Objects.equals(this.value, enrichmentDependency.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, type, alias, value);
+    return Objects.hash(key, type, name, value);
   }
 
   @Override
@@ -230,7 +230,7 @@ public class EnrichmentDependency implements Serializable {
     sb.append("class EnrichmentDependency {\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -256,7 +256,7 @@ public class EnrichmentDependency implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("key");
     openapiFields.add("type");
-    openapiFields.add("alias");
+    openapiFields.add("name");
     openapiFields.add("value");
 
     // a set of required properties/fields (JSON key names)
@@ -299,8 +299,8 @@ public class EnrichmentDependency implements Serializable {
       if (!jsonObj.get("type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
       }
-      if ((jsonObj.get("alias") != null && !jsonObj.get("alias").isJsonNull()) && !jsonObj.get("alias").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `alias` to be a primitive type in the JSON string but got `%s`", jsonObj.get("alias").toString()));
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
       if (!jsonObj.get("value").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));

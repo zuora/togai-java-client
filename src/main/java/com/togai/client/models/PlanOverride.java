@@ -53,6 +53,10 @@ import com.togai.client.JSON;
 public class PlanOverride implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
   public static final String SERIALIZED_NAME_PRICE_PLAN_ID = "pricePlanId";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_ID)
   private String pricePlanId;
@@ -75,6 +79,28 @@ public class PlanOverride implements Serializable {
 
   public PlanOverride() {
   }
+
+  public PlanOverride id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Get id
+   * @return id
+  **/
+  @javax.annotation.Nonnull
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
 
   public PlanOverride pricePlanId(String pricePlanId) {
     
@@ -196,7 +222,8 @@ public class PlanOverride implements Serializable {
       return false;
     }
     PlanOverride planOverride = (PlanOverride) o;
-    return Objects.equals(this.pricePlanId, planOverride.pricePlanId) &&
+    return Objects.equals(this.id, planOverride.id) &&
+        Objects.equals(this.pricePlanId, planOverride.pricePlanId) &&
         Objects.equals(this.pricePlanName, planOverride.pricePlanName) &&
         Objects.equals(this.pricePlanDetailsOverride, planOverride.pricePlanDetailsOverride) &&
         Objects.equals(this.startDate, planOverride.startDate) &&
@@ -205,13 +232,14 @@ public class PlanOverride implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(pricePlanId, pricePlanName, pricePlanDetailsOverride, startDate, endDate);
+    return Objects.hash(id, pricePlanId, pricePlanName, pricePlanDetailsOverride, startDate, endDate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PlanOverride {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    pricePlanId: ").append(toIndentedString(pricePlanId)).append("\n");
     sb.append("    pricePlanName: ").append(toIndentedString(pricePlanName)).append("\n");
     sb.append("    pricePlanDetailsOverride: ").append(toIndentedString(pricePlanDetailsOverride)).append("\n");
@@ -239,6 +267,7 @@ public class PlanOverride implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("id");
     openapiFields.add("pricePlanId");
     openapiFields.add("pricePlanName");
     openapiFields.add("pricePlanDetailsOverride");
@@ -247,6 +276,7 @@ public class PlanOverride implements Serializable {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("id");
     openapiRequiredFields.add("pricePlanId");
     openapiRequiredFields.add("pricePlanName");
     openapiRequiredFields.add("startDate");
@@ -279,6 +309,9 @@ public class PlanOverride implements Serializable {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
+      }
+      if (!jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       if (!jsonObj.get("pricePlanId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `pricePlanId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pricePlanId").toString()));

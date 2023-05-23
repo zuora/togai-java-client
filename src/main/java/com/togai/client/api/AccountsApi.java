@@ -33,7 +33,9 @@ import com.togai.client.models.AddAccountAliasesRequest;
 import com.togai.client.models.BaseSuccessResponse;
 import java.math.BigDecimal;
 import com.togai.client.models.CreateAccountRequest;
+import com.togai.client.models.EditPricingScheduleRequest;
 import com.togai.client.models.ErrorResponse;
+import com.togai.client.models.PricingSchedulePaginatedResponse;
 import com.togai.client.models.RemoveAccountAliasesRequest;
 import com.togai.client.models.UpdateAccountRequest;
 import com.togai.client.models.UpdatePricingScheduleRequest;
@@ -85,7 +87,6 @@ public class AccountsApi {
 
     /**
      * Build call for addAliases
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param addAccountAliasesRequest Payload to add aliases to account (required)
      * @param _callback Callback for upload/download progress
@@ -103,7 +104,7 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addAliasesCall(String customerId, String accountId, AddAccountAliasesRequest addAccountAliasesRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addAliasesCall(String accountId, AddAccountAliasesRequest addAccountAliasesRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -120,8 +121,7 @@ public class AccountsApi {
         Object localVarPostBody = addAccountAliasesRequest;
 
         // create path and map variables
-        String localVarPath = "/customers/{customer_id}/accounts/{account_id}/add_aliases"
-            .replace("{" + "customer_id" + "}", localVarApiClient.escapeString(customerId.toString()))
+        String localVarPath = "/accounts/{account_id}/add_aliases"
             .replace("{" + "account_id" + "}", localVarApiClient.escapeString(accountId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -151,12 +151,7 @@ public class AccountsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addAliasesValidateBeforeCall(String customerId, String accountId, AddAccountAliasesRequest addAccountAliasesRequest, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling addAliases(Async)");
-        }
-
+    private okhttp3.Call addAliasesValidateBeforeCall(String accountId, AddAccountAliasesRequest addAccountAliasesRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountId' is set
         if (accountId == null) {
             throw new ApiException("Missing the required parameter 'accountId' when calling addAliases(Async)");
@@ -167,14 +162,13 @@ public class AccountsApi {
             throw new ApiException("Missing the required parameter 'addAccountAliasesRequest' when calling addAliases(Async)");
         }
 
-        return addAliasesCall(customerId, accountId, addAccountAliasesRequest, _callback);
+        return addAliasesCall(accountId, addAccountAliasesRequest, _callback);
 
     }
 
     /**
      * Add Aliases to account
      * Add aliases to an account using customer_id and account_id.
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param addAccountAliasesRequest Payload to add aliases to account (required)
      * @return Account
@@ -191,15 +185,14 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public Account addAliases(String customerId, String accountId, AddAccountAliasesRequest addAccountAliasesRequest) throws ApiException {
-        ApiResponse<Account> localVarResp = addAliasesWithHttpInfo(customerId, accountId, addAccountAliasesRequest);
+    public Account addAliases(String accountId, AddAccountAliasesRequest addAccountAliasesRequest) throws ApiException {
+        ApiResponse<Account> localVarResp = addAliasesWithHttpInfo(accountId, addAccountAliasesRequest);
         return localVarResp.getData();
     }
 
     /**
      * Add Aliases to account
      * Add aliases to an account using customer_id and account_id.
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param addAccountAliasesRequest Payload to add aliases to account (required)
      * @return ApiResponse&lt;Account&gt;
@@ -216,8 +209,8 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Account> addAliasesWithHttpInfo(String customerId, String accountId, AddAccountAliasesRequest addAccountAliasesRequest) throws ApiException {
-        okhttp3.Call localVarCall = addAliasesValidateBeforeCall(customerId, accountId, addAccountAliasesRequest, null);
+    public ApiResponse<Account> addAliasesWithHttpInfo(String accountId, AddAccountAliasesRequest addAccountAliasesRequest) throws ApiException {
+        okhttp3.Call localVarCall = addAliasesValidateBeforeCall(accountId, addAccountAliasesRequest, null);
         Type localVarReturnType = new TypeToken<Account>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -225,7 +218,6 @@ public class AccountsApi {
     /**
      * Add Aliases to account (asynchronously)
      * Add aliases to an account using customer_id and account_id.
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param addAccountAliasesRequest Payload to add aliases to account (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -243,16 +235,15 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addAliasesAsync(String customerId, String accountId, AddAccountAliasesRequest addAccountAliasesRequest, final ApiCallback<Account> _callback) throws ApiException {
+    public okhttp3.Call addAliasesAsync(String accountId, AddAccountAliasesRequest addAccountAliasesRequest, final ApiCallback<Account> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addAliasesValidateBeforeCall(customerId, accountId, addAccountAliasesRequest, _callback);
+        okhttp3.Call localVarCall = addAliasesValidateBeforeCall(accountId, addAccountAliasesRequest, _callback);
         Type localVarReturnType = new TypeToken<Account>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for createAccount
-     * @param customerId  (required)
      * @param createAccountRequest Payload to create account (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -269,7 +260,7 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createAccountCall(String customerId, CreateAccountRequest createAccountRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createAccountCall(CreateAccountRequest createAccountRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -286,8 +277,7 @@ public class AccountsApi {
         Object localVarPostBody = createAccountRequest;
 
         // create path and map variables
-        String localVarPath = "/customers/{customer_id}/accounts"
-            .replace("{" + "customer_id" + "}", localVarApiClient.escapeString(customerId.toString()));
+        String localVarPath = "/accounts";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -316,25 +306,19 @@ public class AccountsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createAccountValidateBeforeCall(String customerId, CreateAccountRequest createAccountRequest, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling createAccount(Async)");
-        }
-
+    private okhttp3.Call createAccountValidateBeforeCall(CreateAccountRequest createAccountRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'createAccountRequest' is set
         if (createAccountRequest == null) {
             throw new ApiException("Missing the required parameter 'createAccountRequest' when calling createAccount(Async)");
         }
 
-        return createAccountCall(customerId, createAccountRequest, _callback);
+        return createAccountCall(createAccountRequest, _callback);
 
     }
 
     /**
      * Create an account
      * This API let’s you to create an account for a customer using customer_id.
-     * @param customerId  (required)
      * @param createAccountRequest Payload to create account (required)
      * @return Account
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -350,15 +334,14 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public Account createAccount(String customerId, CreateAccountRequest createAccountRequest) throws ApiException {
-        ApiResponse<Account> localVarResp = createAccountWithHttpInfo(customerId, createAccountRequest);
+    public Account createAccount(CreateAccountRequest createAccountRequest) throws ApiException {
+        ApiResponse<Account> localVarResp = createAccountWithHttpInfo(createAccountRequest);
         return localVarResp.getData();
     }
 
     /**
      * Create an account
      * This API let’s you to create an account for a customer using customer_id.
-     * @param customerId  (required)
      * @param createAccountRequest Payload to create account (required)
      * @return ApiResponse&lt;Account&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -374,8 +357,8 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Account> createAccountWithHttpInfo(String customerId, CreateAccountRequest createAccountRequest) throws ApiException {
-        okhttp3.Call localVarCall = createAccountValidateBeforeCall(customerId, createAccountRequest, null);
+    public ApiResponse<Account> createAccountWithHttpInfo(CreateAccountRequest createAccountRequest) throws ApiException {
+        okhttp3.Call localVarCall = createAccountValidateBeforeCall(createAccountRequest, null);
         Type localVarReturnType = new TypeToken<Account>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -383,7 +366,6 @@ public class AccountsApi {
     /**
      * Create an account (asynchronously)
      * This API let’s you to create an account for a customer using customer_id.
-     * @param customerId  (required)
      * @param createAccountRequest Payload to create account (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -400,16 +382,15 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createAccountAsync(String customerId, CreateAccountRequest createAccountRequest, final ApiCallback<Account> _callback) throws ApiException {
+    public okhttp3.Call createAccountAsync(CreateAccountRequest createAccountRequest, final ApiCallback<Account> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createAccountValidateBeforeCall(customerId, createAccountRequest, _callback);
+        okhttp3.Call localVarCall = createAccountValidateBeforeCall(createAccountRequest, _callback);
         Type localVarReturnType = new TypeToken<Account>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for deleteAccount
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -426,7 +407,7 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteAccountCall(String customerId, String accountId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteAccountCall(String accountId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -443,8 +424,7 @@ public class AccountsApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/customers/{customer_id}/accounts/{account_id}"
-            .replace("{" + "customer_id" + "}", localVarApiClient.escapeString(customerId.toString()))
+        String localVarPath = "/accounts/{account_id}"
             .replace("{" + "account_id" + "}", localVarApiClient.escapeString(accountId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -473,25 +453,19 @@ public class AccountsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteAccountValidateBeforeCall(String customerId, String accountId, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling deleteAccount(Async)");
-        }
-
+    private okhttp3.Call deleteAccountValidateBeforeCall(String accountId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountId' is set
         if (accountId == null) {
             throw new ApiException("Missing the required parameter 'accountId' when calling deleteAccount(Async)");
         }
 
-        return deleteAccountCall(customerId, accountId, _callback);
+        return deleteAccountCall(accountId, _callback);
 
     }
 
     /**
      * Delete an account
      * This API let’s you to delete a customer using customer_id and account_id.
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @return BaseSuccessResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -507,15 +481,14 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public BaseSuccessResponse deleteAccount(String customerId, String accountId) throws ApiException {
-        ApiResponse<BaseSuccessResponse> localVarResp = deleteAccountWithHttpInfo(customerId, accountId);
+    public BaseSuccessResponse deleteAccount(String accountId) throws ApiException {
+        ApiResponse<BaseSuccessResponse> localVarResp = deleteAccountWithHttpInfo(accountId);
         return localVarResp.getData();
     }
 
     /**
      * Delete an account
      * This API let’s you to delete a customer using customer_id and account_id.
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @return ApiResponse&lt;BaseSuccessResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -531,8 +504,8 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<BaseSuccessResponse> deleteAccountWithHttpInfo(String customerId, String accountId) throws ApiException {
-        okhttp3.Call localVarCall = deleteAccountValidateBeforeCall(customerId, accountId, null);
+    public ApiResponse<BaseSuccessResponse> deleteAccountWithHttpInfo(String accountId) throws ApiException {
+        okhttp3.Call localVarCall = deleteAccountValidateBeforeCall(accountId, null);
         Type localVarReturnType = new TypeToken<BaseSuccessResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -540,7 +513,6 @@ public class AccountsApi {
     /**
      * Delete an account (asynchronously)
      * This API let’s you to delete a customer using customer_id and account_id.
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -557,16 +529,15 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteAccountAsync(String customerId, String accountId, final ApiCallback<BaseSuccessResponse> _callback) throws ApiException {
+    public okhttp3.Call deleteAccountAsync(String accountId, final ApiCallback<BaseSuccessResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteAccountValidateBeforeCall(customerId, accountId, _callback);
+        okhttp3.Call localVarCall = deleteAccountValidateBeforeCall(accountId, _callback);
         Type localVarReturnType = new TypeToken<BaseSuccessResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for getAccount
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -583,7 +554,7 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAccountCall(String customerId, String accountId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAccountCall(String accountId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -600,8 +571,7 @@ public class AccountsApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/customers/{customer_id}/accounts/{account_id}"
-            .replace("{" + "customer_id" + "}", localVarApiClient.escapeString(customerId.toString()))
+        String localVarPath = "/accounts/{account_id}"
             .replace("{" + "account_id" + "}", localVarApiClient.escapeString(accountId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -630,25 +600,19 @@ public class AccountsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getAccountValidateBeforeCall(String customerId, String accountId, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling getAccount(Async)");
-        }
-
+    private okhttp3.Call getAccountValidateBeforeCall(String accountId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountId' is set
         if (accountId == null) {
             throw new ApiException("Missing the required parameter 'accountId' when calling getAccount(Async)");
         }
 
-        return getAccountCall(customerId, accountId, _callback);
+        return getAccountCall(accountId, _callback);
 
     }
 
     /**
      * Get an account
      * Get account information using customer_id and account_id.
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @return Account
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -664,15 +628,14 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public Account getAccount(String customerId, String accountId) throws ApiException {
-        ApiResponse<Account> localVarResp = getAccountWithHttpInfo(customerId, accountId);
+    public Account getAccount(String accountId) throws ApiException {
+        ApiResponse<Account> localVarResp = getAccountWithHttpInfo(accountId);
         return localVarResp.getData();
     }
 
     /**
      * Get an account
      * Get account information using customer_id and account_id.
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @return ApiResponse&lt;Account&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -688,8 +651,8 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Account> getAccountWithHttpInfo(String customerId, String accountId) throws ApiException {
-        okhttp3.Call localVarCall = getAccountValidateBeforeCall(customerId, accountId, null);
+    public ApiResponse<Account> getAccountWithHttpInfo(String accountId) throws ApiException {
+        okhttp3.Call localVarCall = getAccountValidateBeforeCall(accountId, null);
         Type localVarReturnType = new TypeToken<Account>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -697,7 +660,6 @@ public class AccountsApi {
     /**
      * Get an account (asynchronously)
      * Get account information using customer_id and account_id.
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -714,16 +676,15 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAccountAsync(String customerId, String accountId, final ApiCallback<Account> _callback) throws ApiException {
+    public okhttp3.Call getAccountAsync(String accountId, final ApiCallback<Account> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getAccountValidateBeforeCall(customerId, accountId, _callback);
+        okhttp3.Call localVarCall = getAccountValidateBeforeCall(accountId, _callback);
         Type localVarReturnType = new TypeToken<Account>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for getAccounts
-     * @param customerId  (required)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
      * @param _callback Callback for upload/download progress
@@ -741,7 +702,7 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAccountsCall(String customerId, String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAccountsCall(String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -758,8 +719,7 @@ public class AccountsApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/customers/{customer_id}/accounts"
-            .replace("{" + "customer_id" + "}", localVarApiClient.escapeString(customerId.toString()));
+        String localVarPath = "/accounts";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -795,20 +755,14 @@ public class AccountsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getAccountsValidateBeforeCall(String customerId, String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling getAccounts(Async)");
-        }
-
-        return getAccountsCall(customerId, nextToken, pageSize, _callback);
+    private okhttp3.Call getAccountsValidateBeforeCall(String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
+        return getAccountsCall(nextToken, pageSize, _callback);
 
     }
 
     /**
      * List accounts of customer
      * Returns a list of accounts of a customer with pagination and sort.
-     * @param customerId  (required)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
      * @return AccountPaginatedResponse
@@ -825,15 +779,14 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public AccountPaginatedResponse getAccounts(String customerId, String nextToken, BigDecimal pageSize) throws ApiException {
-        ApiResponse<AccountPaginatedResponse> localVarResp = getAccountsWithHttpInfo(customerId, nextToken, pageSize);
+    public AccountPaginatedResponse getAccounts(String nextToken, BigDecimal pageSize) throws ApiException {
+        ApiResponse<AccountPaginatedResponse> localVarResp = getAccountsWithHttpInfo(nextToken, pageSize);
         return localVarResp.getData();
     }
 
     /**
      * List accounts of customer
      * Returns a list of accounts of a customer with pagination and sort.
-     * @param customerId  (required)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
      * @return ApiResponse&lt;AccountPaginatedResponse&gt;
@@ -850,8 +803,8 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AccountPaginatedResponse> getAccountsWithHttpInfo(String customerId, String nextToken, BigDecimal pageSize) throws ApiException {
-        okhttp3.Call localVarCall = getAccountsValidateBeforeCall(customerId, nextToken, pageSize, null);
+    public ApiResponse<AccountPaginatedResponse> getAccountsWithHttpInfo(String nextToken, BigDecimal pageSize) throws ApiException {
+        okhttp3.Call localVarCall = getAccountsValidateBeforeCall(nextToken, pageSize, null);
         Type localVarReturnType = new TypeToken<AccountPaginatedResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -859,7 +812,6 @@ public class AccountsApi {
     /**
      * List accounts of customer (asynchronously)
      * Returns a list of accounts of a customer with pagination and sort.
-     * @param customerId  (required)
      * @param nextToken  (optional)
      * @param pageSize  (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -877,16 +829,194 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAccountsAsync(String customerId, String nextToken, BigDecimal pageSize, final ApiCallback<AccountPaginatedResponse> _callback) throws ApiException {
+    public okhttp3.Call getAccountsAsync(String nextToken, BigDecimal pageSize, final ApiCallback<AccountPaginatedResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getAccountsValidateBeforeCall(customerId, nextToken, pageSize, _callback);
+        okhttp3.Call localVarCall = getAccountsValidateBeforeCall(nextToken, pageSize, _callback);
         Type localVarReturnType = new TypeToken<AccountPaginatedResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
+     * Build call for getPricingSchedules
+     * @param accountId account_id corresponding to an account (required)
+     * @param nextToken  (optional)
+     * @param pageSize  (optional)
+     * @param startDate  (optional)
+     * @param endDate  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for list pricing schedules request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getPricingSchedulesCall(String accountId, String nextToken, BigDecimal pageSize, String startDate, String endDate, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/accounts/{account_id}/pricing_schedules"
+            .replace("{" + "account_id" + "}", localVarApiClient.escapeString(accountId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (nextToken != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("nextToken", nextToken));
+        }
+
+        if (pageSize != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("pageSize", pageSize));
+        }
+
+        if (startDate != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("start_date", startDate));
+        }
+
+        if (endDate != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("end_date", endDate));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getPricingSchedulesValidateBeforeCall(String accountId, String nextToken, BigDecimal pageSize, String startDate, String endDate, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'accountId' is set
+        if (accountId == null) {
+            throw new ApiException("Missing the required parameter 'accountId' when calling getPricingSchedules(Async)");
+        }
+
+        return getPricingSchedulesCall(accountId, nextToken, pageSize, startDate, endDate, _callback);
+
+    }
+
+    /**
+     * List pricing schedules of an account
+     * Returns a list of pricing schedules of an account with pagination and sort.
+     * @param accountId account_id corresponding to an account (required)
+     * @param nextToken  (optional)
+     * @param pageSize  (optional)
+     * @param startDate  (optional)
+     * @param endDate  (optional)
+     * @return PricingSchedulePaginatedResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for list pricing schedules request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public PricingSchedulePaginatedResponse getPricingSchedules(String accountId, String nextToken, BigDecimal pageSize, String startDate, String endDate) throws ApiException {
+        ApiResponse<PricingSchedulePaginatedResponse> localVarResp = getPricingSchedulesWithHttpInfo(accountId, nextToken, pageSize, startDate, endDate);
+        return localVarResp.getData();
+    }
+
+    /**
+     * List pricing schedules of an account
+     * Returns a list of pricing schedules of an account with pagination and sort.
+     * @param accountId account_id corresponding to an account (required)
+     * @param nextToken  (optional)
+     * @param pageSize  (optional)
+     * @param startDate  (optional)
+     * @param endDate  (optional)
+     * @return ApiResponse&lt;PricingSchedulePaginatedResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for list pricing schedules request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<PricingSchedulePaginatedResponse> getPricingSchedulesWithHttpInfo(String accountId, String nextToken, BigDecimal pageSize, String startDate, String endDate) throws ApiException {
+        okhttp3.Call localVarCall = getPricingSchedulesValidateBeforeCall(accountId, nextToken, pageSize, startDate, endDate, null);
+        Type localVarReturnType = new TypeToken<PricingSchedulePaginatedResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * List pricing schedules of an account (asynchronously)
+     * Returns a list of pricing schedules of an account with pagination and sort.
+     * @param accountId account_id corresponding to an account (required)
+     * @param nextToken  (optional)
+     * @param pageSize  (optional)
+     * @param startDate  (optional)
+     * @param endDate  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for list pricing schedules request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getPricingSchedulesAsync(String accountId, String nextToken, BigDecimal pageSize, String startDate, String endDate, final ApiCallback<PricingSchedulePaginatedResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getPricingSchedulesValidateBeforeCall(accountId, nextToken, pageSize, startDate, endDate, _callback);
+        Type localVarReturnType = new TypeToken<PricingSchedulePaginatedResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for removeAliases
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param removeAccountAliasesRequest Payload to remove aliases from account (required)
      * @param _callback Callback for upload/download progress
@@ -904,7 +1034,7 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call removeAliasesCall(String customerId, String accountId, RemoveAccountAliasesRequest removeAccountAliasesRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call removeAliasesCall(String accountId, RemoveAccountAliasesRequest removeAccountAliasesRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -921,8 +1051,7 @@ public class AccountsApi {
         Object localVarPostBody = removeAccountAliasesRequest;
 
         // create path and map variables
-        String localVarPath = "/customers/{customer_id}/accounts/{account_id}/remove_aliases"
-            .replace("{" + "customer_id" + "}", localVarApiClient.escapeString(customerId.toString()))
+        String localVarPath = "/accounts/{account_id}/remove_aliases"
             .replace("{" + "account_id" + "}", localVarApiClient.escapeString(accountId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -952,12 +1081,7 @@ public class AccountsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call removeAliasesValidateBeforeCall(String customerId, String accountId, RemoveAccountAliasesRequest removeAccountAliasesRequest, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling removeAliases(Async)");
-        }
-
+    private okhttp3.Call removeAliasesValidateBeforeCall(String accountId, RemoveAccountAliasesRequest removeAccountAliasesRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountId' is set
         if (accountId == null) {
             throw new ApiException("Missing the required parameter 'accountId' when calling removeAliases(Async)");
@@ -968,14 +1092,13 @@ public class AccountsApi {
             throw new ApiException("Missing the required parameter 'removeAccountAliasesRequest' when calling removeAliases(Async)");
         }
 
-        return removeAliasesCall(customerId, accountId, removeAccountAliasesRequest, _callback);
+        return removeAliasesCall(accountId, removeAccountAliasesRequest, _callback);
 
     }
 
     /**
      * Remove Aliases to account
      * Remove existing aliases tagged to an account using this API
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param removeAccountAliasesRequest Payload to remove aliases from account (required)
      * @return Account
@@ -992,15 +1115,14 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public Account removeAliases(String customerId, String accountId, RemoveAccountAliasesRequest removeAccountAliasesRequest) throws ApiException {
-        ApiResponse<Account> localVarResp = removeAliasesWithHttpInfo(customerId, accountId, removeAccountAliasesRequest);
+    public Account removeAliases(String accountId, RemoveAccountAliasesRequest removeAccountAliasesRequest) throws ApiException {
+        ApiResponse<Account> localVarResp = removeAliasesWithHttpInfo(accountId, removeAccountAliasesRequest);
         return localVarResp.getData();
     }
 
     /**
      * Remove Aliases to account
      * Remove existing aliases tagged to an account using this API
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param removeAccountAliasesRequest Payload to remove aliases from account (required)
      * @return ApiResponse&lt;Account&gt;
@@ -1017,8 +1139,8 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Account> removeAliasesWithHttpInfo(String customerId, String accountId, RemoveAccountAliasesRequest removeAccountAliasesRequest) throws ApiException {
-        okhttp3.Call localVarCall = removeAliasesValidateBeforeCall(customerId, accountId, removeAccountAliasesRequest, null);
+    public ApiResponse<Account> removeAliasesWithHttpInfo(String accountId, RemoveAccountAliasesRequest removeAccountAliasesRequest) throws ApiException {
+        okhttp3.Call localVarCall = removeAliasesValidateBeforeCall(accountId, removeAccountAliasesRequest, null);
         Type localVarReturnType = new TypeToken<Account>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1026,7 +1148,6 @@ public class AccountsApi {
     /**
      * Remove Aliases to account (asynchronously)
      * Remove existing aliases tagged to an account using this API
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param removeAccountAliasesRequest Payload to remove aliases from account (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -1044,16 +1165,15 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call removeAliasesAsync(String customerId, String accountId, RemoveAccountAliasesRequest removeAccountAliasesRequest, final ApiCallback<Account> _callback) throws ApiException {
+    public okhttp3.Call removeAliasesAsync(String accountId, RemoveAccountAliasesRequest removeAccountAliasesRequest, final ApiCallback<Account> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = removeAliasesValidateBeforeCall(customerId, accountId, removeAccountAliasesRequest, _callback);
+        okhttp3.Call localVarCall = removeAliasesValidateBeforeCall(accountId, removeAccountAliasesRequest, _callback);
         Type localVarReturnType = new TypeToken<Account>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for updateAccount
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param updateAccountRequest Payload to update account (required)
      * @param _callback Callback for upload/download progress
@@ -1071,7 +1191,7 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateAccountCall(String customerId, String accountId, UpdateAccountRequest updateAccountRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateAccountCall(String accountId, UpdateAccountRequest updateAccountRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1088,8 +1208,7 @@ public class AccountsApi {
         Object localVarPostBody = updateAccountRequest;
 
         // create path and map variables
-        String localVarPath = "/customers/{customer_id}/accounts/{account_id}"
-            .replace("{" + "customer_id" + "}", localVarApiClient.escapeString(customerId.toString()))
+        String localVarPath = "/accounts/{account_id}"
             .replace("{" + "account_id" + "}", localVarApiClient.escapeString(accountId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1119,12 +1238,7 @@ public class AccountsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateAccountValidateBeforeCall(String customerId, String accountId, UpdateAccountRequest updateAccountRequest, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling updateAccount(Async)");
-        }
-
+    private okhttp3.Call updateAccountValidateBeforeCall(String accountId, UpdateAccountRequest updateAccountRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountId' is set
         if (accountId == null) {
             throw new ApiException("Missing the required parameter 'accountId' when calling updateAccount(Async)");
@@ -1135,14 +1249,13 @@ public class AccountsApi {
             throw new ApiException("Missing the required parameter 'updateAccountRequest' when calling updateAccount(Async)");
         }
 
-        return updateAccountCall(customerId, accountId, updateAccountRequest, _callback);
+        return updateAccountCall(accountId, updateAccountRequest, _callback);
 
     }
 
     /**
      * Update an account
      * This API let’s you to update an account’s information using customer_id and account_id.
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param updateAccountRequest Payload to update account (required)
      * @return Account
@@ -1159,15 +1272,14 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public Account updateAccount(String customerId, String accountId, UpdateAccountRequest updateAccountRequest) throws ApiException {
-        ApiResponse<Account> localVarResp = updateAccountWithHttpInfo(customerId, accountId, updateAccountRequest);
+    public Account updateAccount(String accountId, UpdateAccountRequest updateAccountRequest) throws ApiException {
+        ApiResponse<Account> localVarResp = updateAccountWithHttpInfo(accountId, updateAccountRequest);
         return localVarResp.getData();
     }
 
     /**
      * Update an account
      * This API let’s you to update an account’s information using customer_id and account_id.
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param updateAccountRequest Payload to update account (required)
      * @return ApiResponse&lt;Account&gt;
@@ -1184,8 +1296,8 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Account> updateAccountWithHttpInfo(String customerId, String accountId, UpdateAccountRequest updateAccountRequest) throws ApiException {
-        okhttp3.Call localVarCall = updateAccountValidateBeforeCall(customerId, accountId, updateAccountRequest, null);
+    public ApiResponse<Account> updateAccountWithHttpInfo(String accountId, UpdateAccountRequest updateAccountRequest) throws ApiException {
+        okhttp3.Call localVarCall = updateAccountValidateBeforeCall(accountId, updateAccountRequest, null);
         Type localVarReturnType = new TypeToken<Account>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1193,7 +1305,6 @@ public class AccountsApi {
     /**
      * Update an account (asynchronously)
      * This API let’s you to update an account’s information using customer_id and account_id.
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param updateAccountRequest Payload to update account (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -1211,16 +1322,15 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateAccountAsync(String customerId, String accountId, UpdateAccountRequest updateAccountRequest, final ApiCallback<Account> _callback) throws ApiException {
+    public okhttp3.Call updateAccountAsync(String accountId, UpdateAccountRequest updateAccountRequest, final ApiCallback<Account> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateAccountValidateBeforeCall(customerId, accountId, updateAccountRequest, _callback);
+        okhttp3.Call localVarCall = updateAccountValidateBeforeCall(accountId, updateAccountRequest, _callback);
         Type localVarReturnType = new TypeToken<Account>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for updatePricingSchedule
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param updatePricingScheduleRequest Payload to dis/associate a price plan to an account (required)
      * @param _callback Callback for upload/download progress
@@ -1238,7 +1348,7 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updatePricingScheduleCall(String customerId, String accountId, UpdatePricingScheduleRequest updatePricingScheduleRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updatePricingScheduleCall(String accountId, UpdatePricingScheduleRequest updatePricingScheduleRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1255,8 +1365,7 @@ public class AccountsApi {
         Object localVarPostBody = updatePricingScheduleRequest;
 
         // create path and map variables
-        String localVarPath = "/customers/{customer_id}/accounts/{account_id}/price_plans"
-            .replace("{" + "customer_id" + "}", localVarApiClient.escapeString(customerId.toString()))
+        String localVarPath = "/accounts/{account_id}/price_plans"
             .replace("{" + "account_id" + "}", localVarApiClient.escapeString(accountId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1286,12 +1395,7 @@ public class AccountsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updatePricingScheduleValidateBeforeCall(String customerId, String accountId, UpdatePricingScheduleRequest updatePricingScheduleRequest, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling updatePricingSchedule(Async)");
-        }
-
+    private okhttp3.Call updatePricingScheduleValidateBeforeCall(String accountId, UpdatePricingScheduleRequest updatePricingScheduleRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountId' is set
         if (accountId == null) {
             throw new ApiException("Missing the required parameter 'accountId' when calling updatePricingSchedule(Async)");
@@ -1302,14 +1406,13 @@ public class AccountsApi {
             throw new ApiException("Missing the required parameter 'updatePricingScheduleRequest' when calling updatePricingSchedule(Async)");
         }
 
-        return updatePricingScheduleCall(customerId, accountId, updatePricingScheduleRequest, _callback);
+        return updatePricingScheduleCall(accountId, updatePricingScheduleRequest, _callback);
 
     }
 
     /**
      * Dis/associate a plan from/to an account
      * This API let’s you to detach/attach a price plan from/to an existing account
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param updatePricingScheduleRequest Payload to dis/associate a price plan to an account (required)
      * @return UpdatePricingScheduleResponse
@@ -1326,15 +1429,14 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public UpdatePricingScheduleResponse updatePricingSchedule(String customerId, String accountId, UpdatePricingScheduleRequest updatePricingScheduleRequest) throws ApiException {
-        ApiResponse<UpdatePricingScheduleResponse> localVarResp = updatePricingScheduleWithHttpInfo(customerId, accountId, updatePricingScheduleRequest);
+    public UpdatePricingScheduleResponse updatePricingSchedule(String accountId, UpdatePricingScheduleRequest updatePricingScheduleRequest) throws ApiException {
+        ApiResponse<UpdatePricingScheduleResponse> localVarResp = updatePricingScheduleWithHttpInfo(accountId, updatePricingScheduleRequest);
         return localVarResp.getData();
     }
 
     /**
      * Dis/associate a plan from/to an account
      * This API let’s you to detach/attach a price plan from/to an existing account
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param updatePricingScheduleRequest Payload to dis/associate a price plan to an account (required)
      * @return ApiResponse&lt;UpdatePricingScheduleResponse&gt;
@@ -1351,8 +1453,8 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UpdatePricingScheduleResponse> updatePricingScheduleWithHttpInfo(String customerId, String accountId, UpdatePricingScheduleRequest updatePricingScheduleRequest) throws ApiException {
-        okhttp3.Call localVarCall = updatePricingScheduleValidateBeforeCall(customerId, accountId, updatePricingScheduleRequest, null);
+    public ApiResponse<UpdatePricingScheduleResponse> updatePricingScheduleWithHttpInfo(String accountId, UpdatePricingScheduleRequest updatePricingScheduleRequest) throws ApiException {
+        okhttp3.Call localVarCall = updatePricingScheduleValidateBeforeCall(accountId, updatePricingScheduleRequest, null);
         Type localVarReturnType = new TypeToken<UpdatePricingScheduleResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1360,7 +1462,6 @@ public class AccountsApi {
     /**
      * Dis/associate a plan from/to an account (asynchronously)
      * This API let’s you to detach/attach a price plan from/to an existing account
-     * @param customerId  (required)
      * @param accountId account_id corresponding to an account (required)
      * @param updatePricingScheduleRequest Payload to dis/associate a price plan to an account (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -1378,9 +1479,166 @@ public class AccountsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updatePricingScheduleAsync(String customerId, String accountId, UpdatePricingScheduleRequest updatePricingScheduleRequest, final ApiCallback<UpdatePricingScheduleResponse> _callback) throws ApiException {
+    public okhttp3.Call updatePricingScheduleAsync(String accountId, UpdatePricingScheduleRequest updatePricingScheduleRequest, final ApiCallback<UpdatePricingScheduleResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updatePricingScheduleValidateBeforeCall(customerId, accountId, updatePricingScheduleRequest, _callback);
+        okhttp3.Call localVarCall = updatePricingScheduleValidateBeforeCall(accountId, updatePricingScheduleRequest, _callback);
+        Type localVarReturnType = new TypeToken<UpdatePricingScheduleResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updatePricingScheduleBatch
+     * @param accountId account_id corresponding to an account (required)
+     * @param editPricingScheduleRequest Payload to dis/associate one or more price plans to an account (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for edit pricing schedule request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updatePricingScheduleBatchCall(String accountId, EditPricingScheduleRequest editPricingScheduleRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = editPricingScheduleRequest;
+
+        // create path and map variables
+        String localVarPath = "/accounts/{account_id}/edit_schedules"
+            .replace("{" + "account_id" + "}", localVarApiClient.escapeString(accountId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updatePricingScheduleBatchValidateBeforeCall(String accountId, EditPricingScheduleRequest editPricingScheduleRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'accountId' is set
+        if (accountId == null) {
+            throw new ApiException("Missing the required parameter 'accountId' when calling updatePricingScheduleBatch(Async)");
+        }
+
+        // verify the required parameter 'editPricingScheduleRequest' is set
+        if (editPricingScheduleRequest == null) {
+            throw new ApiException("Missing the required parameter 'editPricingScheduleRequest' when calling updatePricingScheduleBatch(Async)");
+        }
+
+        return updatePricingScheduleBatchCall(accountId, editPricingScheduleRequest, _callback);
+
+    }
+
+    /**
+     * Edit schedules of an account.
+     * This API let’s you to detach/attach one or more price plans from/to an existing account
+     * @param accountId account_id corresponding to an account (required)
+     * @param editPricingScheduleRequest Payload to dis/associate one or more price plans to an account (required)
+     * @return UpdatePricingScheduleResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for edit pricing schedule request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public UpdatePricingScheduleResponse updatePricingScheduleBatch(String accountId, EditPricingScheduleRequest editPricingScheduleRequest) throws ApiException {
+        ApiResponse<UpdatePricingScheduleResponse> localVarResp = updatePricingScheduleBatchWithHttpInfo(accountId, editPricingScheduleRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Edit schedules of an account.
+     * This API let’s you to detach/attach one or more price plans from/to an existing account
+     * @param accountId account_id corresponding to an account (required)
+     * @param editPricingScheduleRequest Payload to dis/associate one or more price plans to an account (required)
+     * @return ApiResponse&lt;UpdatePricingScheduleResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for edit pricing schedule request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<UpdatePricingScheduleResponse> updatePricingScheduleBatchWithHttpInfo(String accountId, EditPricingScheduleRequest editPricingScheduleRequest) throws ApiException {
+        okhttp3.Call localVarCall = updatePricingScheduleBatchValidateBeforeCall(accountId, editPricingScheduleRequest, null);
+        Type localVarReturnType = new TypeToken<UpdatePricingScheduleResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Edit schedules of an account. (asynchronously)
+     * This API let’s you to detach/attach one or more price plans from/to an existing account
+     * @param accountId account_id corresponding to an account (required)
+     * @param editPricingScheduleRequest Payload to dis/associate one or more price plans to an account (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for edit pricing schedule request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updatePricingScheduleBatchAsync(String accountId, EditPricingScheduleRequest editPricingScheduleRequest, final ApiCallback<UpdatePricingScheduleResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updatePricingScheduleBatchValidateBeforeCall(accountId, editPricingScheduleRequest, _callback);
         Type localVarReturnType = new TypeToken<UpdatePricingScheduleResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

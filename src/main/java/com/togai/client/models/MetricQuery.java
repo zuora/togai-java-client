@@ -236,7 +236,7 @@ public class MetricQuery implements Serializable {
   }
 
    /**
-   * Configurations. | Metric Name | Config Key | Allowed Values  | Default value |              Description          | |-------------|------------|-----------------|---------------|-----------------------------------| | REVENUE     | CURRENCY   | BASE or INVOICE | BASE          | currency to return the revenue in | 
+   * Configurations. | Metric Name       | Config Key | Allowed Values  | Default value |              Description          | |-------------------|------------|-----------------|---------------|-----------------------------------| | REVENUE           | CURRENCY   | BASE or INVOICE | BASE          | currency to return the revenue in | | REVENUE_FOR_CYCLE | CURRENCY   | BASE or INVOICE | BASE          | currency to return the revenue in | 
    * @return configs
   **/
   @javax.annotation.Nullable

@@ -31,8 +31,8 @@ tags:
   name: Price Plans
 - description: Settings
   name: Settings
-- description: Miscellaneous
-  name: Miscellaneous
+- description: Price Experimentation apis
+  name: Price Experimentation
 - description: APIs for getting events ingested in Togai
   externalDocs:
     description: docs
@@ -519,7 +519,7 @@ paths:
       - Customers
       x-content-type: application/json
       x-accepts: application/json
-  /customers/{customer_id}/accounts:
+  /accounts:
     get:
       description: Returns a list of accounts of a customer with pagination and sort.
       operationId: getAccounts
@@ -540,15 +540,6 @@ paths:
           example: 10
           type: number
         style: form
-      - content:
-          application/json:
-            schema:
-              example: 01BX5ZZKBKACTAV9WEVGEMMVRZ
-              maxLength: 50
-              type: string
-        in: path
-        name: customer_id
-        required: true
       responses:
         "200":
           content:
@@ -633,16 +624,6 @@ paths:
     post:
       description: This API let’s you to create an account for a customer using customer_id.
       operationId: createAccount
-      parameters:
-      - content:
-          application/json:
-            schema:
-              example: 01BX5ZZKBKACTAV9WEVGEMMVRZ
-              maxLength: 50
-              type: string
-        in: path
-        name: customer_id
-        required: true
       requestBody:
         $ref: '#/components/requestBodies/CreateAccountRequest'
       responses:
@@ -727,20 +708,11 @@ paths:
       - Accounts
       x-content-type: application/json
       x-accepts: application/json
-  /customers/{customer_id}/accounts/{account_id}:
+  /accounts/{account_id}:
     delete:
       description: This API let’s you to delete a customer using customer_id and account_id.
       operationId: deleteAccount
       parameters:
-      - content:
-          application/json:
-            schema:
-              example: 01BX5ZZKBKACTAV9WEVGEMMVRZ
-              maxLength: 50
-              type: string
-        in: path
-        name: customer_id
-        required: true
       - content:
           application/json:
             schema:
@@ -832,15 +804,6 @@ paths:
       description: Get account information using customer_id and account_id.
       operationId: getAccount
       parameters:
-      - content:
-          application/json:
-            schema:
-              example: 01BX5ZZKBKACTAV9WEVGEMMVRZ
-              maxLength: 50
-              type: string
-        in: path
-        name: customer_id
-        required: true
       - content:
           application/json:
             schema:
@@ -940,15 +903,6 @@ paths:
       - content:
           application/json:
             schema:
-              example: 01BX5ZZKBKACTAV9WEVGEMMVRZ
-              maxLength: 50
-              type: string
-        in: path
-        name: customer_id
-        required: true
-      - content:
-          application/json:
-            schema:
               example: ACC00001
               maxLength: 50
               type: string
@@ -1040,20 +994,11 @@ paths:
       - Accounts
       x-content-type: application/json
       x-accepts: application/json
-  /customers/{customer_id}/accounts/{account_id}/add_aliases:
+  /accounts/{account_id}/add_aliases:
     post:
       description: Add aliases to an account using customer_id and account_id.
       operationId: addAliases
       parameters:
-      - content:
-          application/json:
-            schema:
-              example: 01BX5ZZKBKACTAV9WEVGEMMVRZ
-              maxLength: 50
-              type: string
-        in: path
-        name: customer_id
-        required: true
       - content:
           application/json:
             schema:
@@ -1148,20 +1093,11 @@ paths:
       - Accounts
       x-content-type: application/json
       x-accepts: application/json
-  /customers/{customer_id}/accounts/{account_id}/remove_aliases:
+  /accounts/{account_id}/remove_aliases:
     post:
       description: Remove existing aliases tagged to an account using this API
       operationId: removeAliases
       parameters:
-      - content:
-          application/json:
-            schema:
-              example: 01BX5ZZKBKACTAV9WEVGEMMVRZ
-              maxLength: 50
-              type: string
-        in: path
-        name: customer_id
-        required: true
       - content:
           application/json:
             schema:
@@ -1256,21 +1192,12 @@ paths:
       - Accounts
       x-content-type: application/json
       x-accepts: application/json
-  /customers/{customer_id}/accounts/{account_id}/price_plans:
+  /accounts/{account_id}/price_plans:
     post:
       description: This API let’s you to detach/attach a price plan from/to an existing
         account
       operationId: updatePricingSchedule
       parameters:
-      - content:
-          application/json:
-            schema:
-              example: 01BX5ZZKBKACTAV9WEVGEMMVRZ
-              maxLength: 50
-              type: string
-        in: path
-        name: customer_id
-        required: true
       - content:
           application/json:
             schema:
@@ -1364,6 +1291,235 @@ paths:
       tags:
       - Accounts
       x-content-type: application/json
+      x-accepts: application/json
+  /accounts/{account_id}/edit_schedules:
+    post:
+      description: This API let’s you to detach/attach one or more price plans from/to
+        an existing account
+      operationId: updatePricingScheduleBatch
+      parameters:
+      - content:
+          application/json:
+            schema:
+              example: ACC00001
+              maxLength: 50
+              type: string
+        description: account_id corresponding to an account
+        in: path
+        name: account_id
+        required: true
+      requestBody:
+        $ref: '#/components/requestBodies/EditPricingScheduleRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                UpdatePricingScheduleResponse:
+                  $ref: '#/components/examples/UpdatePricingScheduleResponse'
+                  value: null
+              schema:
+                $ref: '#/components/schemas/UpdatePricingScheduleResponse'
+          description: Response for edit pricing schedule request
+        "400":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "401":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "403":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "404":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "429":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        default:
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+      summary: Edit schedules of an account.
+      tags:
+      - Accounts
+      x-content-type: application/json
+      x-accepts: application/json
+  /accounts/{account_id}/pricing_schedules:
+    get:
+      description: Returns a list of pricing schedules of an account with pagination
+        and sort.
+      operationId: getPricingSchedules
+      parameters:
+      - explode: true
+        in: query
+        name: nextToken
+        required: false
+        schema:
+          example: eyJsYXN0SXRlbUlkIjogInN0cmluZyIsICJwYWdlU2l6ZSI6IDEwMCwgInNvcnRPcmRlciI6ICJhc2MifQ==
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          example: 10
+          type: number
+        style: form
+      - content:
+          application/json:
+            schema:
+              example: ACC00001
+              maxLength: 50
+              type: string
+        description: account_id corresponding to an account
+        in: path
+        name: account_id
+        required: true
+      - explode: true
+        in: query
+        name: start_date
+        required: false
+        schema:
+          example: 2023-03-30T10:41:10.088499
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: end_date
+        required: false
+        schema:
+          example: 2099-03-30T10:41:10.088499
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                PricingSchedulePaginatedResponse:
+                  $ref: '#/components/examples/PricingSchedulePaginatedResponse'
+                  value: null
+              schema:
+                $ref: '#/components/schemas/PricingSchedulePaginatedResponse'
+          description: Response for list pricing schedules request
+        "400":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "401":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "403":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "404":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "429":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        default:
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+      summary: List pricing schedules of an account
+      tags:
+      - Accounts
       x-accepts: application/json
   /event_schema:
     get:
@@ -2149,7 +2305,7 @@ paths:
       tags:
       - Event Schemas
       x-accepts: application/json
-  /event_schema/{event_schema_name}/usage_meters:
+  /usage_meters:
     get:
       description: Get a list of usage meters associated with an event schema
       operationId: getUsageMetersForEventSchema
@@ -2178,15 +2334,6 @@ paths:
           - SUM
           type: string
         style: form
-      - content:
-          application/json:
-            schema:
-              example: rides
-              maxLength: 50
-              type: string
-        in: path
-        name: event_schema_name
-        required: true
       - explode: true
         in: query
         name: nextToken
@@ -2287,16 +2434,6 @@ paths:
     post:
       description: Create an usage meter and associate with an event schema
       operationId: createUsageMeter
-      parameters:
-      - content:
-          application/json:
-            schema:
-              example: rides
-              maxLength: 50
-              type: string
-        in: path
-        name: event_schema_name
-        required: true
       requestBody:
         $ref: '#/components/requestBodies/CreateUsageMeterRequest'
       responses:
@@ -2381,20 +2518,101 @@ paths:
       - Usage Meters
       x-content-type: application/json
       x-accepts: application/json
-  /event_schema/{event_schema_name}/usage_meters/{usage_meter_id}:
-    get:
-      description: Get an usage meter using event schema name and usage meter id.
-      operationId: getUsageMeter
+  /usage_meters/{usage_meter_id}:
+    delete:
+      description: Delete an Usage Meter
+      operationId: deleteUsageMeter
       parameters:
       - content:
           application/json:
             schema:
-              example: rides
+              example: um.1zYnCiM9Bpg.1zYn
               maxLength: 50
               type: string
         in: path
-        name: event_schema_name
+        name: usage_meter_id
         required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseSuccessResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "401":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "403":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "404":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "429":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        default:
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+      summary: Delete an Usage Meter
+      tags:
+      - Usage Meters
+      x-accepts: application/json
+    get:
+      description: Get an usage meter using event schema name and usage meter id.
+      operationId: getUsageMeter
+      parameters:
       - content:
           application/json:
             schema:
@@ -2492,15 +2710,6 @@ paths:
       - content:
           application/json:
             schema:
-              example: rides
-              maxLength: 50
-              type: string
-        in: path
-        name: event_schema_name
-        required: true
-      - content:
-          application/json:
-            schema:
               example: um.1zYnCiM9Bpg.1zYn
               maxLength: 50
               type: string
@@ -2591,20 +2800,11 @@ paths:
       - Usage Meters
       x-content-type: application/json
       x-accepts: application/json
-  /event_schema/{event_schema_name}/usage_meters/{usage_meter_id}/activate:
+  /usage_meters/{usage_meter_id}/activate:
     post:
       description: Activate usage meter
       operationId: activateUsageMeter
       parameters:
-      - content:
-          application/json:
-            schema:
-              example: rides
-              maxLength: 50
-              type: string
-        in: path
-        name: event_schema_name
-        required: true
       - content:
           application/json:
             schema:
@@ -2695,22 +2895,13 @@ paths:
       tags:
       - Usage Meters
       x-accepts: application/json
-  /event_schema/{event_schema_name}/usage_meters/{usage_meter_id}/deactivate:
+  /usage_meters/{usage_meter_id}/deactivate:
     post:
       description: |
         Make an existing active usage meter to be inactive
         Active Usage Meters with active Pricing Plan attached can also be deactivated.
       operationId: deactivateUsageMeter
       parameters:
-      - content:
-          application/json:
-            schema:
-              example: rides
-              maxLength: 50
-              type: string
-        in: path
-        name: event_schema_name
-        required: true
       - content:
           application/json:
             schema:
@@ -3006,6 +3197,17 @@ paths:
         in: path
         name: price_plan_id
         required: true
+      - content:
+          application/json:
+            schema:
+              example: 2
+              format: int32
+              type: integer
+        description: Optional version to get a specific version. Gets latest version
+          if it is not provided.
+        in: query
+        name: version
+        required: false
       responses:
         "200":
           content:
@@ -4454,7 +4656,7 @@ paths:
           description: Error response
       summary: Calculate and return the revenue for a existing or new price plan
       tags:
-      - Miscellaneous
+      - Price Experimentation
       x-content-type: application/json
       x-accepts: application/json
   /ingest:
@@ -4478,12 +4680,16 @@ paths:
         required: true
       responses:
         "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestEventResponse'
           description: Successfully accepted to process all the events from payload.
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/IngestEventResponse'
           description: Bad request. Please check the response message for failure
             details.
         "401":
@@ -4555,21 +4761,21 @@ paths:
           content:
             application/json:
               example:
-                errors: []
+                success: true
               schema:
-                $ref: '#/components/schemas/IngestBatchEventResponse'
+                $ref: '#/components/schemas/IngestEventResponse'
           description: Successfully accepted to process all the events from payload.
         "207":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IngestBatchEventResponse'
+                $ref: '#/components/schemas/IngestEventResponse'
           description: Partial failure. Few events from request were not accepted
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/IngestEventResponse'
           description: Bad request. Please check the response message for failure
             details.
         "401":
@@ -4804,10 +5010,10 @@ paths:
       x-accepts: application/json
   /metrics:
     post:
-      description: "Togai Metrics API allows you to fetch different metrics from Events\
-        \ , Usage Meters and PricePlans with multiple queryable options.\nA single\
-        \ request can query up to five metrics. \nSingle response can contain a maximum\
-        \ of 100 data points.\n"
+      description: "Togai Metrics API allows you to fetch different metrics from Events,\
+        \ Usage Meters and PricePlans with multiple queryable options.\nA single request\
+        \ can query up to five metrics. \nSingle response can contain a maximum of\
+        \ 100 data points.\n"
       operationId: getMetrics
       requestBody:
         $ref: '#/components/requestBodies/GetMetricsRequest'
@@ -5094,6 +5300,202 @@ paths:
       summary: Get an invoice
       tags:
       - Invoices
+      x-accepts: application/json
+  /invoices/{invoice_id}/miscellaneous_charges:
+    put:
+      description: Add or update miscellaneous charges in Invoice
+      operationId: manageMiscellaneousChargesInInvoice
+      parameters:
+      - content:
+          application/json:
+            schema:
+              example: ACC001
+              type: string
+        in: path
+        name: invoice_id
+        required: true
+      requestBody:
+        $ref: '#/components/requestBodies/ManageMiscellaneousChargesRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                MiscellaneousChargesResponse:
+                  $ref: '#/components/examples/MiscellaneousChargesResponse'
+                  value: null
+              schema:
+                $ref: '#/components/schemas/MiscellaneousChargesResponse'
+          description: Response for Miscellaneous Charges Request
+        "400":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "401":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "403":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "404":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "429":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        default:
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+      summary: Add or update miscellaneous charges in Invoice
+      tags:
+      - Invoices
+      x-content-type: application/json
+      x-accepts: application/json
+  /accounts/{account_id}/miscellaneous_charges:
+    put:
+      description: Add or update miscellaneous charges in upcoming Invoice for a account
+      operationId: manageMiscellaneousChargesInAccount
+      parameters:
+      - content:
+          application/json:
+            schema:
+              example: ACC00001
+              maxLength: 50
+              type: string
+        description: account_id corresponding to an account
+        in: path
+        name: account_id
+        required: true
+      requestBody:
+        $ref: '#/components/requestBodies/ManageMiscellaneousChargesRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                MiscellaneousChargesResponse:
+                  $ref: '#/components/examples/MiscellaneousChargesResponse'
+                  value: null
+              schema:
+                $ref: '#/components/schemas/MiscellaneousChargesResponse'
+          description: Response for Miscellaneous Charges Request
+        "400":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "401":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "403":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "404":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        "429":
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+        default:
+          content:
+            application/json:
+              examples:
+                ErrorResponse:
+                  summary: Error message
+                  value:
+                    message: <Reason message>
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error response
+      summary: Add or update miscellaneous charges in upcoming Invoice for a account
+      tags:
+      - Invoices
+      x-content-type: application/json
       x-accepts: application/json
   /credits:
     get:
@@ -5641,10 +6043,24 @@ components:
         name: ACME Enterprise
         primaryEmail: admin@example.com
         billingAddress: 201 Bleeker Street
+    CreateAccountRequestWithoutCustomerId:
+      value:
+        id: ACC00001
+        name: Primary Account
+        aliases:
+        - acme_primary
+        - acme_1
+        settings:
+        - id: accountSettingId
+          value: INR
+          namespace: USER
+          name: Settings Name
+          dataType: STRING
     CreateAccountRequest:
       value:
         id: ACC00001
         name: Primary Account
+        customerId: C1234qwd
         aliases:
         - acme_primary
         - acme_1
@@ -5731,6 +6147,7 @@ components:
         description: Cab rides
         type: COUNTER
         aggregation: SUM
+        eventSchemaName: evfhr123d
         computations:
         - matcher: |
             {
@@ -5783,6 +6200,7 @@ components:
               dayOffset: "6"
               monthOffset: NIL
             gracePeriod: 3
+        mode: IMMEDIATE_IGNORE_OVERRIDE
     ActivatePricePlanRequest:
       value:
         currencies:
@@ -5799,6 +6217,7 @@ components:
           mode: PRICE_PLAN
           pricePlanId: pp.fdhkf.djf
           effectiveOn: {}
+          pricingCycleOrdinal: 1
         usageConfig:
           mode: CUSTOM
           usageMap:
@@ -5812,6 +6231,7 @@ components:
           accountId: ACC00001
         pricePlanDetailsConfig:
           mode: CUSTOM
+          pricingCycleOrdinal: 1
           pricePlanDetails:
             supportedCurrencies:
             - USD
@@ -5868,6 +6288,16 @@ components:
         mode: DISASSOCIATE
         effectiveFrom: 2022-07-04
         effectiveUntil: 2022-10-04
+    EditPricingScheduleRequest:
+      value:
+        edits:
+        - mode: ASSOCIATE
+          pricePlanId: pp.1zYnCiM9Bpg.lv25y
+          effectiveFrom: 2022-07-04
+          effectiveUntil: 2022-10-04
+        - mode: DISASSOCIATE
+          effectiveFrom: 2022-08-04
+          effectiveUntil: 2022-09-04
     AddCurrencyToPricePlanRequest:
       value:
         currency: USD
@@ -5916,12 +6346,12 @@ components:
           aliases:
           - alias: G234DZZKBKACATFFGVGEMERFH
             status: ACTIVE
-            settings:
-            - id: accountSettingId
-              value: INR
-              namespace: USER
-              name: Settings Name
-              dataType: STRING
+          settings:
+          - id: accountSettingId
+            value: INR
+            namespace: USER
+            name: Settings Name
+            dataType: STRING
     CustomerPaginatedResponse:
       value:
         data:
@@ -5991,6 +6421,14 @@ components:
         context:
           pageSize: 10
     UpdatePricingScheduleResponse:
+      value:
+        accountId: G234DZZKBKACATFFGVGEMERFI
+        accountName: ACME Enterprise - Account2
+        pricingSchedules:
+        - pricePlanId: pp.1zYnCiM9Bpg.lv25y
+          startDate: 2022-12-02T00:00:00Z
+          endDate: 9999-01-01T00:00:00Z
+    EditPricingScheduleResponse:
       value:
         accountId: G234DZZKBKACATFFGVGEMERFI
         accountName: ACME Enterprise - Account2
@@ -6171,6 +6609,49 @@ components:
           updatedAt: 2020-01-01T00:00:00Z
           createdAt: 2020-01-01T00:00:00Z
         nextToken: eyJsYXN0SXRlbUlkIjogInN0cmluZyIsICJwYWdlU2l6ZSI6IDEwMCwgInNvcnRPcmRlciI6ICJhc2MifQ==
+    PricingSchedulePaginatedResponse:
+      value:
+        data:
+        - pricePlanId: pp.bs8932bf328
+        - startDate: 2080-10-04T00:00:00Z
+          endDate: 2099-10-04T00:00:00Z
+          pricePlanDetails:
+            supportedCurrencies:
+            - USD
+            activeCurrencies:
+            - USD
+            pricingCycleConfig:
+              interval: MONTHLY
+              startOffset:
+                dayOffset: "4"
+                monthOffset: NIL
+              gracePeriod: 3
+            usageRateCards:
+            - displayName: Local Rides
+              usageMeterId: um.1zYnCiM9Bpg.1zYn
+              ratePlan:
+                pricingModel: TIERED
+                slabs:
+                - order: 1
+                  startAfter: 0
+                  priceType: FLAT
+              rateValues:
+              - currency: USD
+                slabRates:
+                - rate: 40
+                  order: 1
+            fixedFeeRateCards:
+            - id: addon.2077efUBMXo.DyzlZ
+              displayName: Maintenance
+              rateValues:
+              - currency: USD
+                rate: 10
+            minimumCommitment:
+              displayName: Minimum Commitment
+              rateValues:
+              - currency: USD
+                rate: 10
+        nextToken: eyJsYXN0SXRlbUlkIjogInN0cmluZyIsICJwYWdlU2l6ZSI6IDEwMCwgInNvcnRPcmRlciI6ICJhc2MifQ==
     RateCardUsage:
       value:
         type: USAGE
@@ -6227,10 +6708,10 @@ components:
           accountId: "1"
           attributes:
           - name: distanceTravelled
-            value: 50
+            value: "50"
             unit: Miles
           - name: timeSpent
-            value: 60
+            value: "60"
             unit: Minutes
           dimensions:
             location: Seattle
@@ -6246,29 +6727,29 @@ components:
           accountId: "1"
           attributes:
           - name: distanceTravelled
-            value: 50
+            value: "50"
             unit: Miles
           - name: timeSpent
-            value: 60
+            value: "60"
             unit: Minutes
           dimensions:
             location: Seattle
-            costCenterCode: 1234
+            costCenterCode: "1234"
             travelType: Business
         - timestamp: 2022-06-15T07:30:35.123
           schemaName: sendMessageEvent
           id: c0b1306d-f506-43a6-856b-69221efaee6c
-          accountId: 1
+          accountId: "1"
           attributes:
           - name: messageSentCount
-            value: 50
+            value: "50"
             unit: None
           - name: sizeOfMessage
-            value: 60
+            value: "60"
             unit: KiloBytes
           dimensions:
             location: Seattle
-            costCenterCode: 1234
+            costCenterCode: "1234"
             messageProviderName: Twilio
     GetEventResponse:
       summary: example get event response
@@ -6506,6 +6987,14 @@ components:
           priority: 1
           createdAt: 2020-07-04T12:00:00.000Z
         nextToken: eyJsYXN0SXRlbUlkIjogInN0cmluZyIsICJwYWdlU2l6ZSI6IDEyMywgInNvcnRPcmRlciI6ICJhc2MifQ==
+    MiscellaneousChargesResponse:
+      summary: A sample MiscellaneousChargesResponse
+      value:
+        data:
+        - name: charge 1
+          value: "100"
+        - name: charge 2
+          value: "200"
     CreateCreditRequest:
       summary: A sample for CreateCreditRequest
       value:
@@ -6515,6 +7004,14 @@ components:
         effectiveUntil: 2024-02-04
         creditAmount: 1000
         priority: 1
+    ManageMiscellaneousChargesRequest:
+      summary: A sample for ManageMiscellaneousChargesRequest
+      value:
+        items:
+        - name: charge 1
+          value: "100"
+        - name: charge 2
+          value: "200"
     CreditBalanceResponse:
       summary: A sample for CreditBalanceResponse
       value:
@@ -6572,6 +7069,24 @@ components:
       required: false
       schema:
         example: eyJsYXN0SXRlbUlkIjogInN0cmluZyIsICJwYWdlU2l6ZSI6IDEwMCwgInNvcnRPcmRlciI6ICJhc2MifQ==
+        type: string
+      style: form
+    start_date:
+      explode: true
+      in: query
+      name: start_date
+      required: false
+      schema:
+        example: 2023-03-30T10:41:10.088499
+        type: string
+      style: form
+    end_date:
+      explode: true
+      in: query
+      name: end_date
+      required: false
+      schema:
+        example: 2099-03-30T10:41:10.088499
         type: string
       style: form
     page_size:
@@ -6851,6 +7366,17 @@ components:
             $ref: '#/components/schemas/UpdateCustomerRequest'
       description: Payload to update customer
       required: true
+    CreateAccountRequestWithoutCustomerId:
+      content:
+        application/json:
+          examples:
+            CreateAccountRequestWithoutCustomerId:
+              $ref: '#/components/examples/CreateAccountRequestWithoutCustomerId'
+              value: null
+          schema:
+            $ref: '#/components/schemas/CreateAccountRequestWithoutCustomerId'
+      description: Payload to create account
+      required: true
     CreateAccountRequest:
       content:
         application/json:
@@ -6948,6 +7474,17 @@ components:
           schema:
             $ref: '#/components/schemas/UpdatePricingScheduleRequest'
       description: Payload to dis/associate a price plan to an account
+      required: true
+    EditPricingScheduleRequest:
+      content:
+        application/json:
+          examples:
+            EditPricingScheduleRequest:
+              $ref: '#/components/examples/EditPricingScheduleRequest'
+              value: null
+          schema:
+            $ref: '#/components/schemas/EditPricingScheduleRequest'
+      description: Payload to dis/associate one or more price plans to an account
       required: true
     CreatePricePlanRequest:
       content:
@@ -7103,6 +7640,16 @@ components:
           schema:
             $ref: '#/components/schemas/CreateCreditRequest'
       description: Payload to grant credits
+    ManageMiscellaneousChargesRequest:
+      content:
+        application/json:
+          examples:
+            ManageMiscellaneousChargesRequest:
+              $ref: '#/components/examples/ManageMiscellaneousChargesRequest'
+              value: null
+          schema:
+            $ref: '#/components/schemas/ManageMiscellaneousChargesRequest'
+      description: Payload to update custom line items
   responses:
     BaseSuccessResponse:
       content:
@@ -7253,6 +7800,16 @@ components:
           schema:
             $ref: '#/components/schemas/PricePlanPaginatedResponse'
       description: Response for list price plans request
+    PricingSchedulePaginatedResponse:
+      content:
+        application/json:
+          examples:
+            PricingSchedulePaginatedResponse:
+              $ref: '#/components/examples/PricingSchedulePaginatedResponse'
+              value: null
+          schema:
+            $ref: '#/components/schemas/PricingSchedulePaginatedResponse'
+      description: Response for list pricing schedules request
     UpdatePricingScheduleResponse:
       content:
         application/json:
@@ -7263,6 +7820,16 @@ components:
           schema:
             $ref: '#/components/schemas/UpdatePricingScheduleResponse'
       description: Response for dis/associate price plan request
+    EditPricingScheduleResponse:
+      content:
+        application/json:
+          examples:
+            UpdatePricingScheduleResponse:
+              $ref: '#/components/examples/UpdatePricingScheduleResponse'
+              value: null
+          schema:
+            $ref: '#/components/schemas/UpdatePricingScheduleResponse'
+      description: Response for edit pricing schedule request
     CalculateRevenueResponse:
       content:
         application/json:
@@ -7384,6 +7951,16 @@ components:
           schema:
             $ref: '#/components/schemas/CreditBalanceResponse'
       description: Response for Credit Balance Request
+    MiscellaneousChargesResponse:
+      content:
+        application/json:
+          examples:
+            MiscellaneousChargesResponse:
+              $ref: '#/components/examples/MiscellaneousChargesResponse'
+              value: null
+          schema:
+            $ref: '#/components/schemas/MiscellaneousChargesResponse'
+      description: Response for Miscellaneous Charges Request
   schemas:
     SignupRequest:
       additionalProperties: false
@@ -7520,7 +8097,7 @@ components:
           minItems: 0
           type: array
         account:
-          $ref: '#/components/schemas/CreateAccountRequest'
+          $ref: '#/components/schemas/CreateAccountRequestWithoutCustomerId'
       required:
       - billingAddress
       - id
@@ -7552,7 +8129,7 @@ components:
           maxLength: 1000
           type: string
       type: object
-    CreateAccountRequest:
+    CreateAccountRequestWithoutCustomerId:
       additionalProperties: false
       description: Payload to create account
       example:
@@ -7623,6 +8200,88 @@ components:
           minItems: 0
           type: array
       required:
+      - id
+      - name
+      type: object
+    CreateAccountRequest:
+      additionalProperties: false
+      description: Payload to create account
+      example:
+        settings:
+        - dataType: null
+          namespace: namespace
+          name: name
+          id: id
+          value: value
+        - dataType: null
+          namespace: namespace
+          name: name
+          id: id
+          value: value
+        - dataType: null
+          namespace: namespace
+          name: name
+          id: id
+          value: value
+        - dataType: null
+          namespace: namespace
+          name: name
+          id: id
+          value: value
+        - dataType: null
+          namespace: namespace
+          name: name
+          id: id
+          value: value
+        aliases: acme_primary
+        name: Primary Account
+        customerId: C1234ewf
+        id: ACC00001
+        invoiceCurrency: invoiceCurrency
+      properties:
+        id:
+          description: Identifier of the account
+          example: ACC00001
+          maxLength: 50
+          type: string
+        name:
+          description: Name of the Account
+          example: Primary Account
+          maxLength: 255
+          minLength: 3
+          type: string
+        invoiceCurrency:
+          description: "Use [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency\
+            \ code in which the account must be invoiced.  \nFor example: AED is the\
+            \ currency code for United Arab Emirates dirham.\n"
+          maxLength: 3
+          minLength: 3
+          type: string
+        aliases:
+          description: Aliases are tags that are associated with an account. Multiple
+            aliases are allowed for a single account.
+          example: acme_primary
+          items:
+            maxLength: 50
+            minLength: 3
+            type: string
+          maxItems: 10
+          minItems: 0
+          type: array
+        settings:
+          items:
+            $ref: '#/components/schemas/CreateEntitySetting'
+          maxItems: 10
+          minItems: 0
+          type: array
+        customerId:
+          description: Customer Identifier for whom the account is being created
+          example: C1234ewf
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - customerId
       - id
       - name
       type: object
@@ -7812,6 +8471,7 @@ components:
       additionalProperties: false
       description: Request to create usage meter
       example:
+        eventSchemaName: eventSchemaName
         computations:
         - id: id
           matcher: |
@@ -7868,8 +8528,12 @@ components:
           items:
             $ref: '#/components/schemas/Computation'
           type: array
+        eventSchemaName:
+          description: Event Schema Identifier
+          type: string
       required:
       - aggregation
+      - eventSchemaName
       - name
       - type
       type: object
@@ -7957,6 +8621,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           - invoiceTiming: null
             displayName: displayName
             rateValues:
@@ -7965,6 +8630,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           usageRateCards:
           - ratePlan:
               pricingModel: null
@@ -8083,6 +8749,7 @@ components:
           - rate: 5.637376656633329
             currency: currency
           id: id
+          type: null
         - invoiceTiming: null
           displayName: displayName
           rateValues:
@@ -8091,6 +8758,7 @@ components:
           - rate: 5.637376656633329
             currency: currency
           id: id
+          type: null
         usageRateCards:
         - ratePlan:
             pricingModel: null
@@ -8200,6 +8868,7 @@ components:
       additionalProperties: false
       description: Request to update a price plan
       example:
+        migrationMode: IMMEDIATE
         pricePlanDetails:
           supportedCurrencies:
           - supportedCurrencies
@@ -8219,6 +8888,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           - invoiceTiming: null
             displayName: displayName
             rateValues:
@@ -8227,6 +8897,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           usageRateCards:
           - ratePlan:
               pricingModel: null
@@ -8308,6 +8979,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
         description: description
+        versionsToMigrate: LATEST_VERSION
       properties:
         description:
           description: Description of price plan
@@ -8315,6 +8987,19 @@ components:
           type: string
         pricePlanDetails:
           $ref: '#/components/schemas/CreatePricePlanDetailsOverride'
+        migrationMode:
+          enum:
+          - IMMEDIATE
+          - IMMEDIATE_IGNORE_OVERRIDE
+          - NEXT_CYCLE
+          - NEXT_CYCLE_IGNORE_OVERRIDE
+          - NONE
+          type: string
+        versionsToMigrate:
+          enum:
+          - LATEST_VERSION
+          - ALL_VERSION
+          type: string
       type: object
     ActivatePricePlanRequest:
       additionalProperties: false
@@ -8352,10 +9037,11 @@ components:
             start: 2000-01-23T04:56:07.000+00:00
             end: 2000-01-23T04:56:07.000+00:00
           usageMap:
-            key: 0.8008281904610115
+            key: 6.027456183070403
         pricePlanDetailsConfig:
           mode: CUSTOM
           accountId: accountId
+          pricingCycleOrdinal: 0
           pricePlanDetails:
             supportedCurrencies:
             - supportedCurrencies
@@ -8375,6 +9061,7 @@ components:
               - rate: 5.637376656633329
                 currency: currency
               id: id
+              type: null
             - invoiceTiming: null
               displayName: displayName
               rateValues:
@@ -8383,6 +9070,7 @@ components:
               - rate: 5.637376656633329
                 currency: currency
               id: id
+              type: null
             usageRateCards:
             - ratePlan:
                 pricingModel: null
@@ -8504,6 +9192,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           - invoiceTiming: null
             displayName: displayName
             rateValues:
@@ -8512,6 +9201,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           usageRateCards:
           - ratePlan:
               pricingModel: null
@@ -8619,6 +9309,586 @@ components:
       required:
       - effectiveFrom
       - effectiveUntil
+      type: object
+    EditPricingScheduleRequest:
+      additionalProperties: false
+      description: Request to dis/associate one or more schedules to an account
+      example:
+        edits:
+        - mode: ASSOCIATE
+          effectiveUntil: 2000-01-23
+          pricePlanId: pricePlanId
+          effectiveFrom: 2000-01-23
+          pricePlanDetailsOverride:
+            supportedCurrencies:
+            - supportedCurrencies
+            - supportedCurrencies
+            pricingCycleConfig:
+              gracePeriod: 3
+              startOffset:
+                dayOffset: dayOffset
+                monthOffset: monthOffset
+              interval: MONTHLY
+            fixedFeeRateCards:
+            - invoiceTiming: null
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+              id: id
+              type: null
+            - invoiceTiming: null
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+              id: id
+              type: null
+            usageRateCards:
+            - ratePlan:
+                pricingModel: null
+                slabs:
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+              displayName: displayName
+              usageMeterId: um.1zYnCiM9Bpg.1zYn
+              rateValues:
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+            - ratePlan:
+                pricingModel: null
+                slabs:
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+              displayName: displayName
+              usageMeterId: um.1zYnCiM9Bpg.1zYn
+              rateValues:
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+            minimumCommitment:
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+        - mode: ASSOCIATE
+          effectiveUntil: 2000-01-23
+          pricePlanId: pricePlanId
+          effectiveFrom: 2000-01-23
+          pricePlanDetailsOverride:
+            supportedCurrencies:
+            - supportedCurrencies
+            - supportedCurrencies
+            pricingCycleConfig:
+              gracePeriod: 3
+              startOffset:
+                dayOffset: dayOffset
+                monthOffset: monthOffset
+              interval: MONTHLY
+            fixedFeeRateCards:
+            - invoiceTiming: null
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+              id: id
+              type: null
+            - invoiceTiming: null
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+              id: id
+              type: null
+            usageRateCards:
+            - ratePlan:
+                pricingModel: null
+                slabs:
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+              displayName: displayName
+              usageMeterId: um.1zYnCiM9Bpg.1zYn
+              rateValues:
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+            - ratePlan:
+                pricingModel: null
+                slabs:
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+              displayName: displayName
+              usageMeterId: um.1zYnCiM9Bpg.1zYn
+              rateValues:
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+            minimumCommitment:
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+        - mode: ASSOCIATE
+          effectiveUntil: 2000-01-23
+          pricePlanId: pricePlanId
+          effectiveFrom: 2000-01-23
+          pricePlanDetailsOverride:
+            supportedCurrencies:
+            - supportedCurrencies
+            - supportedCurrencies
+            pricingCycleConfig:
+              gracePeriod: 3
+              startOffset:
+                dayOffset: dayOffset
+                monthOffset: monthOffset
+              interval: MONTHLY
+            fixedFeeRateCards:
+            - invoiceTiming: null
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+              id: id
+              type: null
+            - invoiceTiming: null
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+              id: id
+              type: null
+            usageRateCards:
+            - ratePlan:
+                pricingModel: null
+                slabs:
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+              displayName: displayName
+              usageMeterId: um.1zYnCiM9Bpg.1zYn
+              rateValues:
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+            - ratePlan:
+                pricingModel: null
+                slabs:
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+              displayName: displayName
+              usageMeterId: um.1zYnCiM9Bpg.1zYn
+              rateValues:
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+            minimumCommitment:
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+        - mode: ASSOCIATE
+          effectiveUntil: 2000-01-23
+          pricePlanId: pricePlanId
+          effectiveFrom: 2000-01-23
+          pricePlanDetailsOverride:
+            supportedCurrencies:
+            - supportedCurrencies
+            - supportedCurrencies
+            pricingCycleConfig:
+              gracePeriod: 3
+              startOffset:
+                dayOffset: dayOffset
+                monthOffset: monthOffset
+              interval: MONTHLY
+            fixedFeeRateCards:
+            - invoiceTiming: null
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+              id: id
+              type: null
+            - invoiceTiming: null
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+              id: id
+              type: null
+            usageRateCards:
+            - ratePlan:
+                pricingModel: null
+                slabs:
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+              displayName: displayName
+              usageMeterId: um.1zYnCiM9Bpg.1zYn
+              rateValues:
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+            - ratePlan:
+                pricingModel: null
+                slabs:
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+              displayName: displayName
+              usageMeterId: um.1zYnCiM9Bpg.1zYn
+              rateValues:
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+            minimumCommitment:
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+        - mode: ASSOCIATE
+          effectiveUntil: 2000-01-23
+          pricePlanId: pricePlanId
+          effectiveFrom: 2000-01-23
+          pricePlanDetailsOverride:
+            supportedCurrencies:
+            - supportedCurrencies
+            - supportedCurrencies
+            pricingCycleConfig:
+              gracePeriod: 3
+              startOffset:
+                dayOffset: dayOffset
+                monthOffset: monthOffset
+              interval: MONTHLY
+            fixedFeeRateCards:
+            - invoiceTiming: null
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+              id: id
+              type: null
+            - invoiceTiming: null
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+              id: id
+              type: null
+            usageRateCards:
+            - ratePlan:
+                pricingModel: null
+                slabs:
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+              displayName: displayName
+              usageMeterId: um.1zYnCiM9Bpg.1zYn
+              rateValues:
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+            - ratePlan:
+                pricingModel: null
+                slabs:
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+                - startAfter: 6.027456183070403
+                  priceType: null
+                  slabConfig:
+                    key: slabConfig
+                  order: 1
+              displayName: displayName
+              usageMeterId: um.1zYnCiM9Bpg.1zYn
+              rateValues:
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+              - currency: currency
+                slabRates:
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+                - rate: 5.962133916683182
+                  slabRateConfig:
+                    key: slabRateConfig
+                  order: 1
+            minimumCommitment:
+              displayName: displayName
+              rateValues:
+              - rate: 5.637376656633329
+                currency: currency
+              - rate: 5.637376656633329
+                currency: currency
+      properties:
+        edits:
+          items:
+            $ref: '#/components/schemas/UpdatePricingScheduleRequest'
+          maxItems: 10
+          minItems: 1
+          type: array
+      required:
+      - edits
       type: object
     AddCurrencyToPricePlanRequest:
       additionalProperties: false
@@ -9085,6 +10355,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           - invoiceTiming: null
             displayName: displayName
             rateValues:
@@ -9093,6 +10364,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           usageRateCards:
           - ratePlan:
               pricingModel: null
@@ -9179,6 +10451,7 @@ components:
         name: name
         description: description
         id: id
+        version: 0
         status: DRAFT
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -9190,6 +10463,10 @@ components:
           description: Name of the price plan
           maxLength: 50
           type: string
+        version:
+          description: Version of the price plan
+          format: int32
+          type: integer
         description:
           description: Description of price plan
           maxLength: 255
@@ -9222,6 +10499,7 @@ components:
       - status
       - updatedAt
       - usageMeters
+      - version
       type: object
     PricePlanPaginatedResponse:
       additionalProperties: false
@@ -9250,6 +10528,7 @@ components:
               - rate: 5.637376656633329
                 currency: currency
               id: id
+              type: null
             - invoiceTiming: null
               displayName: displayName
               rateValues:
@@ -9258,6 +10537,7 @@ components:
               - rate: 5.637376656633329
                 currency: currency
               id: id
+              type: null
             usageRateCards:
             - ratePlan:
                 pricingModel: null
@@ -9344,6 +10624,7 @@ components:
           name: name
           description: description
           id: id
+          version: 0
           status: DRAFT
           updatedAt: 2000-01-23T04:56:07.000+00:00
         - usageMeters:
@@ -9369,6 +10650,7 @@ components:
               - rate: 5.637376656633329
                 currency: currency
               id: id
+              type: null
             - invoiceTiming: null
               displayName: displayName
               rateValues:
@@ -9377,6 +10659,7 @@ components:
               - rate: 5.637376656633329
                 currency: currency
               id: id
+              type: null
             usageRateCards:
             - ratePlan:
                 pricingModel: null
@@ -9463,6 +10746,7 @@ components:
           name: name
           description: description
           id: id
+          version: 0
           status: DRAFT
           updatedAt: 2000-01-23T04:56:07.000+00:00
         nextToken: nextToken
@@ -9481,6 +10765,28 @@ components:
       required:
       - data
       type: object
+    PricingScheduleWithPricePlanId:
+      allOf:
+      - $ref: '#/components/schemas/PricingSchedule'
+      - $ref: '#/components/schemas/PricingScheduleWithPricePlanId_allOf'
+    PricingSchedulePaginatedResponse:
+      additionalProperties: false
+      example:
+        previousToken: previousToken
+        data:
+        - null
+        - null
+        nextToken: nextToken
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PricingScheduleWithPricePlanId'
+          type: array
+        nextToken:
+          type: string
+        previousToken:
+          type: string
+      type: object
     UpdatePricingScheduleResponse:
       additionalProperties: false
       example:
@@ -9488,11 +10794,13 @@ components:
         pricingSchedules:
         - endDate: 2000-01-23T04:56:07.000+00:00
           pricePlanName: pricePlanName
+          id: id
           pricePlanId: pricePlanId
           pricePlanDetailsOverride: null
           startDate: 2000-01-23T04:56:07.000+00:00
         - endDate: 2000-01-23T04:56:07.000+00:00
           pricePlanName: pricePlanName
+          id: id
           pricePlanId: pricePlanId
           pricePlanDetailsOverride: null
           startDate: 2000-01-23T04:56:07.000+00:00
@@ -9569,6 +10877,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           slabRevenueSummaries:
           - revenue: 5.637376656633329
             metadata:
@@ -9634,6 +10943,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           slabRevenueSummaries:
           - revenue: 5.637376656633329
             metadata:
@@ -9670,6 +10980,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           - invoiceTiming: null
             displayName: displayName
             rateValues:
@@ -9678,6 +10989,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           usageRateCards:
           - ratePlan:
               pricingModel: null
@@ -10319,6 +11631,7 @@ components:
           enum:
           - VALUE
           - JSON_LOGIC
+          - JSON_LOGIC_FROM_DEPENDENCY
           type: string
         value:
           type: string
@@ -10486,10 +11799,13 @@ components:
       example:
         endDate: 2000-01-23T04:56:07.000+00:00
         pricePlanName: pricePlanName
+        id: id
         pricePlanId: pricePlanId
         pricePlanDetailsOverride: null
         startDate: 2000-01-23T04:56:07.000+00:00
       properties:
+        id:
+          type: string
         pricePlanId:
           type: string
         pricePlanName:
@@ -10504,6 +11820,7 @@ components:
           type: string
       required:
       - endDate
+      - id
       - pricePlanId
       - pricePlanName
       - startDate
@@ -10586,21 +11903,13 @@ components:
       description: Request to create an addon
       example:
         name: name
-        type: ONE_TIME
       properties:
         name:
           description: Name of addon
           maxLength: 255
           type: string
-        type:
-          description: Type of addon
-          enum:
-          - ONE_TIME
-          - RECURRING
-          type: string
       required:
       - name
-      - type
       type: object
     CreatePricePlanDetailsOverride:
       example:
@@ -10622,6 +11931,7 @@ components:
           - rate: 5.637376656633329
             currency: currency
           id: id
+          type: null
         - invoiceTiming: null
           displayName: displayName
           rateValues:
@@ -10630,6 +11940,7 @@ components:
           - rate: 5.637376656633329
             currency: currency
           id: id
+          type: null
         usageRateCards:
         - ratePlan:
             pricingModel: null
@@ -10755,16 +12066,19 @@ components:
         - rate: 5.637376656633329
           currency: currency
         id: id
+        type: null
       properties:
         id:
-          description: Auto generated unique identifier for fixed fees.
+          description: Unique Identifier of the attached AddOn
           maxLength: 50
           type: string
         displayName:
-          description: Name of the fixed fee.
+          description: Name of the attached AddOn
           type: string
         invoiceTiming:
           $ref: '#/components/schemas/InvoiceTiming'
+        type:
+          $ref: '#/components/schemas/FixedFeeType'
         rateValues:
           items:
             $ref: '#/components/schemas/CurrencyRateValue'
@@ -10774,6 +12088,14 @@ components:
       - rateValues
       title: FixedFeeRateCard
       type: object
+    FixedFeeType:
+      default: RECURRING
+      description: Fixed fee applies either for a one-time occurrence or for each
+        cycle.
+      enum:
+      - ONE_TIME
+      - RECURRING
+      type: string
     InvoiceTiming:
       description: |
         If IN_ADVANCE, the fixed fee will be invoiced in the previous billing cycle.
@@ -10830,6 +12152,7 @@ components:
               - rate: 5.637376656633329
                 currency: currency
               id: id
+              type: null
             - invoiceTiming: null
               displayName: displayName
               rateValues:
@@ -10838,6 +12161,7 @@ components:
               - rate: 5.637376656633329
                 currency: currency
               id: id
+              type: null
             usageRateCards:
             - ratePlan:
                 pricingModel: null
@@ -10922,6 +12246,8 @@ components:
             - activeCurrencies
             - activeCurrencies
           endDate: 2000-01-23T04:56:07.000+00:00
+          id: id
+          version: 1
           startDate: 2000-01-23T04:56:07.000+00:00
         - pricePlanDetails:
             supportedCurrencies:
@@ -10942,6 +12268,7 @@ components:
               - rate: 5.637376656633329
                 currency: currency
               id: id
+              type: null
             - invoiceTiming: null
               displayName: displayName
               rateValues:
@@ -10950,6 +12277,7 @@ components:
               - rate: 5.637376656633329
                 currency: currency
               id: id
+              type: null
             usageRateCards:
             - ratePlan:
                 pricingModel: null
@@ -11034,6 +12362,8 @@ components:
             - activeCurrencies
             - activeCurrencies
           endDate: 2000-01-23T04:56:07.000+00:00
+          id: id
+          version: 1
           startDate: 2000-01-23T04:56:07.000+00:00
         name: name
         description: description
@@ -11088,6 +12418,7 @@ components:
           - rate: 5.637376656633329
             currency: currency
           id: id
+          type: null
         - invoiceTiming: null
           displayName: displayName
           rateValues:
@@ -11096,6 +12427,7 @@ components:
           - rate: 5.637376656633329
             currency: currency
           id: id
+          type: null
         usageRateCards:
         - ratePlan:
             pricingModel: null
@@ -11287,6 +12619,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           - invoiceTiming: null
             displayName: displayName
             rateValues:
@@ -11295,6 +12628,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           usageRateCards:
           - ratePlan:
               pricingModel: null
@@ -11379,8 +12713,12 @@ components:
           - activeCurrencies
           - activeCurrencies
         endDate: 2000-01-23T04:56:07.000+00:00
+        id: id
+        version: 1
         startDate: 2000-01-23T04:56:07.000+00:00
       properties:
+        id:
+          type: string
         pricePlanDetails:
           $ref: '#/components/schemas/PricePlanDetails'
         startDate:
@@ -11389,9 +12727,15 @@ components:
         endDate:
           format: date-time
           type: string
+        version:
+          format: int32
+          minimum: 1
+          type: integer
       required:
       - endDate
+      - id
       - startDate
+      - version
       type: object
     RatePlan:
       description: Contains all rate related configurations
@@ -11558,6 +12902,7 @@ components:
       example:
         event:
           accountId: "1"
+          createdAt: 2000-01-23T04:56:07.000+00:00
           attributes:
           - unit: characters
             name: message
@@ -11589,6 +12934,7 @@ components:
       example:
         events:
         - accountId: "1"
+          createdAt: 2000-01-23T04:56:07.000+00:00
           attributes:
           - unit: characters
             name: message
@@ -11611,6 +12957,7 @@ components:
           dimensions:
             key: "{\"Country\":\"India\"}"
         - accountId: "1"
+          createdAt: 2000-01-23T04:56:07.000+00:00
           attributes:
           - unit: characters
             name: message
@@ -11633,6 +12980,7 @@ components:
           dimensions:
             key: "{\"Country\":\"India\"}"
         - accountId: "1"
+          createdAt: 2000-01-23T04:56:07.000+00:00
           attributes:
           - unit: characters
             name: message
@@ -11655,6 +13003,7 @@ components:
           dimensions:
             key: "{\"Country\":\"India\"}"
         - accountId: "1"
+          createdAt: 2000-01-23T04:56:07.000+00:00
           attributes:
           - unit: characters
             name: message
@@ -11677,6 +13026,7 @@ components:
           dimensions:
             key: "{\"Country\":\"India\"}"
         - accountId: "1"
+          createdAt: 2000-01-23T04:56:07.000+00:00
           attributes:
           - unit: characters
             name: message
@@ -11702,191 +13052,37 @@ components:
         events:
           items:
             $ref: '#/components/schemas/Event'
-          maxItems: 100
+          maxItems: 500
           minItems: 1
           type: array
       required:
       - events
       type: object
-    IngestError:
+    IngestEventResponse:
       additionalProperties: false
-      description: ""
       example:
-        eventPayload:
-          accountId: "1"
-          attributes:
-          - unit: characters
-            name: message
-            value: "100"
-          - unit: characters
-            name: message
-            value: "100"
-          - unit: characters
-            name: message
-            value: "100"
-          - unit: characters
-            name: message
-            value: "100"
-          - unit: characters
-            name: message
-            value: "100"
-          id: c0b1306d-f506-43a6-856b-69221efaee6b
-          schemaName: schemaName
-          timestamp: 2000-01-23T04:56:07.000+00:00
-          dimensions:
-            key: "{\"Country\":\"India\"}"
+        code: code
+        success: true
+        name: name
+        details: "{}"
         message: message
+        statusCode: 0
       properties:
+        success:
+          example: true
+          type: boolean
+        statusCode:
+          format: int32
+          type: integer
+        name:
+          type: string
         message:
           maxLength: 500
           type: string
-        eventPayload:
-          $ref: '#/components/schemas/Event'
-      type: object
-    IngestEventResponse:
-      additionalProperties: false
-      properties:
-        ingestionRequestId:
-          description: "On successful ingestion acceptance request, ingestion request\
-            \ id will be returned. This ingestion id can be used by clients to query\
-            \ the status of ingestion (IN_PROGRESS, COMPLETED)."
-          maxLength: 500
+        code:
           type: string
-      required:
-      - ingestionRequestId
-      type: object
-    IngestBatchEventResponse:
-      additionalProperties: false
-      example:
-        errors:
-        - eventPayload:
-            accountId: "1"
-            attributes:
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            id: c0b1306d-f506-43a6-856b-69221efaee6b
-            schemaName: schemaName
-            timestamp: 2000-01-23T04:56:07.000+00:00
-            dimensions:
-              key: "{\"Country\":\"India\"}"
-          message: message
-        - eventPayload:
-            accountId: "1"
-            attributes:
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            id: c0b1306d-f506-43a6-856b-69221efaee6b
-            schemaName: schemaName
-            timestamp: 2000-01-23T04:56:07.000+00:00
-            dimensions:
-              key: "{\"Country\":\"India\"}"
-          message: message
-        - eventPayload:
-            accountId: "1"
-            attributes:
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            id: c0b1306d-f506-43a6-856b-69221efaee6b
-            schemaName: schemaName
-            timestamp: 2000-01-23T04:56:07.000+00:00
-            dimensions:
-              key: "{\"Country\":\"India\"}"
-          message: message
-        - eventPayload:
-            accountId: "1"
-            attributes:
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            id: c0b1306d-f506-43a6-856b-69221efaee6b
-            schemaName: schemaName
-            timestamp: 2000-01-23T04:56:07.000+00:00
-            dimensions:
-              key: "{\"Country\":\"India\"}"
-          message: message
-        - eventPayload:
-            accountId: "1"
-            attributes:
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            - unit: characters
-              name: message
-              value: "100"
-            id: c0b1306d-f506-43a6-856b-69221efaee6b
-            schemaName: schemaName
-            timestamp: 2000-01-23T04:56:07.000+00:00
-            dimensions:
-              key: "{\"Country\":\"India\"}"
-          message: message
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/IngestError'
-          maxItems: 100
-          type: array
-      required:
-      - errors
+        details:
+          type: object
       type: object
     StatusResponse:
       properties:
@@ -11915,6 +13111,7 @@ components:
           description: Name of the event attribute
           example: message
           maxLength: 50
+          minLength: 1
           type: string
         value:
           description: Value of the event attribute
@@ -11928,6 +13125,7 @@ components:
             . Clients are free to add any other custom units."
           example: characters
           maxLength: 50
+          minLength: 1
           type: string
       required:
       - name
@@ -11937,6 +13135,7 @@ components:
       additionalProperties:
         example: "{\"Country\":\"India\"}"
         maxLength: 50
+        minLength: 1
         type: string
       description: Dimensions are tags/labels associated with the events.
       type: object
@@ -11945,6 +13144,7 @@ components:
       description: Contents of the event
       example:
         accountId: "1"
+        createdAt: 2000-01-23T04:56:07.000+00:00
         attributes:
         - unit: characters
           name: message
@@ -11970,6 +13170,7 @@ components:
         schemaName:
           description: "Name of the Event Schema. \nKnow more about [event schema](https://docs.togai.com/docs/event-schemas)\n"
           maxLength: 50
+          minLength: 1
           type: string
         id:
           description: "A unique value to identify the event instance. This unique\
@@ -12007,12 +13208,19 @@ components:
           additionalProperties:
             example: "{\"Country\":\"India\"}"
             maxLength: 50
+            minLength: 1
             type: string
           description: Dimensions are tags/labels associated with the events.
           type: object
+        createdAt:
+          description: Created time stamp of the event. This timestamp must be in
+            ISO 8601 format.
+          format: date-time
+          type: string
       required:
       - accountId
       - attributes
+      - createdAt
       - dimensions
       - id
       - schemaName
@@ -12045,6 +13253,7 @@ components:
           customerId: "1"
           eventPayload:
             accountId: "1"
+            createdAt: 2000-01-23T04:56:07.000+00:00
             attributes:
             - unit: characters
               name: message
@@ -12066,12 +13275,16 @@ components:
             timestamp: 2000-01-23T04:56:07.000+00:00
             dimensions:
               key: "{\"Country\":\"India\"}"
+          source:
+            id: id
+            type: type
         - ingestionStatus:
             statusDescription: Ingestion Completed successfully
             status: INGESTION_COMPLETED
           customerId: "1"
           eventPayload:
             accountId: "1"
+            createdAt: 2000-01-23T04:56:07.000+00:00
             attributes:
             - unit: characters
               name: message
@@ -12093,12 +13306,16 @@ components:
             timestamp: 2000-01-23T04:56:07.000+00:00
             dimensions:
               key: "{\"Country\":\"India\"}"
+          source:
+            id: id
+            type: type
         - ingestionStatus:
             statusDescription: Ingestion Completed successfully
             status: INGESTION_COMPLETED
           customerId: "1"
           eventPayload:
             accountId: "1"
+            createdAt: 2000-01-23T04:56:07.000+00:00
             attributes:
             - unit: characters
               name: message
@@ -12120,12 +13337,16 @@ components:
             timestamp: 2000-01-23T04:56:07.000+00:00
             dimensions:
               key: "{\"Country\":\"India\"}"
+          source:
+            id: id
+            type: type
         - ingestionStatus:
             statusDescription: Ingestion Completed successfully
             status: INGESTION_COMPLETED
           customerId: "1"
           eventPayload:
             accountId: "1"
+            createdAt: 2000-01-23T04:56:07.000+00:00
             attributes:
             - unit: characters
               name: message
@@ -12147,12 +13368,16 @@ components:
             timestamp: 2000-01-23T04:56:07.000+00:00
             dimensions:
               key: "{\"Country\":\"India\"}"
+          source:
+            id: id
+            type: type
         - ingestionStatus:
             statusDescription: Ingestion Completed successfully
             status: INGESTION_COMPLETED
           customerId: "1"
           eventPayload:
             accountId: "1"
+            createdAt: 2000-01-23T04:56:07.000+00:00
             attributes:
             - unit: characters
               name: message
@@ -12174,6 +13399,9 @@ components:
             timestamp: 2000-01-23T04:56:07.000+00:00
             dimensions:
               key: "{\"Country\":\"India\"}"
+          source:
+            id: id
+            type: type
       properties:
         events:
           items:
@@ -12199,6 +13427,7 @@ components:
         customerId: "1"
         eventPayload:
           accountId: "1"
+          createdAt: 2000-01-23T04:56:07.000+00:00
           attributes:
           - unit: characters
             name: message
@@ -12220,6 +13449,9 @@ components:
           timestamp: 2000-01-23T04:56:07.000+00:00
           dimensions:
             key: "{\"Country\":\"India\"}"
+        source:
+          id: id
+          type: type
       properties:
         eventPayload:
           $ref: '#/components/schemas/Event'
@@ -12230,6 +13462,8 @@ components:
           example: "1"
           maxLength: 50
           type: string
+        source:
+          $ref: '#/components/schemas/EventSource'
       required:
       - eventPayload
       - ingestionStatus
@@ -12253,7 +13487,6 @@ components:
           - INGESTION_FAILED_SCHEMA_NOT_DEFINED
           - INGESTION_FAILED_ENRICHMENT_FAILED
           - INGESTION_FAILED_UNITS_INVALID
-          - INGESTION_FAILED_EVENT_INVALID
           - INGESTION_COMPLETED_NO_MATCHING_METERS
           - INGESTION_COMPLETED_EVENT_METERED
           - INGESTION_COMPLETED_EVENT_NOT_METERED
@@ -12266,6 +13499,25 @@ components:
           type: string
       required:
       - status
+      type: object
+    EventSource:
+      additionalProperties: false
+      description: Source of ingestion of event
+      example:
+        id: id
+        type: type
+      properties:
+        id:
+          description: Unique identifier representing the source
+          maxLength: 100
+          type: string
+        type:
+          description: Type of source
+          maxLength: 100
+          type: string
+      required:
+      - id
+      - type
       type: object
     EventPipelineInfo:
       additionalProperties: false
@@ -12317,7 +13569,7 @@ components:
           enum:
           - SETTING
           type: string
-        alias:
+        name:
           type: string
         value:
           type: string
@@ -12413,11 +13665,15 @@ components:
         Define the metric you would like to get - allowed options are
         EVENTS - Aggregation of raw events,
         USAGE - Aggregated usage value from Usage meters,
-        REVENUE - Aggregated of revenue value from Pricing Plans
+        REVENUE - Aggregated revenue value from Pricing Plans
+        USAGE_FOR_CYCLE - Usage in pricing cycle
+        REVENUE_FOR_CYCLE - Revenue in pricing cycle
       enum:
       - EVENTS
       - USAGE
       - REVENUE
+      - USAGE_FOR_CYCLE
+      - REVENUE_FOR_CYCLE
       type: string
     MetricQuery:
       additionalProperties: false
@@ -12476,9 +13732,10 @@ components:
             type: string
           description: |
             Configurations.
-            | Metric Name | Config Key | Allowed Values  | Default value |              Description          |
-            |-------------|------------|-----------------|---------------|-----------------------------------|
-            | REVENUE     | CURRENCY   | BASE or INVOICE | BASE          | currency to return the revenue in |
+            | Metric Name       | Config Key | Allowed Values  | Default value |              Description          |
+            |-------------------|------------|-----------------|---------------|-----------------------------------|
+            | REVENUE           | CURRENCY   | BASE or INVOICE | BASE          | currency to return the revenue in |
+            | REVENUE_FOR_CYCLE | CURRENCY   | BASE or INVOICE | BASE          | currency to return the revenue in |
           type: object
         filters:
           description: "Filter on specific fields. \nRefer possible fieldNames and\
@@ -12712,6 +13969,8 @@ components:
           type: number
         invoiceTiming:
           $ref: '#/components/schemas/InvoiceTiming'
+        type:
+          $ref: '#/components/schemas/FixedFeeType'
       required:
       - currency
       - displayName
@@ -12759,6 +14018,11 @@ components:
         creditAmount: 1000
         priority: 1
         effectiveFrom: 2020-07-04T00:00:00.000+00:00
+        applicableEntityIds:
+        - "[\"umg.1znQx9jiIXw.r44fc\",\"ALL_USAGE_METER_RATE_CARDS\",\"ALL_FIXED_FEE_RATE_CARDS\"\
+          ]"
+        - "[\"umg.1znQx9jiIXw.r44fc\",\"ALL_USAGE_METER_RATE_CARDS\",\"ALL_FIXED_FEE_RATE_CARDS\"\
+          ]"
       properties:
         accountId:
           example: ACC001
@@ -12766,6 +14030,15 @@ components:
         purpose:
           example: PREPAID_CREDIT
           type: string
+        applicableEntityIds:
+          description: |
+            List of entity ids for which the credit is applicable. If null or empty, the credit is applicable to all ids. This list can accept special values like: - ALL_USAGE_METER_RATE_CARDS: To apply the credit to all usage meter rate cards - ALL_FIXED_FEE_RATE_CARDS: To apply the credit to all fixed fee rate cards
+          items:
+            example: "[\"umg.1znQx9jiIXw.r44fc\",\"ALL_USAGE_METER_RATE_CARDS\",\"\
+              ALL_FIXED_FEE_RATE_CARDS\"]"
+            type: string
+          type: array
+          uniqueItems: true
         effectiveFrom:
           example: 2020-07-04
           format: date
@@ -12787,6 +14060,40 @@ components:
       - priority
       - purpose
       type: object
+    ManageMiscellaneousChargesRequest:
+      additionalProperties: false
+      description: Payload to update custom line items
+      example:
+        items:
+        - name: Charge 1
+          value: "100"
+        - name: Charge 1
+          value: "100"
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/MiscellaneousCharge'
+          type: array
+      required:
+      - items
+      type: object
+    MiscellaneousChargesResponse:
+      additionalProperties: false
+      description: Miscellaneous charges response
+      example:
+        data:
+        - name: Charge 1
+          value: "100"
+        - name: Charge 1
+          value: "100"
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/MiscellaneousCharge'
+          type: array
+      required:
+      - data
+      type: object
     ListInvoicesResponse:
       additionalProperties: false
       description: List invoices response
@@ -12807,6 +14114,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -12821,6 +14129,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -12837,6 +14146,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -12870,6 +14180,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -12884,6 +14195,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -12900,6 +14212,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -12933,6 +14246,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -12947,6 +14261,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -12963,6 +14278,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -12996,6 +14312,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -13010,6 +14327,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -13026,6 +14344,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -13059,6 +14378,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -13073,6 +14393,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -13089,6 +14410,7 @@ components:
               key: ""
             quantity: 6.027456183070403
             description: description
+            id: id
             units: units
             type: type
             value: 1.4658129805029452
@@ -13202,6 +14524,7 @@ components:
             key: ""
           quantity: 6.027456183070403
           description: description
+          id: id
           units: units
           type: type
           value: 1.4658129805029452
@@ -13216,6 +14539,7 @@ components:
             key: ""
           quantity: 6.027456183070403
           description: description
+          id: id
           units: units
           type: type
           value: 1.4658129805029452
@@ -13232,6 +14556,7 @@ components:
             key: ""
           quantity: 6.027456183070403
           description: description
+          id: id
           units: units
           type: type
           value: 1.4658129805029452
@@ -13324,10 +14649,13 @@ components:
           key: ""
         quantity: 6.027456183070403
         description: description
+        id: id
         units: units
         type: type
         value: 1.4658129805029452
       properties:
+        id:
+          type: string
         description:
           type: string
         type:
@@ -13419,6 +14747,10 @@ components:
       - id
       - transactionType
       type: object
+    MiscellaneousCharges:
+      items:
+        $ref: '#/components/schemas/MiscellaneousCharge'
+      type: array
     CurrencyConfig:
       description: Configuration for getting the currency
       example:
@@ -13452,6 +14784,7 @@ components:
       example:
         mode: CUSTOM
         accountId: accountId
+        pricingCycleOrdinal: 0
         pricePlanDetails:
           supportedCurrencies:
           - supportedCurrencies
@@ -13471,6 +14804,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           - invoiceTiming: null
             displayName: displayName
             rateValues:
@@ -13479,6 +14813,7 @@ components:
             - rate: 5.637376656633329
               currency: currency
             id: id
+            type: null
           usageRateCards:
           - ratePlan:
               pricingModel: null
@@ -13588,6 +14923,10 @@ components:
             \ mode is ACCOUNT or PRICE_PLAN"
           format: date-time
           type: string
+        pricingCycleOrdinal:
+          description: "nth cycle, will be used to calculate revenue for the particular\
+            \ cycle, only used if mode is CUSTOM or PRICE_PLAN"
+          type: integer
       required:
       - mode
       title: PricePlanDetailsConfig
@@ -13642,7 +14981,7 @@ components:
           start: 2000-01-23T04:56:07.000+00:00
           end: 2000-01-23T04:56:07.000+00:00
         usageMap:
-          key: 0.8008281904610115
+          key: 6.027456183070403
       properties:
         mode:
           description: |
@@ -13711,6 +15050,14 @@ components:
       - rate
       title: FixedFeeRate
       type: object
+    PricingScheduleWithPricePlanId_allOf:
+      properties:
+        pricePlanId:
+          type: string
+      required:
+      - pricePlanId
+      type: object
+      example: null
     UsageLookupRange:
       additionalProperties: false
       description: Start and end dates of usage lookup if usage mode is LOOKUP
@@ -13790,6 +15137,7 @@ components:
           - rate: 5.637376656633329
             currency: currency
           id: id
+          type: null
         slabRevenueSummaries:
         - revenue: 5.637376656633329
           metadata:
@@ -14059,25 +15407,27 @@ components:
       additionalProperties: false
       description: |2
 
-        | Metric Name | FilterEntry Name |    Allowed groupBy fields                 |      Default Values      |                 Allowed Values                  |
-        |-------------|------------------|-------------------------------------------|--------------------------|-------------------------------------------------|
-        | EVENTS      | ACCOUNT_ID       | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | None                     | *\<one or more valid account IDs>               |
-                                           CUSTOMER_ID                                                                                                            |
-        | EVENTS      | CUSTOMER_ID      | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | None                     | *\<one or more valid customer IDs>              |
-                                           CUSTOMER_ID                                                                                                            |
-        | EVENTS      | SCHEMA_NAME      | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | None                     | *\<at most one valid schema names>              |
-                                           CUSTOMER_ID                                                                                                            |
-        | EVENTS      | EVENT_STATUS     | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | [PROCESSED, UNPROCESSED] | oneOrMoreOf PROCESSED, UNPROCESSED, IN_PROGRESS |
-                                           CUSTOMER_ID                                                                                                            |
-        | USAGE       | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid account IDs>               |
-        | USAGE       | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid customer IDs>              |
-        | USAGE       | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid usage meter name>          |
-        | REVENUE     | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid account IDs>               |
-        | REVENUE     | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid customer IDs>              |
-        | REVENUE     | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid usage meter name>          |
-        | EVENTS      | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | <From auth token>        |                                                 |
-        | USAGE       | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | <From auth token>        |                                                 |
-        | REVENUE     | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | <From auth token>        |                                                 |
+        | Metric Name       | FilterEntry Name |    Allowed groupBy fields                 |      Default Values      |                 Allowed Values                  |
+        |-------------------|------------------|-------------------------------------------|--------------------------|-------------------------------------------------|
+        | EVENTS            | ACCOUNT_ID       | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | None                     | *\<one or more valid account IDs>               |
+        | EVENTS            | CUSTOMER_ID      | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | None                     | *\<one or more valid customer IDs>              |
+        | EVENTS            | SCHEMA_NAME      | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | None                     | *\<at most one valid schema names>              |
+        | EVENTS            | EVENT_STATUS     | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | [PROCESSED, UNPROCESSED] | oneOrMoreOf PROCESSED, UNPROCESSED, IN_PROGRESS |
+        | USAGE             | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid account IDs>               |
+        | USAGE             | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid customer IDs>              |
+        | USAGE             | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid usage meter name>          |
+        | REVENUE           | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid account IDs>               |
+        | REVENUE           | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid customer IDs>              |
+        | REVENUE           | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid usage meter name>          |
+        | EVENTS            | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | <From auth token>        |                                                 |
+        | USAGE             | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | <From auth token>        |                                                 |
+        | REVENUE           | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | <From auth token>        |                                                 |
+        | USAGE_FOR_CYCLE   | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid account IDs>               |
+        | USAGE_FOR_CYCLE   | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid customer IDs>              |
+        | USAGE_FOR_CYCLE   | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid usage meter name>          |
+        | REVENUE_FOR_CYCLE | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid account IDs>               |
+        | REVENUE_FOR_CYCLE | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid customer IDs>              |
+        | REVENUE_FOR_CYCLE | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\<one or more valid usage meter name>          |
       example:
         fieldName: ACCOUNT_ID
         fieldValues:
@@ -14283,6 +15633,27 @@ components:
       - status
       type: object
       example: null
+    MiscellaneousCharge:
+      additionalProperties: false
+      description: Miscellaneous charges are the charges that can be added to the
+        invoice
+      example:
+        name: Charge 1
+        value: "100"
+      properties:
+        name:
+          description: Name of the miscellaneous charge
+          example: Charge 1
+          type: string
+        value:
+          description: Value of the charge
+          example: "100"
+          type: string
+      required:
+      - name
+      - value
+      title: MiscellaneousCharge
+      type: object
   securitySchemes:
     bearerAuth:
       bearerFormat: Bearer <credential>

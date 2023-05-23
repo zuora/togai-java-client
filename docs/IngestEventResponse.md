@@ -7,7 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**ingestionRequestId** | **String** | On successful ingestion acceptance request, ingestion request id will be returned. This ingestion id can be used by clients to query the status of ingestion (IN_PROGRESS, COMPLETED). |  |
+|**success** | **Boolean** |  |  [optional] |
+|**statusCode** | **Integer** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
+|**message** | **String** |  |  [optional] |
+|**code** | **String** |  |  [optional] |
+|**details** | **Object** |  |  [optional] |
 
 
 ## Implemented Interfaces

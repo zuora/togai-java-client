@@ -166,6 +166,10 @@ public class CreateUsageMeterRequest implements Serializable {
   @SerializedName(SERIALIZED_NAME_COMPUTATIONS)
   private List<Computation> computations = new ArrayList<>();
 
+  public static final String SERIALIZED_NAME_EVENT_SCHEMA_NAME = "eventSchemaName";
+  @SerializedName(SERIALIZED_NAME_EVENT_SCHEMA_NAME)
+  private String eventSchemaName;
+
   public CreateUsageMeterRequest() {
   }
 
@@ -287,6 +291,28 @@ public class CreateUsageMeterRequest implements Serializable {
   }
 
 
+  public CreateUsageMeterRequest eventSchemaName(String eventSchemaName) {
+    
+    this.eventSchemaName = eventSchemaName;
+    return this;
+  }
+
+   /**
+   * Event Schema Identifier
+   * @return eventSchemaName
+  **/
+  @javax.annotation.Nonnull
+
+  public String getEventSchemaName() {
+    return eventSchemaName;
+  }
+
+
+  public void setEventSchemaName(String eventSchemaName) {
+    this.eventSchemaName = eventSchemaName;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -301,12 +327,13 @@ public class CreateUsageMeterRequest implements Serializable {
         Objects.equals(this.description, createUsageMeterRequest.description) &&
         Objects.equals(this.type, createUsageMeterRequest.type) &&
         Objects.equals(this.aggregation, createUsageMeterRequest.aggregation) &&
-        Objects.equals(this.computations, createUsageMeterRequest.computations);
+        Objects.equals(this.computations, createUsageMeterRequest.computations) &&
+        Objects.equals(this.eventSchemaName, createUsageMeterRequest.eventSchemaName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, type, aggregation, computations);
+    return Objects.hash(name, description, type, aggregation, computations, eventSchemaName);
   }
 
   @Override
@@ -318,6 +345,7 @@ public class CreateUsageMeterRequest implements Serializable {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    aggregation: ").append(toIndentedString(aggregation)).append("\n");
     sb.append("    computations: ").append(toIndentedString(computations)).append("\n");
+    sb.append("    eventSchemaName: ").append(toIndentedString(eventSchemaName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -345,12 +373,14 @@ public class CreateUsageMeterRequest implements Serializable {
     openapiFields.add("type");
     openapiFields.add("aggregation");
     openapiFields.add("computations");
+    openapiFields.add("eventSchemaName");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("name");
     openapiRequiredFields.add("type");
     openapiRequiredFields.add("aggregation");
+    openapiRequiredFields.add("eventSchemaName");
   }
 
  /**
@@ -405,6 +435,9 @@ public class CreateUsageMeterRequest implements Serializable {
             Computation.validateJsonObject(jsonArraycomputations.get(i).getAsJsonObject());
           };
         }
+      }
+      if (!jsonObj.get("eventSchemaName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `eventSchemaName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("eventSchemaName").toString()));
       }
   }
 

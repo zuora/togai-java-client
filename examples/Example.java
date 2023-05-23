@@ -47,6 +47,7 @@ public class Example {
             final UsageMetersApi usageMetersApi = new UsageMetersApi(apiClient);
             final CreateUsageMeterRequest createUsageMeterRequest = new CreateUsageMeterRequest()
                 .name("message_count"+seed)
+                .eventSchemaName(eventSchema.getName())
                 .type(CreateUsageMeterRequest.TypeEnum.COUNTER)
                 .aggregation(CreateUsageMeterRequest.AggregationEnum.COUNT)
                 .computations(Arrays.asList(
@@ -55,11 +56,11 @@ public class Example {
                         .computation("1")
                 ));
             System.out.println(eventSchema.getName());
-            final UsageMeter usageMeter = usageMetersApi.createUsageMeter(eventSchema.getName(), createUsageMeterRequest);
+            final UsageMeter usageMeter = usageMetersApi.createUsageMeter(createUsageMeterRequest);
             System.out.println(usageMeter);
 
             // Step 4: Activate a usage meter
-            usageMetersApi.activateUsageMeter(eventSchema.getName(), usageMeter.getId());
+            usageMetersApi.activateUsageMeter(usageMeter.getId());
 
             // Step 5: Create a Price plan to convert the usage into a billable price
             final PricePlansApi pricePlansApi = new PricePlansApi(apiClient);
@@ -120,9 +121,11 @@ public class Example {
             // Step 8: Associate the customer/account to the price plan
             final AccountsApi accountsApi = new AccountsApi(apiClient);
             final UpdatePricingScheduleRequest updatePricingScheduleRequest = new UpdatePricingScheduleRequest()
-                .pricePlanId(pricePlan.getId())
-                    .effectiveFrom(LocalDate.now()).effectiveUntil(LocalDate.parse("9999-01-01"));
-            final UpdatePricingScheduleResponse account = accountsApi.updatePricingSchedule(customer.getId(), customer.getAccount().getId(), updatePricingScheduleRequest);
+                    .pricePlanId(pricePlan.getId())
+                    .mode(UpdatePricingScheduleRequest.ModeEnum.ASSOCIATE)
+                    .effectiveFrom(LocalDate.now())
+                    .effectiveUntil(LocalDate.parse("9999-01-01"));
+            final UpdatePricingScheduleResponse account = accountsApi.updatePricingSchedule(customer.getAccount().getId(), updatePricingScheduleRequest);
             System.out.println(account);
 
             // Step 9: Ingest events

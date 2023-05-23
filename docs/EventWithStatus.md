@@ -11,6 +11,7 @@ Raw usage event ingested by the business team and the status of the event ingest
 |**eventPayload** | [**Event**](Event.md) |  |  |
 |**ingestionStatus** | [**IngestionStatus**](IngestionStatus.md) |  |  |
 |**customerId** | **String** | The associated account belongs to this customer |  [optional] |
+|**source** | [**EventSource**](EventSource.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

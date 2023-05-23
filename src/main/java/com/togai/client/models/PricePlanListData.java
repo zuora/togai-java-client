@@ -63,6 +63,10 @@ public class PricePlanListData implements Serializable {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
+  public static final String SERIALIZED_NAME_VERSION = "version";
+  @SerializedName(SERIALIZED_NAME_VERSION)
+  private Integer version;
+
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
@@ -180,6 +184,28 @@ public class PricePlanListData implements Serializable {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+
+  public PricePlanListData version(Integer version) {
+    
+    this.version = version;
+    return this;
+  }
+
+   /**
+   * Version of the price plan
+   * @return version
+  **/
+  @javax.annotation.Nonnull
+
+  public Integer getVersion() {
+    return version;
+  }
+
+
+  public void setVersion(Integer version) {
+    this.version = version;
   }
 
 
@@ -332,6 +358,7 @@ public class PricePlanListData implements Serializable {
     PricePlanListData pricePlanListData = (PricePlanListData) o;
     return Objects.equals(this.id, pricePlanListData.id) &&
         Objects.equals(this.name, pricePlanListData.name) &&
+        Objects.equals(this.version, pricePlanListData.version) &&
         Objects.equals(this.description, pricePlanListData.description) &&
         Objects.equals(this.status, pricePlanListData.status) &&
         Objects.equals(this.usageMeters, pricePlanListData.usageMeters) &&
@@ -342,7 +369,7 @@ public class PricePlanListData implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, status, usageMeters, pricePlanDetails, createdAt, updatedAt);
+    return Objects.hash(id, name, version, description, status, usageMeters, pricePlanDetails, createdAt, updatedAt);
   }
 
   @Override
@@ -351,6 +378,7 @@ public class PricePlanListData implements Serializable {
     sb.append("class PricePlanListData {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    usageMeters: ").append(toIndentedString(usageMeters)).append("\n");
@@ -381,6 +409,7 @@ public class PricePlanListData implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
     openapiFields.add("name");
+    openapiFields.add("version");
     openapiFields.add("description");
     openapiFields.add("status");
     openapiFields.add("usageMeters");
@@ -392,6 +421,7 @@ public class PricePlanListData implements Serializable {
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("id");
     openapiRequiredFields.add("name");
+    openapiRequiredFields.add("version");
     openapiRequiredFields.add("status");
     openapiRequiredFields.add("usageMeters");
     openapiRequiredFields.add("pricePlanDetails");

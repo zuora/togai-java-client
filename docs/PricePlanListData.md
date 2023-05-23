@@ -10,6 +10,7 @@ Data of price plan list
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | Identifier of price plan |  |
 |**name** | **String** | Name of the price plan |  |
+|**version** | **Integer** | Version of the price plan |  |
 |**description** | **String** | Description of price plan |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | Status of Price plan |  |
 |**usageMeters** | **List&lt;String&gt;** | Usage meters id linked to the price plan |  |

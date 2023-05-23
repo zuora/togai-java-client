@@ -7,9 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Auto generated unique identifier for fixed fees. |  |
-|**displayName** | **String** | Name of the fixed fee. |  [optional] |
+|**id** | **String** | Unique Identifier of the attached AddOn |  |
+|**displayName** | **String** | Name of the attached AddOn |  [optional] |
 |**invoiceTiming** | **InvoiceTiming** |  |  [optional] |
+|**type** | **FixedFeeType** |  |  [optional] |
 |**rateValues** | [**List&lt;CurrencyRateValue&gt;**](CurrencyRateValue.md) |  |  |
 
 

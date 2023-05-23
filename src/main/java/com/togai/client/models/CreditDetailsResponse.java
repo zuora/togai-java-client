@@ -26,7 +26,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -64,6 +66,10 @@ public class CreditDetailsResponse implements Serializable {
   public static final String SERIALIZED_NAME_PURPOSE = "purpose";
   @SerializedName(SERIALIZED_NAME_PURPOSE)
   private String purpose;
+
+  public static final String SERIALIZED_NAME_APPLICABLE_ENTITY_IDS = "applicableEntityIds";
+  @SerializedName(SERIALIZED_NAME_APPLICABLE_ENTITY_IDS)
+  private Set<String> applicableEntityIds = new LinkedHashSet<>();
 
   public static final String SERIALIZED_NAME_EFFECTIVE_FROM = "effectiveFrom";
   @SerializedName(SERIALIZED_NAME_EFFECTIVE_FROM)
@@ -212,6 +218,36 @@ public class CreditDetailsResponse implements Serializable {
 
   public void setPurpose(String purpose) {
     this.purpose = purpose;
+  }
+
+
+  public CreditDetailsResponse applicableEntityIds(Set<String> applicableEntityIds) {
+    
+    this.applicableEntityIds = applicableEntityIds;
+    return this;
+  }
+
+  public CreditDetailsResponse addApplicableEntityIdsItem(String applicableEntityIdsItem) {
+    if (this.applicableEntityIds == null) {
+      this.applicableEntityIds = new LinkedHashSet<>();
+    }
+    this.applicableEntityIds.add(applicableEntityIdsItem);
+    return this;
+  }
+
+   /**
+   * List of entity ids for which the credit is applicable. If null or empty, the credit is applicable to all ids. This list can accept special values like: - ALL_USAGE_METER_RATE_CARDS: To apply the credit to all usage meter rate cards - ALL_FIXED_FEE_RATE_CARDS: To apply the credit to all fixed fee rate cards 
+   * @return applicableEntityIds
+  **/
+  @javax.annotation.Nullable
+
+  public Set<String> getApplicableEntityIds() {
+    return applicableEntityIds;
+  }
+
+
+  public void setApplicableEntityIds(Set<String> applicableEntityIds) {
+    this.applicableEntityIds = applicableEntityIds;
   }
 
 
@@ -518,6 +554,7 @@ public class CreditDetailsResponse implements Serializable {
     CreditDetailsResponse creditDetailsResponse = (CreditDetailsResponse) o;
     return Objects.equals(this.accountId, creditDetailsResponse.accountId) &&
         Objects.equals(this.purpose, creditDetailsResponse.purpose) &&
+        Objects.equals(this.applicableEntityIds, creditDetailsResponse.applicableEntityIds) &&
         Objects.equals(this.effectiveFrom, creditDetailsResponse.effectiveFrom) &&
         Objects.equals(this.effectiveUntil, creditDetailsResponse.effectiveUntil) &&
         Objects.equals(this.creditAmount, creditDetailsResponse.creditAmount) &&
@@ -535,7 +572,7 @@ public class CreditDetailsResponse implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, purpose, effectiveFrom, effectiveUntil, creditAmount, priority, id, customerId, status, creditUnit, holdAmount, consumedAmount, createdAt, updatedAt, transactions);
+    return Objects.hash(accountId, purpose, applicableEntityIds, effectiveFrom, effectiveUntil, creditAmount, priority, id, customerId, status, creditUnit, holdAmount, consumedAmount, createdAt, updatedAt, transactions);
   }
 
   @Override
@@ -544,6 +581,7 @@ public class CreditDetailsResponse implements Serializable {
     sb.append("class CreditDetailsResponse {\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    purpose: ").append(toIndentedString(purpose)).append("\n");
+    sb.append("    applicableEntityIds: ").append(toIndentedString(applicableEntityIds)).append("\n");
     sb.append("    effectiveFrom: ").append(toIndentedString(effectiveFrom)).append("\n");
     sb.append("    effectiveUntil: ").append(toIndentedString(effectiveUntil)).append("\n");
     sb.append("    creditAmount: ").append(toIndentedString(creditAmount)).append("\n");
@@ -581,6 +619,7 @@ public class CreditDetailsResponse implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("accountId");
     openapiFields.add("purpose");
+    openapiFields.add("applicableEntityIds");
     openapiFields.add("effectiveFrom");
     openapiFields.add("effectiveUntil");
     openapiFields.add("creditAmount");
@@ -641,6 +680,10 @@ public class CreditDetailsResponse implements Serializable {
       }
       if (!jsonObj.get("purpose").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `purpose` to be a primitive type in the JSON string but got `%s`", jsonObj.get("purpose").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("applicableEntityIds") != null && !jsonObj.get("applicableEntityIds").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `applicableEntityIds` to be an array in the JSON string but got `%s`", jsonObj.get("applicableEntityIds").toString()));
       }
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));

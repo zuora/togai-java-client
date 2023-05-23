@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.togai.client.models.CreateAccountRequest;
+import com.togai.client.models.CreateAccountRequestWithoutCustomerId;
 import com.togai.client.models.CreateEntitySetting;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -77,7 +77,7 @@ public class CreateCustomerRequest implements Serializable {
 
   public static final String SERIALIZED_NAME_ACCOUNT = "account";
   @SerializedName(SERIALIZED_NAME_ACCOUNT)
-  private CreateAccountRequest account;
+  private CreateAccountRequestWithoutCustomerId account;
 
   public CreateCustomerRequest() {
   }
@@ -200,7 +200,7 @@ public class CreateCustomerRequest implements Serializable {
   }
 
 
-  public CreateCustomerRequest account(CreateAccountRequest account) {
+  public CreateCustomerRequest account(CreateAccountRequestWithoutCustomerId account) {
     
     this.account = account;
     return this;
@@ -212,12 +212,12 @@ public class CreateCustomerRequest implements Serializable {
   **/
   @javax.annotation.Nullable
 
-  public CreateAccountRequest getAccount() {
+  public CreateAccountRequestWithoutCustomerId getAccount() {
     return account;
   }
 
 
-  public void setAccount(CreateAccountRequest account) {
+  public void setAccount(CreateAccountRequestWithoutCustomerId account) {
     this.account = account;
   }
 
@@ -347,7 +347,7 @@ public class CreateCustomerRequest implements Serializable {
       }
       // validate the optional field `account`
       if (jsonObj.get("account") != null && !jsonObj.get("account").isJsonNull()) {
-        CreateAccountRequest.validateJsonObject(jsonObj.getAsJsonObject("account"));
+        CreateAccountRequestWithoutCustomerId.validateJsonObject(jsonObj.getAsJsonObject("account"));
       }
   }
 

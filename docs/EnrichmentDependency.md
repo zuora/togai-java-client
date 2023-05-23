@@ -10,7 +10,7 @@ enrichment dependency
 |------------ | ------------- | ------------- | -------------|
 |**key** | **String** |  |  |
 |**type** | [**TypeEnum**](#TypeEnum) |  |  |
-|**alias** | **String** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
 |**value** | **String** |  |  |
 
 

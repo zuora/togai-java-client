@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.togai.client.models.BaseSuccessResponse;
 import java.math.BigDecimal;
 import com.togai.client.models.CreateUsageMeterRequest;
 import com.togai.client.models.ErrorResponse;
@@ -80,7 +81,6 @@ public class UsageMetersApi {
 
     /**
      * Build call for activateUsageMeter
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -97,7 +97,7 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call activateUsageMeterCall(String eventSchemaName, String usageMeterId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call activateUsageMeterCall(String usageMeterId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -114,8 +114,7 @@ public class UsageMetersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/event_schema/{event_schema_name}/usage_meters/{usage_meter_id}/activate"
-            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()))
+        String localVarPath = "/usage_meters/{usage_meter_id}/activate"
             .replace("{" + "usage_meter_id" + "}", localVarApiClient.escapeString(usageMeterId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -144,25 +143,19 @@ public class UsageMetersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call activateUsageMeterValidateBeforeCall(String eventSchemaName, String usageMeterId, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'eventSchemaName' is set
-        if (eventSchemaName == null) {
-            throw new ApiException("Missing the required parameter 'eventSchemaName' when calling activateUsageMeter(Async)");
-        }
-
+    private okhttp3.Call activateUsageMeterValidateBeforeCall(String usageMeterId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'usageMeterId' is set
         if (usageMeterId == null) {
             throw new ApiException("Missing the required parameter 'usageMeterId' when calling activateUsageMeter(Async)");
         }
 
-        return activateUsageMeterCall(eventSchemaName, usageMeterId, _callback);
+        return activateUsageMeterCall(usageMeterId, _callback);
 
     }
 
     /**
      * Activate usage meter
      * Activate usage meter
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @return UsageMeter
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -178,15 +171,14 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public UsageMeter activateUsageMeter(String eventSchemaName, String usageMeterId) throws ApiException {
-        ApiResponse<UsageMeter> localVarResp = activateUsageMeterWithHttpInfo(eventSchemaName, usageMeterId);
+    public UsageMeter activateUsageMeter(String usageMeterId) throws ApiException {
+        ApiResponse<UsageMeter> localVarResp = activateUsageMeterWithHttpInfo(usageMeterId);
         return localVarResp.getData();
     }
 
     /**
      * Activate usage meter
      * Activate usage meter
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @return ApiResponse&lt;UsageMeter&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -202,8 +194,8 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UsageMeter> activateUsageMeterWithHttpInfo(String eventSchemaName, String usageMeterId) throws ApiException {
-        okhttp3.Call localVarCall = activateUsageMeterValidateBeforeCall(eventSchemaName, usageMeterId, null);
+    public ApiResponse<UsageMeter> activateUsageMeterWithHttpInfo(String usageMeterId) throws ApiException {
+        okhttp3.Call localVarCall = activateUsageMeterValidateBeforeCall(usageMeterId, null);
         Type localVarReturnType = new TypeToken<UsageMeter>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -211,7 +203,6 @@ public class UsageMetersApi {
     /**
      * Activate usage meter (asynchronously)
      * Activate usage meter
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -228,16 +219,15 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call activateUsageMeterAsync(String eventSchemaName, String usageMeterId, final ApiCallback<UsageMeter> _callback) throws ApiException {
+    public okhttp3.Call activateUsageMeterAsync(String usageMeterId, final ApiCallback<UsageMeter> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = activateUsageMeterValidateBeforeCall(eventSchemaName, usageMeterId, _callback);
+        okhttp3.Call localVarCall = activateUsageMeterValidateBeforeCall(usageMeterId, _callback);
         Type localVarReturnType = new TypeToken<UsageMeter>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for createUsageMeter
-     * @param eventSchemaName  (required)
      * @param createUsageMeterRequest Payload to create usage meter (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -254,7 +244,7 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createUsageMeterCall(String eventSchemaName, CreateUsageMeterRequest createUsageMeterRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createUsageMeterCall(CreateUsageMeterRequest createUsageMeterRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -271,8 +261,7 @@ public class UsageMetersApi {
         Object localVarPostBody = createUsageMeterRequest;
 
         // create path and map variables
-        String localVarPath = "/event_schema/{event_schema_name}/usage_meters"
-            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()));
+        String localVarPath = "/usage_meters";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -301,25 +290,19 @@ public class UsageMetersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createUsageMeterValidateBeforeCall(String eventSchemaName, CreateUsageMeterRequest createUsageMeterRequest, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'eventSchemaName' is set
-        if (eventSchemaName == null) {
-            throw new ApiException("Missing the required parameter 'eventSchemaName' when calling createUsageMeter(Async)");
-        }
-
+    private okhttp3.Call createUsageMeterValidateBeforeCall(CreateUsageMeterRequest createUsageMeterRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'createUsageMeterRequest' is set
         if (createUsageMeterRequest == null) {
             throw new ApiException("Missing the required parameter 'createUsageMeterRequest' when calling createUsageMeter(Async)");
         }
 
-        return createUsageMeterCall(eventSchemaName, createUsageMeterRequest, _callback);
+        return createUsageMeterCall(createUsageMeterRequest, _callback);
 
     }
 
     /**
      * Create an usage meter
      * Create an usage meter and associate with an event schema
-     * @param eventSchemaName  (required)
      * @param createUsageMeterRequest Payload to create usage meter (required)
      * @return UsageMeter
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -335,15 +318,14 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public UsageMeter createUsageMeter(String eventSchemaName, CreateUsageMeterRequest createUsageMeterRequest) throws ApiException {
-        ApiResponse<UsageMeter> localVarResp = createUsageMeterWithHttpInfo(eventSchemaName, createUsageMeterRequest);
+    public UsageMeter createUsageMeter(CreateUsageMeterRequest createUsageMeterRequest) throws ApiException {
+        ApiResponse<UsageMeter> localVarResp = createUsageMeterWithHttpInfo(createUsageMeterRequest);
         return localVarResp.getData();
     }
 
     /**
      * Create an usage meter
      * Create an usage meter and associate with an event schema
-     * @param eventSchemaName  (required)
      * @param createUsageMeterRequest Payload to create usage meter (required)
      * @return ApiResponse&lt;UsageMeter&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -359,8 +341,8 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UsageMeter> createUsageMeterWithHttpInfo(String eventSchemaName, CreateUsageMeterRequest createUsageMeterRequest) throws ApiException {
-        okhttp3.Call localVarCall = createUsageMeterValidateBeforeCall(eventSchemaName, createUsageMeterRequest, null);
+    public ApiResponse<UsageMeter> createUsageMeterWithHttpInfo(CreateUsageMeterRequest createUsageMeterRequest) throws ApiException {
+        okhttp3.Call localVarCall = createUsageMeterValidateBeforeCall(createUsageMeterRequest, null);
         Type localVarReturnType = new TypeToken<UsageMeter>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -368,7 +350,6 @@ public class UsageMetersApi {
     /**
      * Create an usage meter (asynchronously)
      * Create an usage meter and associate with an event schema
-     * @param eventSchemaName  (required)
      * @param createUsageMeterRequest Payload to create usage meter (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -385,16 +366,15 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createUsageMeterAsync(String eventSchemaName, CreateUsageMeterRequest createUsageMeterRequest, final ApiCallback<UsageMeter> _callback) throws ApiException {
+    public okhttp3.Call createUsageMeterAsync(CreateUsageMeterRequest createUsageMeterRequest, final ApiCallback<UsageMeter> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createUsageMeterValidateBeforeCall(eventSchemaName, createUsageMeterRequest, _callback);
+        okhttp3.Call localVarCall = createUsageMeterValidateBeforeCall(createUsageMeterRequest, _callback);
         Type localVarReturnType = new TypeToken<UsageMeter>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for deactivateUsageMeter
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -411,7 +391,7 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deactivateUsageMeterCall(String eventSchemaName, String usageMeterId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deactivateUsageMeterCall(String usageMeterId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -428,8 +408,7 @@ public class UsageMetersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/event_schema/{event_schema_name}/usage_meters/{usage_meter_id}/deactivate"
-            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()))
+        String localVarPath = "/usage_meters/{usage_meter_id}/deactivate"
             .replace("{" + "usage_meter_id" + "}", localVarApiClient.escapeString(usageMeterId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -458,25 +437,19 @@ public class UsageMetersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deactivateUsageMeterValidateBeforeCall(String eventSchemaName, String usageMeterId, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'eventSchemaName' is set
-        if (eventSchemaName == null) {
-            throw new ApiException("Missing the required parameter 'eventSchemaName' when calling deactivateUsageMeter(Async)");
-        }
-
+    private okhttp3.Call deactivateUsageMeterValidateBeforeCall(String usageMeterId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'usageMeterId' is set
         if (usageMeterId == null) {
             throw new ApiException("Missing the required parameter 'usageMeterId' when calling deactivateUsageMeter(Async)");
         }
 
-        return deactivateUsageMeterCall(eventSchemaName, usageMeterId, _callback);
+        return deactivateUsageMeterCall(usageMeterId, _callback);
 
     }
 
     /**
      * Deactivate usage meter
      * Make an existing active usage meter to be inactive Active Usage Meters with active Pricing Plan attached can also be deactivated. 
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @return UsageMeter
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -492,15 +465,14 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public UsageMeter deactivateUsageMeter(String eventSchemaName, String usageMeterId) throws ApiException {
-        ApiResponse<UsageMeter> localVarResp = deactivateUsageMeterWithHttpInfo(eventSchemaName, usageMeterId);
+    public UsageMeter deactivateUsageMeter(String usageMeterId) throws ApiException {
+        ApiResponse<UsageMeter> localVarResp = deactivateUsageMeterWithHttpInfo(usageMeterId);
         return localVarResp.getData();
     }
 
     /**
      * Deactivate usage meter
      * Make an existing active usage meter to be inactive Active Usage Meters with active Pricing Plan attached can also be deactivated. 
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @return ApiResponse&lt;UsageMeter&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -516,8 +488,8 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UsageMeter> deactivateUsageMeterWithHttpInfo(String eventSchemaName, String usageMeterId) throws ApiException {
-        okhttp3.Call localVarCall = deactivateUsageMeterValidateBeforeCall(eventSchemaName, usageMeterId, null);
+    public ApiResponse<UsageMeter> deactivateUsageMeterWithHttpInfo(String usageMeterId) throws ApiException {
+        okhttp3.Call localVarCall = deactivateUsageMeterValidateBeforeCall(usageMeterId, null);
         Type localVarReturnType = new TypeToken<UsageMeter>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -525,7 +497,6 @@ public class UsageMetersApi {
     /**
      * Deactivate usage meter (asynchronously)
      * Make an existing active usage meter to be inactive Active Usage Meters with active Pricing Plan attached can also be deactivated. 
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -542,16 +513,15 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deactivateUsageMeterAsync(String eventSchemaName, String usageMeterId, final ApiCallback<UsageMeter> _callback) throws ApiException {
+    public okhttp3.Call deactivateUsageMeterAsync(String usageMeterId, final ApiCallback<UsageMeter> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deactivateUsageMeterValidateBeforeCall(eventSchemaName, usageMeterId, _callback);
+        okhttp3.Call localVarCall = deactivateUsageMeterValidateBeforeCall(usageMeterId, _callback);
         Type localVarReturnType = new TypeToken<UsageMeter>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for getUsageMeter
-     * @param eventSchemaName  (required)
+     * Build call for deleteUsageMeter
      * @param usageMeterId  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -559,7 +529,7 @@ public class UsageMetersApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for Create and Get usage event requests </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
@@ -568,7 +538,7 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getUsageMeterCall(String eventSchemaName, String usageMeterId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteUsageMeterCall(String usageMeterId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -585,8 +555,154 @@ public class UsageMetersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/event_schema/{event_schema_name}/usage_meters/{usage_meter_id}"
-            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()))
+        String localVarPath = "/usage_meters/{usage_meter_id}"
+            .replace("{" + "usage_meter_id" + "}", localVarApiClient.escapeString(usageMeterId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteUsageMeterValidateBeforeCall(String usageMeterId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'usageMeterId' is set
+        if (usageMeterId == null) {
+            throw new ApiException("Missing the required parameter 'usageMeterId' when calling deleteUsageMeter(Async)");
+        }
+
+        return deleteUsageMeterCall(usageMeterId, _callback);
+
+    }
+
+    /**
+     * Delete an Usage Meter
+     * Delete an Usage Meter
+     * @param usageMeterId  (required)
+     * @return BaseSuccessResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public BaseSuccessResponse deleteUsageMeter(String usageMeterId) throws ApiException {
+        ApiResponse<BaseSuccessResponse> localVarResp = deleteUsageMeterWithHttpInfo(usageMeterId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Delete an Usage Meter
+     * Delete an Usage Meter
+     * @param usageMeterId  (required)
+     * @return ApiResponse&lt;BaseSuccessResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<BaseSuccessResponse> deleteUsageMeterWithHttpInfo(String usageMeterId) throws ApiException {
+        okhttp3.Call localVarCall = deleteUsageMeterValidateBeforeCall(usageMeterId, null);
+        Type localVarReturnType = new TypeToken<BaseSuccessResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Delete an Usage Meter (asynchronously)
+     * Delete an Usage Meter
+     * @param usageMeterId  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteUsageMeterAsync(String usageMeterId, final ApiCallback<BaseSuccessResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteUsageMeterValidateBeforeCall(usageMeterId, _callback);
+        Type localVarReturnType = new TypeToken<BaseSuccessResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getUsageMeter
+     * @param usageMeterId  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Create and Get usage event requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getUsageMeterCall(String usageMeterId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/usage_meters/{usage_meter_id}"
             .replace("{" + "usage_meter_id" + "}", localVarApiClient.escapeString(usageMeterId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -615,25 +731,19 @@ public class UsageMetersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getUsageMeterValidateBeforeCall(String eventSchemaName, String usageMeterId, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'eventSchemaName' is set
-        if (eventSchemaName == null) {
-            throw new ApiException("Missing the required parameter 'eventSchemaName' when calling getUsageMeter(Async)");
-        }
-
+    private okhttp3.Call getUsageMeterValidateBeforeCall(String usageMeterId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'usageMeterId' is set
         if (usageMeterId == null) {
             throw new ApiException("Missing the required parameter 'usageMeterId' when calling getUsageMeter(Async)");
         }
 
-        return getUsageMeterCall(eventSchemaName, usageMeterId, _callback);
+        return getUsageMeterCall(usageMeterId, _callback);
 
     }
 
     /**
      * Get usage meter
      * Get an usage meter using event schema name and usage meter id.
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @return UsageMeter
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -649,15 +759,14 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public UsageMeter getUsageMeter(String eventSchemaName, String usageMeterId) throws ApiException {
-        ApiResponse<UsageMeter> localVarResp = getUsageMeterWithHttpInfo(eventSchemaName, usageMeterId);
+    public UsageMeter getUsageMeter(String usageMeterId) throws ApiException {
+        ApiResponse<UsageMeter> localVarResp = getUsageMeterWithHttpInfo(usageMeterId);
         return localVarResp.getData();
     }
 
     /**
      * Get usage meter
      * Get an usage meter using event schema name and usage meter id.
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @return ApiResponse&lt;UsageMeter&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -673,8 +782,8 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UsageMeter> getUsageMeterWithHttpInfo(String eventSchemaName, String usageMeterId) throws ApiException {
-        okhttp3.Call localVarCall = getUsageMeterValidateBeforeCall(eventSchemaName, usageMeterId, null);
+    public ApiResponse<UsageMeter> getUsageMeterWithHttpInfo(String usageMeterId) throws ApiException {
+        okhttp3.Call localVarCall = getUsageMeterValidateBeforeCall(usageMeterId, null);
         Type localVarReturnType = new TypeToken<UsageMeter>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -682,7 +791,6 @@ public class UsageMetersApi {
     /**
      * Get usage meter (asynchronously)
      * Get an usage meter using event schema name and usage meter id.
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -699,16 +807,15 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getUsageMeterAsync(String eventSchemaName, String usageMeterId, final ApiCallback<UsageMeter> _callback) throws ApiException {
+    public okhttp3.Call getUsageMeterAsync(String usageMeterId, final ApiCallback<UsageMeter> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getUsageMeterValidateBeforeCall(eventSchemaName, usageMeterId, _callback);
+        okhttp3.Call localVarCall = getUsageMeterValidateBeforeCall(usageMeterId, _callback);
         Type localVarReturnType = new TypeToken<UsageMeter>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for getUsageMetersForEventSchema
-     * @param eventSchemaName  (required)
      * @param status Filter by status  (optional)
      * @param aggregations Filter by aggregations  (optional)
      * @param nextToken  (optional)
@@ -728,7 +835,7 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getUsageMetersForEventSchemaCall(String eventSchemaName, String status, String aggregations, String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getUsageMetersForEventSchemaCall(String status, String aggregations, String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -745,8 +852,7 @@ public class UsageMetersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/event_schema/{event_schema_name}/usage_meters"
-            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()));
+        String localVarPath = "/usage_meters";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -790,20 +896,14 @@ public class UsageMetersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getUsageMetersForEventSchemaValidateBeforeCall(String eventSchemaName, String status, String aggregations, String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'eventSchemaName' is set
-        if (eventSchemaName == null) {
-            throw new ApiException("Missing the required parameter 'eventSchemaName' when calling getUsageMetersForEventSchema(Async)");
-        }
-
-        return getUsageMetersForEventSchemaCall(eventSchemaName, status, aggregations, nextToken, pageSize, _callback);
+    private okhttp3.Call getUsageMetersForEventSchemaValidateBeforeCall(String status, String aggregations, String nextToken, BigDecimal pageSize, final ApiCallback _callback) throws ApiException {
+        return getUsageMetersForEventSchemaCall(status, aggregations, nextToken, pageSize, _callback);
 
     }
 
     /**
      * List usage meters for event schema
      * Get a list of usage meters associated with an event schema
-     * @param eventSchemaName  (required)
      * @param status Filter by status  (optional)
      * @param aggregations Filter by aggregations  (optional)
      * @param nextToken  (optional)
@@ -822,15 +922,14 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public UsageMeterPaginatedResponse getUsageMetersForEventSchema(String eventSchemaName, String status, String aggregations, String nextToken, BigDecimal pageSize) throws ApiException {
-        ApiResponse<UsageMeterPaginatedResponse> localVarResp = getUsageMetersForEventSchemaWithHttpInfo(eventSchemaName, status, aggregations, nextToken, pageSize);
+    public UsageMeterPaginatedResponse getUsageMetersForEventSchema(String status, String aggregations, String nextToken, BigDecimal pageSize) throws ApiException {
+        ApiResponse<UsageMeterPaginatedResponse> localVarResp = getUsageMetersForEventSchemaWithHttpInfo(status, aggregations, nextToken, pageSize);
         return localVarResp.getData();
     }
 
     /**
      * List usage meters for event schema
      * Get a list of usage meters associated with an event schema
-     * @param eventSchemaName  (required)
      * @param status Filter by status  (optional)
      * @param aggregations Filter by aggregations  (optional)
      * @param nextToken  (optional)
@@ -849,8 +948,8 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UsageMeterPaginatedResponse> getUsageMetersForEventSchemaWithHttpInfo(String eventSchemaName, String status, String aggregations, String nextToken, BigDecimal pageSize) throws ApiException {
-        okhttp3.Call localVarCall = getUsageMetersForEventSchemaValidateBeforeCall(eventSchemaName, status, aggregations, nextToken, pageSize, null);
+    public ApiResponse<UsageMeterPaginatedResponse> getUsageMetersForEventSchemaWithHttpInfo(String status, String aggregations, String nextToken, BigDecimal pageSize) throws ApiException {
+        okhttp3.Call localVarCall = getUsageMetersForEventSchemaValidateBeforeCall(status, aggregations, nextToken, pageSize, null);
         Type localVarReturnType = new TypeToken<UsageMeterPaginatedResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -858,7 +957,6 @@ public class UsageMetersApi {
     /**
      * List usage meters for event schema (asynchronously)
      * Get a list of usage meters associated with an event schema
-     * @param eventSchemaName  (required)
      * @param status Filter by status  (optional)
      * @param aggregations Filter by aggregations  (optional)
      * @param nextToken  (optional)
@@ -878,16 +976,15 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getUsageMetersForEventSchemaAsync(String eventSchemaName, String status, String aggregations, String nextToken, BigDecimal pageSize, final ApiCallback<UsageMeterPaginatedResponse> _callback) throws ApiException {
+    public okhttp3.Call getUsageMetersForEventSchemaAsync(String status, String aggregations, String nextToken, BigDecimal pageSize, final ApiCallback<UsageMeterPaginatedResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getUsageMetersForEventSchemaValidateBeforeCall(eventSchemaName, status, aggregations, nextToken, pageSize, _callback);
+        okhttp3.Call localVarCall = getUsageMetersForEventSchemaValidateBeforeCall(status, aggregations, nextToken, pageSize, _callback);
         Type localVarReturnType = new TypeToken<UsageMeterPaginatedResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for updateUsageMeter
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @param updateUsageMeterRequest Payload to create usage meter (required)
      * @param _callback Callback for upload/download progress
@@ -905,7 +1002,7 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateUsageMeterCall(String eventSchemaName, String usageMeterId, UpdateUsageMeterRequest updateUsageMeterRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateUsageMeterCall(String usageMeterId, UpdateUsageMeterRequest updateUsageMeterRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -922,8 +1019,7 @@ public class UsageMetersApi {
         Object localVarPostBody = updateUsageMeterRequest;
 
         // create path and map variables
-        String localVarPath = "/event_schema/{event_schema_name}/usage_meters/{usage_meter_id}"
-            .replace("{" + "event_schema_name" + "}", localVarApiClient.escapeString(eventSchemaName.toString()))
+        String localVarPath = "/usage_meters/{usage_meter_id}"
             .replace("{" + "usage_meter_id" + "}", localVarApiClient.escapeString(usageMeterId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -953,12 +1049,7 @@ public class UsageMetersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateUsageMeterValidateBeforeCall(String eventSchemaName, String usageMeterId, UpdateUsageMeterRequest updateUsageMeterRequest, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'eventSchemaName' is set
-        if (eventSchemaName == null) {
-            throw new ApiException("Missing the required parameter 'eventSchemaName' when calling updateUsageMeter(Async)");
-        }
-
+    private okhttp3.Call updateUsageMeterValidateBeforeCall(String usageMeterId, UpdateUsageMeterRequest updateUsageMeterRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'usageMeterId' is set
         if (usageMeterId == null) {
             throw new ApiException("Missing the required parameter 'usageMeterId' when calling updateUsageMeter(Async)");
@@ -969,14 +1060,13 @@ public class UsageMetersApi {
             throw new ApiException("Missing the required parameter 'updateUsageMeterRequest' when calling updateUsageMeter(Async)");
         }
 
-        return updateUsageMeterCall(eventSchemaName, usageMeterId, updateUsageMeterRequest, _callback);
+        return updateUsageMeterCall(usageMeterId, updateUsageMeterRequest, _callback);
 
     }
 
     /**
      * Update an usage meter
      * This API lets you update an existing usage meter.
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @param updateUsageMeterRequest Payload to create usage meter (required)
      * @return UsageMeter
@@ -993,15 +1083,14 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public UsageMeter updateUsageMeter(String eventSchemaName, String usageMeterId, UpdateUsageMeterRequest updateUsageMeterRequest) throws ApiException {
-        ApiResponse<UsageMeter> localVarResp = updateUsageMeterWithHttpInfo(eventSchemaName, usageMeterId, updateUsageMeterRequest);
+    public UsageMeter updateUsageMeter(String usageMeterId, UpdateUsageMeterRequest updateUsageMeterRequest) throws ApiException {
+        ApiResponse<UsageMeter> localVarResp = updateUsageMeterWithHttpInfo(usageMeterId, updateUsageMeterRequest);
         return localVarResp.getData();
     }
 
     /**
      * Update an usage meter
      * This API lets you update an existing usage meter.
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @param updateUsageMeterRequest Payload to create usage meter (required)
      * @return ApiResponse&lt;UsageMeter&gt;
@@ -1018,8 +1107,8 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UsageMeter> updateUsageMeterWithHttpInfo(String eventSchemaName, String usageMeterId, UpdateUsageMeterRequest updateUsageMeterRequest) throws ApiException {
-        okhttp3.Call localVarCall = updateUsageMeterValidateBeforeCall(eventSchemaName, usageMeterId, updateUsageMeterRequest, null);
+    public ApiResponse<UsageMeter> updateUsageMeterWithHttpInfo(String usageMeterId, UpdateUsageMeterRequest updateUsageMeterRequest) throws ApiException {
+        okhttp3.Call localVarCall = updateUsageMeterValidateBeforeCall(usageMeterId, updateUsageMeterRequest, null);
         Type localVarReturnType = new TypeToken<UsageMeter>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1027,7 +1116,6 @@ public class UsageMetersApi {
     /**
      * Update an usage meter (asynchronously)
      * This API lets you update an existing usage meter.
-     * @param eventSchemaName  (required)
      * @param usageMeterId  (required)
      * @param updateUsageMeterRequest Payload to create usage meter (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -1045,9 +1133,9 @@ public class UsageMetersApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateUsageMeterAsync(String eventSchemaName, String usageMeterId, UpdateUsageMeterRequest updateUsageMeterRequest, final ApiCallback<UsageMeter> _callback) throws ApiException {
+    public okhttp3.Call updateUsageMeterAsync(String usageMeterId, UpdateUsageMeterRequest updateUsageMeterRequest, final ApiCallback<UsageMeter> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateUsageMeterValidateBeforeCall(eventSchemaName, usageMeterId, updateUsageMeterRequest, _callback);
+        okhttp3.Call localVarCall = updateUsageMeterValidateBeforeCall(usageMeterId, updateUsageMeterRequest, _callback);
         Type localVarReturnType = new TypeToken<UsageMeter>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

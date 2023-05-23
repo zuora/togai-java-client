@@ -113,7 +113,9 @@ public class Field implements Serializable {
   public enum EnrichmentTypeEnum {
     VALUE("VALUE"),
     
-    JSON_LOGIC("JSON_LOGIC");
+    JSON_LOGIC("JSON_LOGIC"),
+    
+    JSON_LOGIC_FROM_DEPENDENCY("JSON_LOGIC_FROM_DEPENDENCY");
 
     private String value;
 

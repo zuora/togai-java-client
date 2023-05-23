@@ -20,10 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.togai.client.models.IngestError;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -54,37 +51,162 @@ import com.togai.client.JSON;
 public class IngestBatchEventResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_ERRORS = "errors";
-  @SerializedName(SERIALIZED_NAME_ERRORS)
-  private List<IngestError> errors = new ArrayList<>();
+  public static final String SERIALIZED_NAME_SUCCESS = "success";
+  @SerializedName(SERIALIZED_NAME_SUCCESS)
+  private Boolean success;
+
+  public static final String SERIALIZED_NAME_STATUS_CODE = "statusCode";
+  @SerializedName(SERIALIZED_NAME_STATUS_CODE)
+  private Integer statusCode;
+
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  private String message;
+
+  public static final String SERIALIZED_NAME_CODE = "code";
+  @SerializedName(SERIALIZED_NAME_CODE)
+  private String code;
+
+  public static final String SERIALIZED_NAME_DETAILS = "details";
+  @SerializedName(SERIALIZED_NAME_DETAILS)
+  private Object details;
 
   public IngestBatchEventResponse() {
   }
 
-  public IngestBatchEventResponse errors(List<IngestError> errors) {
+  public IngestBatchEventResponse success(Boolean success) {
     
-    this.errors = errors;
-    return this;
-  }
-
-  public IngestBatchEventResponse addErrorsItem(IngestError errorsItem) {
-    this.errors.add(errorsItem);
+    this.success = success;
     return this;
   }
 
    /**
-   * Get errors
-   * @return errors
+   * Get success
+   * @return success
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
 
-  public List<IngestError> getErrors() {
-    return errors;
+  public Boolean getSuccess() {
+    return success;
   }
 
 
-  public void setErrors(List<IngestError> errors) {
-    this.errors = errors;
+  public void setSuccess(Boolean success) {
+    this.success = success;
+  }
+
+
+  public IngestBatchEventResponse statusCode(Integer statusCode) {
+    
+    this.statusCode = statusCode;
+    return this;
+  }
+
+   /**
+   * Get statusCode
+   * @return statusCode
+  **/
+  @javax.annotation.Nullable
+
+  public Integer getStatusCode() {
+    return statusCode;
+  }
+
+
+  public void setStatusCode(Integer statusCode) {
+    this.statusCode = statusCode;
+  }
+
+
+  public IngestBatchEventResponse name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * Get name
+   * @return name
+  **/
+  @javax.annotation.Nullable
+
+  public String getName() {
+    return name;
+  }
+
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public IngestBatchEventResponse message(String message) {
+    
+    this.message = message;
+    return this;
+  }
+
+   /**
+   * Get message
+   * @return message
+  **/
+  @javax.annotation.Nullable
+
+  public String getMessage() {
+    return message;
+  }
+
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
+
+  public IngestBatchEventResponse code(String code) {
+    
+    this.code = code;
+    return this;
+  }
+
+   /**
+   * Get code
+   * @return code
+  **/
+  @javax.annotation.Nullable
+
+  public String getCode() {
+    return code;
+  }
+
+
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+
+  public IngestBatchEventResponse details(Object details) {
+    
+    this.details = details;
+    return this;
+  }
+
+   /**
+   * Get details
+   * @return details
+  **/
+  @javax.annotation.Nullable
+
+  public Object getDetails() {
+    return details;
+  }
+
+
+  public void setDetails(Object details) {
+    this.details = details;
   }
 
 
@@ -98,19 +220,29 @@ public class IngestBatchEventResponse implements Serializable {
       return false;
     }
     IngestBatchEventResponse ingestBatchEventResponse = (IngestBatchEventResponse) o;
-    return Objects.equals(this.errors, ingestBatchEventResponse.errors);
+    return Objects.equals(this.success, ingestBatchEventResponse.success) &&
+        Objects.equals(this.statusCode, ingestBatchEventResponse.statusCode) &&
+        Objects.equals(this.name, ingestBatchEventResponse.name) &&
+        Objects.equals(this.message, ingestBatchEventResponse.message) &&
+        Objects.equals(this.code, ingestBatchEventResponse.code) &&
+        Objects.equals(this.details, ingestBatchEventResponse.details);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errors);
+    return Objects.hash(success, statusCode, name, message, code, details);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IngestBatchEventResponse {\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+    sb.append("    success: ").append(toIndentedString(success)).append("\n");
+    sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    details: ").append(toIndentedString(details)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -133,11 +265,15 @@ public class IngestBatchEventResponse implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("errors");
+    openapiFields.add("success");
+    openapiFields.add("statusCode");
+    openapiFields.add("name");
+    openapiFields.add("message");
+    openapiFields.add("code");
+    openapiFields.add("details");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("errors");
   }
 
  /**
@@ -160,23 +296,15 @@ public class IngestBatchEventResponse implements Serializable {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IngestBatchEventResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : IngestBatchEventResponse.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-        }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
-      // ensure the json data is an array
-      if (!jsonObj.get("errors").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `errors` to be an array in the JSON string but got `%s`", jsonObj.get("errors").toString()));
+      if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) && !jsonObj.get("message").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
       }
-
-      JsonArray jsonArrayerrors = jsonObj.getAsJsonArray("errors");
-      // validate the required field `errors` (array)
-      for (int i = 0; i < jsonArrayerrors.size(); i++) {
-        IngestError.validateJsonObject(jsonArrayerrors.get(i).getAsJsonObject());
-      };
+      if ((jsonObj.get("code") != null && !jsonObj.get("code").isJsonNull()) && !jsonObj.get("code").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("code").toString()));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.Event;
 import com.togai.client.models.EventPipelineInfo;
+import com.togai.client.models.EventSource;
 import com.togai.client.models.IngestionStatus;
 import java.io.IOException;
 import java.io.Serializable;
@@ -65,6 +66,10 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
   public static final String SERIALIZED_NAME_CUSTOMER_ID = "customerId";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_ID)
   private String customerId;
+
+  public static final String SERIALIZED_NAME_SOURCE = "source";
+  @SerializedName(SERIALIZED_NAME_SOURCE)
+  private EventSource source;
 
   public static final String SERIALIZED_NAME_EVENT_PIPELINE_INFO = "EventPipelineInfo";
   @SerializedName(SERIALIZED_NAME_EVENT_PIPELINE_INFO)
@@ -139,6 +144,28 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
   }
 
 
+  public EventWithStatusAndEventPipelineInfo source(EventSource source) {
+    
+    this.source = source;
+    return this;
+  }
+
+   /**
+   * Get source
+   * @return source
+  **/
+  @javax.annotation.Nullable
+
+  public EventSource getSource() {
+    return source;
+  }
+
+
+  public void setSource(EventSource source) {
+    this.source = source;
+  }
+
+
   public EventWithStatusAndEventPipelineInfo eventPipelineInfo(EventPipelineInfo eventPipelineInfo) {
     
     this.eventPipelineInfo = eventPipelineInfo;
@@ -174,12 +201,13 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
     return Objects.equals(this.eventPayload, eventWithStatusAndEventPipelineInfo.eventPayload) &&
         Objects.equals(this.ingestionStatus, eventWithStatusAndEventPipelineInfo.ingestionStatus) &&
         Objects.equals(this.customerId, eventWithStatusAndEventPipelineInfo.customerId) &&
+        Objects.equals(this.source, eventWithStatusAndEventPipelineInfo.source) &&
         Objects.equals(this.eventPipelineInfo, eventWithStatusAndEventPipelineInfo.eventPipelineInfo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(eventPayload, ingestionStatus, customerId, eventPipelineInfo);
+    return Objects.hash(eventPayload, ingestionStatus, customerId, source, eventPipelineInfo);
   }
 
   @Override
@@ -189,6 +217,7 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
     sb.append("    eventPayload: ").append(toIndentedString(eventPayload)).append("\n");
     sb.append("    ingestionStatus: ").append(toIndentedString(ingestionStatus)).append("\n");
     sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    eventPipelineInfo: ").append(toIndentedString(eventPipelineInfo)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -215,6 +244,7 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
     openapiFields.add("eventPayload");
     openapiFields.add("ingestionStatus");
     openapiFields.add("customerId");
+    openapiFields.add("source");
     openapiFields.add("EventPipelineInfo");
 
     // a set of required properties/fields (JSON key names)
@@ -256,6 +286,10 @@ public class EventWithStatusAndEventPipelineInfo implements Serializable {
       IngestionStatus.validateJsonObject(jsonObj.getAsJsonObject("ingestionStatus"));
       if ((jsonObj.get("customerId") != null && !jsonObj.get("customerId").isJsonNull()) && !jsonObj.get("customerId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `customerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customerId").toString()));
+      }
+      // validate the optional field `source`
+      if (jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull()) {
+        EventSource.validateJsonObject(jsonObj.getAsJsonObject("source"));
       }
       // validate the optional field `EventPipelineInfo`
       if (jsonObj.get("EventPipelineInfo") != null && !jsonObj.get("EventPipelineInfo").isJsonNull()) {

@@ -544,6 +544,7 @@ public class PricePlansApi {
     /**
      * Build call for getPricePlan
      * @param pricePlanId  (required)
+     * @param version Optional version to get a specific version. Gets latest version if it is not provided. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -559,7 +560,7 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPricePlanCall(String pricePlanId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getPricePlanCall(String pricePlanId, Integer version, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -585,6 +586,10 @@ public class PricePlansApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (version != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("version", version));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -605,13 +610,13 @@ public class PricePlansApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getPricePlanValidateBeforeCall(String pricePlanId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getPricePlanValidateBeforeCall(String pricePlanId, Integer version, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'pricePlanId' is set
         if (pricePlanId == null) {
             throw new ApiException("Missing the required parameter 'pricePlanId' when calling getPricePlan(Async)");
         }
 
-        return getPricePlanCall(pricePlanId, _callback);
+        return getPricePlanCall(pricePlanId, version, _callback);
 
     }
 
@@ -619,6 +624,7 @@ public class PricePlansApi {
      * Get a price plan
      * Get a price plan details using price plan id
      * @param pricePlanId  (required)
+     * @param version Optional version to get a specific version. Gets latest version if it is not provided. (optional)
      * @return PricePlan
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -633,8 +639,8 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public PricePlan getPricePlan(String pricePlanId) throws ApiException {
-        ApiResponse<PricePlan> localVarResp = getPricePlanWithHttpInfo(pricePlanId);
+    public PricePlan getPricePlan(String pricePlanId, Integer version) throws ApiException {
+        ApiResponse<PricePlan> localVarResp = getPricePlanWithHttpInfo(pricePlanId, version);
         return localVarResp.getData();
     }
 
@@ -642,6 +648,7 @@ public class PricePlansApi {
      * Get a price plan
      * Get a price plan details using price plan id
      * @param pricePlanId  (required)
+     * @param version Optional version to get a specific version. Gets latest version if it is not provided. (optional)
      * @return ApiResponse&lt;PricePlan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -656,8 +663,8 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PricePlan> getPricePlanWithHttpInfo(String pricePlanId) throws ApiException {
-        okhttp3.Call localVarCall = getPricePlanValidateBeforeCall(pricePlanId, null);
+    public ApiResponse<PricePlan> getPricePlanWithHttpInfo(String pricePlanId, Integer version) throws ApiException {
+        okhttp3.Call localVarCall = getPricePlanValidateBeforeCall(pricePlanId, version, null);
         Type localVarReturnType = new TypeToken<PricePlan>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -666,6 +673,7 @@ public class PricePlansApi {
      * Get a price plan (asynchronously)
      * Get a price plan details using price plan id
      * @param pricePlanId  (required)
+     * @param version Optional version to get a specific version. Gets latest version if it is not provided. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -681,9 +689,9 @@ public class PricePlansApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPricePlanAsync(String pricePlanId, final ApiCallback<PricePlan> _callback) throws ApiException {
+    public okhttp3.Call getPricePlanAsync(String pricePlanId, Integer version, final ApiCallback<PricePlan> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getPricePlanValidateBeforeCall(pricePlanId, _callback);
+        okhttp3.Call localVarCall = getPricePlanValidateBeforeCall(pricePlanId, version, _callback);
         Type localVarReturnType = new TypeToken<PricePlan>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

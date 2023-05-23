@@ -81,6 +81,10 @@ public class Event implements Serializable {
   @SerializedName(SERIALIZED_NAME_DIMENSIONS)
   private Map<String, String> dimensions = new HashMap<>();
 
+  public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  private OffsetDateTime createdAt;
+
   public Event() {
   }
 
@@ -226,6 +230,28 @@ public class Event implements Serializable {
   }
 
 
+  public Event createdAt(OffsetDateTime createdAt) {
+    
+    this.createdAt = createdAt;
+    return this;
+  }
+
+   /**
+   * Created time stamp of the event. This timestamp must be in ISO 8601 format.
+   * @return createdAt
+  **/
+  @javax.annotation.Nonnull
+
+  public OffsetDateTime getCreatedAt() {
+    return createdAt;
+  }
+
+
+  public void setCreatedAt(OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -241,12 +267,13 @@ public class Event implements Serializable {
         Objects.equals(this.timestamp, event.timestamp) &&
         Objects.equals(this.accountId, event.accountId) &&
         Objects.equals(this.attributes, event.attributes) &&
-        Objects.equals(this.dimensions, event.dimensions);
+        Objects.equals(this.dimensions, event.dimensions) &&
+        Objects.equals(this.createdAt, event.createdAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(schemaName, id, timestamp, accountId, attributes, dimensions);
+    return Objects.hash(schemaName, id, timestamp, accountId, attributes, dimensions, createdAt);
   }
 
   @Override
@@ -259,6 +286,7 @@ public class Event implements Serializable {
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    dimensions: ").append(toIndentedString(dimensions)).append("\n");
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -287,6 +315,7 @@ public class Event implements Serializable {
     openapiFields.add("accountId");
     openapiFields.add("attributes");
     openapiFields.add("dimensions");
+    openapiFields.add("createdAt");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -296,6 +325,7 @@ public class Event implements Serializable {
     openapiRequiredFields.add("accountId");
     openapiRequiredFields.add("attributes");
     openapiRequiredFields.add("dimensions");
+    openapiRequiredFields.add("createdAt");
   }
 
  /**

@@ -51,32 +51,162 @@ import com.togai.client.JSON;
 public class IngestEventResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_INGESTION_REQUEST_ID = "ingestionRequestId";
-  @SerializedName(SERIALIZED_NAME_INGESTION_REQUEST_ID)
-  private String ingestionRequestId;
+  public static final String SERIALIZED_NAME_SUCCESS = "success";
+  @SerializedName(SERIALIZED_NAME_SUCCESS)
+  private Boolean success;
+
+  public static final String SERIALIZED_NAME_STATUS_CODE = "statusCode";
+  @SerializedName(SERIALIZED_NAME_STATUS_CODE)
+  private Integer statusCode;
+
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  private String message;
+
+  public static final String SERIALIZED_NAME_CODE = "code";
+  @SerializedName(SERIALIZED_NAME_CODE)
+  private String code;
+
+  public static final String SERIALIZED_NAME_DETAILS = "details";
+  @SerializedName(SERIALIZED_NAME_DETAILS)
+  private Object details;
 
   public IngestEventResponse() {
   }
 
-  public IngestEventResponse ingestionRequestId(String ingestionRequestId) {
+  public IngestEventResponse success(Boolean success) {
     
-    this.ingestionRequestId = ingestionRequestId;
+    this.success = success;
     return this;
   }
 
    /**
-   * On successful ingestion acceptance request, ingestion request id will be returned. This ingestion id can be used by clients to query the status of ingestion (IN_PROGRESS, COMPLETED).
-   * @return ingestionRequestId
+   * Get success
+   * @return success
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
 
-  public String getIngestionRequestId() {
-    return ingestionRequestId;
+  public Boolean getSuccess() {
+    return success;
   }
 
 
-  public void setIngestionRequestId(String ingestionRequestId) {
-    this.ingestionRequestId = ingestionRequestId;
+  public void setSuccess(Boolean success) {
+    this.success = success;
+  }
+
+
+  public IngestEventResponse statusCode(Integer statusCode) {
+    
+    this.statusCode = statusCode;
+    return this;
+  }
+
+   /**
+   * Get statusCode
+   * @return statusCode
+  **/
+  @javax.annotation.Nullable
+
+  public Integer getStatusCode() {
+    return statusCode;
+  }
+
+
+  public void setStatusCode(Integer statusCode) {
+    this.statusCode = statusCode;
+  }
+
+
+  public IngestEventResponse name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * Get name
+   * @return name
+  **/
+  @javax.annotation.Nullable
+
+  public String getName() {
+    return name;
+  }
+
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public IngestEventResponse message(String message) {
+    
+    this.message = message;
+    return this;
+  }
+
+   /**
+   * Get message
+   * @return message
+  **/
+  @javax.annotation.Nullable
+
+  public String getMessage() {
+    return message;
+  }
+
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
+
+  public IngestEventResponse code(String code) {
+    
+    this.code = code;
+    return this;
+  }
+
+   /**
+   * Get code
+   * @return code
+  **/
+  @javax.annotation.Nullable
+
+  public String getCode() {
+    return code;
+  }
+
+
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+
+  public IngestEventResponse details(Object details) {
+    
+    this.details = details;
+    return this;
+  }
+
+   /**
+   * Get details
+   * @return details
+  **/
+  @javax.annotation.Nullable
+
+  public Object getDetails() {
+    return details;
+  }
+
+
+  public void setDetails(Object details) {
+    this.details = details;
   }
 
 
@@ -90,19 +220,29 @@ public class IngestEventResponse implements Serializable {
       return false;
     }
     IngestEventResponse ingestEventResponse = (IngestEventResponse) o;
-    return Objects.equals(this.ingestionRequestId, ingestEventResponse.ingestionRequestId);
+    return Objects.equals(this.success, ingestEventResponse.success) &&
+        Objects.equals(this.statusCode, ingestEventResponse.statusCode) &&
+        Objects.equals(this.name, ingestEventResponse.name) &&
+        Objects.equals(this.message, ingestEventResponse.message) &&
+        Objects.equals(this.code, ingestEventResponse.code) &&
+        Objects.equals(this.details, ingestEventResponse.details);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ingestionRequestId);
+    return Objects.hash(success, statusCode, name, message, code, details);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IngestEventResponse {\n");
-    sb.append("    ingestionRequestId: ").append(toIndentedString(ingestionRequestId)).append("\n");
+    sb.append("    success: ").append(toIndentedString(success)).append("\n");
+    sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    details: ").append(toIndentedString(details)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -125,11 +265,15 @@ public class IngestEventResponse implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("ingestionRequestId");
+    openapiFields.add("success");
+    openapiFields.add("statusCode");
+    openapiFields.add("name");
+    openapiFields.add("message");
+    openapiFields.add("code");
+    openapiFields.add("details");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("ingestionRequestId");
   }
 
  /**
@@ -152,15 +296,14 @@ public class IngestEventResponse implements Serializable {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IngestEventResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : IngestEventResponse.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-        }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
-      if (!jsonObj.get("ingestionRequestId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ingestionRequestId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ingestionRequestId").toString()));
+      if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) && !jsonObj.get("message").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
+      }
+      if ((jsonObj.get("code") != null && !jsonObj.get("code").isJsonNull()) && !jsonObj.get("code").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("code").toString()));
       }
   }
 

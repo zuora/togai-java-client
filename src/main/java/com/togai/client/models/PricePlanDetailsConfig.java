@@ -122,6 +122,10 @@ public class PricePlanDetailsConfig implements Serializable {
   @SerializedName(SERIALIZED_NAME_EFFECTIVE_ON)
   private OffsetDateTime effectiveOn;
 
+  public static final String SERIALIZED_NAME_PRICING_CYCLE_ORDINAL = "pricingCycleOrdinal";
+  @SerializedName(SERIALIZED_NAME_PRICING_CYCLE_ORDINAL)
+  private Integer pricingCycleOrdinal;
+
   public PricePlanDetailsConfig() {
   }
 
@@ -235,6 +239,28 @@ public class PricePlanDetailsConfig implements Serializable {
   }
 
 
+  public PricePlanDetailsConfig pricingCycleOrdinal(Integer pricingCycleOrdinal) {
+    
+    this.pricingCycleOrdinal = pricingCycleOrdinal;
+    return this;
+  }
+
+   /**
+   * nth cycle, will be used to calculate revenue for the particular cycle, only used if mode is CUSTOM or PRICE_PLAN
+   * @return pricingCycleOrdinal
+  **/
+  @javax.annotation.Nullable
+
+  public Integer getPricingCycleOrdinal() {
+    return pricingCycleOrdinal;
+  }
+
+
+  public void setPricingCycleOrdinal(Integer pricingCycleOrdinal) {
+    this.pricingCycleOrdinal = pricingCycleOrdinal;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -249,12 +275,13 @@ public class PricePlanDetailsConfig implements Serializable {
         Objects.equals(this.pricePlanDetails, pricePlanDetailsConfig.pricePlanDetails) &&
         Objects.equals(this.pricePlanId, pricePlanDetailsConfig.pricePlanId) &&
         Objects.equals(this.accountId, pricePlanDetailsConfig.accountId) &&
-        Objects.equals(this.effectiveOn, pricePlanDetailsConfig.effectiveOn);
+        Objects.equals(this.effectiveOn, pricePlanDetailsConfig.effectiveOn) &&
+        Objects.equals(this.pricingCycleOrdinal, pricePlanDetailsConfig.pricingCycleOrdinal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mode, pricePlanDetails, pricePlanId, accountId, effectiveOn);
+    return Objects.hash(mode, pricePlanDetails, pricePlanId, accountId, effectiveOn, pricingCycleOrdinal);
   }
 
   @Override
@@ -266,6 +293,7 @@ public class PricePlanDetailsConfig implements Serializable {
     sb.append("    pricePlanId: ").append(toIndentedString(pricePlanId)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    effectiveOn: ").append(toIndentedString(effectiveOn)).append("\n");
+    sb.append("    pricingCycleOrdinal: ").append(toIndentedString(pricingCycleOrdinal)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -293,6 +321,7 @@ public class PricePlanDetailsConfig implements Serializable {
     openapiFields.add("pricePlanId");
     openapiFields.add("accountId");
     openapiFields.add("effectiveOn");
+    openapiFields.add("pricingCycleOrdinal");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

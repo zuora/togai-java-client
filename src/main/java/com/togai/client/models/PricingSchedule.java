@@ -53,6 +53,10 @@ import com.togai.client.JSON;
 public class PricingSchedule implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
   public static final String SERIALIZED_NAME_PRICE_PLAN_DETAILS = "pricePlanDetails";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_DETAILS)
   private PricePlanDetails pricePlanDetails;
@@ -65,8 +69,34 @@ public class PricingSchedule implements Serializable {
   @SerializedName(SERIALIZED_NAME_END_DATE)
   private OffsetDateTime endDate;
 
+  public static final String SERIALIZED_NAME_VERSION = "version";
+  @SerializedName(SERIALIZED_NAME_VERSION)
+  private Integer version;
+
   public PricingSchedule() {
   }
+
+  public PricingSchedule id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Get id
+   * @return id
+  **/
+  @javax.annotation.Nonnull
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
 
   public PricingSchedule pricePlanDetails(PricePlanDetails pricePlanDetails) {
     
@@ -134,6 +164,29 @@ public class PricingSchedule implements Serializable {
   }
 
 
+  public PricingSchedule version(Integer version) {
+    
+    this.version = version;
+    return this;
+  }
+
+   /**
+   * Get version
+   * minimum: 1
+   * @return version
+  **/
+  @javax.annotation.Nonnull
+
+  public Integer getVersion() {
+    return version;
+  }
+
+
+  public void setVersion(Integer version) {
+    this.version = version;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -144,23 +197,27 @@ public class PricingSchedule implements Serializable {
       return false;
     }
     PricingSchedule pricingSchedule = (PricingSchedule) o;
-    return Objects.equals(this.pricePlanDetails, pricingSchedule.pricePlanDetails) &&
+    return Objects.equals(this.id, pricingSchedule.id) &&
+        Objects.equals(this.pricePlanDetails, pricingSchedule.pricePlanDetails) &&
         Objects.equals(this.startDate, pricingSchedule.startDate) &&
-        Objects.equals(this.endDate, pricingSchedule.endDate);
+        Objects.equals(this.endDate, pricingSchedule.endDate) &&
+        Objects.equals(this.version, pricingSchedule.version);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pricePlanDetails, startDate, endDate);
+    return Objects.hash(id, pricePlanDetails, startDate, endDate, version);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PricingSchedule {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    pricePlanDetails: ").append(toIndentedString(pricePlanDetails)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -183,14 +240,18 @@ public class PricingSchedule implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("id");
     openapiFields.add("pricePlanDetails");
     openapiFields.add("startDate");
     openapiFields.add("endDate");
+    openapiFields.add("version");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("id");
     openapiRequiredFields.add("startDate");
     openapiRequiredFields.add("endDate");
+    openapiRequiredFields.add("version");
   }
 
  /**
@@ -219,6 +280,9 @@ public class PricingSchedule implements Serializable {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
+      }
+      if (!jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       // validate the optional field `pricePlanDetails`
       if (jsonObj.get("pricePlanDetails") != null && !jsonObj.get("pricePlanDetails").isJsonNull()) {

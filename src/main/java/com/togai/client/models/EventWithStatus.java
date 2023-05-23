@@ -21,6 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.Event;
+import com.togai.client.models.EventSource;
 import com.togai.client.models.IngestionStatus;
 import java.io.IOException;
 import java.io.Serializable;
@@ -64,6 +65,10 @@ public class EventWithStatus implements Serializable {
   public static final String SERIALIZED_NAME_CUSTOMER_ID = "customerId";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_ID)
   private String customerId;
+
+  public static final String SERIALIZED_NAME_SOURCE = "source";
+  @SerializedName(SERIALIZED_NAME_SOURCE)
+  private EventSource source;
 
   public EventWithStatus() {
   }
@@ -134,6 +139,28 @@ public class EventWithStatus implements Serializable {
   }
 
 
+  public EventWithStatus source(EventSource source) {
+    
+    this.source = source;
+    return this;
+  }
+
+   /**
+   * Get source
+   * @return source
+  **/
+  @javax.annotation.Nullable
+
+  public EventSource getSource() {
+    return source;
+  }
+
+
+  public void setSource(EventSource source) {
+    this.source = source;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -146,12 +173,13 @@ public class EventWithStatus implements Serializable {
     EventWithStatus eventWithStatus = (EventWithStatus) o;
     return Objects.equals(this.eventPayload, eventWithStatus.eventPayload) &&
         Objects.equals(this.ingestionStatus, eventWithStatus.ingestionStatus) &&
-        Objects.equals(this.customerId, eventWithStatus.customerId);
+        Objects.equals(this.customerId, eventWithStatus.customerId) &&
+        Objects.equals(this.source, eventWithStatus.source);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(eventPayload, ingestionStatus, customerId);
+    return Objects.hash(eventPayload, ingestionStatus, customerId, source);
   }
 
   @Override
@@ -161,6 +189,7 @@ public class EventWithStatus implements Serializable {
     sb.append("    eventPayload: ").append(toIndentedString(eventPayload)).append("\n");
     sb.append("    ingestionStatus: ").append(toIndentedString(ingestionStatus)).append("\n");
     sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -186,6 +215,7 @@ public class EventWithStatus implements Serializable {
     openapiFields.add("eventPayload");
     openapiFields.add("ingestionStatus");
     openapiFields.add("customerId");
+    openapiFields.add("source");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -226,6 +256,10 @@ public class EventWithStatus implements Serializable {
       IngestionStatus.validateJsonObject(jsonObj.getAsJsonObject("ingestionStatus"));
       if ((jsonObj.get("customerId") != null && !jsonObj.get("customerId").isJsonNull()) && !jsonObj.get("customerId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `customerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customerId").toString()));
+      }
+      // validate the optional field `source`
+      if (jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull()) {
+        EventSource.validateJsonObject(jsonObj.getAsJsonObject("source"));
       }
   }
 

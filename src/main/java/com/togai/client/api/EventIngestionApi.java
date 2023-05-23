@@ -29,8 +29,8 @@ import java.io.IOException;
 
 import com.togai.client.models.ErrorResponse;
 import com.togai.client.models.IngestBatchEventRequest;
-import com.togai.client.models.IngestBatchEventResponse;
 import com.togai.client.models.IngestEventRequest;
+import com.togai.client.models.IngestEventResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -154,6 +154,7 @@ public class EventIngestionApi {
      * Ingest events to Togai
      * This API let’s you to ingest events to your Togai account. Events ingested using this API will be processed via associated usage meters and further via associated price plans to generate final billable value to invoice the customer Read more about [Event Ingestion](https://docs.togai.com/docs/event-ingestion) 
      * @param ingestEventRequest Request body to ingest events to Togai usage and billing management service. (required)
+     * @return IngestEventResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -167,15 +168,16 @@ public class EventIngestionApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public void ingest(IngestEventRequest ingestEventRequest) throws ApiException {
-        ingestWithHttpInfo(ingestEventRequest);
+    public IngestEventResponse ingest(IngestEventRequest ingestEventRequest) throws ApiException {
+        ApiResponse<IngestEventResponse> localVarResp = ingestWithHttpInfo(ingestEventRequest);
+        return localVarResp.getData();
     }
 
     /**
      * Ingest events to Togai
      * This API let’s you to ingest events to your Togai account. Events ingested using this API will be processed via associated usage meters and further via associated price plans to generate final billable value to invoice the customer Read more about [Event Ingestion](https://docs.togai.com/docs/event-ingestion) 
      * @param ingestEventRequest Request body to ingest events to Togai usage and billing management service. (required)
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;IngestEventResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -189,9 +191,10 @@ public class EventIngestionApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> ingestWithHttpInfo(IngestEventRequest ingestEventRequest) throws ApiException {
+    public ApiResponse<IngestEventResponse> ingestWithHttpInfo(IngestEventRequest ingestEventRequest) throws ApiException {
         okhttp3.Call localVarCall = ingestValidateBeforeCall(ingestEventRequest, null);
-        return localVarApiClient.execute(localVarCall);
+        Type localVarReturnType = new TypeToken<IngestEventResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
@@ -213,10 +216,11 @@ public class EventIngestionApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call ingestAsync(IngestEventRequest ingestEventRequest, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call ingestAsync(IngestEventRequest ingestEventRequest, final ApiCallback<IngestEventResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = ingestValidateBeforeCall(ingestEventRequest, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
+        Type localVarReturnType = new TypeToken<IngestEventResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
@@ -298,7 +302,7 @@ public class EventIngestionApi {
      * Ingest events to Togai in batch
      * This API let’s you to ingest events in batch upto 1000 events. Ingest large amounts of events up to 1000 in batches in an array using this API.
      * @param ingestBatchEventRequest Request body to ingest events in batch to Togai usage and billing management service. (required)
-     * @return IngestBatchEventResponse
+     * @return IngestEventResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -313,8 +317,8 @@ public class EventIngestionApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public IngestBatchEventResponse ingestBatch(IngestBatchEventRequest ingestBatchEventRequest) throws ApiException {
-        ApiResponse<IngestBatchEventResponse> localVarResp = ingestBatchWithHttpInfo(ingestBatchEventRequest);
+    public IngestEventResponse ingestBatch(IngestBatchEventRequest ingestBatchEventRequest) throws ApiException {
+        ApiResponse<IngestEventResponse> localVarResp = ingestBatchWithHttpInfo(ingestBatchEventRequest);
         return localVarResp.getData();
     }
 
@@ -322,7 +326,7 @@ public class EventIngestionApi {
      * Ingest events to Togai in batch
      * This API let’s you to ingest events in batch upto 1000 events. Ingest large amounts of events up to 1000 in batches in an array using this API.
      * @param ingestBatchEventRequest Request body to ingest events in batch to Togai usage and billing management service. (required)
-     * @return ApiResponse&lt;IngestBatchEventResponse&gt;
+     * @return ApiResponse&lt;IngestEventResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -337,9 +341,9 @@ public class EventIngestionApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<IngestBatchEventResponse> ingestBatchWithHttpInfo(IngestBatchEventRequest ingestBatchEventRequest) throws ApiException {
+    public ApiResponse<IngestEventResponse> ingestBatchWithHttpInfo(IngestBatchEventRequest ingestBatchEventRequest) throws ApiException {
         okhttp3.Call localVarCall = ingestBatchValidateBeforeCall(ingestBatchEventRequest, null);
-        Type localVarReturnType = new TypeToken<IngestBatchEventResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<IngestEventResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -363,10 +367,10 @@ public class EventIngestionApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call ingestBatchAsync(IngestBatchEventRequest ingestBatchEventRequest, final ApiCallback<IngestBatchEventResponse> _callback) throws ApiException {
+    public okhttp3.Call ingestBatchAsync(IngestBatchEventRequest ingestBatchEventRequest, final ApiCallback<IngestEventResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = ingestBatchValidateBeforeCall(ingestBatchEventRequest, _callback);
-        Type localVarReturnType = new TypeToken<IngestBatchEventResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<IngestEventResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

@@ -13,7 +13,12 @@ Information related to ingestion of an event
 |**pricePlans** | [**List&lt;EventPipelineInfoPricePlans&gt;**](EventPipelineInfoPricePlans.md) |  |  [optional] |
 |**account** | [**EventPipelineInfoAccount**](EventPipelineInfoAccount.md) |  |  [optional] |
 |**customer** | [**EventPipelineInfoCustomer**](EventPipelineInfoCustomer.md) |  |  [optional] |
+|**featureDetails** | [**EventPipelineInfoFeatureDetails**](EventPipelineInfoFeatureDetails.md) |  |  [optional] |
 |**enrichments** | [**EventPipelineInfoEnrichments**](EventPipelineInfoEnrichments.md) |  |  [optional] |
+|**revenueDetails** | [**List&lt;EventPipelineInfoRevenueDetails&gt;**](EventPipelineInfoRevenueDetails.md) |  |  [optional] |
+|**statusBeforeReverting** | **String** |  |  [optional] |
+|**baseCurrency** | **String** |  |  [optional] |
+|**invoiceCurrency** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

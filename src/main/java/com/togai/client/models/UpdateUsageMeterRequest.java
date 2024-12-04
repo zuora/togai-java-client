@@ -14,15 +14,17 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.Computation;
+import com.togai.client.models.UsageMeterAggregation;
+import com.togai.client.models.UsageMeterFilterEntry;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -36,13 +38,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -50,13 +54,29 @@ import com.togai.client.JSON;
 /**
  * Request to update usage meter
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class UpdateUsageMeterRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
+  private String name;
+
+  public static final String SERIALIZED_NAME_BILLABLE_NAME = "billableName";
+  @SerializedName(SERIALIZED_NAME_BILLABLE_NAME)
+  @javax.annotation.Nullable
+  private String billableName;
+
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
   private String description;
+
+  public static final String SERIALIZED_NAME_EVENT_SCHEMA_NAME = "eventSchemaName";
+  @SerializedName(SERIALIZED_NAME_EVENT_SCHEMA_NAME)
+  @javax.annotation.Nullable
+  private String eventSchemaName;
 
   /**
    * Type of usage meter * COUNTER - Count usage 
@@ -101,138 +121,151 @@ public class UpdateUsageMeterRequest implements Serializable {
         return TypeEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      TypeEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
   private TypeEnum type;
-
-  /**
-   * Aggregation to be applied on usage meter result * COUNT - Counts number of events matching the usage meter * SUM - Sums up results of computation of all events matching usage meter 
-   */
-  @JsonAdapter(AggregationEnum.Adapter.class)
-  public enum AggregationEnum {
-    COUNT("COUNT"),
-    
-    SUM("SUM");
-
-    private String value;
-
-    AggregationEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static AggregationEnum fromValue(String value) {
-      for (AggregationEnum b : AggregationEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<AggregationEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final AggregationEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public AggregationEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return AggregationEnum.fromValue(value);
-      }
-    }
-  }
 
   public static final String SERIALIZED_NAME_AGGREGATION = "aggregation";
   @SerializedName(SERIALIZED_NAME_AGGREGATION)
-  private AggregationEnum aggregation;
+  @javax.annotation.Nullable
+  private UsageMeterAggregation aggregation;
 
   public static final String SERIALIZED_NAME_COMPUTATIONS = "computations";
   @SerializedName(SERIALIZED_NAME_COMPUTATIONS)
+  @javax.annotation.Nullable
   private List<Computation> computations = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_FILTERS = "filters";
+  @SerializedName(SERIALIZED_NAME_FILTERS)
+  @javax.annotation.Nullable
+  private List<UsageMeterFilterEntry> filters = new ArrayList<>();
 
   public UpdateUsageMeterRequest() {
   }
 
-  public UpdateUsageMeterRequest description(String description) {
-    
+  public UpdateUsageMeterRequest name(@javax.annotation.Nullable String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Name of usage meter.
+   * @return name
+   */
+  @javax.annotation.Nullable
+  public String getName() {
+    return name;
+  }
+
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
+  }
+
+
+  public UpdateUsageMeterRequest billableName(@javax.annotation.Nullable String billableName) {
+    this.billableName = billableName;
+    return this;
+  }
+
+  /**
+   * Billable name of usage meter. Billable name takes precedence over name to display in invoice.
+   * @return billableName
+   */
+  @javax.annotation.Nullable
+  public String getBillableName() {
+    return billableName;
+  }
+
+  public void setBillableName(@javax.annotation.Nullable String billableName) {
+    this.billableName = billableName;
+  }
+
+
+  public UpdateUsageMeterRequest description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
 
-   /**
-   * Description of the event
+  /**
+   * Description of the usage meter
    * @return description
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getDescription() {
     return description;
   }
 
-
-  public void setDescription(String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public UpdateUsageMeterRequest type(TypeEnum type) {
-    
+  public UpdateUsageMeterRequest eventSchemaName(@javax.annotation.Nullable String eventSchemaName) {
+    this.eventSchemaName = eventSchemaName;
+    return this;
+  }
+
+  /**
+   * Event Schema Identifier
+   * @return eventSchemaName
+   */
+  @javax.annotation.Nullable
+  public String getEventSchemaName() {
+    return eventSchemaName;
+  }
+
+  public void setEventSchemaName(@javax.annotation.Nullable String eventSchemaName) {
+    this.eventSchemaName = eventSchemaName;
+  }
+
+
+  public UpdateUsageMeterRequest type(@javax.annotation.Nullable TypeEnum type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * Type of usage meter * COUNTER - Count usage 
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
-
   public TypeEnum getType() {
     return type;
   }
 
-
-  public void setType(TypeEnum type) {
+  public void setType(@javax.annotation.Nullable TypeEnum type) {
     this.type = type;
   }
 
 
-  public UpdateUsageMeterRequest aggregation(AggregationEnum aggregation) {
-    
+  public UpdateUsageMeterRequest aggregation(@javax.annotation.Nullable UsageMeterAggregation aggregation) {
     this.aggregation = aggregation;
     return this;
   }
 
-   /**
-   * Aggregation to be applied on usage meter result * COUNT - Counts number of events matching the usage meter * SUM - Sums up results of computation of all events matching usage meter 
+  /**
+   * Get aggregation
    * @return aggregation
-  **/
+   */
   @javax.annotation.Nullable
-
-  public AggregationEnum getAggregation() {
+  public UsageMeterAggregation getAggregation() {
     return aggregation;
   }
 
-
-  public void setAggregation(AggregationEnum aggregation) {
+  public void setAggregation(@javax.annotation.Nullable UsageMeterAggregation aggregation) {
     this.aggregation = aggregation;
   }
 
 
-  public UpdateUsageMeterRequest computations(List<Computation> computations) {
-    
+  public UpdateUsageMeterRequest computations(@javax.annotation.Nullable List<Computation> computations) {
     this.computations = computations;
     return this;
   }
@@ -245,19 +278,44 @@ public class UpdateUsageMeterRequest implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get computations
    * @return computations
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<Computation> getComputations() {
     return computations;
   }
 
-
-  public void setComputations(List<Computation> computations) {
+  public void setComputations(@javax.annotation.Nullable List<Computation> computations) {
     this.computations = computations;
+  }
+
+
+  public UpdateUsageMeterRequest filters(@javax.annotation.Nullable List<UsageMeterFilterEntry> filters) {
+    this.filters = filters;
+    return this;
+  }
+
+  public UpdateUsageMeterRequest addFiltersItem(UsageMeterFilterEntry filtersItem) {
+    if (this.filters == null) {
+      this.filters = new ArrayList<>();
+    }
+    this.filters.add(filtersItem);
+    return this;
+  }
+
+  /**
+   * Get filters
+   * @return filters
+   */
+  @javax.annotation.Nullable
+  public List<UsageMeterFilterEntry> getFilters() {
+    return filters;
+  }
+
+  public void setFilters(@javax.annotation.Nullable List<UsageMeterFilterEntry> filters) {
+    this.filters = filters;
   }
 
 
@@ -271,25 +329,33 @@ public class UpdateUsageMeterRequest implements Serializable {
       return false;
     }
     UpdateUsageMeterRequest updateUsageMeterRequest = (UpdateUsageMeterRequest) o;
-    return Objects.equals(this.description, updateUsageMeterRequest.description) &&
+    return Objects.equals(this.name, updateUsageMeterRequest.name) &&
+        Objects.equals(this.billableName, updateUsageMeterRequest.billableName) &&
+        Objects.equals(this.description, updateUsageMeterRequest.description) &&
+        Objects.equals(this.eventSchemaName, updateUsageMeterRequest.eventSchemaName) &&
         Objects.equals(this.type, updateUsageMeterRequest.type) &&
         Objects.equals(this.aggregation, updateUsageMeterRequest.aggregation) &&
-        Objects.equals(this.computations, updateUsageMeterRequest.computations);
+        Objects.equals(this.computations, updateUsageMeterRequest.computations) &&
+        Objects.equals(this.filters, updateUsageMeterRequest.filters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, type, aggregation, computations);
+    return Objects.hash(name, billableName, description, eventSchemaName, type, aggregation, computations, filters);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateUsageMeterRequest {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    billableName: ").append(toIndentedString(billableName)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    eventSchemaName: ").append(toIndentedString(eventSchemaName)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    aggregation: ").append(toIndentedString(aggregation)).append("\n");
     sb.append("    computations: ").append(toIndentedString(computations)).append("\n");
+    sb.append("    filters: ").append(toIndentedString(filters)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -312,43 +378,62 @@ public class UpdateUsageMeterRequest implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("name");
+    openapiFields.add("billableName");
     openapiFields.add("description");
+    openapiFields.add("eventSchemaName");
     openapiFields.add("type");
     openapiFields.add("aggregation");
     openapiFields.add("computations");
+    openapiFields.add("filters");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to UpdateUsageMeterRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!UpdateUsageMeterRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdateUsageMeterRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UpdateUsageMeterRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateUsageMeterRequest is not found in the empty JSON string", UpdateUsageMeterRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!UpdateUsageMeterRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateUsageMeterRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateUsageMeterRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("billableName") != null && !jsonObj.get("billableName").isJsonNull()) && !jsonObj.get("billableName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `billableName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("billableName").toString()));
       }
       if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
       }
+      if ((jsonObj.get("eventSchemaName") != null && !jsonObj.get("eventSchemaName").isJsonNull()) && !jsonObj.get("eventSchemaName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `eventSchemaName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("eventSchemaName").toString()));
+      }
       if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) && !jsonObj.get("type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
       }
-      if ((jsonObj.get("aggregation") != null && !jsonObj.get("aggregation").isJsonNull()) && !jsonObj.get("aggregation").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `aggregation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("aggregation").toString()));
+      // validate the optional field `type`
+      if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
+        TypeEnum.validateJsonElement(jsonObj.get("type"));
+      }
+      // validate the optional field `aggregation`
+      if (jsonObj.get("aggregation") != null && !jsonObj.get("aggregation").isJsonNull()) {
+        UsageMeterAggregation.validateJsonElement(jsonObj.get("aggregation"));
       }
       if (jsonObj.get("computations") != null && !jsonObj.get("computations").isJsonNull()) {
         JsonArray jsonArraycomputations = jsonObj.getAsJsonArray("computations");
@@ -360,7 +445,21 @@ public class UpdateUsageMeterRequest implements Serializable {
 
           // validate the optional field `computations` (array)
           for (int i = 0; i < jsonArraycomputations.size(); i++) {
-            Computation.validateJsonObject(jsonArraycomputations.get(i).getAsJsonObject());
+            Computation.validateJsonElement(jsonArraycomputations.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("filters") != null && !jsonObj.get("filters").isJsonNull()) {
+        JsonArray jsonArrayfilters = jsonObj.getAsJsonArray("filters");
+        if (jsonArrayfilters != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("filters").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `filters` to be an array in the JSON string but got `%s`", jsonObj.get("filters").toString()));
+          }
+
+          // validate the optional field `filters` (array)
+          for (int i = 0; i < jsonArrayfilters.size(); i++) {
+            UsageMeterFilterEntry.validateJsonElement(jsonArrayfilters.get(i));
           };
         }
       }
@@ -386,31 +485,31 @@ public class UpdateUsageMeterRequest implements Serializable {
 
            @Override
            public UpdateUsageMeterRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of UpdateUsageMeterRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UpdateUsageMeterRequest
-  * @throws IOException if the JSON string is invalid with respect to UpdateUsageMeterRequest
-  */
+  /**
+   * Create an instance of UpdateUsageMeterRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdateUsageMeterRequest
+   * @throws IOException if the JSON string is invalid with respect to UpdateUsageMeterRequest
+   */
   public static UpdateUsageMeterRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdateUsageMeterRequest.class);
   }
 
- /**
-  * Convert an instance of UpdateUsageMeterRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UpdateUsageMeterRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

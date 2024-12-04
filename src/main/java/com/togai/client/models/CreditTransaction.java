@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,6 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -35,13 +35,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -49,16 +51,18 @@ import com.togai.client.JSON;
 /**
  * CreditTransaction
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class CreditTransaction implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String SERIALIZED_NAME_CREDIT_ID = "creditId";
   @SerializedName(SERIALIZED_NAME_CREDIT_ID)
+  @javax.annotation.Nonnull
   private String creditId;
 
   /**
@@ -110,155 +114,170 @@ public class CreditTransaction implements Serializable {
         return TransactionTypeEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      TransactionTypeEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_TRANSACTION_TYPE = "transactionType";
   @SerializedName(SERIALIZED_NAME_TRANSACTION_TYPE)
+  @javax.annotation.Nonnull
   private TransactionTypeEnum transactionType;
 
   public static final String SERIALIZED_NAME_INVOICE_ID = "invoiceId";
   @SerializedName(SERIALIZED_NAME_INVOICE_ID)
+  @javax.annotation.Nullable
   private String invoiceId;
+
+  public static final String SERIALIZED_NAME_ENTITY_ID = "entityId";
+  @SerializedName(SERIALIZED_NAME_ENTITY_ID)
+  @javax.annotation.Nullable
+  private String entityId;
 
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
+  @javax.annotation.Nonnull
   private BigDecimal amount;
 
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  @javax.annotation.Nonnull
   private OffsetDateTime createdAt;
 
   public CreditTransaction() {
   }
 
-  public CreditTransaction id(String id) {
-    
+  public CreditTransaction id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * Identifier of credit transactions
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getId() {
     return id;
   }
 
-
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public CreditTransaction creditId(String creditId) {
-    
+  public CreditTransaction creditId(@javax.annotation.Nonnull String creditId) {
     this.creditId = creditId;
     return this;
   }
 
-   /**
+  /**
    * Get creditId
    * @return creditId
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getCreditId() {
     return creditId;
   }
 
-
-  public void setCreditId(String creditId) {
+  public void setCreditId(@javax.annotation.Nonnull String creditId) {
     this.creditId = creditId;
   }
 
 
-  public CreditTransaction transactionType(TransactionTypeEnum transactionType) {
-    
+  public CreditTransaction transactionType(@javax.annotation.Nonnull TransactionTypeEnum transactionType) {
     this.transactionType = transactionType;
     return this;
   }
 
-   /**
+  /**
    * Get transactionType
    * @return transactionType
-  **/
+   */
   @javax.annotation.Nonnull
-
   public TransactionTypeEnum getTransactionType() {
     return transactionType;
   }
 
-
-  public void setTransactionType(TransactionTypeEnum transactionType) {
+  public void setTransactionType(@javax.annotation.Nonnull TransactionTypeEnum transactionType) {
     this.transactionType = transactionType;
   }
 
 
-  public CreditTransaction invoiceId(String invoiceId) {
-    
+  public CreditTransaction invoiceId(@javax.annotation.Nullable String invoiceId) {
     this.invoiceId = invoiceId;
     return this;
   }
 
-   /**
+  /**
    * Get invoiceId
    * @return invoiceId
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getInvoiceId() {
     return invoiceId;
   }
 
-
-  public void setInvoiceId(String invoiceId) {
+  public void setInvoiceId(@javax.annotation.Nullable String invoiceId) {
     this.invoiceId = invoiceId;
   }
 
 
-  public CreditTransaction amount(BigDecimal amount) {
-    
+  public CreditTransaction entityId(@javax.annotation.Nullable String entityId) {
+    this.entityId = entityId;
+    return this;
+  }
+
+  /**
+   * Get entityId
+   * @return entityId
+   */
+  @javax.annotation.Nullable
+  public String getEntityId() {
+    return entityId;
+  }
+
+  public void setEntityId(@javax.annotation.Nullable String entityId) {
+    this.entityId = entityId;
+  }
+
+
+  public CreditTransaction amount(@javax.annotation.Nonnull BigDecimal amount) {
     this.amount = amount;
     return this;
   }
 
-   /**
+  /**
    * Get amount
    * @return amount
-  **/
+   */
   @javax.annotation.Nonnull
-
   public BigDecimal getAmount() {
     return amount;
   }
 
-
-  public void setAmount(BigDecimal amount) {
+  public void setAmount(@javax.annotation.Nonnull BigDecimal amount) {
     this.amount = amount;
   }
 
 
-  public CreditTransaction createdAt(OffsetDateTime createdAt) {
-    
+  public CreditTransaction createdAt(@javax.annotation.Nonnull OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
   }
 
-   /**
+  /**
    * Get createdAt
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nonnull
-
   public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
 
-
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(@javax.annotation.Nonnull OffsetDateTime createdAt) {
     this.createdAt = createdAt;
   }
 
@@ -277,13 +296,14 @@ public class CreditTransaction implements Serializable {
         Objects.equals(this.creditId, creditTransaction.creditId) &&
         Objects.equals(this.transactionType, creditTransaction.transactionType) &&
         Objects.equals(this.invoiceId, creditTransaction.invoiceId) &&
+        Objects.equals(this.entityId, creditTransaction.entityId) &&
         Objects.equals(this.amount, creditTransaction.amount) &&
         Objects.equals(this.createdAt, creditTransaction.createdAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, creditId, transactionType, invoiceId, amount, createdAt);
+    return Objects.hash(id, creditId, transactionType, invoiceId, entityId, amount, createdAt);
   }
 
   @Override
@@ -294,6 +314,7 @@ public class CreditTransaction implements Serializable {
     sb.append("    creditId: ").append(toIndentedString(creditId)).append("\n");
     sb.append("    transactionType: ").append(toIndentedString(transactionType)).append("\n");
     sb.append("    invoiceId: ").append(toIndentedString(invoiceId)).append("\n");
+    sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("}");
@@ -322,6 +343,7 @@ public class CreditTransaction implements Serializable {
     openapiFields.add("creditId");
     openapiFields.add("transactionType");
     openapiFields.add("invoiceId");
+    openapiFields.add("entityId");
     openapiFields.add("amount");
     openapiFields.add("createdAt");
 
@@ -334,33 +356,34 @@ public class CreditTransaction implements Serializable {
     openapiRequiredFields.add("createdAt");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreditTransaction
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CreditTransaction.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreditTransaction
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreditTransaction.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreditTransaction is not found in the empty JSON string", CreditTransaction.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CreditTransaction.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreditTransaction` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreditTransaction` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : CreditTransaction.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
@@ -370,8 +393,13 @@ public class CreditTransaction implements Serializable {
       if (!jsonObj.get("transactionType").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `transactionType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("transactionType").toString()));
       }
+      // validate the required field `transactionType`
+      TransactionTypeEnum.validateJsonElement(jsonObj.get("transactionType"));
       if ((jsonObj.get("invoiceId") != null && !jsonObj.get("invoiceId").isJsonNull()) && !jsonObj.get("invoiceId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `invoiceId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceId").toString()));
+      }
+      if ((jsonObj.get("entityId") != null && !jsonObj.get("entityId").isJsonNull()) && !jsonObj.get("entityId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `entityId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("entityId").toString()));
       }
   }
 
@@ -395,31 +423,31 @@ public class CreditTransaction implements Serializable {
 
            @Override
            public CreditTransaction read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreditTransaction given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreditTransaction
-  * @throws IOException if the JSON string is invalid with respect to CreditTransaction
-  */
+  /**
+   * Create an instance of CreditTransaction given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreditTransaction
+   * @throws IOException if the JSON string is invalid with respect to CreditTransaction
+   */
   public static CreditTransaction fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreditTransaction.class);
   }
 
- /**
-  * Convert an instance of CreditTransaction to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreditTransaction to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

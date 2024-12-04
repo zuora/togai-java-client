@@ -36,7 +36,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.ws.rs.core.GenericType;
 
 public class MetricsApi {
     private ApiClient localVarApiClient;
@@ -82,7 +81,8 @@ public class MetricsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success response </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request. Please check the response message for failure details. </td><td>  -  </td></tr>
@@ -145,12 +145,13 @@ public class MetricsApi {
 
     /**
      * Get Togai Metrics
-     * Togai Metrics API allows you to fetch different metrics from Events , Usage Meters and PricePlans with multiple queryable options. A single request can query up to five metrics.  Single response can contain a maximum of 100 data points. 
+     * Togai Metrics API allows you to fetch different metrics from Events, Usage Meters and PricePlans with multiple queryable options. A single request can query up to five metrics.  Single response can contain a maximum of 300 data points. 
      * @param getMetricsRequest  (optional)
      * @return GetMetricsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success response </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request. Please check the response message for failure details. </td><td>  -  </td></tr>
@@ -167,12 +168,13 @@ public class MetricsApi {
 
     /**
      * Get Togai Metrics
-     * Togai Metrics API allows you to fetch different metrics from Events , Usage Meters and PricePlans with multiple queryable options. A single request can query up to five metrics.  Single response can contain a maximum of 100 data points. 
+     * Togai Metrics API allows you to fetch different metrics from Events, Usage Meters and PricePlans with multiple queryable options. A single request can query up to five metrics.  Single response can contain a maximum of 300 data points. 
      * @param getMetricsRequest  (optional)
      * @return ApiResponse&lt;GetMetricsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success response </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request. Please check the response message for failure details. </td><td>  -  </td></tr>
@@ -190,13 +192,14 @@ public class MetricsApi {
 
     /**
      * Get Togai Metrics (asynchronously)
-     * Togai Metrics API allows you to fetch different metrics from Events , Usage Meters and PricePlans with multiple queryable options. A single request can query up to five metrics.  Single response can contain a maximum of 100 data points. 
+     * Togai Metrics API allows you to fetch different metrics from Events, Usage Meters and PricePlans with multiple queryable options. A single request can query up to five metrics.  Single response can contain a maximum of 300 data points. 
      * @param getMetricsRequest  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success response </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request. Please check the response message for failure details. </td><td>  -  </td></tr>

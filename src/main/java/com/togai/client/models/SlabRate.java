@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.Serializable;
@@ -36,13 +36,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -50,71 +52,67 @@ import com.togai.client.JSON;
 /**
  * Represents a rate for a slab
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class SlabRate implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ORDER = "order";
   @SerializedName(SERIALIZED_NAME_ORDER)
+  @javax.annotation.Nonnull
   private Integer order;
 
   public static final String SERIALIZED_NAME_RATE = "rate";
   @SerializedName(SERIALIZED_NAME_RATE)
+  @javax.annotation.Nonnull
   private BigDecimal rate;
 
   public static final String SERIALIZED_NAME_SLAB_RATE_CONFIG = "slabRateConfig";
   @SerializedName(SERIALIZED_NAME_SLAB_RATE_CONFIG)
+  @javax.annotation.Nullable
   private Map<String, String> slabRateConfig = new HashMap<>();
 
   public SlabRate() {
   }
 
-  public SlabRate order(Integer order) {
-    
+  public SlabRate order(@javax.annotation.Nonnull Integer order) {
     this.order = order;
     return this;
   }
 
-   /**
+  /**
    * Get order
    * @return order
-  **/
+   */
   @javax.annotation.Nonnull
-
   public Integer getOrder() {
     return order;
   }
 
-
-  public void setOrder(Integer order) {
+  public void setOrder(@javax.annotation.Nonnull Integer order) {
     this.order = order;
   }
 
 
-  public SlabRate rate(BigDecimal rate) {
-    
+  public SlabRate rate(@javax.annotation.Nonnull BigDecimal rate) {
     this.rate = rate;
     return this;
   }
 
-   /**
+  /**
    * Get rate
    * @return rate
-  **/
+   */
   @javax.annotation.Nonnull
-
   public BigDecimal getRate() {
     return rate;
   }
 
-
-  public void setRate(BigDecimal rate) {
+  public void setRate(@javax.annotation.Nonnull BigDecimal rate) {
     this.rate = rate;
   }
 
 
-  public SlabRate slabRateConfig(Map<String, String> slabRateConfig) {
-    
+  public SlabRate slabRateConfig(@javax.annotation.Nullable Map<String, String> slabRateConfig) {
     this.slabRateConfig = slabRateConfig;
     return this;
   }
@@ -127,18 +125,16 @@ public class SlabRate implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get slabRateConfig
    * @return slabRateConfig
-  **/
+   */
   @javax.annotation.Nullable
-
   public Map<String, String> getSlabRateConfig() {
     return slabRateConfig;
   }
 
-
-  public void setSlabRateConfig(Map<String, String> slabRateConfig) {
+  public void setSlabRateConfig(@javax.annotation.Nullable Map<String, String> slabRateConfig) {
     this.slabRateConfig = slabRateConfig;
   }
 
@@ -202,33 +198,34 @@ public class SlabRate implements Serializable {
     openapiRequiredFields.add("rate");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to SlabRate
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!SlabRate.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SlabRate
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SlabRate.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SlabRate is not found in the empty JSON string", SlabRate.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!SlabRate.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SlabRate` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SlabRate` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : SlabRate.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -251,31 +248,31 @@ public class SlabRate implements Serializable {
 
            @Override
            public SlabRate read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SlabRate given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SlabRate
-  * @throws IOException if the JSON string is invalid with respect to SlabRate
-  */
+  /**
+   * Create an instance of SlabRate given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SlabRate
+   * @throws IOException if the JSON string is invalid with respect to SlabRate
+   */
   public static SlabRate fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SlabRate.class);
   }
 
- /**
-  * Convert an instance of SlabRate to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SlabRate to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

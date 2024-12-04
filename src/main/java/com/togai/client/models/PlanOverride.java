@@ -14,15 +14,18 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.PricePlanDetailsOverride;
+import com.togai.client.models.PricingRule;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -35,13 +38,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -49,139 +54,185 @@ import com.togai.client.JSON;
 /**
  * Represents effectiveness period and config of a price plan. i.e, price plan bound by time.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class PlanOverride implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
+  private String id;
+
   public static final String SERIALIZED_NAME_PRICE_PLAN_ID = "pricePlanId";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_ID)
+  @javax.annotation.Nonnull
   private String pricePlanId;
 
   public static final String SERIALIZED_NAME_PRICE_PLAN_NAME = "pricePlanName";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_NAME)
+  @javax.annotation.Nonnull
   private String pricePlanName;
 
   public static final String SERIALIZED_NAME_PRICE_PLAN_DETAILS_OVERRIDE = "pricePlanDetailsOverride";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_DETAILS_OVERRIDE)
+  @javax.annotation.Nullable
   private PricePlanDetailsOverride pricePlanDetailsOverride;
+
+  public static final String SERIALIZED_NAME_PRICING_RULES_OVERRIDE = "pricingRulesOverride";
+  @SerializedName(SERIALIZED_NAME_PRICING_RULES_OVERRIDE)
+  @javax.annotation.Nullable
+  private List<PricingRule> pricingRulesOverride = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_START_DATE = "startDate";
   @SerializedName(SERIALIZED_NAME_START_DATE)
+  @javax.annotation.Nonnull
   private OffsetDateTime startDate;
 
   public static final String SERIALIZED_NAME_END_DATE = "endDate";
   @SerializedName(SERIALIZED_NAME_END_DATE)
+  @javax.annotation.Nonnull
   private OffsetDateTime endDate;
 
   public PlanOverride() {
   }
 
-  public PlanOverride pricePlanId(String pricePlanId) {
-    
+  public PlanOverride id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  public String getId() {
+    return id;
+  }
+
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
+  }
+
+
+  public PlanOverride pricePlanId(@javax.annotation.Nonnull String pricePlanId) {
     this.pricePlanId = pricePlanId;
     return this;
   }
 
-   /**
+  /**
    * Get pricePlanId
    * @return pricePlanId
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getPricePlanId() {
     return pricePlanId;
   }
 
-
-  public void setPricePlanId(String pricePlanId) {
+  public void setPricePlanId(@javax.annotation.Nonnull String pricePlanId) {
     this.pricePlanId = pricePlanId;
   }
 
 
-  public PlanOverride pricePlanName(String pricePlanName) {
-    
+  public PlanOverride pricePlanName(@javax.annotation.Nonnull String pricePlanName) {
     this.pricePlanName = pricePlanName;
     return this;
   }
 
-   /**
+  /**
    * Get pricePlanName
    * @return pricePlanName
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getPricePlanName() {
     return pricePlanName;
   }
 
-
-  public void setPricePlanName(String pricePlanName) {
+  public void setPricePlanName(@javax.annotation.Nonnull String pricePlanName) {
     this.pricePlanName = pricePlanName;
   }
 
 
-  public PlanOverride pricePlanDetailsOverride(PricePlanDetailsOverride pricePlanDetailsOverride) {
-    
+  public PlanOverride pricePlanDetailsOverride(@javax.annotation.Nullable PricePlanDetailsOverride pricePlanDetailsOverride) {
     this.pricePlanDetailsOverride = pricePlanDetailsOverride;
     return this;
   }
 
-   /**
+  /**
    * Get pricePlanDetailsOverride
    * @return pricePlanDetailsOverride
-  **/
+   */
   @javax.annotation.Nullable
-
   public PricePlanDetailsOverride getPricePlanDetailsOverride() {
     return pricePlanDetailsOverride;
   }
 
-
-  public void setPricePlanDetailsOverride(PricePlanDetailsOverride pricePlanDetailsOverride) {
+  public void setPricePlanDetailsOverride(@javax.annotation.Nullable PricePlanDetailsOverride pricePlanDetailsOverride) {
     this.pricePlanDetailsOverride = pricePlanDetailsOverride;
   }
 
 
-  public PlanOverride startDate(OffsetDateTime startDate) {
-    
+  public PlanOverride pricingRulesOverride(@javax.annotation.Nullable List<PricingRule> pricingRulesOverride) {
+    this.pricingRulesOverride = pricingRulesOverride;
+    return this;
+  }
+
+  public PlanOverride addPricingRulesOverrideItem(PricingRule pricingRulesOverrideItem) {
+    if (this.pricingRulesOverride == null) {
+      this.pricingRulesOverride = new ArrayList<>();
+    }
+    this.pricingRulesOverride.add(pricingRulesOverrideItem);
+    return this;
+  }
+
+  /**
+   * Get pricingRulesOverride
+   * @return pricingRulesOverride
+   */
+  @javax.annotation.Nullable
+  public List<PricingRule> getPricingRulesOverride() {
+    return pricingRulesOverride;
+  }
+
+  public void setPricingRulesOverride(@javax.annotation.Nullable List<PricingRule> pricingRulesOverride) {
+    this.pricingRulesOverride = pricingRulesOverride;
+  }
+
+
+  public PlanOverride startDate(@javax.annotation.Nonnull OffsetDateTime startDate) {
     this.startDate = startDate;
     return this;
   }
 
-   /**
+  /**
    * Get startDate
    * @return startDate
-  **/
+   */
   @javax.annotation.Nonnull
-
   public OffsetDateTime getStartDate() {
     return startDate;
   }
 
-
-  public void setStartDate(OffsetDateTime startDate) {
+  public void setStartDate(@javax.annotation.Nonnull OffsetDateTime startDate) {
     this.startDate = startDate;
   }
 
 
-  public PlanOverride endDate(OffsetDateTime endDate) {
-    
+  public PlanOverride endDate(@javax.annotation.Nonnull OffsetDateTime endDate) {
     this.endDate = endDate;
     return this;
   }
 
-   /**
+  /**
    * Get endDate
    * @return endDate
-  **/
+   */
   @javax.annotation.Nonnull
-
   public OffsetDateTime getEndDate() {
     return endDate;
   }
 
-
-  public void setEndDate(OffsetDateTime endDate) {
+  public void setEndDate(@javax.annotation.Nonnull OffsetDateTime endDate) {
     this.endDate = endDate;
   }
 
@@ -196,25 +247,29 @@ public class PlanOverride implements Serializable {
       return false;
     }
     PlanOverride planOverride = (PlanOverride) o;
-    return Objects.equals(this.pricePlanId, planOverride.pricePlanId) &&
+    return Objects.equals(this.id, planOverride.id) &&
+        Objects.equals(this.pricePlanId, planOverride.pricePlanId) &&
         Objects.equals(this.pricePlanName, planOverride.pricePlanName) &&
         Objects.equals(this.pricePlanDetailsOverride, planOverride.pricePlanDetailsOverride) &&
+        Objects.equals(this.pricingRulesOverride, planOverride.pricingRulesOverride) &&
         Objects.equals(this.startDate, planOverride.startDate) &&
         Objects.equals(this.endDate, planOverride.endDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pricePlanId, pricePlanName, pricePlanDetailsOverride, startDate, endDate);
+    return Objects.hash(id, pricePlanId, pricePlanName, pricePlanDetailsOverride, pricingRulesOverride, startDate, endDate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PlanOverride {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    pricePlanId: ").append(toIndentedString(pricePlanId)).append("\n");
     sb.append("    pricePlanName: ").append(toIndentedString(pricePlanName)).append("\n");
     sb.append("    pricePlanDetailsOverride: ").append(toIndentedString(pricePlanDetailsOverride)).append("\n");
+    sb.append("    pricingRulesOverride: ").append(toIndentedString(pricingRulesOverride)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("}");
@@ -239,46 +294,53 @@ public class PlanOverride implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("id");
     openapiFields.add("pricePlanId");
     openapiFields.add("pricePlanName");
     openapiFields.add("pricePlanDetailsOverride");
+    openapiFields.add("pricingRulesOverride");
     openapiFields.add("startDate");
     openapiFields.add("endDate");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("id");
     openapiRequiredFields.add("pricePlanId");
     openapiRequiredFields.add("pricePlanName");
     openapiRequiredFields.add("startDate");
     openapiRequiredFields.add("endDate");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to PlanOverride
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!PlanOverride.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PlanOverride
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PlanOverride.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PlanOverride is not found in the empty JSON string", PlanOverride.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!PlanOverride.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PlanOverride` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PlanOverride` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : PlanOverride.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       if (!jsonObj.get("pricePlanId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `pricePlanId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pricePlanId").toString()));
@@ -288,7 +350,21 @@ public class PlanOverride implements Serializable {
       }
       // validate the optional field `pricePlanDetailsOverride`
       if (jsonObj.get("pricePlanDetailsOverride") != null && !jsonObj.get("pricePlanDetailsOverride").isJsonNull()) {
-        PricePlanDetailsOverride.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetailsOverride"));
+        PricePlanDetailsOverride.validateJsonElement(jsonObj.get("pricePlanDetailsOverride"));
+      }
+      if (jsonObj.get("pricingRulesOverride") != null && !jsonObj.get("pricingRulesOverride").isJsonNull()) {
+        JsonArray jsonArraypricingRulesOverride = jsonObj.getAsJsonArray("pricingRulesOverride");
+        if (jsonArraypricingRulesOverride != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("pricingRulesOverride").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `pricingRulesOverride` to be an array in the JSON string but got `%s`", jsonObj.get("pricingRulesOverride").toString()));
+          }
+
+          // validate the optional field `pricingRulesOverride` (array)
+          for (int i = 0; i < jsonArraypricingRulesOverride.size(); i++) {
+            PricingRule.validateJsonElement(jsonArraypricingRulesOverride.get(i));
+          };
+        }
       }
   }
 
@@ -312,31 +388,31 @@ public class PlanOverride implements Serializable {
 
            @Override
            public PlanOverride read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of PlanOverride given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PlanOverride
-  * @throws IOException if the JSON string is invalid with respect to PlanOverride
-  */
+  /**
+   * Create an instance of PlanOverride given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PlanOverride
+   * @throws IOException if the JSON string is invalid with respect to PlanOverride
+   */
   public static PlanOverride fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PlanOverride.class);
   }
 
- /**
-  * Convert an instance of PlanOverride to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PlanOverride to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

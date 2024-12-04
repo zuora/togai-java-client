@@ -10,7 +10,7 @@ Payload to update customer
 |------------ | ------------- | ------------- | -------------|
 |**name** | **String** | Name of the Customer |  [optional] |
 |**primaryEmail** | **String** | Primary email of the customer |  [optional] |
-|**billingAddress** | **String** | billing address of the customer |  [optional] |
+|**address** | [**Address**](Address.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

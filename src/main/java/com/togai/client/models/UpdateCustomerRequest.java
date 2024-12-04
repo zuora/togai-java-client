@@ -14,13 +14,14 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.togai.client.models.Address;
 import java.io.IOException;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -33,13 +34,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -47,88 +50,82 @@ import com.togai.client.JSON;
 /**
  * Payload to update customer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class UpdateCustomerRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_PRIMARY_EMAIL = "primaryEmail";
   @SerializedName(SERIALIZED_NAME_PRIMARY_EMAIL)
+  @javax.annotation.Nullable
   private String primaryEmail;
 
-  public static final String SERIALIZED_NAME_BILLING_ADDRESS = "billingAddress";
-  @SerializedName(SERIALIZED_NAME_BILLING_ADDRESS)
-  private String billingAddress;
+  public static final String SERIALIZED_NAME_ADDRESS = "address";
+  @SerializedName(SERIALIZED_NAME_ADDRESS)
+  @javax.annotation.Nullable
+  private Address address;
 
   public UpdateCustomerRequest() {
   }
 
-  public UpdateCustomerRequest name(String name) {
-    
+  public UpdateCustomerRequest name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Name of the Customer
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public UpdateCustomerRequest primaryEmail(String primaryEmail) {
-    
+  public UpdateCustomerRequest primaryEmail(@javax.annotation.Nullable String primaryEmail) {
     this.primaryEmail = primaryEmail;
     return this;
   }
 
-   /**
+  /**
    * Primary email of the customer
    * @return primaryEmail
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getPrimaryEmail() {
     return primaryEmail;
   }
 
-
-  public void setPrimaryEmail(String primaryEmail) {
+  public void setPrimaryEmail(@javax.annotation.Nullable String primaryEmail) {
     this.primaryEmail = primaryEmail;
   }
 
 
-  public UpdateCustomerRequest billingAddress(String billingAddress) {
-    
-    this.billingAddress = billingAddress;
+  public UpdateCustomerRequest address(@javax.annotation.Nullable Address address) {
+    this.address = address;
     return this;
   }
 
-   /**
-   * billing address of the customer
-   * @return billingAddress
-  **/
+  /**
+   * Get address
+   * @return address
+   */
   @javax.annotation.Nullable
-
-  public String getBillingAddress() {
-    return billingAddress;
+  public Address getAddress() {
+    return address;
   }
 
-
-  public void setBillingAddress(String billingAddress) {
-    this.billingAddress = billingAddress;
+  public void setAddress(@javax.annotation.Nullable Address address) {
+    this.address = address;
   }
 
 
@@ -144,12 +141,12 @@ public class UpdateCustomerRequest implements Serializable {
     UpdateCustomerRequest updateCustomerRequest = (UpdateCustomerRequest) o;
     return Objects.equals(this.name, updateCustomerRequest.name) &&
         Objects.equals(this.primaryEmail, updateCustomerRequest.primaryEmail) &&
-        Objects.equals(this.billingAddress, updateCustomerRequest.billingAddress);
+        Objects.equals(this.address, updateCustomerRequest.address);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, primaryEmail, billingAddress);
+    return Objects.hash(name, primaryEmail, address);
   }
 
   @Override
@@ -158,7 +155,7 @@ public class UpdateCustomerRequest implements Serializable {
     sb.append("class UpdateCustomerRequest {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    primaryEmail: ").append(toIndentedString(primaryEmail)).append("\n");
-    sb.append("    billingAddress: ").append(toIndentedString(billingAddress)).append("\n");
+    sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -183,40 +180,42 @@ public class UpdateCustomerRequest implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
     openapiFields.add("primaryEmail");
-    openapiFields.add("billingAddress");
+    openapiFields.add("address");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to UpdateCustomerRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!UpdateCustomerRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdateCustomerRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UpdateCustomerRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateCustomerRequest is not found in the empty JSON string", UpdateCustomerRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!UpdateCustomerRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateCustomerRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateCustomerRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
       if ((jsonObj.get("primaryEmail") != null && !jsonObj.get("primaryEmail").isJsonNull()) && !jsonObj.get("primaryEmail").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `primaryEmail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("primaryEmail").toString()));
       }
-      if ((jsonObj.get("billingAddress") != null && !jsonObj.get("billingAddress").isJsonNull()) && !jsonObj.get("billingAddress").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `billingAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("billingAddress").toString()));
+      // validate the optional field `address`
+      if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {
+        Address.validateJsonElement(jsonObj.get("address"));
       }
   }
 
@@ -240,31 +239,31 @@ public class UpdateCustomerRequest implements Serializable {
 
            @Override
            public UpdateCustomerRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of UpdateCustomerRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UpdateCustomerRequest
-  * @throws IOException if the JSON string is invalid with respect to UpdateCustomerRequest
-  */
+  /**
+   * Create an instance of UpdateCustomerRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdateCustomerRequest
+   * @throws IOException if the JSON string is invalid with respect to UpdateCustomerRequest
+   */
   public static UpdateCustomerRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdateCustomerRequest.class);
   }
 
- /**
-  * Convert an instance of UpdateCustomerRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UpdateCustomerRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -14,18 +14,25 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.InvoiceDetails;
+import com.togai.client.models.InvoiceInfoInner;
 import com.togai.client.models.InvoiceLineItem;
+import com.togai.client.models.InvoicesClass;
+import com.togai.client.models.InvoicesStatus;
+import com.togai.client.models.InvoicesType;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -38,13 +45,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -52,54 +61,62 @@ import com.togai.client.JSON;
 /**
  * Structure of invoice
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class Invoice implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String SERIALIZED_NAME_CUSTOMER_ID = "customerId";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_ID)
+  @javax.annotation.Nullable
   private String customerId;
 
-  public static final String SERIALIZED_NAME_ACCOUNT_ID = "accountId";
-  @SerializedName(SERIALIZED_NAME_ACCOUNT_ID)
-  private String accountId;
+  public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
+  @SerializedName(SERIALIZED_NAME_OWNER_ID)
+  @javax.annotation.Nullable
+  private String ownerId;
 
   public static final String SERIALIZED_NAME_PRICE_PLAN_ID = "pricePlanId";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_ID)
+  @javax.annotation.Nullable
   private String pricePlanId;
 
   public static final String SERIALIZED_NAME_USAGE_INFO = "usageInfo";
   @SerializedName(SERIALIZED_NAME_USAGE_INFO)
+  @javax.annotation.Nullable
   private List<InvoiceLineItem> usageInfo = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REVENUE_INFO = "revenueInfo";
   @SerializedName(SERIALIZED_NAME_REVENUE_INFO)
+  @javax.annotation.Nullable
   private InvoiceLineItem revenueInfo;
 
   public static final String SERIALIZED_NAME_INVOICE_DETAILS = "invoiceDetails";
   @SerializedName(SERIALIZED_NAME_INVOICE_DETAILS)
+  @javax.annotation.Nullable
   private InvoiceDetails invoiceDetails;
 
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nonnull
+  private InvoicesStatus status;
+
   /**
-   * Status of the invoice
+   * Gets or Sets finalizingStatus
    */
-  @JsonAdapter(StatusEnum.Adapter.class)
-  public enum StatusEnum {
-    ONGOING("ONGOING"),
+  @JsonAdapter(FinalizingStatusEnum.Adapter.class)
+  public enum FinalizingStatusEnum {
+    FINALIZING("FINALIZING"),
     
-    GRACE_PERIOD("GRACE_PERIOD"),
-    
-    GENERATED("GENERATED"),
-    
-    PUBLISHED("PUBLISHED");
+    FINALIZED("FINALIZED");
 
     private String value;
 
-    StatusEnum(String value) {
+    FinalizingStatusEnum(String value) {
       this.value = value;
     }
 
@@ -112,8 +129,8 @@ public class Invoice implements Serializable {
       return String.valueOf(value);
     }
 
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
+    public static FinalizingStatusEnum fromValue(String value) {
+      for (FinalizingStatusEnum b : FinalizingStatusEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -121,137 +138,195 @@ public class Invoice implements Serializable {
       throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
 
-    public static class Adapter extends TypeAdapter<StatusEnum> {
+    public static class Adapter extends TypeAdapter<FinalizingStatusEnum> {
       @Override
-      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+      public void write(final JsonWriter jsonWriter, final FinalizingStatusEnum enumeration) throws IOException {
         jsonWriter.value(enumeration.getValue());
       }
 
       @Override
-      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+      public FinalizingStatusEnum read(final JsonReader jsonReader) throws IOException {
         String value =  jsonReader.nextString();
-        return StatusEnum.fromValue(value);
+        return FinalizingStatusEnum.fromValue(value);
       }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      FinalizingStatusEnum.fromValue(value);
     }
   }
 
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private StatusEnum status;
+  public static final String SERIALIZED_NAME_FINALIZING_STATUS = "finalizingStatus";
+  @SerializedName(SERIALIZED_NAME_FINALIZING_STATUS)
+  @javax.annotation.Nullable
+  private FinalizingStatusEnum finalizingStatus;
+
+  public static final String SERIALIZED_NAME_INVOICE_CLASS = "invoiceClass";
+  @SerializedName(SERIALIZED_NAME_INVOICE_CLASS)
+  @javax.annotation.Nonnull
+  private InvoicesClass invoiceClass;
+
+  public static final String SERIALIZED_NAME_INVOICE_TYPE = "invoiceType";
+  @SerializedName(SERIALIZED_NAME_INVOICE_TYPE)
+  @javax.annotation.Nonnull
+  private InvoicesType invoiceType;
+
+  public static final String SERIALIZED_NAME_AUTO_ADVANCE = "autoAdvance";
+  @SerializedName(SERIALIZED_NAME_AUTO_ADVANCE)
+  @javax.annotation.Nullable
+  private Boolean autoAdvance;
 
   public static final String SERIALIZED_NAME_START_DATE = "startDate";
   @SerializedName(SERIALIZED_NAME_START_DATE)
+  @javax.annotation.Nullable
   private OffsetDateTime startDate;
 
   public static final String SERIALIZED_NAME_END_DATE = "endDate";
   @SerializedName(SERIALIZED_NAME_END_DATE)
+  @javax.annotation.Nullable
   private OffsetDateTime endDate;
+
+  public static final String SERIALIZED_NAME_END_DATE_INCLUSIVE = "endDateInclusive";
+  @SerializedName(SERIALIZED_NAME_END_DATE_INCLUSIVE)
+  @javax.annotation.Nullable
+  private OffsetDateTime endDateInclusive;
 
   public static final String SERIALIZED_NAME_INVOICE_DATE = "invoiceDate";
   @SerializedName(SERIALIZED_NAME_INVOICE_DATE)
+  @javax.annotation.Nonnull
   private OffsetDateTime invoiceDate;
+
+  public static final String SERIALIZED_NAME_DUE_DATE = "dueDate";
+  @SerializedName(SERIALIZED_NAME_DUE_DATE)
+  @javax.annotation.Nullable
+  private OffsetDateTime dueDate;
 
   public static final String SERIALIZED_NAME_GENERATED_AT = "generatedAt";
   @SerializedName(SERIALIZED_NAME_GENERATED_AT)
+  @javax.annotation.Nullable
   private OffsetDateTime generatedAt;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updatedAt";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
+  @javax.annotation.Nonnull
   private OffsetDateTime updatedAt;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  @javax.annotation.Nullable
+  private Map<String, Object> metadata = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_INFO = "info";
+  @SerializedName(SERIALIZED_NAME_INFO)
+  @javax.annotation.Nullable
+  private List<InvoiceInfoInner> info = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_SEQUENCE_ID = "sequenceId";
+  @SerializedName(SERIALIZED_NAME_SEQUENCE_ID)
+  @javax.annotation.Nullable
+  private String sequenceId;
+
+  public static final String SERIALIZED_NAME_PDF_URL = "pdfUrl";
+  @SerializedName(SERIALIZED_NAME_PDF_URL)
+  @javax.annotation.Nullable
+  private String pdfUrl;
+
+  public static final String SERIALIZED_NAME_TOTAL_AMOUNT = "totalAmount";
+  @SerializedName(SERIALIZED_NAME_TOTAL_AMOUNT)
+  @javax.annotation.Nonnull
+  private BigDecimal totalAmount;
+
+  public static final String SERIALIZED_NAME_PAID_AMOUNT = "paidAmount";
+  @SerializedName(SERIALIZED_NAME_PAID_AMOUNT)
+  @javax.annotation.Nonnull
+  private BigDecimal paidAmount;
+
+  public static final String SERIALIZED_NAME_NET_TERM_DAYS = "netTermDays";
+  @SerializedName(SERIALIZED_NAME_NET_TERM_DAYS)
+  @javax.annotation.Nonnull
+  private Integer netTermDays;
 
   public Invoice() {
   }
 
-  public Invoice id(String id) {
-    
+  public Invoice id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
 
-   /**
-   * Identifier of customer
+  /**
+   * Identifier of invoice
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getId() {
     return id;
   }
 
-
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public Invoice customerId(String customerId) {
-    
+  public Invoice customerId(@javax.annotation.Nullable String customerId) {
     this.customerId = customerId;
     return this;
   }
 
-   /**
+  /**
    * Get customerId
    * @return customerId
-  **/
-  @javax.annotation.Nonnull
-
+   */
+  @javax.annotation.Nullable
   public String getCustomerId() {
     return customerId;
   }
 
-
-  public void setCustomerId(String customerId) {
+  public void setCustomerId(@javax.annotation.Nullable String customerId) {
     this.customerId = customerId;
   }
 
 
-  public Invoice accountId(String accountId) {
-    
-    this.accountId = accountId;
+  public Invoice ownerId(@javax.annotation.Nullable String ownerId) {
+    this.ownerId = ownerId;
     return this;
   }
 
-   /**
-   * Get accountId
-   * @return accountId
-  **/
-  @javax.annotation.Nonnull
+  /**
+   * Get ownerId
+   * @return ownerId
+   */
+  @javax.annotation.Nullable
+  public String getOwnerId() {
+    return ownerId;
+  }
 
-  public String getAccountId() {
-    return accountId;
+  public void setOwnerId(@javax.annotation.Nullable String ownerId) {
+    this.ownerId = ownerId;
   }
 
 
-  public void setAccountId(String accountId) {
-    this.accountId = accountId;
-  }
-
-
-  public Invoice pricePlanId(String pricePlanId) {
-    
+  public Invoice pricePlanId(@javax.annotation.Nullable String pricePlanId) {
     this.pricePlanId = pricePlanId;
     return this;
   }
 
-   /**
+  /**
    * Get pricePlanId
    * @return pricePlanId
-  **/
-  @javax.annotation.Nonnull
-
+   */
+  @javax.annotation.Nullable
   public String getPricePlanId() {
     return pricePlanId;
   }
 
-
-  public void setPricePlanId(String pricePlanId) {
+  public void setPricePlanId(@javax.annotation.Nullable String pricePlanId) {
     this.pricePlanId = pricePlanId;
   }
 
 
-  public Invoice usageInfo(List<InvoiceLineItem> usageInfo) {
-    
+  public Invoice usageInfo(@javax.annotation.Nullable List<InvoiceLineItem> usageInfo) {
     this.usageInfo = usageInfo;
     return this;
   }
@@ -264,195 +339,432 @@ public class Invoice implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get usageInfo
    * @return usageInfo
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<InvoiceLineItem> getUsageInfo() {
     return usageInfo;
   }
 
-
-  public void setUsageInfo(List<InvoiceLineItem> usageInfo) {
+  public void setUsageInfo(@javax.annotation.Nullable List<InvoiceLineItem> usageInfo) {
     this.usageInfo = usageInfo;
   }
 
 
-  public Invoice revenueInfo(InvoiceLineItem revenueInfo) {
-    
+  public Invoice revenueInfo(@javax.annotation.Nullable InvoiceLineItem revenueInfo) {
     this.revenueInfo = revenueInfo;
     return this;
   }
 
-   /**
+  /**
    * Get revenueInfo
    * @return revenueInfo
-  **/
+   */
   @javax.annotation.Nullable
-
   public InvoiceLineItem getRevenueInfo() {
     return revenueInfo;
   }
 
-
-  public void setRevenueInfo(InvoiceLineItem revenueInfo) {
+  public void setRevenueInfo(@javax.annotation.Nullable InvoiceLineItem revenueInfo) {
     this.revenueInfo = revenueInfo;
   }
 
 
-  public Invoice invoiceDetails(InvoiceDetails invoiceDetails) {
-    
+  public Invoice invoiceDetails(@javax.annotation.Nullable InvoiceDetails invoiceDetails) {
     this.invoiceDetails = invoiceDetails;
     return this;
   }
 
-   /**
+  /**
    * Get invoiceDetails
    * @return invoiceDetails
-  **/
+   */
   @javax.annotation.Nullable
-
   public InvoiceDetails getInvoiceDetails() {
     return invoiceDetails;
   }
 
-
-  public void setInvoiceDetails(InvoiceDetails invoiceDetails) {
+  public void setInvoiceDetails(@javax.annotation.Nullable InvoiceDetails invoiceDetails) {
     this.invoiceDetails = invoiceDetails;
   }
 
 
-  public Invoice status(StatusEnum status) {
-    
+  public Invoice status(@javax.annotation.Nonnull InvoicesStatus status) {
     this.status = status;
     return this;
   }
 
-   /**
-   * Status of the invoice
+  /**
+   * Get status
    * @return status
-  **/
+   */
   @javax.annotation.Nonnull
-
-  public StatusEnum getStatus() {
+  public InvoicesStatus getStatus() {
     return status;
   }
 
-
-  public void setStatus(StatusEnum status) {
+  public void setStatus(@javax.annotation.Nonnull InvoicesStatus status) {
     this.status = status;
   }
 
 
-  public Invoice startDate(OffsetDateTime startDate) {
-    
+  public Invoice finalizingStatus(@javax.annotation.Nullable FinalizingStatusEnum finalizingStatus) {
+    this.finalizingStatus = finalizingStatus;
+    return this;
+  }
+
+  /**
+   * Get finalizingStatus
+   * @return finalizingStatus
+   */
+  @javax.annotation.Nullable
+  public FinalizingStatusEnum getFinalizingStatus() {
+    return finalizingStatus;
+  }
+
+  public void setFinalizingStatus(@javax.annotation.Nullable FinalizingStatusEnum finalizingStatus) {
+    this.finalizingStatus = finalizingStatus;
+  }
+
+
+  public Invoice invoiceClass(@javax.annotation.Nonnull InvoicesClass invoiceClass) {
+    this.invoiceClass = invoiceClass;
+    return this;
+  }
+
+  /**
+   * Get invoiceClass
+   * @return invoiceClass
+   */
+  @javax.annotation.Nonnull
+  public InvoicesClass getInvoiceClass() {
+    return invoiceClass;
+  }
+
+  public void setInvoiceClass(@javax.annotation.Nonnull InvoicesClass invoiceClass) {
+    this.invoiceClass = invoiceClass;
+  }
+
+
+  public Invoice invoiceType(@javax.annotation.Nonnull InvoicesType invoiceType) {
+    this.invoiceType = invoiceType;
+    return this;
+  }
+
+  /**
+   * Get invoiceType
+   * @return invoiceType
+   */
+  @javax.annotation.Nonnull
+  public InvoicesType getInvoiceType() {
+    return invoiceType;
+  }
+
+  public void setInvoiceType(@javax.annotation.Nonnull InvoicesType invoiceType) {
+    this.invoiceType = invoiceType;
+  }
+
+
+  public Invoice autoAdvance(@javax.annotation.Nullable Boolean autoAdvance) {
+    this.autoAdvance = autoAdvance;
+    return this;
+  }
+
+  /**
+   * Get autoAdvance
+   * @return autoAdvance
+   */
+  @javax.annotation.Nullable
+  public Boolean getAutoAdvance() {
+    return autoAdvance;
+  }
+
+  public void setAutoAdvance(@javax.annotation.Nullable Boolean autoAdvance) {
+    this.autoAdvance = autoAdvance;
+  }
+
+
+  public Invoice startDate(@javax.annotation.Nullable OffsetDateTime startDate) {
     this.startDate = startDate;
     return this;
   }
 
-   /**
+  /**
    * Start date of the invoice
    * @return startDate
-  **/
-  @javax.annotation.Nonnull
-
+   */
+  @javax.annotation.Nullable
   public OffsetDateTime getStartDate() {
     return startDate;
   }
 
-
-  public void setStartDate(OffsetDateTime startDate) {
+  public void setStartDate(@javax.annotation.Nullable OffsetDateTime startDate) {
     this.startDate = startDate;
   }
 
 
-  public Invoice endDate(OffsetDateTime endDate) {
-    
+  public Invoice endDate(@javax.annotation.Nullable OffsetDateTime endDate) {
     this.endDate = endDate;
     return this;
   }
 
-   /**
+  /**
    * End date of the invoice
    * @return endDate
-  **/
-  @javax.annotation.Nonnull
-
+   */
+  @javax.annotation.Nullable
   public OffsetDateTime getEndDate() {
     return endDate;
   }
 
-
-  public void setEndDate(OffsetDateTime endDate) {
+  public void setEndDate(@javax.annotation.Nullable OffsetDateTime endDate) {
     this.endDate = endDate;
   }
 
 
-  public Invoice invoiceDate(OffsetDateTime invoiceDate) {
-    
+  public Invoice endDateInclusive(@javax.annotation.Nullable OffsetDateTime endDateInclusive) {
+    this.endDateInclusive = endDateInclusive;
+    return this;
+  }
+
+  /**
+   * Inclusive end date of the invoice
+   * @return endDateInclusive
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getEndDateInclusive() {
+    return endDateInclusive;
+  }
+
+  public void setEndDateInclusive(@javax.annotation.Nullable OffsetDateTime endDateInclusive) {
+    this.endDateInclusive = endDateInclusive;
+  }
+
+
+  public Invoice invoiceDate(@javax.annotation.Nonnull OffsetDateTime invoiceDate) {
     this.invoiceDate = invoiceDate;
     return this;
   }
 
-   /**
+  /**
    * Invoice date of the invoice
    * @return invoiceDate
-  **/
+   */
   @javax.annotation.Nonnull
-
   public OffsetDateTime getInvoiceDate() {
     return invoiceDate;
   }
 
-
-  public void setInvoiceDate(OffsetDateTime invoiceDate) {
+  public void setInvoiceDate(@javax.annotation.Nonnull OffsetDateTime invoiceDate) {
     this.invoiceDate = invoiceDate;
   }
 
 
-  public Invoice generatedAt(OffsetDateTime generatedAt) {
-    
+  public Invoice dueDate(@javax.annotation.Nullable OffsetDateTime dueDate) {
+    this.dueDate = dueDate;
+    return this;
+  }
+
+  /**
+   * Due date of the invoice
+   * @return dueDate
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getDueDate() {
+    return dueDate;
+  }
+
+  public void setDueDate(@javax.annotation.Nullable OffsetDateTime dueDate) {
+    this.dueDate = dueDate;
+  }
+
+
+  public Invoice generatedAt(@javax.annotation.Nullable OffsetDateTime generatedAt) {
     this.generatedAt = generatedAt;
     return this;
   }
 
-   /**
+  /**
    * Get generatedAt
    * @return generatedAt
-  **/
+   */
   @javax.annotation.Nullable
-
   public OffsetDateTime getGeneratedAt() {
     return generatedAt;
   }
 
-
-  public void setGeneratedAt(OffsetDateTime generatedAt) {
+  public void setGeneratedAt(@javax.annotation.Nullable OffsetDateTime generatedAt) {
     this.generatedAt = generatedAt;
   }
 
 
-  public Invoice updatedAt(OffsetDateTime updatedAt) {
-    
+  public Invoice updatedAt(@javax.annotation.Nonnull OffsetDateTime updatedAt) {
     this.updatedAt = updatedAt;
     return this;
   }
 
-   /**
+  /**
    * Get updatedAt
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nonnull
-
   public OffsetDateTime getUpdatedAt() {
     return updatedAt;
   }
 
-
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
+  public void setUpdatedAt(@javax.annotation.Nonnull OffsetDateTime updatedAt) {
     this.updatedAt = updatedAt;
+  }
+
+
+  public Invoice metadata(@javax.annotation.Nullable Map<String, Object> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public Invoice putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Get metadata
+   * @return metadata
+   */
+  @javax.annotation.Nullable
+  public Map<String, Object> getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(@javax.annotation.Nullable Map<String, Object> metadata) {
+    this.metadata = metadata;
+  }
+
+
+  public Invoice info(@javax.annotation.Nullable List<InvoiceInfoInner> info) {
+    this.info = info;
+    return this;
+  }
+
+  public Invoice addInfoItem(InvoiceInfoInner infoItem) {
+    if (this.info == null) {
+      this.info = new ArrayList<>();
+    }
+    this.info.add(infoItem);
+    return this;
+  }
+
+  /**
+   * Get info
+   * @return info
+   */
+  @javax.annotation.Nullable
+  public List<InvoiceInfoInner> getInfo() {
+    return info;
+  }
+
+  public void setInfo(@javax.annotation.Nullable List<InvoiceInfoInner> info) {
+    this.info = info;
+  }
+
+
+  public Invoice sequenceId(@javax.annotation.Nullable String sequenceId) {
+    this.sequenceId = sequenceId;
+    return this;
+  }
+
+  /**
+   * Sequence id of the invoice
+   * @return sequenceId
+   */
+  @javax.annotation.Nullable
+  public String getSequenceId() {
+    return sequenceId;
+  }
+
+  public void setSequenceId(@javax.annotation.Nullable String sequenceId) {
+    this.sequenceId = sequenceId;
+  }
+
+
+  public Invoice pdfUrl(@javax.annotation.Nullable String pdfUrl) {
+    this.pdfUrl = pdfUrl;
+    return this;
+  }
+
+  /**
+   * Download URL of the pdf file corresponding to the invoice
+   * @return pdfUrl
+   */
+  @javax.annotation.Nullable
+  public String getPdfUrl() {
+    return pdfUrl;
+  }
+
+  public void setPdfUrl(@javax.annotation.Nullable String pdfUrl) {
+    this.pdfUrl = pdfUrl;
+  }
+
+
+  public Invoice totalAmount(@javax.annotation.Nonnull BigDecimal totalAmount) {
+    this.totalAmount = totalAmount;
+    return this;
+  }
+
+  /**
+   * Get totalAmount
+   * @return totalAmount
+   */
+  @javax.annotation.Nonnull
+  public BigDecimal getTotalAmount() {
+    return totalAmount;
+  }
+
+  public void setTotalAmount(@javax.annotation.Nonnull BigDecimal totalAmount) {
+    this.totalAmount = totalAmount;
+  }
+
+
+  public Invoice paidAmount(@javax.annotation.Nonnull BigDecimal paidAmount) {
+    this.paidAmount = paidAmount;
+    return this;
+  }
+
+  /**
+   * Get paidAmount
+   * @return paidAmount
+   */
+  @javax.annotation.Nonnull
+  public BigDecimal getPaidAmount() {
+    return paidAmount;
+  }
+
+  public void setPaidAmount(@javax.annotation.Nonnull BigDecimal paidAmount) {
+    this.paidAmount = paidAmount;
+  }
+
+
+  public Invoice netTermDays(@javax.annotation.Nonnull Integer netTermDays) {
+    this.netTermDays = netTermDays;
+    return this;
+  }
+
+  /**
+   * Number of days from the invoice date after which an invoice is considered overdue.
+   * @return netTermDays
+   */
+  @javax.annotation.Nonnull
+  public Integer getNetTermDays() {
+    return netTermDays;
+  }
+
+  public void setNetTermDays(@javax.annotation.Nonnull Integer netTermDays) {
+    this.netTermDays = netTermDays;
   }
 
 
@@ -468,22 +780,35 @@ public class Invoice implements Serializable {
     Invoice invoice = (Invoice) o;
     return Objects.equals(this.id, invoice.id) &&
         Objects.equals(this.customerId, invoice.customerId) &&
-        Objects.equals(this.accountId, invoice.accountId) &&
+        Objects.equals(this.ownerId, invoice.ownerId) &&
         Objects.equals(this.pricePlanId, invoice.pricePlanId) &&
         Objects.equals(this.usageInfo, invoice.usageInfo) &&
         Objects.equals(this.revenueInfo, invoice.revenueInfo) &&
         Objects.equals(this.invoiceDetails, invoice.invoiceDetails) &&
         Objects.equals(this.status, invoice.status) &&
+        Objects.equals(this.finalizingStatus, invoice.finalizingStatus) &&
+        Objects.equals(this.invoiceClass, invoice.invoiceClass) &&
+        Objects.equals(this.invoiceType, invoice.invoiceType) &&
+        Objects.equals(this.autoAdvance, invoice.autoAdvance) &&
         Objects.equals(this.startDate, invoice.startDate) &&
         Objects.equals(this.endDate, invoice.endDate) &&
+        Objects.equals(this.endDateInclusive, invoice.endDateInclusive) &&
         Objects.equals(this.invoiceDate, invoice.invoiceDate) &&
+        Objects.equals(this.dueDate, invoice.dueDate) &&
         Objects.equals(this.generatedAt, invoice.generatedAt) &&
-        Objects.equals(this.updatedAt, invoice.updatedAt);
+        Objects.equals(this.updatedAt, invoice.updatedAt) &&
+        Objects.equals(this.metadata, invoice.metadata) &&
+        Objects.equals(this.info, invoice.info) &&
+        Objects.equals(this.sequenceId, invoice.sequenceId) &&
+        Objects.equals(this.pdfUrl, invoice.pdfUrl) &&
+        Objects.equals(this.totalAmount, invoice.totalAmount) &&
+        Objects.equals(this.paidAmount, invoice.paidAmount) &&
+        Objects.equals(this.netTermDays, invoice.netTermDays);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, customerId, accountId, pricePlanId, usageInfo, revenueInfo, invoiceDetails, status, startDate, endDate, invoiceDate, generatedAt, updatedAt);
+    return Objects.hash(id, customerId, ownerId, pricePlanId, usageInfo, revenueInfo, invoiceDetails, status, finalizingStatus, invoiceClass, invoiceType, autoAdvance, startDate, endDate, endDateInclusive, invoiceDate, dueDate, generatedAt, updatedAt, metadata, info, sequenceId, pdfUrl, totalAmount, paidAmount, netTermDays);
   }
 
   @Override
@@ -492,17 +817,30 @@ public class Invoice implements Serializable {
     sb.append("class Invoice {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
-    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
+    sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    pricePlanId: ").append(toIndentedString(pricePlanId)).append("\n");
     sb.append("    usageInfo: ").append(toIndentedString(usageInfo)).append("\n");
     sb.append("    revenueInfo: ").append(toIndentedString(revenueInfo)).append("\n");
     sb.append("    invoiceDetails: ").append(toIndentedString(invoiceDetails)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    finalizingStatus: ").append(toIndentedString(finalizingStatus)).append("\n");
+    sb.append("    invoiceClass: ").append(toIndentedString(invoiceClass)).append("\n");
+    sb.append("    invoiceType: ").append(toIndentedString(invoiceType)).append("\n");
+    sb.append("    autoAdvance: ").append(toIndentedString(autoAdvance)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    endDateInclusive: ").append(toIndentedString(endDateInclusive)).append("\n");
     sb.append("    invoiceDate: ").append(toIndentedString(invoiceDate)).append("\n");
+    sb.append("    dueDate: ").append(toIndentedString(dueDate)).append("\n");
     sb.append("    generatedAt: ").append(toIndentedString(generatedAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    info: ").append(toIndentedString(info)).append("\n");
+    sb.append("    sequenceId: ").append(toIndentedString(sequenceId)).append("\n");
+    sb.append("    pdfUrl: ").append(toIndentedString(pdfUrl)).append("\n");
+    sb.append("    totalAmount: ").append(toIndentedString(totalAmount)).append("\n");
+    sb.append("    paidAmount: ").append(toIndentedString(paidAmount)).append("\n");
+    sb.append("    netTermDays: ").append(toIndentedString(netTermDays)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -527,68 +865,82 @@ public class Invoice implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
     openapiFields.add("customerId");
-    openapiFields.add("accountId");
+    openapiFields.add("ownerId");
     openapiFields.add("pricePlanId");
     openapiFields.add("usageInfo");
     openapiFields.add("revenueInfo");
     openapiFields.add("invoiceDetails");
     openapiFields.add("status");
+    openapiFields.add("finalizingStatus");
+    openapiFields.add("invoiceClass");
+    openapiFields.add("invoiceType");
+    openapiFields.add("autoAdvance");
     openapiFields.add("startDate");
     openapiFields.add("endDate");
+    openapiFields.add("endDateInclusive");
     openapiFields.add("invoiceDate");
+    openapiFields.add("dueDate");
     openapiFields.add("generatedAt");
     openapiFields.add("updatedAt");
+    openapiFields.add("metadata");
+    openapiFields.add("info");
+    openapiFields.add("sequenceId");
+    openapiFields.add("pdfUrl");
+    openapiFields.add("totalAmount");
+    openapiFields.add("paidAmount");
+    openapiFields.add("netTermDays");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("id");
-    openapiRequiredFields.add("customerId");
-    openapiRequiredFields.add("accountId");
-    openapiRequiredFields.add("pricePlanId");
     openapiRequiredFields.add("status");
-    openapiRequiredFields.add("startDate");
-    openapiRequiredFields.add("endDate");
+    openapiRequiredFields.add("invoiceClass");
+    openapiRequiredFields.add("invoiceType");
     openapiRequiredFields.add("invoiceDate");
     openapiRequiredFields.add("updatedAt");
+    openapiRequiredFields.add("totalAmount");
+    openapiRequiredFields.add("paidAmount");
+    openapiRequiredFields.add("netTermDays");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to Invoice
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!Invoice.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Invoice
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Invoice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Invoice is not found in the empty JSON string", Invoice.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!Invoice.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Invoice` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Invoice` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : Invoice.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
-      if (!jsonObj.get("customerId").isJsonPrimitive()) {
+      if ((jsonObj.get("customerId") != null && !jsonObj.get("customerId").isJsonNull()) && !jsonObj.get("customerId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `customerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customerId").toString()));
       }
-      if (!jsonObj.get("accountId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `accountId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountId").toString()));
+      if ((jsonObj.get("ownerId") != null && !jsonObj.get("ownerId").isJsonNull()) && !jsonObj.get("ownerId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ownerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ownerId").toString()));
       }
-      if (!jsonObj.get("pricePlanId").isJsonPrimitive()) {
+      if ((jsonObj.get("pricePlanId") != null && !jsonObj.get("pricePlanId").isJsonNull()) && !jsonObj.get("pricePlanId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `pricePlanId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pricePlanId").toString()));
       }
       if (jsonObj.get("usageInfo") != null && !jsonObj.get("usageInfo").isJsonNull()) {
@@ -601,20 +953,50 @@ public class Invoice implements Serializable {
 
           // validate the optional field `usageInfo` (array)
           for (int i = 0; i < jsonArrayusageInfo.size(); i++) {
-            InvoiceLineItem.validateJsonObject(jsonArrayusageInfo.get(i).getAsJsonObject());
+            InvoiceLineItem.validateJsonElement(jsonArrayusageInfo.get(i));
           };
         }
       }
       // validate the optional field `revenueInfo`
       if (jsonObj.get("revenueInfo") != null && !jsonObj.get("revenueInfo").isJsonNull()) {
-        InvoiceLineItem.validateJsonObject(jsonObj.getAsJsonObject("revenueInfo"));
+        InvoiceLineItem.validateJsonElement(jsonObj.get("revenueInfo"));
       }
       // validate the optional field `invoiceDetails`
       if (jsonObj.get("invoiceDetails") != null && !jsonObj.get("invoiceDetails").isJsonNull()) {
-        InvoiceDetails.validateJsonObject(jsonObj.getAsJsonObject("invoiceDetails"));
+        InvoiceDetails.validateJsonElement(jsonObj.get("invoiceDetails"));
       }
-      if (!jsonObj.get("status").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      // validate the required field `status`
+      InvoicesStatus.validateJsonElement(jsonObj.get("status"));
+      if ((jsonObj.get("finalizingStatus") != null && !jsonObj.get("finalizingStatus").isJsonNull()) && !jsonObj.get("finalizingStatus").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `finalizingStatus` to be a primitive type in the JSON string but got `%s`", jsonObj.get("finalizingStatus").toString()));
+      }
+      // validate the optional field `finalizingStatus`
+      if (jsonObj.get("finalizingStatus") != null && !jsonObj.get("finalizingStatus").isJsonNull()) {
+        FinalizingStatusEnum.validateJsonElement(jsonObj.get("finalizingStatus"));
+      }
+      // validate the required field `invoiceClass`
+      InvoicesClass.validateJsonElement(jsonObj.get("invoiceClass"));
+      // validate the required field `invoiceType`
+      InvoicesType.validateJsonElement(jsonObj.get("invoiceType"));
+      if (jsonObj.get("info") != null && !jsonObj.get("info").isJsonNull()) {
+        JsonArray jsonArrayinfo = jsonObj.getAsJsonArray("info");
+        if (jsonArrayinfo != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("info").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `info` to be an array in the JSON string but got `%s`", jsonObj.get("info").toString()));
+          }
+
+          // validate the optional field `info` (array)
+          for (int i = 0; i < jsonArrayinfo.size(); i++) {
+            InvoiceInfoInner.validateJsonElement(jsonArrayinfo.get(i));
+          };
+        }
+      }
+      if ((jsonObj.get("sequenceId") != null && !jsonObj.get("sequenceId").isJsonNull()) && !jsonObj.get("sequenceId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `sequenceId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sequenceId").toString()));
+      }
+      if ((jsonObj.get("pdfUrl") != null && !jsonObj.get("pdfUrl").isJsonNull()) && !jsonObj.get("pdfUrl").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `pdfUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pdfUrl").toString()));
       }
   }
 
@@ -638,31 +1020,31 @@ public class Invoice implements Serializable {
 
            @Override
            public Invoice read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of Invoice given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Invoice
-  * @throws IOException if the JSON string is invalid with respect to Invoice
-  */
+  /**
+   * Create an instance of Invoice given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Invoice
+   * @throws IOException if the JSON string is invalid with respect to Invoice
+   */
   public static Invoice fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Invoice.class);
   }
 
- /**
-  * Convert an instance of Invoice to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Invoice to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -14,13 +14,13 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.io.Serializable;
@@ -35,13 +35,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -49,40 +51,41 @@ import com.togai.client.JSON;
 /**
  * Request to activate currencies of a price plan
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class ActivatePricePlanRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_CURRENCIES = "currencies";
   @SerializedName(SERIALIZED_NAME_CURRENCIES)
+  @javax.annotation.Nonnull
   private Set<String> currencies = new LinkedHashSet<>();
 
   public ActivatePricePlanRequest() {
   }
 
-  public ActivatePricePlanRequest currencies(Set<String> currencies) {
-    
+  public ActivatePricePlanRequest currencies(@javax.annotation.Nonnull Set<String> currencies) {
     this.currencies = currencies;
     return this;
   }
 
   public ActivatePricePlanRequest addCurrenciesItem(String currenciesItem) {
+    if (this.currencies == null) {
+      this.currencies = new LinkedHashSet<>();
+    }
     this.currencies.add(currenciesItem);
     return this;
   }
 
-   /**
+  /**
    * List of currencies to activate
    * @return currencies
-  **/
+   */
   @javax.annotation.Nonnull
-
   public Set<String> getCurrencies() {
     return currencies;
   }
 
-
-  public void setCurrencies(Set<String> currencies) {
+  public void setCurrencies(@javax.annotation.Nonnull Set<String> currencies) {
     this.currencies = currencies;
   }
 
@@ -139,33 +142,34 @@ public class ActivatePricePlanRequest implements Serializable {
     openapiRequiredFields.add("currencies");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to ActivatePricePlanRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!ActivatePricePlanRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ActivatePricePlanRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ActivatePricePlanRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ActivatePricePlanRequest is not found in the empty JSON string", ActivatePricePlanRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!ActivatePricePlanRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ActivatePricePlanRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ActivatePricePlanRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : ActivatePricePlanRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // ensure the required json array is present
       if (jsonObj.get("currencies") == null) {
         throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
@@ -194,31 +198,31 @@ public class ActivatePricePlanRequest implements Serializable {
 
            @Override
            public ActivatePricePlanRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of ActivatePricePlanRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ActivatePricePlanRequest
-  * @throws IOException if the JSON string is invalid with respect to ActivatePricePlanRequest
-  */
+  /**
+   * Create an instance of ActivatePricePlanRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ActivatePricePlanRequest
+   * @throws IOException if the JSON string is invalid with respect to ActivatePricePlanRequest
+   */
   public static ActivatePricePlanRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ActivatePricePlanRequest.class);
   }
 
- /**
-  * Convert an instance of ActivatePricePlanRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ActivatePricePlanRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

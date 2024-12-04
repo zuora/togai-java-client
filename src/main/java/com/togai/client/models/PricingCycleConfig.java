@@ -14,14 +14,15 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.PricingCycleConfigStartOffset;
+import com.togai.client.models.PricingCycleInterval;
 import java.io.IOException;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -34,13 +35,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -48,139 +51,106 @@ import com.togai.client.JSON;
 /**
  * Represents configurations related to pricing cycle
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class PricingCycleConfig implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Interval field allow you to define the billing interval you would like to set
-   */
-  @JsonAdapter(IntervalEnum.Adapter.class)
-  public enum IntervalEnum {
-    MONTHLY("MONTHLY"),
-    
-    QUARTERLY("QUARTERLY"),
-    
-    HALF_YEARLY("HALF_YEARLY"),
-    
-    ANNUALLY("ANNUALLY");
-
-    private String value;
-
-    IntervalEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static IntervalEnum fromValue(String value) {
-      for (IntervalEnum b : IntervalEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<IntervalEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final IntervalEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public IntervalEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return IntervalEnum.fromValue(value);
-      }
-    }
-  }
-
   public static final String SERIALIZED_NAME_INTERVAL = "interval";
   @SerializedName(SERIALIZED_NAME_INTERVAL)
-  private IntervalEnum interval;
+  @javax.annotation.Nonnull
+  private PricingCycleInterval interval;
 
   public static final String SERIALIZED_NAME_START_OFFSET = "startOffset";
   @SerializedName(SERIALIZED_NAME_START_OFFSET)
+  @javax.annotation.Nullable
   private PricingCycleConfigStartOffset startOffset;
 
   public static final String SERIALIZED_NAME_GRACE_PERIOD = "gracePeriod";
   @SerializedName(SERIALIZED_NAME_GRACE_PERIOD)
+  @javax.annotation.Nonnull
   private Integer gracePeriod;
+
+  public static final String SERIALIZED_NAME_ANNIVERSARY_CYCLE = "anniversaryCycle";
+  @SerializedName(SERIALIZED_NAME_ANNIVERSARY_CYCLE)
+  @javax.annotation.Nullable
+  private Boolean anniversaryCycle;
 
   public PricingCycleConfig() {
   }
 
-  public PricingCycleConfig interval(IntervalEnum interval) {
-    
+  public PricingCycleConfig interval(@javax.annotation.Nonnull PricingCycleInterval interval) {
     this.interval = interval;
     return this;
   }
 
-   /**
-   * Interval field allow you to define the billing interval you would like to set
+  /**
+   * Get interval
    * @return interval
-  **/
+   */
   @javax.annotation.Nonnull
-
-  public IntervalEnum getInterval() {
+  public PricingCycleInterval getInterval() {
     return interval;
   }
 
-
-  public void setInterval(IntervalEnum interval) {
+  public void setInterval(@javax.annotation.Nonnull PricingCycleInterval interval) {
     this.interval = interval;
   }
 
 
-  public PricingCycleConfig startOffset(PricingCycleConfigStartOffset startOffset) {
-    
+  public PricingCycleConfig startOffset(@javax.annotation.Nullable PricingCycleConfigStartOffset startOffset) {
     this.startOffset = startOffset;
     return this;
   }
 
-   /**
+  /**
    * Get startOffset
    * @return startOffset
-  **/
-  @javax.annotation.Nonnull
-
+   */
+  @javax.annotation.Nullable
   public PricingCycleConfigStartOffset getStartOffset() {
     return startOffset;
   }
 
-
-  public void setStartOffset(PricingCycleConfigStartOffset startOffset) {
+  public void setStartOffset(@javax.annotation.Nullable PricingCycleConfigStartOffset startOffset) {
     this.startOffset = startOffset;
   }
 
 
-  public PricingCycleConfig gracePeriod(Integer gracePeriod) {
-    
+  public PricingCycleConfig gracePeriod(@javax.annotation.Nonnull Integer gracePeriod) {
     this.gracePeriod = gracePeriod;
     return this;
   }
 
-   /**
+  /**
    * Togai allows you to ingest past dated events that will be processed by a pricing cycle till the end grace period.  For example: Pricing cycle is Monthly from 1st to 30th and gracePeriod is 5 days which next month 1 to 5th date, you can ingest past dated events during this grace period. 
    * @return gracePeriod
-  **/
+   */
   @javax.annotation.Nonnull
-
   public Integer getGracePeriod() {
     return gracePeriod;
   }
 
-
-  public void setGracePeriod(Integer gracePeriod) {
+  public void setGracePeriod(@javax.annotation.Nonnull Integer gracePeriod) {
     this.gracePeriod = gracePeriod;
+  }
+
+
+  public PricingCycleConfig anniversaryCycle(@javax.annotation.Nullable Boolean anniversaryCycle) {
+    this.anniversaryCycle = anniversaryCycle;
+    return this;
+  }
+
+  /**
+   * Togai calculates the startOffsets based on the date of association instead of requiring from the user and  these offsets will be applied as an override if this flag is enabled. Examples: WEEKLY -   - 23/10/2023 (Monday) - {dayOffset: 1, monthOffset: NIL}    - 25/10/2023 (Wednesday) - {dayOffset: 3, monthOffset: NIL}    - 29/10/2023 (Sunday) - {dayOffset: 7, monthOffset: NIL} MONTHLY -   - 1st Oct - {dayOffset: 1, monthOffset: NIL}   - 12th Oct - {dayOffset: 12, monthOffset: NIL}   - 28th Oct - {dayOffset: 28, monthOffset: NIL}   - 30th Oct - {dayOffset: 30, monthOffset: NIL}   - 31th Oct - {dayOffset: LAST, monthOffset: NIL} QUARTERLY   - 15th Jan, 15th Apr, 15th Jul and 15th Oct - {dayOffset: 15, monthOffset: 1}   - 15th Feb, 15th May, 15th Aug and 15th Nov - {dayOffset: 15, monthOffset: 2}    - 15th Mar, 15th Jun, 15th Sep and 15th Dec - {dayOffset: 15, monthOffset: 3} HALF_YEARLY   - 15th Jan and 15th Jul - {dayOffset: 15, monthOffset: 1}    - 15th Apr and 15th Oct - {dayOffset: 15, monthOffset: 4}    - 15th Jun and 15th Dec - {dayOffset: 15, monthOffset: 6} ANNUALLY   - 15th Jan - {dayOffset: 15, monthOffset: 1}   - 29th Feb on Leap year  - {dayOffset: LAST, monthOffset: 2}   - 28th Feb  - {dayOffset: LAST, monthOffset: 2}   - 15th Aug - {dayOffset: 15, monthOffset: 8}   - 15th Dec - {dayOffset: 15, monthOffset: 12} 
+   * @return anniversaryCycle
+   */
+  @javax.annotation.Nullable
+  public Boolean getAnniversaryCycle() {
+    return anniversaryCycle;
+  }
+
+  public void setAnniversaryCycle(@javax.annotation.Nullable Boolean anniversaryCycle) {
+    this.anniversaryCycle = anniversaryCycle;
   }
 
 
@@ -196,12 +166,13 @@ public class PricingCycleConfig implements Serializable {
     PricingCycleConfig pricingCycleConfig = (PricingCycleConfig) o;
     return Objects.equals(this.interval, pricingCycleConfig.interval) &&
         Objects.equals(this.startOffset, pricingCycleConfig.startOffset) &&
-        Objects.equals(this.gracePeriod, pricingCycleConfig.gracePeriod);
+        Objects.equals(this.gracePeriod, pricingCycleConfig.gracePeriod) &&
+        Objects.equals(this.anniversaryCycle, pricingCycleConfig.anniversaryCycle);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(interval, startOffset, gracePeriod);
+    return Objects.hash(interval, startOffset, gracePeriod, anniversaryCycle);
   }
 
   @Override
@@ -211,6 +182,7 @@ public class PricingCycleConfig implements Serializable {
     sb.append("    interval: ").append(toIndentedString(interval)).append("\n");
     sb.append("    startOffset: ").append(toIndentedString(startOffset)).append("\n");
     sb.append("    gracePeriod: ").append(toIndentedString(gracePeriod)).append("\n");
+    sb.append("    anniversaryCycle: ").append(toIndentedString(anniversaryCycle)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -236,46 +208,48 @@ public class PricingCycleConfig implements Serializable {
     openapiFields.add("interval");
     openapiFields.add("startOffset");
     openapiFields.add("gracePeriod");
+    openapiFields.add("anniversaryCycle");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("interval");
-    openapiRequiredFields.add("startOffset");
     openapiRequiredFields.add("gracePeriod");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to PricingCycleConfig
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!PricingCycleConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PricingCycleConfig
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PricingCycleConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PricingCycleConfig is not found in the empty JSON string", PricingCycleConfig.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!PricingCycleConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PricingCycleConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PricingCycleConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : PricingCycleConfig.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
-      if (!jsonObj.get("interval").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `interval` to be a primitive type in the JSON string but got `%s`", jsonObj.get("interval").toString()));
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the required field `interval`
+      PricingCycleInterval.validateJsonElement(jsonObj.get("interval"));
+      // validate the optional field `startOffset`
+      if (jsonObj.get("startOffset") != null && !jsonObj.get("startOffset").isJsonNull()) {
+        PricingCycleConfigStartOffset.validateJsonElement(jsonObj.get("startOffset"));
       }
-      // validate the required field `startOffset`
-      PricingCycleConfigStartOffset.validateJsonObject(jsonObj.getAsJsonObject("startOffset"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -298,31 +272,31 @@ public class PricingCycleConfig implements Serializable {
 
            @Override
            public PricingCycleConfig read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of PricingCycleConfig given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PricingCycleConfig
-  * @throws IOException if the JSON string is invalid with respect to PricingCycleConfig
-  */
+  /**
+   * Create an instance of PricingCycleConfig given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PricingCycleConfig
+   * @throws IOException if the JSON string is invalid with respect to PricingCycleConfig
+   */
   public static PricingCycleConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PricingCycleConfig.class);
   }
 
- /**
-  * Convert an instance of PricingCycleConfig to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PricingCycleConfig to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

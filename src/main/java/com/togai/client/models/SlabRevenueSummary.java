@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,6 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.SlabRevenueMetadata;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -35,13 +35,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -49,113 +51,105 @@ import com.togai.client.JSON;
 /**
  * SlabRevenueSummary
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class SlabRevenueSummary implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ORDER = "order";
   @SerializedName(SERIALIZED_NAME_ORDER)
+  @javax.annotation.Nonnull
   private Integer order;
 
   public static final String SERIALIZED_NAME_USAGE = "usage";
   @SerializedName(SERIALIZED_NAME_USAGE)
+  @javax.annotation.Nonnull
   private BigDecimal usage;
 
   public static final String SERIALIZED_NAME_REVENUE = "revenue";
   @SerializedName(SERIALIZED_NAME_REVENUE)
+  @javax.annotation.Nonnull
   private BigDecimal revenue;
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
+  @javax.annotation.Nullable
   private SlabRevenueMetadata metadata;
 
   public SlabRevenueSummary() {
   }
 
-  public SlabRevenueSummary order(Integer order) {
-    
+  public SlabRevenueSummary order(@javax.annotation.Nonnull Integer order) {
     this.order = order;
     return this;
   }
 
-   /**
+  /**
    * Get order
    * @return order
-  **/
+   */
   @javax.annotation.Nonnull
-
   public Integer getOrder() {
     return order;
   }
 
-
-  public void setOrder(Integer order) {
+  public void setOrder(@javax.annotation.Nonnull Integer order) {
     this.order = order;
   }
 
 
-  public SlabRevenueSummary usage(BigDecimal usage) {
-    
+  public SlabRevenueSummary usage(@javax.annotation.Nonnull BigDecimal usage) {
     this.usage = usage;
     return this;
   }
 
-   /**
+  /**
    * Get usage
    * @return usage
-  **/
+   */
   @javax.annotation.Nonnull
-
   public BigDecimal getUsage() {
     return usage;
   }
 
-
-  public void setUsage(BigDecimal usage) {
+  public void setUsage(@javax.annotation.Nonnull BigDecimal usage) {
     this.usage = usage;
   }
 
 
-  public SlabRevenueSummary revenue(BigDecimal revenue) {
-    
+  public SlabRevenueSummary revenue(@javax.annotation.Nonnull BigDecimal revenue) {
     this.revenue = revenue;
     return this;
   }
 
-   /**
+  /**
    * Get revenue
    * @return revenue
-  **/
+   */
   @javax.annotation.Nonnull
-
   public BigDecimal getRevenue() {
     return revenue;
   }
 
-
-  public void setRevenue(BigDecimal revenue) {
+  public void setRevenue(@javax.annotation.Nonnull BigDecimal revenue) {
     this.revenue = revenue;
   }
 
 
-  public SlabRevenueSummary metadata(SlabRevenueMetadata metadata) {
-    
+  public SlabRevenueSummary metadata(@javax.annotation.Nullable SlabRevenueMetadata metadata) {
     this.metadata = metadata;
     return this;
   }
 
-   /**
+  /**
    * Get metadata
    * @return metadata
-  **/
+   */
   @javax.annotation.Nullable
-
   public SlabRevenueMetadata getMetadata() {
     return metadata;
   }
 
-
-  public void setMetadata(SlabRevenueMetadata metadata) {
+  public void setMetadata(@javax.annotation.Nullable SlabRevenueMetadata metadata) {
     this.metadata = metadata;
   }
 
@@ -223,36 +217,37 @@ public class SlabRevenueSummary implements Serializable {
     openapiRequiredFields.add("revenue");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to SlabRevenueSummary
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!SlabRevenueSummary.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SlabRevenueSummary
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SlabRevenueSummary.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SlabRevenueSummary is not found in the empty JSON string", SlabRevenueSummary.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!SlabRevenueSummary.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SlabRevenueSummary` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SlabRevenueSummary` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : SlabRevenueSummary.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `metadata`
       if (jsonObj.get("metadata") != null && !jsonObj.get("metadata").isJsonNull()) {
-        SlabRevenueMetadata.validateJsonObject(jsonObj.getAsJsonObject("metadata"));
+        SlabRevenueMetadata.validateJsonElement(jsonObj.get("metadata"));
       }
   }
 
@@ -276,31 +271,31 @@ public class SlabRevenueSummary implements Serializable {
 
            @Override
            public SlabRevenueSummary read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SlabRevenueSummary given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SlabRevenueSummary
-  * @throws IOException if the JSON string is invalid with respect to SlabRevenueSummary
-  */
+  /**
+   * Create an instance of SlabRevenueSummary given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SlabRevenueSummary
+   * @throws IOException if the JSON string is invalid with respect to SlabRevenueSummary
+   */
   public static SlabRevenueSummary fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SlabRevenueSummary.class);
   }
 
- /**
-  * Convert an instance of SlabRevenueSummary to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SlabRevenueSummary to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

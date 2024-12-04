@@ -14,13 +14,13 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -33,75 +33,73 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
 
 /**
- * Represents the start of pricing cycle in terms of  - dayOffset - number of days from beginning of month and  - monthOffset - number of months from beginning of interval (quarter, half-year or year) Note: If a day with offset doesn&#39;t exist for a month, closest previous day is considered Examples: MONTHLY -   - {dayOffset: 1, monthOffset: NIL} - First day of every month   - {dayOffset: 12, monthOffset: NIL} - 12th of every month   - {dayOffset: 28, monthOffset: NIL} - 28th of every month. i.e, 28th of Jan, 28th of Feb, ...   - {dayOffset: 30, monthOffset: NIL} - 30th of every month. i.e, 28th of Jan, 28th of Feb, ...   - {dayOffset: LAST, monthOffset: NIL} - Last day of every month. i.e, 31st of Jan, 28th of Feb, ... QUARTERLY   - {dayOffset: 15, monthOffset: FIRST} - 15th Jan, 15th Apr, 15th Jul and 15th Oct   - {dayOffset: 15, monthOffset: 2} - 15th Feb, 15th May, 15th Aug and 15th Nov   - {dayOffset: 15, monthOffset: LAST} - 15th Mar, 15th Jun, 15th Sep and 15th Dec   - {dayOffset: LAST, monthOffset: FIRST} - 31st Jan, 30th Apr, 30th Jul and 31th Oct HALF_YEARLY   - {dayOffset: 15, monthOffset: FIRST} - 15th Jan and 15th Jul   - {dayOffset: 15, monthOffset: 4} - 15th Apr and 15th Oct   - {dayOffset: 15, monthOffset: LAST} - 15th Jun and 15th Dec ANNUALLY   - {dayOffset: 15, monthOffset: FIRST} - 15th Jan   - {dayOffset: 15, monthOffset: 1} - 15th Jan   - {dayOffset: LAST, monthOffset: 2} - 29th Feb on Leap year, 28th otherwise    - {dayOffset: 15, monthOffset: 8} - 15th Aug   - {dayOffset: 15, monthOffset: LAST} - 15th Dec 
+ * Represents the start of pricing cycle in terms of  - dayOffset - number of days from beginning of week / month and  - monthOffset - number of months from beginning of interval (quarter, half-year or year) Note: If a day with offset doesn&#39;t exist for a month, closest previous day is considered Examples: WEEKLY -   - {dayOffset: 1, monthOffset: NIL} - First day of every week (Monday)   - {dayOffset: 3, monthOffset: NIL} - 3rd day of every week (Wednesday)   - {dayOffset: LAST, monthOffset: NIL} - Last day of every week (Sunday) MONTHLY -   - {dayOffset: 1, monthOffset: NIL} - First day of every month   - {dayOffset: 12, monthOffset: NIL} - 12th of every month   - {dayOffset: 28, monthOffset: NIL} - 28th of every month. i.e, 28th of Jan, 28th of Feb, ...   - {dayOffset: 30, monthOffset: NIL} - 30th of every month. i.e, 28th of Jan, 28th of Feb, ...   - {dayOffset: LAST, monthOffset: NIL} - Last day of every month. i.e, 31st of Jan, 28th of Feb, ... QUARTERLY   - {dayOffset: 15, monthOffset: FIRST} - 15th Jan, 15th Apr, 15th Jul and 15th Oct   - {dayOffset: 15, monthOffset: 2} - 15th Feb, 15th May, 15th Aug and 15th Nov   - {dayOffset: 15, monthOffset: LAST} - 15th Mar, 15th Jun, 15th Sep and 15th Dec   - {dayOffset: LAST, monthOffset: FIRST} - 31st Jan, 30th Apr, 30th Jul and 31th Oct HALF_YEARLY   - {dayOffset: 15, monthOffset: FIRST} - 15th Jan and 15th Jul   - {dayOffset: 15, monthOffset: 4} - 15th Apr and 15th Oct   - {dayOffset: 15, monthOffset: LAST} - 15th Jun and 15th Dec ANNUALLY   - {dayOffset: 15, monthOffset: FIRST} - 15th Jan   - {dayOffset: 15, monthOffset: 1} - 15th Jan   - {dayOffset: LAST, monthOffset: 2} - 29th Feb on Leap year, 28th otherwise    - {dayOffset: 15, monthOffset: 8} - 15th Aug   - {dayOffset: 15, monthOffset: LAST} - 15th Dec 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class PricingCycleConfigStartOffset implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_DAY_OFFSET = "dayOffset";
   @SerializedName(SERIALIZED_NAME_DAY_OFFSET)
+  @javax.annotation.Nonnull
   private String dayOffset;
 
   public static final String SERIALIZED_NAME_MONTH_OFFSET = "monthOffset";
   @SerializedName(SERIALIZED_NAME_MONTH_OFFSET)
+  @javax.annotation.Nonnull
   private String monthOffset;
 
   public PricingCycleConfigStartOffset() {
   }
 
-  public PricingCycleConfigStartOffset dayOffset(String dayOffset) {
-    
+  public PricingCycleConfigStartOffset dayOffset(@javax.annotation.Nonnull String dayOffset) {
     this.dayOffset = dayOffset;
     return this;
   }
 
-   /**
-   * min: \&quot;1\&quot; and max: \&quot;31\&quot; as strings. Spl. string allowed: LAST 
+  /**
+   * If interval is WEEKLY, min: \&quot;1\&quot; and max: \&quot;7\&quot; as strings. Spl. string allowed: LAST Otherwise, min: \&quot;1\&quot; and max: \&quot;31\&quot; as strings. Spl. string allowed: LAST 
    * @return dayOffset
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getDayOffset() {
     return dayOffset;
   }
 
-
-  public void setDayOffset(String dayOffset) {
+  public void setDayOffset(@javax.annotation.Nonnull String dayOffset) {
     this.dayOffset = dayOffset;
   }
 
 
-  public PricingCycleConfigStartOffset monthOffset(String monthOffset) {
-    
+  public PricingCycleConfigStartOffset monthOffset(@javax.annotation.Nonnull String monthOffset) {
     this.monthOffset = monthOffset;
     return this;
   }
 
-   /**
+  /**
    * min: \&quot;1\&quot; and max: \&quot;12\&quot;. Spl. string allowed: FIRST / LAST. For QUARTERLY only 1 - 3 is allowed and for HALF_YEARLY 1 - 6. This being an optional field, shouldn&#39;t be passed for MONTHLY. 
    * @return monthOffset
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getMonthOffset() {
     return monthOffset;
   }
 
-
-  public void setMonthOffset(String monthOffset) {
+  public void setMonthOffset(@javax.annotation.Nonnull String monthOffset) {
     this.monthOffset = monthOffset;
   }
 
@@ -162,33 +160,34 @@ public class PricingCycleConfigStartOffset implements Serializable {
     openapiRequiredFields.add("monthOffset");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to PricingCycleConfigStartOffset
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!PricingCycleConfigStartOffset.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PricingCycleConfigStartOffset
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PricingCycleConfigStartOffset.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PricingCycleConfigStartOffset is not found in the empty JSON string", PricingCycleConfigStartOffset.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!PricingCycleConfigStartOffset.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PricingCycleConfigStartOffset` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PricingCycleConfigStartOffset` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : PricingCycleConfigStartOffset.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("dayOffset").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `dayOffset` to be a primitive type in the JSON string but got `%s`", jsonObj.get("dayOffset").toString()));
       }
@@ -217,31 +216,31 @@ public class PricingCycleConfigStartOffset implements Serializable {
 
            @Override
            public PricingCycleConfigStartOffset read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of PricingCycleConfigStartOffset given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PricingCycleConfigStartOffset
-  * @throws IOException if the JSON string is invalid with respect to PricingCycleConfigStartOffset
-  */
+  /**
+   * Create an instance of PricingCycleConfigStartOffset given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PricingCycleConfigStartOffset
+   * @throws IOException if the JSON string is invalid with respect to PricingCycleConfigStartOffset
+   */
   public static PricingCycleConfigStartOffset fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PricingCycleConfigStartOffset.class);
   }
 
- /**
-  * Convert an instance of PricingCycleConfigStartOffset to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PricingCycleConfigStartOffset to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

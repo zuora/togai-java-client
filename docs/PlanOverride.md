@@ -8,9 +8,11 @@ Represents effectiveness period and config of a price plan. i.e, price plan boun
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**id** | **String** |  |  |
 |**pricePlanId** | **String** |  |  |
 |**pricePlanName** | **String** |  |  |
 |**pricePlanDetailsOverride** | [**PricePlanDetailsOverride**](PricePlanDetailsOverride.md) |  |  [optional] |
+|**pricingRulesOverride** | [**List&lt;PricingRule&gt;**](PricingRule.md) |  |  [optional] |
 |**startDate** | **OffsetDateTime** |  |  |
 |**endDate** | **OffsetDateTime** |  |  |
 

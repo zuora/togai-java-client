@@ -9,7 +9,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**name** | **String** |  |  |
 |**primaryEmail** | **String** |  |  |
-|**billingAddress** | **String** |  |  |
+|**billingAddress** | **String** |  |  [optional] |
+|**address** | [**Address**](Address.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

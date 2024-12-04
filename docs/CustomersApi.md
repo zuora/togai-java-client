@@ -5,13 +5,14 @@ All URIs are relative to *https://api.togai.com*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**createCustomer**](CustomersApi.md#createCustomer) | **POST** /customers | Create a customer |
+| [**createCustomerContact**](CustomersApi.md#createCustomerContact) | **POST** /customers/{customer_id}/contacts | Create a contact for the customer |
 | [**deleteCustomer**](CustomersApi.md#deleteCustomer) | **DELETE** /customers/{customer_id} | Delete a customer |
 | [**getCustomer**](CustomersApi.md#getCustomer) | **GET** /customers/{customer_id} | Get a customer |
 | [**getCustomers**](CustomersApi.md#getCustomers) | **GET** /customers | List customers |
 | [**updateCustomer**](CustomersApi.md#updateCustomer) | **PATCH** /customers/{customer_id} | Update a customer |
 
 
-<a name="createCustomer"></a>
+<a id="createCustomer"></a>
 # **createCustomer**
 > CreateCustomerResponse createCustomer(createCustomerRequest)
 
@@ -84,7 +85,82 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="deleteCustomer"></a>
+<a id="createCustomerContact"></a>
+# **createCustomerContact**
+> CreateCustomerContactResponse createCustomerContact(customerId, createCustomerContactRequest)
+
+Create a contact for the customer
+
+This API let’s you to create a contact for the customer
+
+### Example
+```java
+// Import classes:
+import com.togai.client.ApiClient;
+import com.togai.client.ApiException;
+import com.togai.client.Configuration;
+import com.togai.client.auth.*;
+import com.togai.client.models.*;
+import com.togai.client.api.CustomersApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.togai.com");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    CustomersApi apiInstance = new CustomersApi(defaultClient);
+    String customerId = "01BX5ZZKBKACTAV9WEVGEMMVRZ"; // String | 
+    CreateCustomerContactRequest createCustomerContactRequest = new CreateCustomerContactRequest(); // CreateCustomerContactRequest | Payload to create a contact for a customer
+    try {
+      CreateCustomerContactResponse result = apiInstance.createCustomerContact(customerId, createCustomerContactRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CustomersApi#createCustomerContact");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **customerId** | **String**|  | |
+| **createCustomerContactRequest** | [**CreateCustomerContactRequest**](CreateCustomerContactRequest.md)| Payload to create a contact for a customer | |
+
+### Return type
+
+[**CreateCustomerContactResponse**](CreateCustomerContactResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Response for CreateCustomerContactRequest |  -  |
+| **400** | Error response |  -  |
+| **401** | Error response |  -  |
+| **403** | Error response |  -  |
+| **404** | Error response |  -  |
+| **429** | Error response |  -  |
+| **0** | Error response |  -  |
+
+<a id="deleteCustomer"></a>
 # **deleteCustomer**
 > BaseSuccessResponse deleteCustomer(customerId)
 
@@ -112,7 +188,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     CustomersApi apiInstance = new CustomersApi(defaultClient);
-    String customerId = "customerId_example"; // String | 
+    String customerId = "01BX5ZZKBKACTAV9WEVGEMMVRZ"; // String | 
     try {
       BaseSuccessResponse result = apiInstance.deleteCustomer(customerId);
       System.out.println(result);
@@ -157,7 +233,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="getCustomer"></a>
+<a id="getCustomer"></a>
 # **getCustomer**
 > Customer getCustomer(customerId)
 
@@ -185,7 +261,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     CustomersApi apiInstance = new CustomersApi(defaultClient);
-    String customerId = "customerId_example"; // String | 
+    String customerId = "01BX5ZZKBKACTAV9WEVGEMMVRZ"; // String | 
     try {
       Customer result = apiInstance.getCustomer(customerId);
       System.out.println(result);
@@ -230,7 +306,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="getCustomers"></a>
+<a id="getCustomers"></a>
 # **getCustomers**
 > CustomerPaginatedResponse getCustomers(nextToken, pageSize)
 
@@ -305,7 +381,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="updateCustomer"></a>
+<a id="updateCustomer"></a>
 # **updateCustomer**
 > Customer updateCustomer(customerId, updateCustomerRequest)
 
@@ -333,7 +409,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     CustomersApi apiInstance = new CustomersApi(defaultClient);
-    String customerId = "customerId_example"; // String | 
+    String customerId = "01BX5ZZKBKACTAV9WEVGEMMVRZ"; // String | 
     UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest(); // UpdateCustomerRequest | Payload to update customer
     try {
       Customer result = apiInstance.updateCustomer(customerId, updateCustomerRequest);

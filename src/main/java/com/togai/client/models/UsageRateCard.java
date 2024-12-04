@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,6 +23,7 @@ import com.togai.client.models.RatePlan;
 import com.togai.client.models.RateValue;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -37,13 +37,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -51,118 +53,161 @@ import com.togai.client.JSON;
 /**
  * UsageRateCard
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class UsageRateCard implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_DISPLAY_NAME = "displayName";
   @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
+  @javax.annotation.Nullable
   private String displayName;
+
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
+  private String name;
+
+  public static final String SERIALIZED_NAME_TAG = "tag";
+  @SerializedName(SERIALIZED_NAME_TAG)
+  @javax.annotation.Nullable
+  private String tag;
 
   public static final String SERIALIZED_NAME_USAGE_METER_ID = "usageMeterId";
   @SerializedName(SERIALIZED_NAME_USAGE_METER_ID)
+  @javax.annotation.Nonnull
   private String usageMeterId;
 
   public static final String SERIALIZED_NAME_RATE_PLAN = "ratePlan";
   @SerializedName(SERIALIZED_NAME_RATE_PLAN)
+  @javax.annotation.Nonnull
   private RatePlan ratePlan;
 
   public static final String SERIALIZED_NAME_RATE_VALUES = "rateValues";
   @SerializedName(SERIALIZED_NAME_RATE_VALUES)
+  @javax.annotation.Nonnull
   private List<RateValue> rateValues = new ArrayList<>();
 
   public UsageRateCard() {
   }
 
-  public UsageRateCard displayName(String displayName) {
-    
+  public UsageRateCard displayName(@javax.annotation.Nullable String displayName) {
     this.displayName = displayName;
     return this;
   }
 
-   /**
+  /**
    * Name your rate card, this will be displayed in the Togai App
    * @return displayName
-  **/
-  @javax.annotation.Nonnull
-
+   */
+  @javax.annotation.Nullable
   public String getDisplayName() {
     return displayName;
   }
 
-
-  public void setDisplayName(String displayName) {
+  public void setDisplayName(@javax.annotation.Nullable String displayName) {
     this.displayName = displayName;
   }
 
 
-  public UsageRateCard usageMeterId(String usageMeterId) {
-    
+  public UsageRateCard name(@javax.annotation.Nullable String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Unique identifier for the rate card in a price plan. If left null it is auto-generated.
+   * @return name
+   */
+  @javax.annotation.Nullable
+  public String getName() {
+    return name;
+  }
+
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
+  }
+
+
+  public UsageRateCard tag(@javax.annotation.Nullable String tag) {
+    this.tag = tag;
+    return this;
+  }
+
+  /**
+   * A tag string to group usageRateCards
+   * @return tag
+   */
+  @javax.annotation.Nullable
+  public String getTag() {
+    return tag;
+  }
+
+  public void setTag(@javax.annotation.Nullable String tag) {
+    this.tag = tag;
+  }
+
+
+  public UsageRateCard usageMeterId(@javax.annotation.Nonnull String usageMeterId) {
     this.usageMeterId = usageMeterId;
     return this;
   }
 
-   /**
+  /**
    * Get usageMeterId
    * @return usageMeterId
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getUsageMeterId() {
     return usageMeterId;
   }
 
-
-  public void setUsageMeterId(String usageMeterId) {
+  public void setUsageMeterId(@javax.annotation.Nonnull String usageMeterId) {
     this.usageMeterId = usageMeterId;
   }
 
 
-  public UsageRateCard ratePlan(RatePlan ratePlan) {
-    
+  public UsageRateCard ratePlan(@javax.annotation.Nonnull RatePlan ratePlan) {
     this.ratePlan = ratePlan;
     return this;
   }
 
-   /**
+  /**
    * Get ratePlan
    * @return ratePlan
-  **/
+   */
   @javax.annotation.Nonnull
-
   public RatePlan getRatePlan() {
     return ratePlan;
   }
 
-
-  public void setRatePlan(RatePlan ratePlan) {
+  public void setRatePlan(@javax.annotation.Nonnull RatePlan ratePlan) {
     this.ratePlan = ratePlan;
   }
 
 
-  public UsageRateCard rateValues(List<RateValue> rateValues) {
-    
+  public UsageRateCard rateValues(@javax.annotation.Nonnull List<RateValue> rateValues) {
     this.rateValues = rateValues;
     return this;
   }
 
   public UsageRateCard addRateValuesItem(RateValue rateValuesItem) {
+    if (this.rateValues == null) {
+      this.rateValues = new ArrayList<>();
+    }
     this.rateValues.add(rateValuesItem);
     return this;
   }
 
-   /**
+  /**
    * Get rateValues
    * @return rateValues
-  **/
+   */
   @javax.annotation.Nonnull
-
   public List<RateValue> getRateValues() {
     return rateValues;
   }
 
-
-  public void setRateValues(List<RateValue> rateValues) {
+  public void setRateValues(@javax.annotation.Nonnull List<RateValue> rateValues) {
     this.rateValues = rateValues;
   }
 
@@ -178,6 +223,8 @@ public class UsageRateCard implements Serializable {
     }
     UsageRateCard usageRateCard = (UsageRateCard) o;
     return Objects.equals(this.displayName, usageRateCard.displayName) &&
+        Objects.equals(this.name, usageRateCard.name) &&
+        Objects.equals(this.tag, usageRateCard.tag) &&
         Objects.equals(this.usageMeterId, usageRateCard.usageMeterId) &&
         Objects.equals(this.ratePlan, usageRateCard.ratePlan) &&
         Objects.equals(this.rateValues, usageRateCard.rateValues);
@@ -185,7 +232,7 @@ public class UsageRateCard implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(displayName, usageMeterId, ratePlan, rateValues);
+    return Objects.hash(displayName, name, tag, usageMeterId, ratePlan, rateValues);
   }
 
   @Override
@@ -193,6 +240,8 @@ public class UsageRateCard implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class UsageRateCard {\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
     sb.append("    usageMeterId: ").append(toIndentedString(usageMeterId)).append("\n");
     sb.append("    ratePlan: ").append(toIndentedString(ratePlan)).append("\n");
     sb.append("    rateValues: ").append(toIndentedString(rateValues)).append("\n");
@@ -219,53 +268,61 @@ public class UsageRateCard implements Serializable {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("displayName");
+    openapiFields.add("name");
+    openapiFields.add("tag");
     openapiFields.add("usageMeterId");
     openapiFields.add("ratePlan");
     openapiFields.add("rateValues");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("displayName");
     openapiRequiredFields.add("usageMeterId");
     openapiRequiredFields.add("ratePlan");
     openapiRequiredFields.add("rateValues");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to UsageRateCard
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!UsageRateCard.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UsageRateCard
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UsageRateCard.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UsageRateCard is not found in the empty JSON string", UsageRateCard.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!UsageRateCard.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UsageRateCard` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UsageRateCard` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : UsageRateCard.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
-      if (!jsonObj.get("displayName").isJsonPrimitive()) {
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("displayName") != null && !jsonObj.get("displayName").isJsonNull()) && !jsonObj.get("displayName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `displayName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("displayName").toString()));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonNull()) && !jsonObj.get("tag").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tag` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tag").toString()));
       }
       if (!jsonObj.get("usageMeterId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `usageMeterId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("usageMeterId").toString()));
       }
       // validate the required field `ratePlan`
-      RatePlan.validateJsonObject(jsonObj.getAsJsonObject("ratePlan"));
+      RatePlan.validateJsonElement(jsonObj.get("ratePlan"));
       // ensure the json data is an array
       if (!jsonObj.get("rateValues").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `rateValues` to be an array in the JSON string but got `%s`", jsonObj.get("rateValues").toString()));
@@ -274,7 +331,7 @@ public class UsageRateCard implements Serializable {
       JsonArray jsonArrayrateValues = jsonObj.getAsJsonArray("rateValues");
       // validate the required field `rateValues` (array)
       for (int i = 0; i < jsonArrayrateValues.size(); i++) {
-        RateValue.validateJsonObject(jsonArrayrateValues.get(i).getAsJsonObject());
+        RateValue.validateJsonElement(jsonArrayrateValues.get(i));
       };
   }
 
@@ -298,31 +355,31 @@ public class UsageRateCard implements Serializable {
 
            @Override
            public UsageRateCard read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of UsageRateCard given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UsageRateCard
-  * @throws IOException if the JSON string is invalid with respect to UsageRateCard
-  */
+  /**
+   * Create an instance of UsageRateCard given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UsageRateCard
+   * @throws IOException if the JSON string is invalid with respect to UsageRateCard
+   */
   public static UsageRateCard fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UsageRateCard.class);
   }
 
- /**
-  * Convert an instance of UsageRateCard to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UsageRateCard to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

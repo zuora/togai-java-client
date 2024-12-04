@@ -14,16 +14,17 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.Account;
+import com.togai.client.models.Address;
 import com.togai.client.models.CreateEntitySetting;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -37,13 +38,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -51,127 +54,168 @@ import com.togai.client.JSON;
 /**
  * CreateCustomerResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class CreateCustomerResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
   private String id;
+
+  public static final String SERIALIZED_NAME_TOGAI_CUSTOMER_ID = "togaiCustomerId";
+  @SerializedName(SERIALIZED_NAME_TOGAI_CUSTOMER_ID)
+  @javax.annotation.Nonnull
+  private String togaiCustomerId;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
   private String name;
 
   public static final String SERIALIZED_NAME_PRIMARY_EMAIL = "primaryEmail";
   @SerializedName(SERIALIZED_NAME_PRIMARY_EMAIL)
+  @javax.annotation.Nonnull
   private String primaryEmail;
 
   public static final String SERIALIZED_NAME_BILLING_ADDRESS = "billingAddress";
   @SerializedName(SERIALIZED_NAME_BILLING_ADDRESS)
+  @javax.annotation.Nullable
   private String billingAddress;
+
+  public static final String SERIALIZED_NAME_ADDRESS = "address";
+  @SerializedName(SERIALIZED_NAME_ADDRESS)
+  @javax.annotation.Nullable
+  private Address address;
 
   public static final String SERIALIZED_NAME_SETTINGS = "settings";
   @SerializedName(SERIALIZED_NAME_SETTINGS)
+  @javax.annotation.Nullable
   private List<CreateEntitySetting> settings = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ACCOUNT = "account";
   @SerializedName(SERIALIZED_NAME_ACCOUNT)
+  @javax.annotation.Nullable
   private Account account;
 
   public CreateCustomerResponse() {
   }
 
-  public CreateCustomerResponse id(String id) {
-    
+  public CreateCustomerResponse id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * Identifier of customer
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getId() {
     return id;
   }
 
-
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public CreateCustomerResponse name(String name) {
-    
+  public CreateCustomerResponse togaiCustomerId(@javax.annotation.Nonnull String togaiCustomerId) {
+    this.togaiCustomerId = togaiCustomerId;
+    return this;
+  }
+
+  /**
+   * Unique identifier of customer
+   * @return togaiCustomerId
+   */
+  @javax.annotation.Nonnull
+  public String getTogaiCustomerId() {
+    return togaiCustomerId;
+  }
+
+  public void setTogaiCustomerId(@javax.annotation.Nonnull String togaiCustomerId) {
+    this.togaiCustomerId = togaiCustomerId;
+  }
+
+
+  public CreateCustomerResponse name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Name of the Customer
    * @return name
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public CreateCustomerResponse primaryEmail(String primaryEmail) {
-    
+  public CreateCustomerResponse primaryEmail(@javax.annotation.Nonnull String primaryEmail) {
     this.primaryEmail = primaryEmail;
     return this;
   }
 
-   /**
+  /**
    * Primary email of the customer
    * @return primaryEmail
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getPrimaryEmail() {
     return primaryEmail;
   }
 
-
-  public void setPrimaryEmail(String primaryEmail) {
+  public void setPrimaryEmail(@javax.annotation.Nonnull String primaryEmail) {
     this.primaryEmail = primaryEmail;
   }
 
 
-  public CreateCustomerResponse billingAddress(String billingAddress) {
-    
+  public CreateCustomerResponse billingAddress(@javax.annotation.Nullable String billingAddress) {
     this.billingAddress = billingAddress;
     return this;
   }
 
-   /**
-   * billing address of the customer
+  /**
+   * Get billingAddress
    * @return billingAddress
-  **/
-  @javax.annotation.Nonnull
-
+   */
+  @javax.annotation.Nullable
   public String getBillingAddress() {
     return billingAddress;
   }
 
-
-  public void setBillingAddress(String billingAddress) {
+  public void setBillingAddress(@javax.annotation.Nullable String billingAddress) {
     this.billingAddress = billingAddress;
   }
 
 
-  public CreateCustomerResponse settings(List<CreateEntitySetting> settings) {
-    
+  public CreateCustomerResponse address(@javax.annotation.Nullable Address address) {
+    this.address = address;
+    return this;
+  }
+
+  /**
+   * Get address
+   * @return address
+   */
+  @javax.annotation.Nullable
+  public Address getAddress() {
+    return address;
+  }
+
+  public void setAddress(@javax.annotation.Nullable Address address) {
+    this.address = address;
+  }
+
+
+  public CreateCustomerResponse settings(@javax.annotation.Nullable List<CreateEntitySetting> settings) {
     this.settings = settings;
     return this;
   }
@@ -184,40 +228,35 @@ public class CreateCustomerResponse implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get settings
    * @return settings
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<CreateEntitySetting> getSettings() {
     return settings;
   }
 
-
-  public void setSettings(List<CreateEntitySetting> settings) {
+  public void setSettings(@javax.annotation.Nullable List<CreateEntitySetting> settings) {
     this.settings = settings;
   }
 
 
-  public CreateCustomerResponse account(Account account) {
-    
+  public CreateCustomerResponse account(@javax.annotation.Nullable Account account) {
     this.account = account;
     return this;
   }
 
-   /**
+  /**
    * Get account
    * @return account
-  **/
+   */
   @javax.annotation.Nullable
-
   public Account getAccount() {
     return account;
   }
 
-
-  public void setAccount(Account account) {
+  public void setAccount(@javax.annotation.Nullable Account account) {
     this.account = account;
   }
 
@@ -233,16 +272,18 @@ public class CreateCustomerResponse implements Serializable {
     }
     CreateCustomerResponse createCustomerResponse = (CreateCustomerResponse) o;
     return Objects.equals(this.id, createCustomerResponse.id) &&
+        Objects.equals(this.togaiCustomerId, createCustomerResponse.togaiCustomerId) &&
         Objects.equals(this.name, createCustomerResponse.name) &&
         Objects.equals(this.primaryEmail, createCustomerResponse.primaryEmail) &&
         Objects.equals(this.billingAddress, createCustomerResponse.billingAddress) &&
+        Objects.equals(this.address, createCustomerResponse.address) &&
         Objects.equals(this.settings, createCustomerResponse.settings) &&
         Objects.equals(this.account, createCustomerResponse.account);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, primaryEmail, billingAddress, settings, account);
+    return Objects.hash(id, togaiCustomerId, name, primaryEmail, billingAddress, address, settings, account);
   }
 
   @Override
@@ -250,9 +291,11 @@ public class CreateCustomerResponse implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCustomerResponse {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    togaiCustomerId: ").append(toIndentedString(togaiCustomerId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    primaryEmail: ").append(toIndentedString(primaryEmail)).append("\n");
     sb.append("    billingAddress: ").append(toIndentedString(billingAddress)).append("\n");
+    sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    settings: ").append(toIndentedString(settings)).append("\n");
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
     sb.append("}");
@@ -278,49 +321,55 @@ public class CreateCustomerResponse implements Serializable {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
+    openapiFields.add("togaiCustomerId");
     openapiFields.add("name");
     openapiFields.add("primaryEmail");
     openapiFields.add("billingAddress");
+    openapiFields.add("address");
     openapiFields.add("settings");
     openapiFields.add("account");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("id");
+    openapiRequiredFields.add("togaiCustomerId");
     openapiRequiredFields.add("name");
     openapiRequiredFields.add("primaryEmail");
-    openapiRequiredFields.add("billingAddress");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreateCustomerResponse
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CreateCustomerResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateCustomerResponse
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreateCustomerResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreateCustomerResponse is not found in the empty JSON string", CreateCustomerResponse.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CreateCustomerResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateCustomerResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateCustomerResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : CreateCustomerResponse.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if (!jsonObj.get("togaiCustomerId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `togaiCustomerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("togaiCustomerId").toString()));
       }
       if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
@@ -328,8 +377,12 @@ public class CreateCustomerResponse implements Serializable {
       if (!jsonObj.get("primaryEmail").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `primaryEmail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("primaryEmail").toString()));
       }
-      if (!jsonObj.get("billingAddress").isJsonPrimitive()) {
+      if ((jsonObj.get("billingAddress") != null && !jsonObj.get("billingAddress").isJsonNull()) && !jsonObj.get("billingAddress").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `billingAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("billingAddress").toString()));
+      }
+      // validate the optional field `address`
+      if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {
+        Address.validateJsonElement(jsonObj.get("address"));
       }
       if (jsonObj.get("settings") != null && !jsonObj.get("settings").isJsonNull()) {
         JsonArray jsonArraysettings = jsonObj.getAsJsonArray("settings");
@@ -341,13 +394,13 @@ public class CreateCustomerResponse implements Serializable {
 
           // validate the optional field `settings` (array)
           for (int i = 0; i < jsonArraysettings.size(); i++) {
-            CreateEntitySetting.validateJsonObject(jsonArraysettings.get(i).getAsJsonObject());
+            CreateEntitySetting.validateJsonElement(jsonArraysettings.get(i));
           };
         }
       }
       // validate the optional field `account`
       if (jsonObj.get("account") != null && !jsonObj.get("account").isJsonNull()) {
-        Account.validateJsonObject(jsonObj.getAsJsonObject("account"));
+        Account.validateJsonElement(jsonObj.get("account"));
       }
   }
 
@@ -371,31 +424,31 @@ public class CreateCustomerResponse implements Serializable {
 
            @Override
            public CreateCustomerResponse read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreateCustomerResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateCustomerResponse
-  * @throws IOException if the JSON string is invalid with respect to CreateCustomerResponse
-  */
+  /**
+   * Create an instance of CreateCustomerResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateCustomerResponse
+   * @throws IOException if the JSON string is invalid with respect to CreateCustomerResponse
+   */
   public static CreateCustomerResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateCustomerResponse.class);
   }
 
- /**
-  * Convert an instance of CreateCustomerResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateCustomerResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

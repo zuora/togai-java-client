@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -25,6 +24,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -38,13 +38,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -52,97 +54,97 @@ import com.togai.client.JSON;
 /**
  * MetricDataPoints
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class MetricDataPoints implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_GROUPED_BY = "groupedBy";
   @SerializedName(SERIALIZED_NAME_GROUPED_BY)
+  @javax.annotation.Nullable
   private MetricDataPointsGroupedBy groupedBy;
 
   public static final String SERIALIZED_NAME_TIMESTAMPS = "timestamps";
   @SerializedName(SERIALIZED_NAME_TIMESTAMPS)
+  @javax.annotation.Nonnull
   private List<OffsetDateTime> timestamps = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_METRIC_VALUES = "metricValues";
   @SerializedName(SERIALIZED_NAME_METRIC_VALUES)
+  @javax.annotation.Nonnull
   private List<BigDecimal> metricValues = new ArrayList<>();
 
   public MetricDataPoints() {
   }
 
-  public MetricDataPoints groupedBy(MetricDataPointsGroupedBy groupedBy) {
-    
+  public MetricDataPoints groupedBy(@javax.annotation.Nullable MetricDataPointsGroupedBy groupedBy) {
     this.groupedBy = groupedBy;
     return this;
   }
 
-   /**
+  /**
    * Get groupedBy
    * @return groupedBy
-  **/
+   */
   @javax.annotation.Nullable
-
   public MetricDataPointsGroupedBy getGroupedBy() {
     return groupedBy;
   }
 
-
-  public void setGroupedBy(MetricDataPointsGroupedBy groupedBy) {
+  public void setGroupedBy(@javax.annotation.Nullable MetricDataPointsGroupedBy groupedBy) {
     this.groupedBy = groupedBy;
   }
 
 
-  public MetricDataPoints timestamps(List<OffsetDateTime> timestamps) {
-    
+  public MetricDataPoints timestamps(@javax.annotation.Nonnull List<OffsetDateTime> timestamps) {
     this.timestamps = timestamps;
     return this;
   }
 
   public MetricDataPoints addTimestampsItem(OffsetDateTime timestampsItem) {
+    if (this.timestamps == null) {
+      this.timestamps = new ArrayList<>();
+    }
     this.timestamps.add(timestampsItem);
     return this;
   }
 
-   /**
+  /**
    * Get timestamps
    * @return timestamps
-  **/
+   */
   @javax.annotation.Nonnull
-
   public List<OffsetDateTime> getTimestamps() {
     return timestamps;
   }
 
-
-  public void setTimestamps(List<OffsetDateTime> timestamps) {
+  public void setTimestamps(@javax.annotation.Nonnull List<OffsetDateTime> timestamps) {
     this.timestamps = timestamps;
   }
 
 
-  public MetricDataPoints metricValues(List<BigDecimal> metricValues) {
-    
+  public MetricDataPoints metricValues(@javax.annotation.Nonnull List<BigDecimal> metricValues) {
     this.metricValues = metricValues;
     return this;
   }
 
   public MetricDataPoints addMetricValuesItem(BigDecimal metricValuesItem) {
+    if (this.metricValues == null) {
+      this.metricValues = new ArrayList<>();
+    }
     this.metricValues.add(metricValuesItem);
     return this;
   }
 
-   /**
+  /**
    * Get metricValues
    * @return metricValues
-  **/
+   */
   @javax.annotation.Nonnull
-
   public List<BigDecimal> getMetricValues() {
     return metricValues;
   }
 
-
-  public void setMetricValues(List<BigDecimal> metricValues) {
+  public void setMetricValues(@javax.annotation.Nonnull List<BigDecimal> metricValues) {
     this.metricValues = metricValues;
   }
 
@@ -206,36 +208,37 @@ public class MetricDataPoints implements Serializable {
     openapiRequiredFields.add("metricValues");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to MetricDataPoints
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!MetricDataPoints.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MetricDataPoints
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!MetricDataPoints.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in MetricDataPoints is not found in the empty JSON string", MetricDataPoints.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!MetricDataPoints.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MetricDataPoints` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MetricDataPoints` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : MetricDataPoints.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `groupedBy`
       if (jsonObj.get("groupedBy") != null && !jsonObj.get("groupedBy").isJsonNull()) {
-        MetricDataPointsGroupedBy.validateJsonObject(jsonObj.getAsJsonObject("groupedBy"));
+        MetricDataPointsGroupedBy.validateJsonElement(jsonObj.get("groupedBy"));
       }
       // ensure the required json array is present
       if (jsonObj.get("timestamps") == null) {
@@ -271,31 +274,31 @@ public class MetricDataPoints implements Serializable {
 
            @Override
            public MetricDataPoints read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of MetricDataPoints given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MetricDataPoints
-  * @throws IOException if the JSON string is invalid with respect to MetricDataPoints
-  */
+  /**
+   * Create an instance of MetricDataPoints given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MetricDataPoints
+   * @throws IOException if the JSON string is invalid with respect to MetricDataPoints
+   */
   public static MetricDataPoints fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MetricDataPoints.class);
   }
 
- /**
-  * Convert an instance of MetricDataPoints to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MetricDataPoints to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

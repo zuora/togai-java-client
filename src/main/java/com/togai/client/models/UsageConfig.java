@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,6 +23,7 @@ import com.togai.client.models.UsageConfigLookupCycle;
 import com.togai.client.models.UsageConfigLookupRange;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.Serializable;
@@ -38,13 +38,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -52,7 +54,7 @@ import com.togai.client.JSON;
 /**
  * Configuration for getting the usage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class UsageConfig implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -103,51 +105,56 @@ public class UsageConfig implements Serializable {
         return ModeEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      ModeEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_MODE = "mode";
   @SerializedName(SERIALIZED_NAME_MODE)
+  @javax.annotation.Nonnull
   private ModeEnum mode;
 
   public static final String SERIALIZED_NAME_USAGE_MAP = "usageMap";
   @SerializedName(SERIALIZED_NAME_USAGE_MAP)
+  @javax.annotation.Nullable
   private Map<String, BigDecimal> usageMap = new HashMap<>();
 
   public static final String SERIALIZED_NAME_LOOKUP_RANGE = "lookupRange";
   @SerializedName(SERIALIZED_NAME_LOOKUP_RANGE)
+  @javax.annotation.Nullable
   private UsageConfigLookupRange lookupRange;
 
   public static final String SERIALIZED_NAME_LOOKUP_CYCLE = "lookupCycle";
   @SerializedName(SERIALIZED_NAME_LOOKUP_CYCLE)
+  @javax.annotation.Nullable
   private UsageConfigLookupCycle lookupCycle;
 
   public UsageConfig() {
   }
 
-  public UsageConfig mode(ModeEnum mode) {
-    
+  public UsageConfig mode(@javax.annotation.Nonnull ModeEnum mode) {
     this.mode = mode;
     return this;
   }
 
-   /**
+  /**
    * Mode to get the usage for the usage meters - CUSTOM: Use the usages provided in the request - LOOKUP_RANGE: Use the usage of a given account for the specified range - LOOKUP_CYCLE: Use the usage of a given account for the specified cycle 
    * @return mode
-  **/
+   */
   @javax.annotation.Nonnull
-
   public ModeEnum getMode() {
     return mode;
   }
 
-
-  public void setMode(ModeEnum mode) {
+  public void setMode(@javax.annotation.Nonnull ModeEnum mode) {
     this.mode = mode;
   }
 
 
-  public UsageConfig usageMap(Map<String, BigDecimal> usageMap) {
-    
+  public UsageConfig usageMap(@javax.annotation.Nullable Map<String, BigDecimal> usageMap) {
     this.usageMap = usageMap;
     return this;
   }
@@ -160,62 +167,54 @@ public class UsageConfig implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Map of usage meter id and usage, this will be considered if mode is CUSTOM
    * @return usageMap
-  **/
+   */
   @javax.annotation.Nullable
-
   public Map<String, BigDecimal> getUsageMap() {
     return usageMap;
   }
 
-
-  public void setUsageMap(Map<String, BigDecimal> usageMap) {
+  public void setUsageMap(@javax.annotation.Nullable Map<String, BigDecimal> usageMap) {
     this.usageMap = usageMap;
   }
 
 
-  public UsageConfig lookupRange(UsageConfigLookupRange lookupRange) {
-    
+  public UsageConfig lookupRange(@javax.annotation.Nullable UsageConfigLookupRange lookupRange) {
     this.lookupRange = lookupRange;
     return this;
   }
 
-   /**
+  /**
    * Get lookupRange
    * @return lookupRange
-  **/
+   */
   @javax.annotation.Nullable
-
   public UsageConfigLookupRange getLookupRange() {
     return lookupRange;
   }
 
-
-  public void setLookupRange(UsageConfigLookupRange lookupRange) {
+  public void setLookupRange(@javax.annotation.Nullable UsageConfigLookupRange lookupRange) {
     this.lookupRange = lookupRange;
   }
 
 
-  public UsageConfig lookupCycle(UsageConfigLookupCycle lookupCycle) {
-    
+  public UsageConfig lookupCycle(@javax.annotation.Nullable UsageConfigLookupCycle lookupCycle) {
     this.lookupCycle = lookupCycle;
     return this;
   }
 
-   /**
+  /**
    * Get lookupCycle
    * @return lookupCycle
-  **/
+   */
   @javax.annotation.Nullable
-
   public UsageConfigLookupCycle getLookupCycle() {
     return lookupCycle;
   }
 
-
-  public void setLookupCycle(UsageConfigLookupCycle lookupCycle) {
+  public void setLookupCycle(@javax.annotation.Nullable UsageConfigLookupCycle lookupCycle) {
     this.lookupCycle = lookupCycle;
   }
 
@@ -281,43 +280,46 @@ public class UsageConfig implements Serializable {
     openapiRequiredFields.add("mode");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to UsageConfig
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!UsageConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UsageConfig
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UsageConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UsageConfig is not found in the empty JSON string", UsageConfig.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!UsageConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UsageConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UsageConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : UsageConfig.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("mode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mode").toString()));
       }
+      // validate the required field `mode`
+      ModeEnum.validateJsonElement(jsonObj.get("mode"));
       // validate the optional field `lookupRange`
       if (jsonObj.get("lookupRange") != null && !jsonObj.get("lookupRange").isJsonNull()) {
-        UsageConfigLookupRange.validateJsonObject(jsonObj.getAsJsonObject("lookupRange"));
+        UsageConfigLookupRange.validateJsonElement(jsonObj.get("lookupRange"));
       }
       // validate the optional field `lookupCycle`
       if (jsonObj.get("lookupCycle") != null && !jsonObj.get("lookupCycle").isJsonNull()) {
-        UsageConfigLookupCycle.validateJsonObject(jsonObj.getAsJsonObject("lookupCycle"));
+        UsageConfigLookupCycle.validateJsonElement(jsonObj.get("lookupCycle"));
       }
   }
 
@@ -341,31 +343,31 @@ public class UsageConfig implements Serializable {
 
            @Override
            public UsageConfig read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of UsageConfig given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UsageConfig
-  * @throws IOException if the JSON string is invalid with respect to UsageConfig
-  */
+  /**
+   * Create an instance of UsageConfig given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UsageConfig
+   * @throws IOException if the JSON string is invalid with respect to UsageConfig
+   */
   public static UsageConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UsageConfig.class);
   }
 
- /**
-  * Convert an instance of UsageConfig to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UsageConfig to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

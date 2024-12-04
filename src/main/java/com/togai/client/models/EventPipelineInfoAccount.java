@@ -14,13 +14,13 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -33,13 +33,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -47,62 +49,82 @@ import com.togai.client.JSON;
 /**
  * EventPipelineInfoAccount
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class EventPipelineInfoAccount implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
   private String name;
+
+  public static final String SERIALIZED_NAME_ALIAS = "alias";
+  @SerializedName(SERIALIZED_NAME_ALIAS)
+  @javax.annotation.Nullable
+  private String alias;
 
   public EventPipelineInfoAccount() {
   }
 
-  public EventPipelineInfoAccount id(String id) {
-    
+  public EventPipelineInfoAccount id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * Get id
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getId() {
     return id;
   }
 
-
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public EventPipelineInfoAccount name(String name) {
-    
+  public EventPipelineInfoAccount name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
+  }
+
+
+  public EventPipelineInfoAccount alias(@javax.annotation.Nullable String alias) {
+    this.alias = alias;
+    return this;
+  }
+
+  /**
+   * Get alias
+   * @return alias
+   */
+  @javax.annotation.Nullable
+  public String getAlias() {
+    return alias;
+  }
+
+  public void setAlias(@javax.annotation.Nullable String alias) {
+    this.alias = alias;
   }
 
 
@@ -117,12 +139,13 @@ public class EventPipelineInfoAccount implements Serializable {
     }
     EventPipelineInfoAccount eventPipelineInfoAccount = (EventPipelineInfoAccount) o;
     return Objects.equals(this.id, eventPipelineInfoAccount.id) &&
-        Objects.equals(this.name, eventPipelineInfoAccount.name);
+        Objects.equals(this.name, eventPipelineInfoAccount.name) &&
+        Objects.equals(this.alias, eventPipelineInfoAccount.alias);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(id, name, alias);
   }
 
   @Override
@@ -131,6 +154,7 @@ public class EventPipelineInfoAccount implements Serializable {
     sb.append("class EventPipelineInfoAccount {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -155,6 +179,7 @@ public class EventPipelineInfoAccount implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
     openapiFields.add("name");
+    openapiFields.add("alias");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -162,38 +187,42 @@ public class EventPipelineInfoAccount implements Serializable {
     openapiRequiredFields.add("name");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to EventPipelineInfoAccount
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!EventPipelineInfoAccount.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to EventPipelineInfoAccount
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!EventPipelineInfoAccount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in EventPipelineInfoAccount is not found in the empty JSON string", EventPipelineInfoAccount.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!EventPipelineInfoAccount.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EventPipelineInfoAccount` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EventPipelineInfoAccount` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : EventPipelineInfoAccount.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("alias") != null && !jsonObj.get("alias").isJsonNull()) && !jsonObj.get("alias").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `alias` to be a primitive type in the JSON string but got `%s`", jsonObj.get("alias").toString()));
       }
   }
 
@@ -217,31 +246,31 @@ public class EventPipelineInfoAccount implements Serializable {
 
            @Override
            public EventPipelineInfoAccount read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of EventPipelineInfoAccount given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of EventPipelineInfoAccount
-  * @throws IOException if the JSON string is invalid with respect to EventPipelineInfoAccount
-  */
+  /**
+   * Create an instance of EventPipelineInfoAccount given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of EventPipelineInfoAccount
+   * @throws IOException if the JSON string is invalid with respect to EventPipelineInfoAccount
+   */
   public static EventPipelineInfoAccount fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, EventPipelineInfoAccount.class);
   }
 
- /**
-  * Convert an instance of EventPipelineInfoAccount to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of EventPipelineInfoAccount to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,6 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.MetricQuery;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.io.Serializable;
@@ -37,13 +37,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -51,92 +53,89 @@ import com.togai.client.JSON;
 /**
  * Request to get metrics from togai
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class GetMetricsRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_START_TIME = "startTime";
   @SerializedName(SERIALIZED_NAME_START_TIME)
+  @javax.annotation.Nonnull
   private OffsetDateTime startTime;
 
   public static final String SERIALIZED_NAME_END_TIME = "endTime";
   @SerializedName(SERIALIZED_NAME_END_TIME)
+  @javax.annotation.Nonnull
   private OffsetDateTime endTime;
 
   public static final String SERIALIZED_NAME_METRIC_QUERIES = "metricQueries";
   @SerializedName(SERIALIZED_NAME_METRIC_QUERIES)
+  @javax.annotation.Nonnull
   private Set<MetricQuery> metricQueries = new LinkedHashSet<>();
 
   public GetMetricsRequest() {
   }
 
-  public GetMetricsRequest startTime(OffsetDateTime startTime) {
-    
+  public GetMetricsRequest startTime(@javax.annotation.Nonnull OffsetDateTime startTime) {
     this.startTime = startTime;
     return this;
   }
 
-   /**
-   * Get startTime
+  /**
+   * Start date time of the query (inclusive)
    * @return startTime
-  **/
+   */
   @javax.annotation.Nonnull
-
   public OffsetDateTime getStartTime() {
     return startTime;
   }
 
-
-  public void setStartTime(OffsetDateTime startTime) {
+  public void setStartTime(@javax.annotation.Nonnull OffsetDateTime startTime) {
     this.startTime = startTime;
   }
 
 
-  public GetMetricsRequest endTime(OffsetDateTime endTime) {
-    
+  public GetMetricsRequest endTime(@javax.annotation.Nonnull OffsetDateTime endTime) {
     this.endTime = endTime;
     return this;
   }
 
-   /**
-   * Get endTime
+  /**
+   * End date time of the query (exclusive)
    * @return endTime
-  **/
+   */
   @javax.annotation.Nonnull
-
   public OffsetDateTime getEndTime() {
     return endTime;
   }
 
-
-  public void setEndTime(OffsetDateTime endTime) {
+  public void setEndTime(@javax.annotation.Nonnull OffsetDateTime endTime) {
     this.endTime = endTime;
   }
 
 
-  public GetMetricsRequest metricQueries(Set<MetricQuery> metricQueries) {
-    
+  public GetMetricsRequest metricQueries(@javax.annotation.Nonnull Set<MetricQuery> metricQueries) {
     this.metricQueries = metricQueries;
     return this;
   }
 
   public GetMetricsRequest addMetricQueriesItem(MetricQuery metricQueriesItem) {
+    if (this.metricQueries == null) {
+      this.metricQueries = new LinkedHashSet<>();
+    }
     this.metricQueries.add(metricQueriesItem);
     return this;
   }
 
-   /**
+  /**
    * Get metricQueries
    * @return metricQueries
-  **/
+   */
   @javax.annotation.Nonnull
-
   public Set<MetricQuery> getMetricQueries() {
     return metricQueries;
   }
 
-
-  public void setMetricQueries(Set<MetricQuery> metricQueries) {
+  public void setMetricQueries(@javax.annotation.Nonnull Set<MetricQuery> metricQueries) {
     this.metricQueries = metricQueries;
   }
 
@@ -201,33 +200,34 @@ public class GetMetricsRequest implements Serializable {
     openapiRequiredFields.add("metricQueries");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to GetMetricsRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!GetMetricsRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetMetricsRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!GetMetricsRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetMetricsRequest is not found in the empty JSON string", GetMetricsRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!GetMetricsRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetMetricsRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetMetricsRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : GetMetricsRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // ensure the json data is an array
       if (!jsonObj.get("metricQueries").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `metricQueries` to be an array in the JSON string but got `%s`", jsonObj.get("metricQueries").toString()));
@@ -236,7 +236,7 @@ public class GetMetricsRequest implements Serializable {
       JsonArray jsonArraymetricQueries = jsonObj.getAsJsonArray("metricQueries");
       // validate the required field `metricQueries` (array)
       for (int i = 0; i < jsonArraymetricQueries.size(); i++) {
-        MetricQuery.validateJsonObject(jsonArraymetricQueries.get(i).getAsJsonObject());
+        MetricQuery.validateJsonElement(jsonArraymetricQueries.get(i));
       };
   }
 
@@ -260,31 +260,31 @@ public class GetMetricsRequest implements Serializable {
 
            @Override
            public GetMetricsRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetMetricsRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetMetricsRequest
-  * @throws IOException if the JSON string is invalid with respect to GetMetricsRequest
-  */
+  /**
+   * Create an instance of GetMetricsRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetMetricsRequest
+   * @throws IOException if the JSON string is invalid with respect to GetMetricsRequest
+   */
   public static GetMetricsRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetMetricsRequest.class);
   }
 
- /**
-  * Convert an instance of GetMetricsRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetMetricsRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

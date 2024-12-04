@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -25,7 +24,10 @@ import com.togai.client.models.Enrichments;
 import com.togai.client.models.EventAttributeSchema;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -38,13 +40,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -52,150 +56,202 @@ import com.togai.client.JSON;
 /**
  * Request to create event schema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class CreateEventSchemaRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
   private String name;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  @javax.annotation.Nonnull
   private List<EventAttributeSchema> attributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DIMENSIONS = "dimensions";
   @SerializedName(SERIALIZED_NAME_DIMENSIONS)
+  @javax.annotation.Nonnull
   private List<DimensionsSchema> dimensions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ENRICHMENTS = "enrichments";
   @SerializedName(SERIALIZED_NAME_ENRICHMENTS)
+  @javax.annotation.Nullable
   private Enrichments enrichments;
+
+  public static final String SERIALIZED_NAME_FILTER_FIELDS = "filterFields";
+  @SerializedName(SERIALIZED_NAME_FILTER_FIELDS)
+  @javax.annotation.Nullable
+  private Set<String> filterFields = new LinkedHashSet<>();
+
+  public static final String SERIALIZED_NAME_EVENT_ID_TEMPLATE = "eventIdTemplate";
+  @SerializedName(SERIALIZED_NAME_EVENT_ID_TEMPLATE)
+  @javax.annotation.Nullable
+  private String eventIdTemplate;
 
   public CreateEventSchemaRequest() {
   }
 
-  public CreateEventSchemaRequest name(String name) {
-    
+  public CreateEventSchemaRequest name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Name of the event. Must be unique for an organization.
    * @return name
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public CreateEventSchemaRequest description(String description) {
-    
+  public CreateEventSchemaRequest description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
 
-   /**
+  /**
    * Description of the event
    * @return description
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getDescription() {
     return description;
   }
 
-
-  public void setDescription(String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public CreateEventSchemaRequest attributes(List<EventAttributeSchema> attributes) {
-    
+  public CreateEventSchemaRequest attributes(@javax.annotation.Nonnull List<EventAttributeSchema> attributes) {
     this.attributes = attributes;
     return this;
   }
 
   public CreateEventSchemaRequest addAttributesItem(EventAttributeSchema attributesItem) {
+    if (this.attributes == null) {
+      this.attributes = new ArrayList<>();
+    }
     this.attributes.add(attributesItem);
     return this;
   }
 
-   /**
+  /**
    * Get attributes
    * @return attributes
-  **/
+   */
   @javax.annotation.Nonnull
-
   public List<EventAttributeSchema> getAttributes() {
     return attributes;
   }
 
-
-  public void setAttributes(List<EventAttributeSchema> attributes) {
+  public void setAttributes(@javax.annotation.Nonnull List<EventAttributeSchema> attributes) {
     this.attributes = attributes;
   }
 
 
-  public CreateEventSchemaRequest dimensions(List<DimensionsSchema> dimensions) {
-    
+  public CreateEventSchemaRequest dimensions(@javax.annotation.Nonnull List<DimensionsSchema> dimensions) {
     this.dimensions = dimensions;
     return this;
   }
 
   public CreateEventSchemaRequest addDimensionsItem(DimensionsSchema dimensionsItem) {
+    if (this.dimensions == null) {
+      this.dimensions = new ArrayList<>();
+    }
     this.dimensions.add(dimensionsItem);
     return this;
   }
 
-   /**
+  /**
    * Get dimensions
    * @return dimensions
-  **/
+   */
   @javax.annotation.Nonnull
-
   public List<DimensionsSchema> getDimensions() {
     return dimensions;
   }
 
-
-  public void setDimensions(List<DimensionsSchema> dimensions) {
+  public void setDimensions(@javax.annotation.Nonnull List<DimensionsSchema> dimensions) {
     this.dimensions = dimensions;
   }
 
 
-  public CreateEventSchemaRequest enrichments(Enrichments enrichments) {
-    
+  public CreateEventSchemaRequest enrichments(@javax.annotation.Nullable Enrichments enrichments) {
     this.enrichments = enrichments;
     return this;
   }
 
-   /**
+  /**
    * Get enrichments
    * @return enrichments
-  **/
+   */
   @javax.annotation.Nullable
-
   public Enrichments getEnrichments() {
     return enrichments;
   }
 
-
-  public void setEnrichments(Enrichments enrichments) {
+  public void setEnrichments(@javax.annotation.Nullable Enrichments enrichments) {
     this.enrichments = enrichments;
+  }
+
+
+  public CreateEventSchemaRequest filterFields(@javax.annotation.Nullable Set<String> filterFields) {
+    this.filterFields = filterFields;
+    return this;
+  }
+
+  public CreateEventSchemaRequest addFilterFieldsItem(String filterFieldsItem) {
+    if (this.filterFields == null) {
+      this.filterFields = new LinkedHashSet<>();
+    }
+    this.filterFields.add(filterFieldsItem);
+    return this;
+  }
+
+  /**
+   * List of fields that can be used for filtering in usage meter
+   * @return filterFields
+   */
+  @javax.annotation.Nullable
+  public Set<String> getFilterFields() {
+    return filterFields;
+  }
+
+  public void setFilterFields(@javax.annotation.Nullable Set<String> filterFields) {
+    this.filterFields = filterFields;
+  }
+
+
+  public CreateEventSchemaRequest eventIdTemplate(@javax.annotation.Nullable String eventIdTemplate) {
+    this.eventIdTemplate = eventIdTemplate;
+    return this;
+  }
+
+  /**
+   * Template used to generate event id based on event payload
+   * @return eventIdTemplate
+   */
+  @javax.annotation.Nullable
+  public String getEventIdTemplate() {
+    return eventIdTemplate;
+  }
+
+  public void setEventIdTemplate(@javax.annotation.Nullable String eventIdTemplate) {
+    this.eventIdTemplate = eventIdTemplate;
   }
 
 
@@ -213,12 +269,14 @@ public class CreateEventSchemaRequest implements Serializable {
         Objects.equals(this.description, createEventSchemaRequest.description) &&
         Objects.equals(this.attributes, createEventSchemaRequest.attributes) &&
         Objects.equals(this.dimensions, createEventSchemaRequest.dimensions) &&
-        Objects.equals(this.enrichments, createEventSchemaRequest.enrichments);
+        Objects.equals(this.enrichments, createEventSchemaRequest.enrichments) &&
+        Objects.equals(this.filterFields, createEventSchemaRequest.filterFields) &&
+        Objects.equals(this.eventIdTemplate, createEventSchemaRequest.eventIdTemplate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, attributes, dimensions, enrichments);
+    return Objects.hash(name, description, attributes, dimensions, enrichments, filterFields, eventIdTemplate);
   }
 
   @Override
@@ -230,6 +288,8 @@ public class CreateEventSchemaRequest implements Serializable {
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    dimensions: ").append(toIndentedString(dimensions)).append("\n");
     sb.append("    enrichments: ").append(toIndentedString(enrichments)).append("\n");
+    sb.append("    filterFields: ").append(toIndentedString(filterFields)).append("\n");
+    sb.append("    eventIdTemplate: ").append(toIndentedString(eventIdTemplate)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -257,6 +317,8 @@ public class CreateEventSchemaRequest implements Serializable {
     openapiFields.add("attributes");
     openapiFields.add("dimensions");
     openapiFields.add("enrichments");
+    openapiFields.add("filterFields");
+    openapiFields.add("eventIdTemplate");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -265,33 +327,34 @@ public class CreateEventSchemaRequest implements Serializable {
     openapiRequiredFields.add("dimensions");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreateEventSchemaRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CreateEventSchemaRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateEventSchemaRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreateEventSchemaRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreateEventSchemaRequest is not found in the empty JSON string", CreateEventSchemaRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CreateEventSchemaRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateEventSchemaRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateEventSchemaRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : CreateEventSchemaRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
@@ -306,7 +369,7 @@ public class CreateEventSchemaRequest implements Serializable {
       JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
       // validate the required field `attributes` (array)
       for (int i = 0; i < jsonArrayattributes.size(); i++) {
-        EventAttributeSchema.validateJsonObject(jsonArrayattributes.get(i).getAsJsonObject());
+        EventAttributeSchema.validateJsonElement(jsonArrayattributes.get(i));
       };
       // ensure the json data is an array
       if (!jsonObj.get("dimensions").isJsonArray()) {
@@ -316,11 +379,18 @@ public class CreateEventSchemaRequest implements Serializable {
       JsonArray jsonArraydimensions = jsonObj.getAsJsonArray("dimensions");
       // validate the required field `dimensions` (array)
       for (int i = 0; i < jsonArraydimensions.size(); i++) {
-        DimensionsSchema.validateJsonObject(jsonArraydimensions.get(i).getAsJsonObject());
+        DimensionsSchema.validateJsonElement(jsonArraydimensions.get(i));
       };
       // validate the optional field `enrichments`
       if (jsonObj.get("enrichments") != null && !jsonObj.get("enrichments").isJsonNull()) {
-        Enrichments.validateJsonObject(jsonObj.getAsJsonObject("enrichments"));
+        Enrichments.validateJsonElement(jsonObj.get("enrichments"));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("filterFields") != null && !jsonObj.get("filterFields").isJsonNull() && !jsonObj.get("filterFields").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `filterFields` to be an array in the JSON string but got `%s`", jsonObj.get("filterFields").toString()));
+      }
+      if ((jsonObj.get("eventIdTemplate") != null && !jsonObj.get("eventIdTemplate").isJsonNull()) && !jsonObj.get("eventIdTemplate").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `eventIdTemplate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("eventIdTemplate").toString()));
       }
   }
 
@@ -344,31 +414,31 @@ public class CreateEventSchemaRequest implements Serializable {
 
            @Override
            public CreateEventSchemaRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreateEventSchemaRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateEventSchemaRequest
-  * @throws IOException if the JSON string is invalid with respect to CreateEventSchemaRequest
-  */
+  /**
+   * Create an instance of CreateEventSchemaRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateEventSchemaRequest
+   * @throws IOException if the JSON string is invalid with respect to CreateEventSchemaRequest
+   */
   public static CreateEventSchemaRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateEventSchemaRequest.class);
   }
 
- /**
-  * Convert an instance of CreateEventSchemaRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateEventSchemaRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -14,13 +14,13 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -33,13 +33,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -47,7 +49,7 @@ import com.togai.client.JSON;
 /**
  * Configuration for getting the currency
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class CurrencyConfig implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -96,85 +98,84 @@ public class CurrencyConfig implements Serializable {
         return ModeEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      ModeEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_MODE = "mode";
   @SerializedName(SERIALIZED_NAME_MODE)
+  @javax.annotation.Nonnull
   private ModeEnum mode;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_ACCOUNT_ID = "accountId";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_ID)
+  @javax.annotation.Nullable
   private String accountId;
 
   public CurrencyConfig() {
   }
 
-  public CurrencyConfig mode(ModeEnum mode) {
-    
+  public CurrencyConfig mode(@javax.annotation.Nonnull ModeEnum mode) {
     this.mode = mode;
     return this;
   }
 
-   /**
+  /**
    * Mode to get the currency - CUSTOM: Use the currency provided in the request - ACCOUNT_INVOICE: Use the invoice currency of the given account 
    * @return mode
-  **/
+   */
   @javax.annotation.Nonnull
-
   public ModeEnum getMode() {
     return mode;
   }
 
-
-  public void setMode(ModeEnum mode) {
+  public void setMode(@javax.annotation.Nonnull ModeEnum mode) {
     this.mode = mode;
   }
 
 
-  public CurrencyConfig currency(String currency) {
-    
+  public CurrencyConfig currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * Currency to be used, this will be considered if mode is CUSTOM
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getCurrency() {
     return currency;
   }
 
-
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public CurrencyConfig accountId(String accountId) {
-    
+  public CurrencyConfig accountId(@javax.annotation.Nullable String accountId) {
     this.accountId = accountId;
     return this;
   }
 
-   /**
+  /**
    * Id of the account of which invoice currency will be used, this will be considered if mode is ACCOUNT_INVOICE
    * @return accountId
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getAccountId() {
     return accountId;
   }
 
-
-  public void setAccountId(String accountId) {
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
     this.accountId = accountId;
   }
 
@@ -237,36 +238,39 @@ public class CurrencyConfig implements Serializable {
     openapiRequiredFields.add("mode");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CurrencyConfig
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CurrencyConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CurrencyConfig
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CurrencyConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CurrencyConfig is not found in the empty JSON string", CurrencyConfig.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CurrencyConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CurrencyConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CurrencyConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : CurrencyConfig.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("mode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mode").toString()));
       }
+      // validate the required field `mode`
+      ModeEnum.validateJsonElement(jsonObj.get("mode"));
       if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) && !jsonObj.get("currency").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
       }
@@ -295,31 +299,31 @@ public class CurrencyConfig implements Serializable {
 
            @Override
            public CurrencyConfig read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CurrencyConfig given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CurrencyConfig
-  * @throws IOException if the JSON string is invalid with respect to CurrencyConfig
-  */
+  /**
+   * Create an instance of CurrencyConfig given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CurrencyConfig
+   * @throws IOException if the JSON string is invalid with respect to CurrencyConfig
+   */
   public static CurrencyConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CurrencyConfig.class);
   }
 
- /**
-  * Convert an instance of CurrencyConfig to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CurrencyConfig to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

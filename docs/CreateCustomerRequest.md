@@ -11,9 +11,9 @@ Payload to create customer
 |**id** | **String** | Customer identifier |  |
 |**name** | **String** | Name of the Customer |  |
 |**primaryEmail** | **String** | Primary email of the customer |  |
-|**billingAddress** | **String** | billing address of the customer |  |
+|**address** | [**Address**](Address.md) |  |  |
 |**settings** | [**List&lt;CreateEntitySetting&gt;**](CreateEntitySetting.md) |  |  [optional] |
-|**account** | [**CreateAccountRequest**](CreateAccountRequest.md) |  |  [optional] |
+|**account** | [**CreateAccountRequestWithoutCustomerId**](CreateAccountRequestWithoutCustomerId.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

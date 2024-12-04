@@ -8,7 +8,7 @@ List invoices response
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**data** | [**List&lt;Invoice&gt;**](Invoice.md) |  |  |
+|**data** | [**List&lt;InvoiceSummary&gt;**](InvoiceSummary.md) |  |  |
 |**nextToken** | **String** |  |  [optional] |
 
 

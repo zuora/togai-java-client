@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,6 +21,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -34,13 +35,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -48,140 +51,154 @@ import com.togai.client.JSON;
 /**
  * Credit Balance response
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class CreditBalanceResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ACTIVE_CREDITS = "activeCredits";
   @SerializedName(SERIALIZED_NAME_ACTIVE_CREDITS)
+  @javax.annotation.Nonnull
   private BigDecimal activeCredits;
 
   public static final String SERIALIZED_NAME_AVAILABLE_BALANCE = "availableBalance";
   @SerializedName(SERIALIZED_NAME_AVAILABLE_BALANCE)
+  @javax.annotation.Nonnull
   private BigDecimal availableBalance;
 
   public static final String SERIALIZED_NAME_RUNNING_BALANCE = "runningBalance";
   @SerializedName(SERIALIZED_NAME_RUNNING_BALANCE)
+  @javax.annotation.Nonnull
   private BigDecimal runningBalance;
 
   public static final String SERIALIZED_NAME_INAPPLICABLE_CREDITS = "inapplicableCredits";
   @SerializedName(SERIALIZED_NAME_INAPPLICABLE_CREDITS)
+  @javax.annotation.Nonnull
   private BigDecimal inapplicableCredits;
 
   public static final String SERIALIZED_NAME_UNIT = "unit";
   @SerializedName(SERIALIZED_NAME_UNIT)
+  @javax.annotation.Nonnull
   private String unit;
+
+  public static final String SERIALIZED_NAME_LAST_UPDATED_AT = "lastUpdatedAt";
+  @SerializedName(SERIALIZED_NAME_LAST_UPDATED_AT)
+  @javax.annotation.Nonnull
+  private OffsetDateTime lastUpdatedAt;
 
   public CreditBalanceResponse() {
   }
 
-  public CreditBalanceResponse activeCredits(BigDecimal activeCredits) {
-    
+  public CreditBalanceResponse activeCredits(@javax.annotation.Nonnull BigDecimal activeCredits) {
     this.activeCredits = activeCredits;
     return this;
   }
 
-   /**
+  /**
    * Get activeCredits
    * @return activeCredits
-  **/
+   */
   @javax.annotation.Nonnull
-
   public BigDecimal getActiveCredits() {
     return activeCredits;
   }
 
-
-  public void setActiveCredits(BigDecimal activeCredits) {
+  public void setActiveCredits(@javax.annotation.Nonnull BigDecimal activeCredits) {
     this.activeCredits = activeCredits;
   }
 
 
-  public CreditBalanceResponse availableBalance(BigDecimal availableBalance) {
-    
+  public CreditBalanceResponse availableBalance(@javax.annotation.Nonnull BigDecimal availableBalance) {
     this.availableBalance = availableBalance;
     return this;
   }
 
-   /**
+  /**
    * Get availableBalance
    * @return availableBalance
-  **/
+   */
   @javax.annotation.Nonnull
-
   public BigDecimal getAvailableBalance() {
     return availableBalance;
   }
 
-
-  public void setAvailableBalance(BigDecimal availableBalance) {
+  public void setAvailableBalance(@javax.annotation.Nonnull BigDecimal availableBalance) {
     this.availableBalance = availableBalance;
   }
 
 
-  public CreditBalanceResponse runningBalance(BigDecimal runningBalance) {
-    
+  public CreditBalanceResponse runningBalance(@javax.annotation.Nonnull BigDecimal runningBalance) {
     this.runningBalance = runningBalance;
     return this;
   }
 
-   /**
+  /**
    * Get runningBalance
    * @return runningBalance
-  **/
+   */
   @javax.annotation.Nonnull
-
   public BigDecimal getRunningBalance() {
     return runningBalance;
   }
 
-
-  public void setRunningBalance(BigDecimal runningBalance) {
+  public void setRunningBalance(@javax.annotation.Nonnull BigDecimal runningBalance) {
     this.runningBalance = runningBalance;
   }
 
 
-  public CreditBalanceResponse inapplicableCredits(BigDecimal inapplicableCredits) {
-    
+  public CreditBalanceResponse inapplicableCredits(@javax.annotation.Nonnull BigDecimal inapplicableCredits) {
     this.inapplicableCredits = inapplicableCredits;
     return this;
   }
 
-   /**
+  /**
    * Get inapplicableCredits
    * @return inapplicableCredits
-  **/
+   */
   @javax.annotation.Nonnull
-
   public BigDecimal getInapplicableCredits() {
     return inapplicableCredits;
   }
 
-
-  public void setInapplicableCredits(BigDecimal inapplicableCredits) {
+  public void setInapplicableCredits(@javax.annotation.Nonnull BigDecimal inapplicableCredits) {
     this.inapplicableCredits = inapplicableCredits;
   }
 
 
-  public CreditBalanceResponse unit(String unit) {
-    
+  public CreditBalanceResponse unit(@javax.annotation.Nonnull String unit) {
     this.unit = unit;
     return this;
   }
 
-   /**
+  /**
    * Get unit
    * @return unit
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getUnit() {
     return unit;
   }
 
-
-  public void setUnit(String unit) {
+  public void setUnit(@javax.annotation.Nonnull String unit) {
     this.unit = unit;
+  }
+
+
+  public CreditBalanceResponse lastUpdatedAt(@javax.annotation.Nonnull OffsetDateTime lastUpdatedAt) {
+    this.lastUpdatedAt = lastUpdatedAt;
+    return this;
+  }
+
+  /**
+   * Get lastUpdatedAt
+   * @return lastUpdatedAt
+   */
+  @javax.annotation.Nonnull
+  public OffsetDateTime getLastUpdatedAt() {
+    return lastUpdatedAt;
+  }
+
+  public void setLastUpdatedAt(@javax.annotation.Nonnull OffsetDateTime lastUpdatedAt) {
+    this.lastUpdatedAt = lastUpdatedAt;
   }
 
 
@@ -199,12 +216,13 @@ public class CreditBalanceResponse implements Serializable {
         Objects.equals(this.availableBalance, creditBalanceResponse.availableBalance) &&
         Objects.equals(this.runningBalance, creditBalanceResponse.runningBalance) &&
         Objects.equals(this.inapplicableCredits, creditBalanceResponse.inapplicableCredits) &&
-        Objects.equals(this.unit, creditBalanceResponse.unit);
+        Objects.equals(this.unit, creditBalanceResponse.unit) &&
+        Objects.equals(this.lastUpdatedAt, creditBalanceResponse.lastUpdatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(activeCredits, availableBalance, runningBalance, inapplicableCredits, unit);
+    return Objects.hash(activeCredits, availableBalance, runningBalance, inapplicableCredits, unit, lastUpdatedAt);
   }
 
   @Override
@@ -216,6 +234,7 @@ public class CreditBalanceResponse implements Serializable {
     sb.append("    runningBalance: ").append(toIndentedString(runningBalance)).append("\n");
     sb.append("    inapplicableCredits: ").append(toIndentedString(inapplicableCredits)).append("\n");
     sb.append("    unit: ").append(toIndentedString(unit)).append("\n");
+    sb.append("    lastUpdatedAt: ").append(toIndentedString(lastUpdatedAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -243,6 +262,7 @@ public class CreditBalanceResponse implements Serializable {
     openapiFields.add("runningBalance");
     openapiFields.add("inapplicableCredits");
     openapiFields.add("unit");
+    openapiFields.add("lastUpdatedAt");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -251,35 +271,37 @@ public class CreditBalanceResponse implements Serializable {
     openapiRequiredFields.add("runningBalance");
     openapiRequiredFields.add("inapplicableCredits");
     openapiRequiredFields.add("unit");
+    openapiRequiredFields.add("lastUpdatedAt");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreditBalanceResponse
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CreditBalanceResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreditBalanceResponse
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreditBalanceResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreditBalanceResponse is not found in the empty JSON string", CreditBalanceResponse.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CreditBalanceResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreditBalanceResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreditBalanceResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : CreditBalanceResponse.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("unit").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `unit` to be a primitive type in the JSON string but got `%s`", jsonObj.get("unit").toString()));
       }
@@ -305,31 +327,31 @@ public class CreditBalanceResponse implements Serializable {
 
            @Override
            public CreditBalanceResponse read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreditBalanceResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreditBalanceResponse
-  * @throws IOException if the JSON string is invalid with respect to CreditBalanceResponse
-  */
+  /**
+   * Create an instance of CreditBalanceResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreditBalanceResponse
+   * @throws IOException if the JSON string is invalid with respect to CreditBalanceResponse
+   */
   public static CreditBalanceResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreditBalanceResponse.class);
   }
 
- /**
-  * Convert an instance of CreditBalanceResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreditBalanceResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

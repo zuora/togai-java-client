@@ -2,18 +2,13 @@
 
 # CreateCreditRequest
 
-Payload to grant Credits
+payload to create credits
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**accountId** | **String** |  |  |
-|**purpose** | **String** |  |  |
-|**effectiveFrom** | **LocalDate** |  |  |
-|**effectiveUntil** | **LocalDate** |  |  [optional] |
-|**creditAmount** | **BigDecimal** |  |  |
-|**priority** | **Integer** |  |  |
+|**creditRequests** | [**List&lt;CreditRequest&gt;**](CreditRequest.md) |  |  |
 
 
 ## Implemented Interfaces

@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -34,13 +34,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -48,87 +50,81 @@ import com.togai.client.JSON;
 /**
  * Range of usage to be looked up, this will be considered if mode is LOOKUP_RANGE
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class UsageConfigLookupRange implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_START = "start";
   @SerializedName(SERIALIZED_NAME_START)
+  @javax.annotation.Nonnull
   private OffsetDateTime start;
 
   public static final String SERIALIZED_NAME_END = "end";
   @SerializedName(SERIALIZED_NAME_END)
+  @javax.annotation.Nonnull
   private OffsetDateTime end;
 
   public static final String SERIALIZED_NAME_ACCOUNT_ID = "accountId";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_ID)
+  @javax.annotation.Nonnull
   private String accountId;
 
   public UsageConfigLookupRange() {
   }
 
-  public UsageConfigLookupRange start(OffsetDateTime start) {
-    
+  public UsageConfigLookupRange start(@javax.annotation.Nonnull OffsetDateTime start) {
     this.start = start;
     return this;
   }
 
-   /**
+  /**
    * Get start
    * @return start
-  **/
+   */
   @javax.annotation.Nonnull
-
   public OffsetDateTime getStart() {
     return start;
   }
 
-
-  public void setStart(OffsetDateTime start) {
+  public void setStart(@javax.annotation.Nonnull OffsetDateTime start) {
     this.start = start;
   }
 
 
-  public UsageConfigLookupRange end(OffsetDateTime end) {
-    
+  public UsageConfigLookupRange end(@javax.annotation.Nonnull OffsetDateTime end) {
     this.end = end;
     return this;
   }
 
-   /**
+  /**
    * Get end
    * @return end
-  **/
+   */
   @javax.annotation.Nonnull
-
   public OffsetDateTime getEnd() {
     return end;
   }
 
-
-  public void setEnd(OffsetDateTime end) {
+  public void setEnd(@javax.annotation.Nonnull OffsetDateTime end) {
     this.end = end;
   }
 
 
-  public UsageConfigLookupRange accountId(String accountId) {
-    
+  public UsageConfigLookupRange accountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
     return this;
   }
 
-   /**
+  /**
    * Get accountId
    * @return accountId
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getAccountId() {
     return accountId;
   }
 
-
-  public void setAccountId(String accountId) {
+  public void setAccountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
   }
 
@@ -193,33 +189,34 @@ public class UsageConfigLookupRange implements Serializable {
     openapiRequiredFields.add("accountId");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to UsageConfigLookupRange
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!UsageConfigLookupRange.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UsageConfigLookupRange
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UsageConfigLookupRange.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UsageConfigLookupRange is not found in the empty JSON string", UsageConfigLookupRange.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!UsageConfigLookupRange.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UsageConfigLookupRange` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UsageConfigLookupRange` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : UsageConfigLookupRange.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("accountId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `accountId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountId").toString()));
       }
@@ -245,31 +242,31 @@ public class UsageConfigLookupRange implements Serializable {
 
            @Override
            public UsageConfigLookupRange read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of UsageConfigLookupRange given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UsageConfigLookupRange
-  * @throws IOException if the JSON string is invalid with respect to UsageConfigLookupRange
-  */
+  /**
+   * Create an instance of UsageConfigLookupRange given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UsageConfigLookupRange
+   * @throws IOException if the JSON string is invalid with respect to UsageConfigLookupRange
+   */
   public static UsageConfigLookupRange fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UsageConfigLookupRange.class);
   }
 
- /**
-  * Convert an instance of UsageConfigLookupRange to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UsageConfigLookupRange to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

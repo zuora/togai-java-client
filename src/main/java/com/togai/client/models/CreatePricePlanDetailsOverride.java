@@ -14,18 +14,22 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.togai.client.models.BillingEntitlementRateCard;
+import com.togai.client.models.CreditGrantRateCard;
+import com.togai.client.models.EntitlementOverageRateCard;
 import com.togai.client.models.FixedFeeRateCard;
+import com.togai.client.models.LicenseRateCard;
 import com.togai.client.models.MinimumCommitment;
 import com.togai.client.models.PricingCycleConfig;
 import com.togai.client.models.UsageRateCard;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,13 +45,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -55,57 +61,78 @@ import com.togai.client.JSON;
 /**
  * CreatePricePlanDetailsOverride
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class CreatePricePlanDetailsOverride implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_PRICING_CYCLE_CONFIG = "pricingCycleConfig";
   @SerializedName(SERIALIZED_NAME_PRICING_CYCLE_CONFIG)
+  @javax.annotation.Nullable
   private PricingCycleConfig pricingCycleConfig;
 
   public static final String SERIALIZED_NAME_SUPPORTED_CURRENCIES = "supportedCurrencies";
   @SerializedName(SERIALIZED_NAME_SUPPORTED_CURRENCIES)
+  @javax.annotation.Nullable
   private Set<String> supportedCurrencies = new LinkedHashSet<>();
 
   public static final String SERIALIZED_NAME_USAGE_RATE_CARDS = "usageRateCards";
   @SerializedName(SERIALIZED_NAME_USAGE_RATE_CARDS)
+  @javax.annotation.Nullable
   private List<UsageRateCard> usageRateCards = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_BILLING_ENTITLEMENT_RATE_CARDS = "billingEntitlementRateCards";
+  @SerializedName(SERIALIZED_NAME_BILLING_ENTITLEMENT_RATE_CARDS)
+  @javax.annotation.Nullable
+  private List<BillingEntitlementRateCard> billingEntitlementRateCards = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_ENTITLEMENT_OVERAGE_RATE_CARDS = "entitlementOverageRateCards";
+  @SerializedName(SERIALIZED_NAME_ENTITLEMENT_OVERAGE_RATE_CARDS)
+  @javax.annotation.Nullable
+  private List<EntitlementOverageRateCard> entitlementOverageRateCards = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_FIXED_FEE_RATE_CARDS = "fixedFeeRateCards";
   @SerializedName(SERIALIZED_NAME_FIXED_FEE_RATE_CARDS)
+  @javax.annotation.Nullable
   private List<FixedFeeRateCard> fixedFeeRateCards = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_LICENSE_RATE_CARDS = "licenseRateCards";
+  @SerializedName(SERIALIZED_NAME_LICENSE_RATE_CARDS)
+  @javax.annotation.Nullable
+  private List<LicenseRateCard> licenseRateCards = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MINIMUM_COMMITMENT = "minimumCommitment";
   @SerializedName(SERIALIZED_NAME_MINIMUM_COMMITMENT)
+  @javax.annotation.Nullable
   private MinimumCommitment minimumCommitment;
+
+  public static final String SERIALIZED_NAME_CREDIT_GRANT_RATE_CARDS = "creditGrantRateCards";
+  @SerializedName(SERIALIZED_NAME_CREDIT_GRANT_RATE_CARDS)
+  @javax.annotation.Nullable
+  private List<CreditGrantRateCard> creditGrantRateCards = new ArrayList<>();
 
   public CreatePricePlanDetailsOverride() {
   }
 
-  public CreatePricePlanDetailsOverride pricingCycleConfig(PricingCycleConfig pricingCycleConfig) {
-    
+  public CreatePricePlanDetailsOverride pricingCycleConfig(@javax.annotation.Nullable PricingCycleConfig pricingCycleConfig) {
     this.pricingCycleConfig = pricingCycleConfig;
     return this;
   }
 
-   /**
+  /**
    * Get pricingCycleConfig
    * @return pricingCycleConfig
-  **/
+   */
   @javax.annotation.Nullable
-
   public PricingCycleConfig getPricingCycleConfig() {
     return pricingCycleConfig;
   }
 
-
-  public void setPricingCycleConfig(PricingCycleConfig pricingCycleConfig) {
+  public void setPricingCycleConfig(@javax.annotation.Nullable PricingCycleConfig pricingCycleConfig) {
     this.pricingCycleConfig = pricingCycleConfig;
   }
 
 
-  public CreatePricePlanDetailsOverride supportedCurrencies(Set<String> supportedCurrencies) {
-    
+  public CreatePricePlanDetailsOverride supportedCurrencies(@javax.annotation.Nullable Set<String> supportedCurrencies) {
     this.supportedCurrencies = supportedCurrencies;
     return this;
   }
@@ -118,24 +145,21 @@ public class CreatePricePlanDetailsOverride implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get supportedCurrencies
    * @return supportedCurrencies
-  **/
+   */
   @javax.annotation.Nullable
-
   public Set<String> getSupportedCurrencies() {
     return supportedCurrencies;
   }
 
-
-  public void setSupportedCurrencies(Set<String> supportedCurrencies) {
+  public void setSupportedCurrencies(@javax.annotation.Nullable Set<String> supportedCurrencies) {
     this.supportedCurrencies = supportedCurrencies;
   }
 
 
-  public CreatePricePlanDetailsOverride usageRateCards(List<UsageRateCard> usageRateCards) {
-    
+  public CreatePricePlanDetailsOverride usageRateCards(@javax.annotation.Nullable List<UsageRateCard> usageRateCards) {
     this.usageRateCards = usageRateCards;
     return this;
   }
@@ -148,24 +172,75 @@ public class CreatePricePlanDetailsOverride implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get usageRateCards
    * @return usageRateCards
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<UsageRateCard> getUsageRateCards() {
     return usageRateCards;
   }
 
-
-  public void setUsageRateCards(List<UsageRateCard> usageRateCards) {
+  public void setUsageRateCards(@javax.annotation.Nullable List<UsageRateCard> usageRateCards) {
     this.usageRateCards = usageRateCards;
   }
 
 
-  public CreatePricePlanDetailsOverride fixedFeeRateCards(List<FixedFeeRateCard> fixedFeeRateCards) {
-    
+  public CreatePricePlanDetailsOverride billingEntitlementRateCards(@javax.annotation.Nullable List<BillingEntitlementRateCard> billingEntitlementRateCards) {
+    this.billingEntitlementRateCards = billingEntitlementRateCards;
+    return this;
+  }
+
+  public CreatePricePlanDetailsOverride addBillingEntitlementRateCardsItem(BillingEntitlementRateCard billingEntitlementRateCardsItem) {
+    if (this.billingEntitlementRateCards == null) {
+      this.billingEntitlementRateCards = new ArrayList<>();
+    }
+    this.billingEntitlementRateCards.add(billingEntitlementRateCardsItem);
+    return this;
+  }
+
+  /**
+   * Get billingEntitlementRateCards
+   * @return billingEntitlementRateCards
+   */
+  @javax.annotation.Nullable
+  public List<BillingEntitlementRateCard> getBillingEntitlementRateCards() {
+    return billingEntitlementRateCards;
+  }
+
+  public void setBillingEntitlementRateCards(@javax.annotation.Nullable List<BillingEntitlementRateCard> billingEntitlementRateCards) {
+    this.billingEntitlementRateCards = billingEntitlementRateCards;
+  }
+
+
+  public CreatePricePlanDetailsOverride entitlementOverageRateCards(@javax.annotation.Nullable List<EntitlementOverageRateCard> entitlementOverageRateCards) {
+    this.entitlementOverageRateCards = entitlementOverageRateCards;
+    return this;
+  }
+
+  public CreatePricePlanDetailsOverride addEntitlementOverageRateCardsItem(EntitlementOverageRateCard entitlementOverageRateCardsItem) {
+    if (this.entitlementOverageRateCards == null) {
+      this.entitlementOverageRateCards = new ArrayList<>();
+    }
+    this.entitlementOverageRateCards.add(entitlementOverageRateCardsItem);
+    return this;
+  }
+
+  /**
+   * Get entitlementOverageRateCards
+   * @return entitlementOverageRateCards
+   */
+  @javax.annotation.Nullable
+  public List<EntitlementOverageRateCard> getEntitlementOverageRateCards() {
+    return entitlementOverageRateCards;
+  }
+
+  public void setEntitlementOverageRateCards(@javax.annotation.Nullable List<EntitlementOverageRateCard> entitlementOverageRateCards) {
+    this.entitlementOverageRateCards = entitlementOverageRateCards;
+  }
+
+
+  public CreatePricePlanDetailsOverride fixedFeeRateCards(@javax.annotation.Nullable List<FixedFeeRateCard> fixedFeeRateCards) {
     this.fixedFeeRateCards = fixedFeeRateCards;
     return this;
   }
@@ -178,41 +253,90 @@ public class CreatePricePlanDetailsOverride implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get fixedFeeRateCards
    * @return fixedFeeRateCards
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<FixedFeeRateCard> getFixedFeeRateCards() {
     return fixedFeeRateCards;
   }
 
-
-  public void setFixedFeeRateCards(List<FixedFeeRateCard> fixedFeeRateCards) {
+  public void setFixedFeeRateCards(@javax.annotation.Nullable List<FixedFeeRateCard> fixedFeeRateCards) {
     this.fixedFeeRateCards = fixedFeeRateCards;
   }
 
 
-  public CreatePricePlanDetailsOverride minimumCommitment(MinimumCommitment minimumCommitment) {
-    
+  public CreatePricePlanDetailsOverride licenseRateCards(@javax.annotation.Nullable List<LicenseRateCard> licenseRateCards) {
+    this.licenseRateCards = licenseRateCards;
+    return this;
+  }
+
+  public CreatePricePlanDetailsOverride addLicenseRateCardsItem(LicenseRateCard licenseRateCardsItem) {
+    if (this.licenseRateCards == null) {
+      this.licenseRateCards = new ArrayList<>();
+    }
+    this.licenseRateCards.add(licenseRateCardsItem);
+    return this;
+  }
+
+  /**
+   * Get licenseRateCards
+   * @return licenseRateCards
+   */
+  @javax.annotation.Nullable
+  public List<LicenseRateCard> getLicenseRateCards() {
+    return licenseRateCards;
+  }
+
+  public void setLicenseRateCards(@javax.annotation.Nullable List<LicenseRateCard> licenseRateCards) {
+    this.licenseRateCards = licenseRateCards;
+  }
+
+
+  public CreatePricePlanDetailsOverride minimumCommitment(@javax.annotation.Nullable MinimumCommitment minimumCommitment) {
     this.minimumCommitment = minimumCommitment;
     return this;
   }
 
-   /**
+  /**
    * Get minimumCommitment
    * @return minimumCommitment
-  **/
+   */
   @javax.annotation.Nullable
-
   public MinimumCommitment getMinimumCommitment() {
     return minimumCommitment;
   }
 
-
-  public void setMinimumCommitment(MinimumCommitment minimumCommitment) {
+  public void setMinimumCommitment(@javax.annotation.Nullable MinimumCommitment minimumCommitment) {
     this.minimumCommitment = minimumCommitment;
+  }
+
+
+  public CreatePricePlanDetailsOverride creditGrantRateCards(@javax.annotation.Nullable List<CreditGrantRateCard> creditGrantRateCards) {
+    this.creditGrantRateCards = creditGrantRateCards;
+    return this;
+  }
+
+  public CreatePricePlanDetailsOverride addCreditGrantRateCardsItem(CreditGrantRateCard creditGrantRateCardsItem) {
+    if (this.creditGrantRateCards == null) {
+      this.creditGrantRateCards = new ArrayList<>();
+    }
+    this.creditGrantRateCards.add(creditGrantRateCardsItem);
+    return this;
+  }
+
+  /**
+   * Get creditGrantRateCards
+   * @return creditGrantRateCards
+   */
+  @javax.annotation.Nullable
+  public List<CreditGrantRateCard> getCreditGrantRateCards() {
+    return creditGrantRateCards;
+  }
+
+  public void setCreditGrantRateCards(@javax.annotation.Nullable List<CreditGrantRateCard> creditGrantRateCards) {
+    this.creditGrantRateCards = creditGrantRateCards;
   }
 
 
@@ -229,13 +353,17 @@ public class CreatePricePlanDetailsOverride implements Serializable {
     return Objects.equals(this.pricingCycleConfig, createPricePlanDetailsOverride.pricingCycleConfig) &&
         Objects.equals(this.supportedCurrencies, createPricePlanDetailsOverride.supportedCurrencies) &&
         Objects.equals(this.usageRateCards, createPricePlanDetailsOverride.usageRateCards) &&
+        Objects.equals(this.billingEntitlementRateCards, createPricePlanDetailsOverride.billingEntitlementRateCards) &&
+        Objects.equals(this.entitlementOverageRateCards, createPricePlanDetailsOverride.entitlementOverageRateCards) &&
         Objects.equals(this.fixedFeeRateCards, createPricePlanDetailsOverride.fixedFeeRateCards) &&
-        Objects.equals(this.minimumCommitment, createPricePlanDetailsOverride.minimumCommitment);
+        Objects.equals(this.licenseRateCards, createPricePlanDetailsOverride.licenseRateCards) &&
+        Objects.equals(this.minimumCommitment, createPricePlanDetailsOverride.minimumCommitment) &&
+        Objects.equals(this.creditGrantRateCards, createPricePlanDetailsOverride.creditGrantRateCards);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pricingCycleConfig, supportedCurrencies, usageRateCards, fixedFeeRateCards, minimumCommitment);
+    return Objects.hash(pricingCycleConfig, supportedCurrencies, usageRateCards, billingEntitlementRateCards, entitlementOverageRateCards, fixedFeeRateCards, licenseRateCards, minimumCommitment, creditGrantRateCards);
   }
 
   @Override
@@ -245,8 +373,12 @@ public class CreatePricePlanDetailsOverride implements Serializable {
     sb.append("    pricingCycleConfig: ").append(toIndentedString(pricingCycleConfig)).append("\n");
     sb.append("    supportedCurrencies: ").append(toIndentedString(supportedCurrencies)).append("\n");
     sb.append("    usageRateCards: ").append(toIndentedString(usageRateCards)).append("\n");
+    sb.append("    billingEntitlementRateCards: ").append(toIndentedString(billingEntitlementRateCards)).append("\n");
+    sb.append("    entitlementOverageRateCards: ").append(toIndentedString(entitlementOverageRateCards)).append("\n");
     sb.append("    fixedFeeRateCards: ").append(toIndentedString(fixedFeeRateCards)).append("\n");
+    sb.append("    licenseRateCards: ").append(toIndentedString(licenseRateCards)).append("\n");
     sb.append("    minimumCommitment: ").append(toIndentedString(minimumCommitment)).append("\n");
+    sb.append("    creditGrantRateCards: ").append(toIndentedString(creditGrantRateCards)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -272,39 +404,44 @@ public class CreatePricePlanDetailsOverride implements Serializable {
     openapiFields.add("pricingCycleConfig");
     openapiFields.add("supportedCurrencies");
     openapiFields.add("usageRateCards");
+    openapiFields.add("billingEntitlementRateCards");
+    openapiFields.add("entitlementOverageRateCards");
     openapiFields.add("fixedFeeRateCards");
+    openapiFields.add("licenseRateCards");
     openapiFields.add("minimumCommitment");
+    openapiFields.add("creditGrantRateCards");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreatePricePlanDetailsOverride
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CreatePricePlanDetailsOverride.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreatePricePlanDetailsOverride
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreatePricePlanDetailsOverride.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreatePricePlanDetailsOverride is not found in the empty JSON string", CreatePricePlanDetailsOverride.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CreatePricePlanDetailsOverride.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreatePricePlanDetailsOverride` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreatePricePlanDetailsOverride` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `pricingCycleConfig`
       if (jsonObj.get("pricingCycleConfig") != null && !jsonObj.get("pricingCycleConfig").isJsonNull()) {
-        PricingCycleConfig.validateJsonObject(jsonObj.getAsJsonObject("pricingCycleConfig"));
+        PricingCycleConfig.validateJsonElement(jsonObj.get("pricingCycleConfig"));
       }
       // ensure the optional json data is an array if present
-      if (jsonObj.get("supportedCurrencies") != null && !jsonObj.get("supportedCurrencies").isJsonArray()) {
+      if (jsonObj.get("supportedCurrencies") != null && !jsonObj.get("supportedCurrencies").isJsonNull() && !jsonObj.get("supportedCurrencies").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `supportedCurrencies` to be an array in the JSON string but got `%s`", jsonObj.get("supportedCurrencies").toString()));
       }
       if (jsonObj.get("usageRateCards") != null && !jsonObj.get("usageRateCards").isJsonNull()) {
@@ -317,7 +454,35 @@ public class CreatePricePlanDetailsOverride implements Serializable {
 
           // validate the optional field `usageRateCards` (array)
           for (int i = 0; i < jsonArrayusageRateCards.size(); i++) {
-            UsageRateCard.validateJsonObject(jsonArrayusageRateCards.get(i).getAsJsonObject());
+            UsageRateCard.validateJsonElement(jsonArrayusageRateCards.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("billingEntitlementRateCards") != null && !jsonObj.get("billingEntitlementRateCards").isJsonNull()) {
+        JsonArray jsonArraybillingEntitlementRateCards = jsonObj.getAsJsonArray("billingEntitlementRateCards");
+        if (jsonArraybillingEntitlementRateCards != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("billingEntitlementRateCards").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `billingEntitlementRateCards` to be an array in the JSON string but got `%s`", jsonObj.get("billingEntitlementRateCards").toString()));
+          }
+
+          // validate the optional field `billingEntitlementRateCards` (array)
+          for (int i = 0; i < jsonArraybillingEntitlementRateCards.size(); i++) {
+            BillingEntitlementRateCard.validateJsonElement(jsonArraybillingEntitlementRateCards.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("entitlementOverageRateCards") != null && !jsonObj.get("entitlementOverageRateCards").isJsonNull()) {
+        JsonArray jsonArrayentitlementOverageRateCards = jsonObj.getAsJsonArray("entitlementOverageRateCards");
+        if (jsonArrayentitlementOverageRateCards != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("entitlementOverageRateCards").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `entitlementOverageRateCards` to be an array in the JSON string but got `%s`", jsonObj.get("entitlementOverageRateCards").toString()));
+          }
+
+          // validate the optional field `entitlementOverageRateCards` (array)
+          for (int i = 0; i < jsonArrayentitlementOverageRateCards.size(); i++) {
+            EntitlementOverageRateCard.validateJsonElement(jsonArrayentitlementOverageRateCards.get(i));
           };
         }
       }
@@ -331,13 +496,41 @@ public class CreatePricePlanDetailsOverride implements Serializable {
 
           // validate the optional field `fixedFeeRateCards` (array)
           for (int i = 0; i < jsonArrayfixedFeeRateCards.size(); i++) {
-            FixedFeeRateCard.validateJsonObject(jsonArrayfixedFeeRateCards.get(i).getAsJsonObject());
+            FixedFeeRateCard.validateJsonElement(jsonArrayfixedFeeRateCards.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("licenseRateCards") != null && !jsonObj.get("licenseRateCards").isJsonNull()) {
+        JsonArray jsonArraylicenseRateCards = jsonObj.getAsJsonArray("licenseRateCards");
+        if (jsonArraylicenseRateCards != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("licenseRateCards").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `licenseRateCards` to be an array in the JSON string but got `%s`", jsonObj.get("licenseRateCards").toString()));
+          }
+
+          // validate the optional field `licenseRateCards` (array)
+          for (int i = 0; i < jsonArraylicenseRateCards.size(); i++) {
+            LicenseRateCard.validateJsonElement(jsonArraylicenseRateCards.get(i));
           };
         }
       }
       // validate the optional field `minimumCommitment`
       if (jsonObj.get("minimumCommitment") != null && !jsonObj.get("minimumCommitment").isJsonNull()) {
-        MinimumCommitment.validateJsonObject(jsonObj.getAsJsonObject("minimumCommitment"));
+        MinimumCommitment.validateJsonElement(jsonObj.get("minimumCommitment"));
+      }
+      if (jsonObj.get("creditGrantRateCards") != null && !jsonObj.get("creditGrantRateCards").isJsonNull()) {
+        JsonArray jsonArraycreditGrantRateCards = jsonObj.getAsJsonArray("creditGrantRateCards");
+        if (jsonArraycreditGrantRateCards != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("creditGrantRateCards").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `creditGrantRateCards` to be an array in the JSON string but got `%s`", jsonObj.get("creditGrantRateCards").toString()));
+          }
+
+          // validate the optional field `creditGrantRateCards` (array)
+          for (int i = 0; i < jsonArraycreditGrantRateCards.size(); i++) {
+            CreditGrantRateCard.validateJsonElement(jsonArraycreditGrantRateCards.get(i));
+          };
+        }
       }
   }
 
@@ -361,31 +554,31 @@ public class CreatePricePlanDetailsOverride implements Serializable {
 
            @Override
            public CreatePricePlanDetailsOverride read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreatePricePlanDetailsOverride given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreatePricePlanDetailsOverride
-  * @throws IOException if the JSON string is invalid with respect to CreatePricePlanDetailsOverride
-  */
+  /**
+   * Create an instance of CreatePricePlanDetailsOverride given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreatePricePlanDetailsOverride
+   * @throws IOException if the JSON string is invalid with respect to CreatePricePlanDetailsOverride
+   */
   public static CreatePricePlanDetailsOverride fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreatePricePlanDetailsOverride.class);
   }
 
- /**
-  * Convert an instance of CreatePricePlanDetailsOverride to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreatePricePlanDetailsOverride to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

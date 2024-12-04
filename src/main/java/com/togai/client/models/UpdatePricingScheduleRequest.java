@@ -14,15 +14,18 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.CreatePricePlanDetailsOverride;
+import com.togai.client.models.CreatePricingRule;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -35,21 +38,23 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
 
 /**
- * Request to dis/associate a price plan to an account
+ * UpdatePricingScheduleRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class UpdatePricingScheduleRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -98,138 +103,189 @@ public class UpdatePricingScheduleRequest implements Serializable {
         return ModeEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      ModeEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_MODE = "mode";
   @SerializedName(SERIALIZED_NAME_MODE)
+  @javax.annotation.Nullable
   private ModeEnum mode;
 
   public static final String SERIALIZED_NAME_PRICE_PLAN_ID = "pricePlanId";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_ID)
+  @javax.annotation.Nullable
   private String pricePlanId;
 
   public static final String SERIALIZED_NAME_EFFECTIVE_FROM = "effectiveFrom";
   @SerializedName(SERIALIZED_NAME_EFFECTIVE_FROM)
+  @javax.annotation.Nonnull
   private LocalDate effectiveFrom;
 
   public static final String SERIALIZED_NAME_EFFECTIVE_UNTIL = "effectiveUntil";
   @SerializedName(SERIALIZED_NAME_EFFECTIVE_UNTIL)
+  @javax.annotation.Nonnull
   private LocalDate effectiveUntil;
 
   public static final String SERIALIZED_NAME_PRICE_PLAN_DETAILS_OVERRIDE = "pricePlanDetailsOverride";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_DETAILS_OVERRIDE)
+  @javax.annotation.Nullable
   private CreatePricePlanDetailsOverride pricePlanDetailsOverride;
+
+  public static final String SERIALIZED_NAME_PRICING_RULES_OVERRIDE = "pricingRulesOverride";
+  @SerializedName(SERIALIZED_NAME_PRICING_RULES_OVERRIDE)
+  @javax.annotation.Nullable
+  private List<CreatePricingRule> pricingRulesOverride = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_RETAIN_START_OFFSETS = "retainStartOffsets";
+  @SerializedName(SERIALIZED_NAME_RETAIN_START_OFFSETS)
+  @javax.annotation.Nullable
+  private Boolean retainStartOffsets;
 
   public UpdatePricingScheduleRequest() {
   }
 
-  public UpdatePricingScheduleRequest mode(ModeEnum mode) {
-    
+  public UpdatePricingScheduleRequest mode(@javax.annotation.Nullable ModeEnum mode) {
     this.mode = mode;
     return this;
   }
 
-   /**
+  /**
    * Mode of request to create dis/association
    * @return mode
-  **/
+   */
   @javax.annotation.Nullable
-
   public ModeEnum getMode() {
     return mode;
   }
 
-
-  public void setMode(ModeEnum mode) {
+  public void setMode(@javax.annotation.Nullable ModeEnum mode) {
     this.mode = mode;
   }
 
 
-  public UpdatePricingScheduleRequest pricePlanId(String pricePlanId) {
-    
+  public UpdatePricingScheduleRequest pricePlanId(@javax.annotation.Nullable String pricePlanId) {
     this.pricePlanId = pricePlanId;
     return this;
   }
 
-   /**
+  /**
    * Id of the price plan if association request
    * @return pricePlanId
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getPricePlanId() {
     return pricePlanId;
   }
 
-
-  public void setPricePlanId(String pricePlanId) {
+  public void setPricePlanId(@javax.annotation.Nullable String pricePlanId) {
     this.pricePlanId = pricePlanId;
   }
 
 
-  public UpdatePricingScheduleRequest effectiveFrom(LocalDate effectiveFrom) {
-    
+  public UpdatePricingScheduleRequest effectiveFrom(@javax.annotation.Nonnull LocalDate effectiveFrom) {
     this.effectiveFrom = effectiveFrom;
     return this;
   }
 
-   /**
-   * Date of effectiveness of the association. - Expected only if the account already has a price plan associated with it. 
+  /**
+   * Date of effectiveness of the association. The date is expected in YYYY-MM-DD format - Editing of a BILLING plan with deferredRevenue can be achieved with    effectiveFrom as start date of current cycle or using &#x60;retainStartOffset&#x60; option. 
    * @return effectiveFrom
-  **/
+   */
   @javax.annotation.Nonnull
-
   public LocalDate getEffectiveFrom() {
     return effectiveFrom;
   }
 
-
-  public void setEffectiveFrom(LocalDate effectiveFrom) {
+  public void setEffectiveFrom(@javax.annotation.Nonnull LocalDate effectiveFrom) {
     this.effectiveFrom = effectiveFrom;
   }
 
 
-  public UpdatePricingScheduleRequest effectiveUntil(LocalDate effectiveUntil) {
-    
+  public UpdatePricingScheduleRequest effectiveUntil(@javax.annotation.Nonnull LocalDate effectiveUntil) {
     this.effectiveUntil = effectiveUntil;
     return this;
   }
 
-   /**
-   * Date until which the association must be effective. - Expected only if effectiveFrom is present. 
+  /**
+   * Date until which the association must be effective. The date is expected in YYYY-MM-DD format 
    * @return effectiveUntil
-  **/
+   */
   @javax.annotation.Nonnull
-
   public LocalDate getEffectiveUntil() {
     return effectiveUntil;
   }
 
-
-  public void setEffectiveUntil(LocalDate effectiveUntil) {
+  public void setEffectiveUntil(@javax.annotation.Nonnull LocalDate effectiveUntil) {
     this.effectiveUntil = effectiveUntil;
   }
 
 
-  public UpdatePricingScheduleRequest pricePlanDetailsOverride(CreatePricePlanDetailsOverride pricePlanDetailsOverride) {
-    
+  public UpdatePricingScheduleRequest pricePlanDetailsOverride(@javax.annotation.Nullable CreatePricePlanDetailsOverride pricePlanDetailsOverride) {
     this.pricePlanDetailsOverride = pricePlanDetailsOverride;
     return this;
   }
 
-   /**
+  /**
    * Get pricePlanDetailsOverride
    * @return pricePlanDetailsOverride
-  **/
+   */
   @javax.annotation.Nullable
-
   public CreatePricePlanDetailsOverride getPricePlanDetailsOverride() {
     return pricePlanDetailsOverride;
   }
 
-
-  public void setPricePlanDetailsOverride(CreatePricePlanDetailsOverride pricePlanDetailsOverride) {
+  public void setPricePlanDetailsOverride(@javax.annotation.Nullable CreatePricePlanDetailsOverride pricePlanDetailsOverride) {
     this.pricePlanDetailsOverride = pricePlanDetailsOverride;
+  }
+
+
+  public UpdatePricingScheduleRequest pricingRulesOverride(@javax.annotation.Nullable List<CreatePricingRule> pricingRulesOverride) {
+    this.pricingRulesOverride = pricingRulesOverride;
+    return this;
+  }
+
+  public UpdatePricingScheduleRequest addPricingRulesOverrideItem(CreatePricingRule pricingRulesOverrideItem) {
+    if (this.pricingRulesOverride == null) {
+      this.pricingRulesOverride = new ArrayList<>();
+    }
+    this.pricingRulesOverride.add(pricingRulesOverrideItem);
+    return this;
+  }
+
+  /**
+   * Get pricingRulesOverride
+   * @return pricingRulesOverride
+   */
+  @javax.annotation.Nullable
+  public List<CreatePricingRule> getPricingRulesOverride() {
+    return pricingRulesOverride;
+  }
+
+  public void setPricingRulesOverride(@javax.annotation.Nullable List<CreatePricingRule> pricingRulesOverride) {
+    this.pricingRulesOverride = pricingRulesOverride;
+  }
+
+
+  public UpdatePricingScheduleRequest retainStartOffsets(@javax.annotation.Nullable Boolean retainStartOffsets) {
+    this.retainStartOffsets = retainStartOffsets;
+    return this;
+  }
+
+  /**
+   * If this flag is true, current pricing cycle of the account on the date of association will continue rather  than the configurations of the newly associated price plan. Pricing cycle overrides specified  using  &#x60;pricePlanDetailsOverride&#x60; will take precedence over the pricing cycle configurations of  the new price plan that the account needs to migrate to. PricingCycleInterval of the existing plan and  the new plan must be same for this to work. We&#39;ll return a &#x60;400 BadRequest&#x60; otherwise. Examples:   - Ongoing plan (1st Oct to 30th Oct) - {dayOffset: 1, monthOffset: NIL}     New association (15th Oct to 15th Nov) of different price plan with retainStartOffsets option true      will use the same pricing cycle configuration {dayOffset: 1, monthOffset: NIL} rather than using the     pricing cycle configuration of the new price plan that the account needs to migrate to.   - Ongoing plan (1st Oct to 30th Oct) - {dayOffset: 1, monthOffset: NIL}     New association (1st Nov to 30th Nov) of different price plan with retainStartOffsets option true will     throw a &#x60;400 BadRequest&#x60; as no existing price plan configuration found on date of association 
+   * @return retainStartOffsets
+   */
+  @javax.annotation.Nullable
+  public Boolean getRetainStartOffsets() {
+    return retainStartOffsets;
+  }
+
+  public void setRetainStartOffsets(@javax.annotation.Nullable Boolean retainStartOffsets) {
+    this.retainStartOffsets = retainStartOffsets;
   }
 
 
@@ -247,12 +303,14 @@ public class UpdatePricingScheduleRequest implements Serializable {
         Objects.equals(this.pricePlanId, updatePricingScheduleRequest.pricePlanId) &&
         Objects.equals(this.effectiveFrom, updatePricingScheduleRequest.effectiveFrom) &&
         Objects.equals(this.effectiveUntil, updatePricingScheduleRequest.effectiveUntil) &&
-        Objects.equals(this.pricePlanDetailsOverride, updatePricingScheduleRequest.pricePlanDetailsOverride);
+        Objects.equals(this.pricePlanDetailsOverride, updatePricingScheduleRequest.pricePlanDetailsOverride) &&
+        Objects.equals(this.pricingRulesOverride, updatePricingScheduleRequest.pricingRulesOverride) &&
+        Objects.equals(this.retainStartOffsets, updatePricingScheduleRequest.retainStartOffsets);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mode, pricePlanId, effectiveFrom, effectiveUntil, pricePlanDetailsOverride);
+    return Objects.hash(mode, pricePlanId, effectiveFrom, effectiveUntil, pricePlanDetailsOverride, pricingRulesOverride, retainStartOffsets);
   }
 
   @Override
@@ -264,6 +322,8 @@ public class UpdatePricingScheduleRequest implements Serializable {
     sb.append("    effectiveFrom: ").append(toIndentedString(effectiveFrom)).append("\n");
     sb.append("    effectiveUntil: ").append(toIndentedString(effectiveUntil)).append("\n");
     sb.append("    pricePlanDetailsOverride: ").append(toIndentedString(pricePlanDetailsOverride)).append("\n");
+    sb.append("    pricingRulesOverride: ").append(toIndentedString(pricingRulesOverride)).append("\n");
+    sb.append("    retainStartOffsets: ").append(toIndentedString(retainStartOffsets)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -291,6 +351,8 @@ public class UpdatePricingScheduleRequest implements Serializable {
     openapiFields.add("effectiveFrom");
     openapiFields.add("effectiveUntil");
     openapiFields.add("pricePlanDetailsOverride");
+    openapiFields.add("pricingRulesOverride");
+    openapiFields.add("retainStartOffsets");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -298,42 +360,61 @@ public class UpdatePricingScheduleRequest implements Serializable {
     openapiRequiredFields.add("effectiveUntil");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to UpdatePricingScheduleRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!UpdatePricingScheduleRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdatePricingScheduleRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UpdatePricingScheduleRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UpdatePricingScheduleRequest is not found in the empty JSON string", UpdatePricingScheduleRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!UpdatePricingScheduleRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdatePricingScheduleRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdatePricingScheduleRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : UpdatePricingScheduleRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("mode") != null && !jsonObj.get("mode").isJsonNull()) && !jsonObj.get("mode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mode").toString()));
+      }
+      // validate the optional field `mode`
+      if (jsonObj.get("mode") != null && !jsonObj.get("mode").isJsonNull()) {
+        ModeEnum.validateJsonElement(jsonObj.get("mode"));
       }
       if ((jsonObj.get("pricePlanId") != null && !jsonObj.get("pricePlanId").isJsonNull()) && !jsonObj.get("pricePlanId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `pricePlanId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pricePlanId").toString()));
       }
       // validate the optional field `pricePlanDetailsOverride`
       if (jsonObj.get("pricePlanDetailsOverride") != null && !jsonObj.get("pricePlanDetailsOverride").isJsonNull()) {
-        CreatePricePlanDetailsOverride.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetailsOverride"));
+        CreatePricePlanDetailsOverride.validateJsonElement(jsonObj.get("pricePlanDetailsOverride"));
+      }
+      if (jsonObj.get("pricingRulesOverride") != null && !jsonObj.get("pricingRulesOverride").isJsonNull()) {
+        JsonArray jsonArraypricingRulesOverride = jsonObj.getAsJsonArray("pricingRulesOverride");
+        if (jsonArraypricingRulesOverride != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("pricingRulesOverride").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `pricingRulesOverride` to be an array in the JSON string but got `%s`", jsonObj.get("pricingRulesOverride").toString()));
+          }
+
+          // validate the optional field `pricingRulesOverride` (array)
+          for (int i = 0; i < jsonArraypricingRulesOverride.size(); i++) {
+            CreatePricingRule.validateJsonElement(jsonArraypricingRulesOverride.get(i));
+          };
+        }
       }
   }
 
@@ -357,31 +438,31 @@ public class UpdatePricingScheduleRequest implements Serializable {
 
            @Override
            public UpdatePricingScheduleRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of UpdatePricingScheduleRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UpdatePricingScheduleRequest
-  * @throws IOException if the JSON string is invalid with respect to UpdatePricingScheduleRequest
-  */
+  /**
+   * Create an instance of UpdatePricingScheduleRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdatePricingScheduleRequest
+   * @throws IOException if the JSON string is invalid with respect to UpdatePricingScheduleRequest
+   */
   public static UpdatePricingScheduleRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdatePricingScheduleRequest.class);
   }
 
- /**
-  * Convert an instance of UpdatePricingScheduleRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UpdatePricingScheduleRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

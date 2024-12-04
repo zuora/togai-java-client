@@ -14,16 +14,18 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.CurrencyRateValue;
+import com.togai.client.models.FixedFeeType;
 import com.togai.client.models.InvoiceTiming;
+import com.togai.client.models.RecurrenceConfig;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -37,13 +39,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -51,119 +55,234 @@ import com.togai.client.JSON;
 /**
  * FixedFeeRateCard
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class FixedFeeRateCard implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String SERIALIZED_NAME_DISPLAY_NAME = "displayName";
   @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
+  @javax.annotation.Nullable
   private String displayName;
+
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
+  private String name;
+
+  public static final String SERIALIZED_NAME_TAG = "tag";
+  @SerializedName(SERIALIZED_NAME_TAG)
+  @javax.annotation.Nullable
+  private String tag;
 
   public static final String SERIALIZED_NAME_INVOICE_TIMING = "invoiceTiming";
   @SerializedName(SERIALIZED_NAME_INVOICE_TIMING)
+  @javax.annotation.Nullable
   private InvoiceTiming invoiceTiming;
+
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
+  private FixedFeeType type;
 
   public static final String SERIALIZED_NAME_RATE_VALUES = "rateValues";
   @SerializedName(SERIALIZED_NAME_RATE_VALUES)
+  @javax.annotation.Nonnull
   private List<CurrencyRateValue> rateValues = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_ENABLE_PRORATION = "enableProration";
+  @SerializedName(SERIALIZED_NAME_ENABLE_PRORATION)
+  @javax.annotation.Nonnull
+  private Boolean enableProration;
+
+  public static final String SERIALIZED_NAME_RECURRENCE_CONFIG = "recurrenceConfig";
+  @SerializedName(SERIALIZED_NAME_RECURRENCE_CONFIG)
+  @javax.annotation.Nullable
+  private RecurrenceConfig recurrenceConfig;
 
   public FixedFeeRateCard() {
   }
 
-  public FixedFeeRateCard id(String id) {
-    
+  public FixedFeeRateCard id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
 
-   /**
-   * Auto generated unique identifier for fixed fees.
+  /**
+   * Unique Identifier of the attached AddOn
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getId() {
     return id;
   }
 
-
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public FixedFeeRateCard displayName(String displayName) {
-    
+  public FixedFeeRateCard displayName(@javax.annotation.Nullable String displayName) {
     this.displayName = displayName;
     return this;
   }
 
-   /**
-   * Name of the fixed fee.
+  /**
+   * Name of the attached AddOn
    * @return displayName
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getDisplayName() {
     return displayName;
   }
 
-
-  public void setDisplayName(String displayName) {
+  public void setDisplayName(@javax.annotation.Nullable String displayName) {
     this.displayName = displayName;
   }
 
 
-  public FixedFeeRateCard invoiceTiming(InvoiceTiming invoiceTiming) {
-    
+  public FixedFeeRateCard name(@javax.annotation.Nullable String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Unique identifier for the rate card in a price plan. If left null it is auto-generated.
+   * @return name
+   */
+  @javax.annotation.Nullable
+  public String getName() {
+    return name;
+  }
+
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
+  }
+
+
+  public FixedFeeRateCard tag(@javax.annotation.Nullable String tag) {
+    this.tag = tag;
+    return this;
+  }
+
+  /**
+   * A tag string to group fixedFeeRateCards
+   * @return tag
+   */
+  @javax.annotation.Nullable
+  public String getTag() {
+    return tag;
+  }
+
+  public void setTag(@javax.annotation.Nullable String tag) {
+    this.tag = tag;
+  }
+
+
+  public FixedFeeRateCard invoiceTiming(@javax.annotation.Nullable InvoiceTiming invoiceTiming) {
     this.invoiceTiming = invoiceTiming;
     return this;
   }
 
-   /**
+  /**
    * Get invoiceTiming
    * @return invoiceTiming
-  **/
+   */
   @javax.annotation.Nullable
-
   public InvoiceTiming getInvoiceTiming() {
     return invoiceTiming;
   }
 
-
-  public void setInvoiceTiming(InvoiceTiming invoiceTiming) {
+  public void setInvoiceTiming(@javax.annotation.Nullable InvoiceTiming invoiceTiming) {
     this.invoiceTiming = invoiceTiming;
   }
 
 
-  public FixedFeeRateCard rateValues(List<CurrencyRateValue> rateValues) {
-    
+  public FixedFeeRateCard type(@javax.annotation.Nullable FixedFeeType type) {
+    this.type = type;
+    return this;
+  }
+
+  /**
+   * Get type
+   * @return type
+   */
+  @javax.annotation.Nullable
+  public FixedFeeType getType() {
+    return type;
+  }
+
+  public void setType(@javax.annotation.Nullable FixedFeeType type) {
+    this.type = type;
+  }
+
+
+  public FixedFeeRateCard rateValues(@javax.annotation.Nonnull List<CurrencyRateValue> rateValues) {
     this.rateValues = rateValues;
     return this;
   }
 
   public FixedFeeRateCard addRateValuesItem(CurrencyRateValue rateValuesItem) {
+    if (this.rateValues == null) {
+      this.rateValues = new ArrayList<>();
+    }
     this.rateValues.add(rateValuesItem);
     return this;
   }
 
-   /**
+  /**
    * Get rateValues
    * @return rateValues
-  **/
+   */
   @javax.annotation.Nonnull
-
   public List<CurrencyRateValue> getRateValues() {
     return rateValues;
   }
 
-
-  public void setRateValues(List<CurrencyRateValue> rateValues) {
+  public void setRateValues(@javax.annotation.Nonnull List<CurrencyRateValue> rateValues) {
     this.rateValues = rateValues;
+  }
+
+
+  public FixedFeeRateCard enableProration(@javax.annotation.Nonnull Boolean enableProration) {
+    this.enableProration = enableProration;
+    return this;
+  }
+
+  /**
+   * Get enableProration
+   * @return enableProration
+   */
+  @javax.annotation.Nonnull
+  public Boolean getEnableProration() {
+    return enableProration;
+  }
+
+  public void setEnableProration(@javax.annotation.Nonnull Boolean enableProration) {
+    this.enableProration = enableProration;
+  }
+
+
+  public FixedFeeRateCard recurrenceConfig(@javax.annotation.Nullable RecurrenceConfig recurrenceConfig) {
+    this.recurrenceConfig = recurrenceConfig;
+    return this;
+  }
+
+  /**
+   * Get recurrenceConfig
+   * @return recurrenceConfig
+   */
+  @javax.annotation.Nullable
+  public RecurrenceConfig getRecurrenceConfig() {
+    return recurrenceConfig;
+  }
+
+  public void setRecurrenceConfig(@javax.annotation.Nullable RecurrenceConfig recurrenceConfig) {
+    this.recurrenceConfig = recurrenceConfig;
   }
 
 
@@ -179,13 +298,18 @@ public class FixedFeeRateCard implements Serializable {
     FixedFeeRateCard fixedFeeRateCard = (FixedFeeRateCard) o;
     return Objects.equals(this.id, fixedFeeRateCard.id) &&
         Objects.equals(this.displayName, fixedFeeRateCard.displayName) &&
+        Objects.equals(this.name, fixedFeeRateCard.name) &&
+        Objects.equals(this.tag, fixedFeeRateCard.tag) &&
         Objects.equals(this.invoiceTiming, fixedFeeRateCard.invoiceTiming) &&
-        Objects.equals(this.rateValues, fixedFeeRateCard.rateValues);
+        Objects.equals(this.type, fixedFeeRateCard.type) &&
+        Objects.equals(this.rateValues, fixedFeeRateCard.rateValues) &&
+        Objects.equals(this.enableProration, fixedFeeRateCard.enableProration) &&
+        Objects.equals(this.recurrenceConfig, fixedFeeRateCard.recurrenceConfig);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, displayName, invoiceTiming, rateValues);
+    return Objects.hash(id, displayName, name, tag, invoiceTiming, type, rateValues, enableProration, recurrenceConfig);
   }
 
   @Override
@@ -194,8 +318,13 @@ public class FixedFeeRateCard implements Serializable {
     sb.append("class FixedFeeRateCard {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
     sb.append("    invoiceTiming: ").append(toIndentedString(invoiceTiming)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    rateValues: ").append(toIndentedString(rateValues)).append("\n");
+    sb.append("    enableProration: ").append(toIndentedString(enableProration)).append("\n");
+    sb.append("    recurrenceConfig: ").append(toIndentedString(recurrenceConfig)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -220,47 +349,68 @@ public class FixedFeeRateCard implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
     openapiFields.add("displayName");
+    openapiFields.add("name");
+    openapiFields.add("tag");
     openapiFields.add("invoiceTiming");
+    openapiFields.add("type");
     openapiFields.add("rateValues");
+    openapiFields.add("enableProration");
+    openapiFields.add("recurrenceConfig");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("id");
     openapiRequiredFields.add("rateValues");
+    openapiRequiredFields.add("enableProration");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to FixedFeeRateCard
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!FixedFeeRateCard.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to FixedFeeRateCard
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!FixedFeeRateCard.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in FixedFeeRateCard is not found in the empty JSON string", FixedFeeRateCard.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!FixedFeeRateCard.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FixedFeeRateCard` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FixedFeeRateCard` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : FixedFeeRateCard.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       if ((jsonObj.get("displayName") != null && !jsonObj.get("displayName").isJsonNull()) && !jsonObj.get("displayName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `displayName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("displayName").toString()));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonNull()) && !jsonObj.get("tag").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tag` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tag").toString()));
+      }
+      // validate the optional field `invoiceTiming`
+      if (jsonObj.get("invoiceTiming") != null && !jsonObj.get("invoiceTiming").isJsonNull()) {
+        InvoiceTiming.validateJsonElement(jsonObj.get("invoiceTiming"));
+      }
+      // validate the optional field `type`
+      if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
+        FixedFeeType.validateJsonElement(jsonObj.get("type"));
       }
       // ensure the json data is an array
       if (!jsonObj.get("rateValues").isJsonArray()) {
@@ -270,8 +420,12 @@ public class FixedFeeRateCard implements Serializable {
       JsonArray jsonArrayrateValues = jsonObj.getAsJsonArray("rateValues");
       // validate the required field `rateValues` (array)
       for (int i = 0; i < jsonArrayrateValues.size(); i++) {
-        CurrencyRateValue.validateJsonObject(jsonArrayrateValues.get(i).getAsJsonObject());
+        CurrencyRateValue.validateJsonElement(jsonArrayrateValues.get(i));
       };
+      // validate the optional field `recurrenceConfig`
+      if (jsonObj.get("recurrenceConfig") != null && !jsonObj.get("recurrenceConfig").isJsonNull()) {
+        RecurrenceConfig.validateJsonElement(jsonObj.get("recurrenceConfig"));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -294,31 +448,31 @@ public class FixedFeeRateCard implements Serializable {
 
            @Override
            public FixedFeeRateCard read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of FixedFeeRateCard given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of FixedFeeRateCard
-  * @throws IOException if the JSON string is invalid with respect to FixedFeeRateCard
-  */
+  /**
+   * Create an instance of FixedFeeRateCard given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of FixedFeeRateCard
+   * @throws IOException if the JSON string is invalid with respect to FixedFeeRateCard
+   */
   public static FixedFeeRateCard fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, FixedFeeRateCard.class);
   }
 
- /**
-  * Convert an instance of FixedFeeRateCard to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of FixedFeeRateCard to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

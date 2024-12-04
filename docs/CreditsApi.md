@@ -11,9 +11,9 @@ All URIs are relative to *https://api.togai.com*
 | [**voidCredit**](CreditsApi.md#voidCredit) | **POST** /credits/{credit_id}/void | Void credit |
 
 
-<a name="createCredit"></a>
+<a id="createCredit"></a>
 # **createCredit**
-> Credit createCredit(createCreditRequest)
+> CreateCreditResponse createCredit(createCreditRequest)
 
 Grant credit
 
@@ -41,7 +41,7 @@ public class Example {
     CreditsApi apiInstance = new CreditsApi(defaultClient);
     CreateCreditRequest createCreditRequest = new CreateCreditRequest(); // CreateCreditRequest | Payload to grant credits
     try {
-      Credit result = apiInstance.createCredit(createCreditRequest);
+      CreateCreditResponse result = apiInstance.createCredit(createCreditRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CreditsApi#createCredit");
@@ -62,7 +62,7 @@ public class Example {
 
 ### Return type
 
-[**Credit**](Credit.md)
+[**CreateCreditResponse**](CreateCreditResponse.md)
 
 ### Authorization
 
@@ -84,7 +84,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="creditBalanceForAccount"></a>
+<a id="creditBalanceForAccount"></a>
 # **creditBalanceForAccount**
 > CreditBalanceResponse creditBalanceForAccount(accountId)
 
@@ -112,7 +112,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     CreditsApi apiInstance = new CreditsApi(defaultClient);
-    String accountId = "accountId_example"; // String | account_id corresponding to an account
+    String accountId = "ACC00001"; // String | account_id corresponding to an account
     try {
       CreditBalanceResponse result = apiInstance.creditBalanceForAccount(accountId);
       System.out.println(result);
@@ -157,7 +157,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="getCreditDetails"></a>
+<a id="getCreditDetails"></a>
 # **getCreditDetails**
 > CreditDetailsResponse getCreditDetails(creditId)
 
@@ -185,7 +185,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     CreditsApi apiInstance = new CreditsApi(defaultClient);
-    String creditId = "creditId_example"; // String | 
+    String creditId = "creds.1znQx9jiIXw.r44fc"; // String | 
     try {
       CreditDetailsResponse result = apiInstance.getCreditDetails(creditId);
       System.out.println(result);
@@ -230,7 +230,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="listCredits"></a>
+<a id="listCredits"></a>
 # **listCredits**
 > ListCreditsResponse listCredits(nextToken, status, accountId, id, pageSize)
 
@@ -311,7 +311,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="voidCredit"></a>
+<a id="voidCredit"></a>
 # **voidCredit**
 > Credit voidCredit(creditId)
 
@@ -339,7 +339,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     CreditsApi apiInstance = new CreditsApi(defaultClient);
-    String creditId = "creditId_example"; // String | 
+    String creditId = "creds.1znQx9jiIXw.r44fc"; // String | 
     try {
       Credit result = apiInstance.voidCredit(creditId);
       System.out.println(result);
@@ -376,7 +376,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Response for List credits request |  -  |
+| **200** | Response for Void credit request |  -  |
 | **400** | Error response |  -  |
 | **401** | Error response |  -  |
 | **403** | Error response |  -  |

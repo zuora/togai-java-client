@@ -11,7 +11,7 @@ All URIs are relative to *https://api.togai.com*
 | [**updateAddOn**](AddOnsApi.md#updateAddOn) | **PATCH** /addons/{addon_id} | Update an addon |
 
 
-<a name="createAddOn"></a>
+<a id="createAddOn"></a>
 # **createAddOn**
 > AddOn createAddOn(createAddOnRequest)
 
@@ -84,7 +84,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="deleteAddOn"></a>
+<a id="deleteAddOn"></a>
 # **deleteAddOn**
 > BaseSuccessResponse deleteAddOn(addonId)
 
@@ -112,7 +112,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     AddOnsApi apiInstance = new AddOnsApi(defaultClient);
-    String addonId = "addonId_example"; // String | 
+    String addonId = "addon.1zYnCiM9Bpg.lv25y"; // String | 
     try {
       BaseSuccessResponse result = apiInstance.deleteAddOn(addonId);
       System.out.println(result);
@@ -157,7 +157,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="getAddOn"></a>
+<a id="getAddOn"></a>
 # **getAddOn**
 > AddOn getAddOn(addonId)
 
@@ -185,7 +185,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     AddOnsApi apiInstance = new AddOnsApi(defaultClient);
-    String addonId = "addonId_example"; // String | 
+    String addonId = "addon.1zYnCiM9Bpg.lv25y"; // String | 
     try {
       AddOn result = apiInstance.getAddOn(addonId);
       System.out.println(result);
@@ -230,7 +230,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="getAddOns"></a>
+<a id="getAddOns"></a>
 # **getAddOns**
 > AddOnPaginatedResponse getAddOns(status, nextToken, pageSize)
 
@@ -307,7 +307,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="updateAddOn"></a>
+<a id="updateAddOn"></a>
 # **updateAddOn**
 > AddOn updateAddOn(addonId, updateAddOnRequest)
 
@@ -335,7 +335,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     AddOnsApi apiInstance = new AddOnsApi(defaultClient);
-    String addonId = "addonId_example"; // String | 
+    String addonId = "addon.1zYnCiM9Bpg.lv25y"; // String | 
     UpdateAddOnRequest updateAddOnRequest = new UpdateAddOnRequest(); // UpdateAddOnRequest | Payload to update addon
     try {
       AddOn result = apiInstance.updateAddOn(addonId, updateAddOnRequest);

@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,6 +23,7 @@ import com.togai.client.models.EnrichedField;
 import com.togai.client.models.EnrichmentDependency;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -37,13 +37,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -51,27 +53,29 @@ import com.togai.client.JSON;
 /**
  * EventPipelineInfoEnrichments
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class EventPipelineInfoEnrichments implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  @javax.annotation.Nullable
   private List<EnrichedField> attributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DIMENSIONS = "dimensions";
   @SerializedName(SERIALIZED_NAME_DIMENSIONS)
+  @javax.annotation.Nullable
   private List<EnrichedField> dimensions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DEPENDENCIES = "dependencies";
   @SerializedName(SERIALIZED_NAME_DEPENDENCIES)
+  @javax.annotation.Nullable
   private List<EnrichmentDependency> dependencies = new ArrayList<>();
 
   public EventPipelineInfoEnrichments() {
   }
 
-  public EventPipelineInfoEnrichments attributes(List<EnrichedField> attributes) {
-    
+  public EventPipelineInfoEnrichments attributes(@javax.annotation.Nullable List<EnrichedField> attributes) {
     this.attributes = attributes;
     return this;
   }
@@ -84,24 +88,21 @@ public class EventPipelineInfoEnrichments implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get attributes
    * @return attributes
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<EnrichedField> getAttributes() {
     return attributes;
   }
 
-
-  public void setAttributes(List<EnrichedField> attributes) {
+  public void setAttributes(@javax.annotation.Nullable List<EnrichedField> attributes) {
     this.attributes = attributes;
   }
 
 
-  public EventPipelineInfoEnrichments dimensions(List<EnrichedField> dimensions) {
-    
+  public EventPipelineInfoEnrichments dimensions(@javax.annotation.Nullable List<EnrichedField> dimensions) {
     this.dimensions = dimensions;
     return this;
   }
@@ -114,24 +115,21 @@ public class EventPipelineInfoEnrichments implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get dimensions
    * @return dimensions
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<EnrichedField> getDimensions() {
     return dimensions;
   }
 
-
-  public void setDimensions(List<EnrichedField> dimensions) {
+  public void setDimensions(@javax.annotation.Nullable List<EnrichedField> dimensions) {
     this.dimensions = dimensions;
   }
 
 
-  public EventPipelineInfoEnrichments dependencies(List<EnrichmentDependency> dependencies) {
-    
+  public EventPipelineInfoEnrichments dependencies(@javax.annotation.Nullable List<EnrichmentDependency> dependencies) {
     this.dependencies = dependencies;
     return this;
   }
@@ -144,18 +142,16 @@ public class EventPipelineInfoEnrichments implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get dependencies
    * @return dependencies
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<EnrichmentDependency> getDependencies() {
     return dependencies;
   }
 
-
-  public void setDependencies(List<EnrichmentDependency> dependencies) {
+  public void setDependencies(@javax.annotation.Nullable List<EnrichmentDependency> dependencies) {
     this.dependencies = dependencies;
   }
 
@@ -217,26 +213,27 @@ public class EventPipelineInfoEnrichments implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to EventPipelineInfoEnrichments
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!EventPipelineInfoEnrichments.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to EventPipelineInfoEnrichments
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!EventPipelineInfoEnrichments.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in EventPipelineInfoEnrichments is not found in the empty JSON string", EventPipelineInfoEnrichments.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!EventPipelineInfoEnrichments.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EventPipelineInfoEnrichments` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EventPipelineInfoEnrichments` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
         JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
         if (jsonArrayattributes != null) {
@@ -247,7 +244,7 @@ public class EventPipelineInfoEnrichments implements Serializable {
 
           // validate the optional field `attributes` (array)
           for (int i = 0; i < jsonArrayattributes.size(); i++) {
-            EnrichedField.validateJsonObject(jsonArrayattributes.get(i).getAsJsonObject());
+            EnrichedField.validateJsonElement(jsonArrayattributes.get(i));
           };
         }
       }
@@ -261,7 +258,7 @@ public class EventPipelineInfoEnrichments implements Serializable {
 
           // validate the optional field `dimensions` (array)
           for (int i = 0; i < jsonArraydimensions.size(); i++) {
-            EnrichedField.validateJsonObject(jsonArraydimensions.get(i).getAsJsonObject());
+            EnrichedField.validateJsonElement(jsonArraydimensions.get(i));
           };
         }
       }
@@ -275,7 +272,7 @@ public class EventPipelineInfoEnrichments implements Serializable {
 
           // validate the optional field `dependencies` (array)
           for (int i = 0; i < jsonArraydependencies.size(); i++) {
-            EnrichmentDependency.validateJsonObject(jsonArraydependencies.get(i).getAsJsonObject());
+            EnrichmentDependency.validateJsonElement(jsonArraydependencies.get(i));
           };
         }
       }
@@ -301,31 +298,31 @@ public class EventPipelineInfoEnrichments implements Serializable {
 
            @Override
            public EventPipelineInfoEnrichments read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of EventPipelineInfoEnrichments given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of EventPipelineInfoEnrichments
-  * @throws IOException if the JSON string is invalid with respect to EventPipelineInfoEnrichments
-  */
+  /**
+   * Create an instance of EventPipelineInfoEnrichments given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of EventPipelineInfoEnrichments
+   * @throws IOException if the JSON string is invalid with respect to EventPipelineInfoEnrichments
+   */
   public static EventPipelineInfoEnrichments fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, EventPipelineInfoEnrichments.class);
   }
 
- /**
-  * Convert an instance of EventPipelineInfoEnrichments to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of EventPipelineInfoEnrichments to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

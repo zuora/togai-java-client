@@ -28,6 +28,7 @@ import java.io.IOException;
 
 
 import com.togai.client.models.CreateCreditRequest;
+import com.togai.client.models.CreateCreditResponse;
 import com.togai.client.models.Credit;
 import com.togai.client.models.CreditBalanceResponse;
 import com.togai.client.models.CreditDetailsResponse;
@@ -39,7 +40,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.ws.rs.core.GenericType;
 
 public class CreditsApi {
     private ApiClient localVarApiClient;
@@ -85,7 +85,8 @@ public class CreditsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for List credits request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -151,10 +152,11 @@ public class CreditsApi {
      * Grant credit
      * Grant credit
      * @param createCreditRequest Payload to grant credits (optional)
-     * @return Credit
+     * @return CreateCreditResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for List credits request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -165,8 +167,8 @@ public class CreditsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public Credit createCredit(CreateCreditRequest createCreditRequest) throws ApiException {
-        ApiResponse<Credit> localVarResp = createCreditWithHttpInfo(createCreditRequest);
+    public CreateCreditResponse createCredit(CreateCreditRequest createCreditRequest) throws ApiException {
+        ApiResponse<CreateCreditResponse> localVarResp = createCreditWithHttpInfo(createCreditRequest);
         return localVarResp.getData();
     }
 
@@ -174,10 +176,11 @@ public class CreditsApi {
      * Grant credit
      * Grant credit
      * @param createCreditRequest Payload to grant credits (optional)
-     * @return ApiResponse&lt;Credit&gt;
+     * @return ApiResponse&lt;CreateCreditResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for List credits request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -188,9 +191,9 @@ public class CreditsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Credit> createCreditWithHttpInfo(CreateCreditRequest createCreditRequest) throws ApiException {
+    public ApiResponse<CreateCreditResponse> createCreditWithHttpInfo(CreateCreditRequest createCreditRequest) throws ApiException {
         okhttp3.Call localVarCall = createCreditValidateBeforeCall(createCreditRequest, null);
-        Type localVarReturnType = new TypeToken<Credit>(){}.getType();
+        Type localVarReturnType = new TypeToken<CreateCreditResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -202,7 +205,8 @@ public class CreditsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for List credits request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -213,10 +217,10 @@ public class CreditsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createCreditAsync(CreateCreditRequest createCreditRequest, final ApiCallback<Credit> _callback) throws ApiException {
+    public okhttp3.Call createCreditAsync(CreateCreditRequest createCreditRequest, final ApiCallback<CreateCreditResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = createCreditValidateBeforeCall(createCreditRequest, _callback);
-        Type localVarReturnType = new TypeToken<Credit>(){}.getType();
+        Type localVarReturnType = new TypeToken<CreateCreditResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -227,7 +231,8 @@ public class CreditsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Credit Balance Request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -301,7 +306,8 @@ public class CreditsApi {
      * @return CreditBalanceResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Credit Balance Request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -324,7 +330,8 @@ public class CreditsApi {
      * @return ApiResponse&lt;CreditBalanceResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Credit Balance Request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -349,7 +356,8 @@ public class CreditsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Credit Balance Request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -374,7 +382,8 @@ public class CreditsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Fetch Credit Details request. This contains Credit Transactions </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -448,7 +457,8 @@ public class CreditsApi {
      * @return CreditDetailsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Fetch Credit Details request. This contains Credit Transactions </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -471,7 +481,8 @@ public class CreditsApi {
      * @return ApiResponse&lt;CreditDetailsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Fetch Credit Details request. This contains Credit Transactions </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -496,7 +507,8 @@ public class CreditsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Fetch Credit Details request. This contains Credit Transactions </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -525,7 +537,8 @@ public class CreditsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -617,7 +630,8 @@ public class CreditsApi {
      * @return ListCreditsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -644,7 +658,8 @@ public class CreditsApi {
      * @return ApiResponse&lt;ListCreditsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -673,7 +688,8 @@ public class CreditsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -698,9 +714,10 @@ public class CreditsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for List credits request </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Response for Void credit request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
@@ -772,9 +789,10 @@ public class CreditsApi {
      * @return Credit
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for List credits request </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Response for Void credit request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
@@ -795,9 +813,10 @@ public class CreditsApi {
      * @return ApiResponse&lt;Credit&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for List credits request </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Response for Void credit request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
@@ -820,9 +839,10 @@ public class CreditsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Response for List credits request </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Response for Void credit request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>

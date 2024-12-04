@@ -14,15 +14,18 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.PricePlanDetails;
+import com.togai.client.models.PricingRule;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -35,13 +38,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -49,88 +54,187 @@ import com.togai.client.JSON;
 /**
  * Represents effectiveness period and config of a price plan. i.e, price plan bound by time.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class PricingSchedule implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
+  private String id;
+
   public static final String SERIALIZED_NAME_PRICE_PLAN_DETAILS = "pricePlanDetails";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_DETAILS)
+  @javax.annotation.Nullable
   private PricePlanDetails pricePlanDetails;
 
   public static final String SERIALIZED_NAME_START_DATE = "startDate";
   @SerializedName(SERIALIZED_NAME_START_DATE)
+  @javax.annotation.Nonnull
   private OffsetDateTime startDate;
 
   public static final String SERIALIZED_NAME_END_DATE = "endDate";
   @SerializedName(SERIALIZED_NAME_END_DATE)
+  @javax.annotation.Nonnull
   private OffsetDateTime endDate;
+
+  public static final String SERIALIZED_NAME_VERSION = "version";
+  @SerializedName(SERIALIZED_NAME_VERSION)
+  @javax.annotation.Nonnull
+  private Integer version;
+
+  public static final String SERIALIZED_NAME_PRICING_RULES = "pricingRules";
+  @SerializedName(SERIALIZED_NAME_PRICING_RULES)
+  @javax.annotation.Nullable
+  private List<PricingRule> pricingRules = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_IS_OVERRIDEN = "isOverriden";
+  @SerializedName(SERIALIZED_NAME_IS_OVERRIDEN)
+  @javax.annotation.Nonnull
+  private Boolean isOverriden;
 
   public PricingSchedule() {
   }
 
-  public PricingSchedule pricePlanDetails(PricePlanDetails pricePlanDetails) {
-    
+  public PricingSchedule id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  public String getId() {
+    return id;
+  }
+
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
+  }
+
+
+  public PricingSchedule pricePlanDetails(@javax.annotation.Nullable PricePlanDetails pricePlanDetails) {
     this.pricePlanDetails = pricePlanDetails;
     return this;
   }
 
-   /**
+  /**
    * Get pricePlanDetails
    * @return pricePlanDetails
-  **/
+   */
   @javax.annotation.Nullable
-
   public PricePlanDetails getPricePlanDetails() {
     return pricePlanDetails;
   }
 
-
-  public void setPricePlanDetails(PricePlanDetails pricePlanDetails) {
+  public void setPricePlanDetails(@javax.annotation.Nullable PricePlanDetails pricePlanDetails) {
     this.pricePlanDetails = pricePlanDetails;
   }
 
 
-  public PricingSchedule startDate(OffsetDateTime startDate) {
-    
+  public PricingSchedule startDate(@javax.annotation.Nonnull OffsetDateTime startDate) {
     this.startDate = startDate;
     return this;
   }
 
-   /**
+  /**
    * Get startDate
    * @return startDate
-  **/
+   */
   @javax.annotation.Nonnull
-
   public OffsetDateTime getStartDate() {
     return startDate;
   }
 
-
-  public void setStartDate(OffsetDateTime startDate) {
+  public void setStartDate(@javax.annotation.Nonnull OffsetDateTime startDate) {
     this.startDate = startDate;
   }
 
 
-  public PricingSchedule endDate(OffsetDateTime endDate) {
-    
+  public PricingSchedule endDate(@javax.annotation.Nonnull OffsetDateTime endDate) {
     this.endDate = endDate;
     return this;
   }
 
-   /**
+  /**
    * Get endDate
    * @return endDate
-  **/
+   */
   @javax.annotation.Nonnull
-
   public OffsetDateTime getEndDate() {
     return endDate;
   }
 
-
-  public void setEndDate(OffsetDateTime endDate) {
+  public void setEndDate(@javax.annotation.Nonnull OffsetDateTime endDate) {
     this.endDate = endDate;
+  }
+
+
+  public PricingSchedule version(@javax.annotation.Nonnull Integer version) {
+    this.version = version;
+    return this;
+  }
+
+  /**
+   * Get version
+   * minimum: 1
+   * @return version
+   */
+  @javax.annotation.Nonnull
+  public Integer getVersion() {
+    return version;
+  }
+
+  public void setVersion(@javax.annotation.Nonnull Integer version) {
+    this.version = version;
+  }
+
+
+  public PricingSchedule pricingRules(@javax.annotation.Nullable List<PricingRule> pricingRules) {
+    this.pricingRules = pricingRules;
+    return this;
+  }
+
+  public PricingSchedule addPricingRulesItem(PricingRule pricingRulesItem) {
+    if (this.pricingRules == null) {
+      this.pricingRules = new ArrayList<>();
+    }
+    this.pricingRules.add(pricingRulesItem);
+    return this;
+  }
+
+  /**
+   * Get pricingRules
+   * @return pricingRules
+   */
+  @javax.annotation.Nullable
+  public List<PricingRule> getPricingRules() {
+    return pricingRules;
+  }
+
+  public void setPricingRules(@javax.annotation.Nullable List<PricingRule> pricingRules) {
+    this.pricingRules = pricingRules;
+  }
+
+
+  public PricingSchedule isOverriden(@javax.annotation.Nonnull Boolean isOverriden) {
+    this.isOverriden = isOverriden;
+    return this;
+  }
+
+  /**
+   * Get isOverriden
+   * @return isOverriden
+   */
+  @javax.annotation.Nonnull
+  public Boolean getIsOverriden() {
+    return isOverriden;
+  }
+
+  public void setIsOverriden(@javax.annotation.Nonnull Boolean isOverriden) {
+    this.isOverriden = isOverriden;
   }
 
 
@@ -144,23 +248,31 @@ public class PricingSchedule implements Serializable {
       return false;
     }
     PricingSchedule pricingSchedule = (PricingSchedule) o;
-    return Objects.equals(this.pricePlanDetails, pricingSchedule.pricePlanDetails) &&
+    return Objects.equals(this.id, pricingSchedule.id) &&
+        Objects.equals(this.pricePlanDetails, pricingSchedule.pricePlanDetails) &&
         Objects.equals(this.startDate, pricingSchedule.startDate) &&
-        Objects.equals(this.endDate, pricingSchedule.endDate);
+        Objects.equals(this.endDate, pricingSchedule.endDate) &&
+        Objects.equals(this.version, pricingSchedule.version) &&
+        Objects.equals(this.pricingRules, pricingSchedule.pricingRules) &&
+        Objects.equals(this.isOverriden, pricingSchedule.isOverriden);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pricePlanDetails, startDate, endDate);
+    return Objects.hash(id, pricePlanDetails, startDate, endDate, version, pricingRules, isOverriden);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PricingSchedule {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    pricePlanDetails: ").append(toIndentedString(pricePlanDetails)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("    pricingRules: ").append(toIndentedString(pricingRules)).append("\n");
+    sb.append("    isOverriden: ").append(toIndentedString(isOverriden)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -183,46 +295,71 @@ public class PricingSchedule implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("id");
     openapiFields.add("pricePlanDetails");
     openapiFields.add("startDate");
     openapiFields.add("endDate");
+    openapiFields.add("version");
+    openapiFields.add("pricingRules");
+    openapiFields.add("isOverriden");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("id");
     openapiRequiredFields.add("startDate");
     openapiRequiredFields.add("endDate");
+    openapiRequiredFields.add("version");
+    openapiRequiredFields.add("isOverriden");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to PricingSchedule
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!PricingSchedule.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PricingSchedule
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PricingSchedule.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PricingSchedule is not found in the empty JSON string", PricingSchedule.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!PricingSchedule.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PricingSchedule` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PricingSchedule` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : PricingSchedule.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       // validate the optional field `pricePlanDetails`
       if (jsonObj.get("pricePlanDetails") != null && !jsonObj.get("pricePlanDetails").isJsonNull()) {
-        PricePlanDetails.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetails"));
+        PricePlanDetails.validateJsonElement(jsonObj.get("pricePlanDetails"));
+      }
+      if (jsonObj.get("pricingRules") != null && !jsonObj.get("pricingRules").isJsonNull()) {
+        JsonArray jsonArraypricingRules = jsonObj.getAsJsonArray("pricingRules");
+        if (jsonArraypricingRules != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("pricingRules").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `pricingRules` to be an array in the JSON string but got `%s`", jsonObj.get("pricingRules").toString()));
+          }
+
+          // validate the optional field `pricingRules` (array)
+          for (int i = 0; i < jsonArraypricingRules.size(); i++) {
+            PricingRule.validateJsonElement(jsonArraypricingRules.get(i));
+          };
+        }
       }
   }
 
@@ -246,31 +383,31 @@ public class PricingSchedule implements Serializable {
 
            @Override
            public PricingSchedule read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of PricingSchedule given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PricingSchedule
-  * @throws IOException if the JSON string is invalid with respect to PricingSchedule
-  */
+  /**
+   * Create an instance of PricingSchedule given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PricingSchedule
+   * @throws IOException if the JSON string is invalid with respect to PricingSchedule
+   */
   public static PricingSchedule fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PricingSchedule.class);
   }
 
- /**
-  * Convert an instance of PricingSchedule to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PricingSchedule to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

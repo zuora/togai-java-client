@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,6 +23,7 @@ import com.togai.client.models.MetricName;
 import com.togai.client.models.MetricQueryFilterEntry;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,13 +39,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -53,23 +55,27 @@ import com.togai.client.JSON;
 /**
  * Object representing a single metrics query
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class MetricQuery implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
   private MetricName name = MetricName.EVENTS;
 
   /**
-   * Set the aggregation period. Allowed periods are DAY, WEEK, MONTH
+   * Set the aggregation period. Allowed periods are HOUR, DAY, WEEK, MONTH
    */
   @JsonAdapter(AggregationPeriodEnum.Adapter.class)
   public enum AggregationPeriodEnum {
+    HOUR("HOUR"),
+    
     DAY("DAY"),
     
     WEEK("WEEK"),
@@ -112,117 +118,113 @@ public class MetricQuery implements Serializable {
         return AggregationPeriodEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      AggregationPeriodEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_AGGREGATION_PERIOD = "aggregationPeriod";
   @SerializedName(SERIALIZED_NAME_AGGREGATION_PERIOD)
+  @javax.annotation.Nonnull
   private AggregationPeriodEnum aggregationPeriod = AggregationPeriodEnum.DAY;
 
   public static final String SERIALIZED_NAME_GROUP_BY = "groupBy";
   @SerializedName(SERIALIZED_NAME_GROUP_BY)
+  @javax.annotation.Nullable
   private String groupBy;
 
   public static final String SERIALIZED_NAME_CONFIGS = "configs";
   @SerializedName(SERIALIZED_NAME_CONFIGS)
+  @javax.annotation.Nullable
   private Map<String, String> configs = new HashMap<>();
 
   public static final String SERIALIZED_NAME_FILTERS = "filters";
   @SerializedName(SERIALIZED_NAME_FILTERS)
+  @javax.annotation.Nullable
   private List<MetricQueryFilterEntry> filters = new ArrayList<>();
 
   public MetricQuery() {
   }
 
-  public MetricQuery id(String id) {
-    
+  public MetricQuery id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * Mandatory  for all request.  User defined ID for identifying the request for your internal reference 
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getId() {
     return id;
   }
 
-
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public MetricQuery name(MetricName name) {
-    
+  public MetricQuery name(@javax.annotation.Nonnull MetricName name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @javax.annotation.Nonnull
-
   public MetricName getName() {
     return name;
   }
 
-
-  public void setName(MetricName name) {
+  public void setName(@javax.annotation.Nonnull MetricName name) {
     this.name = name;
   }
 
 
-  public MetricQuery aggregationPeriod(AggregationPeriodEnum aggregationPeriod) {
-    
+  public MetricQuery aggregationPeriod(@javax.annotation.Nonnull AggregationPeriodEnum aggregationPeriod) {
     this.aggregationPeriod = aggregationPeriod;
     return this;
   }
 
-   /**
-   * Set the aggregation period. Allowed periods are DAY, WEEK, MONTH
+  /**
+   * Set the aggregation period. Allowed periods are HOUR, DAY, WEEK, MONTH
    * @return aggregationPeriod
-  **/
+   */
   @javax.annotation.Nonnull
-
   public AggregationPeriodEnum getAggregationPeriod() {
     return aggregationPeriod;
   }
 
-
-  public void setAggregationPeriod(AggregationPeriodEnum aggregationPeriod) {
+  public void setAggregationPeriod(@javax.annotation.Nonnull AggregationPeriodEnum aggregationPeriod) {
     this.aggregationPeriod = aggregationPeriod;
   }
 
 
-  public MetricQuery groupBy(String groupBy) {
-    
+  public MetricQuery groupBy(@javax.annotation.Nullable String groupBy) {
     this.groupBy = groupBy;
     return this;
   }
 
-   /**
-   * Group your metric with a groupBy field.  Allowed fields are  ACCOUNT_ID EVENT_STATUS  SCHEMA_NAME  USAGE_METER_ID  Please refer the table above for the list of combinations allowed in the groupBy 
+  /**
+   * Group your metric with a groupBy field.  Allowed fields are  ACCOUNT_ID EVENT_STATUS  SCHEMA_NAME  USAGE_METER_ID [Use BILLABLE_ID as this will be deprecated soon...] BILLABLE_ID RAW_EVENT_STATUS Please refer the table above for the list of combinations allowed in the groupBy 
    * @return groupBy
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getGroupBy() {
     return groupBy;
   }
 
-
-  public void setGroupBy(String groupBy) {
+  public void setGroupBy(@javax.annotation.Nullable String groupBy) {
     this.groupBy = groupBy;
   }
 
 
-  public MetricQuery configs(Map<String, String> configs) {
-    
+  public MetricQuery configs(@javax.annotation.Nullable Map<String, String> configs) {
     this.configs = configs;
     return this;
   }
@@ -235,24 +237,21 @@ public class MetricQuery implements Serializable {
     return this;
   }
 
-   /**
-   * Configurations. | Metric Name | Config Key | Allowed Values  | Default value |              Description          | |-------------|------------|-----------------|---------------|-----------------------------------| | REVENUE     | CURRENCY   | BASE or INVOICE | BASE          | currency to return the revenue in | 
+  /**
+   * Configurations. | Metric Name       | Config Key | Allowed Values  | Default value |              Description          | |-------------------|------------|-----------------|---------------|-----------------------------------| | REVENUE           | CURRENCY   | BASE or INVOICE | BASE          | currency to return the revenue in | | REVENUE_FOR_CYCLE | CURRENCY   | BASE or INVOICE | BASE          | currency to return the revenue in | 
    * @return configs
-  **/
+   */
   @javax.annotation.Nullable
-
   public Map<String, String> getConfigs() {
     return configs;
   }
 
-
-  public void setConfigs(Map<String, String> configs) {
+  public void setConfigs(@javax.annotation.Nullable Map<String, String> configs) {
     this.configs = configs;
   }
 
 
-  public MetricQuery filters(List<MetricQueryFilterEntry> filters) {
-    
+  public MetricQuery filters(@javax.annotation.Nullable List<MetricQueryFilterEntry> filters) {
     this.filters = filters;
     return this;
   }
@@ -265,18 +264,16 @@ public class MetricQuery implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Filter on specific fields.  Refer possible fieldNames and fieldValues from the table above. 
    * @return filters
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<MetricQueryFilterEntry> getFilters() {
     return filters;
   }
 
-
-  public void setFilters(List<MetricQueryFilterEntry> filters) {
+  public void setFilters(@javax.annotation.Nullable List<MetricQueryFilterEntry> filters) {
     this.filters = filters;
   }
 
@@ -350,39 +347,44 @@ public class MetricQuery implements Serializable {
     openapiRequiredFields.add("aggregationPeriod");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to MetricQuery
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!MetricQuery.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MetricQuery
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!MetricQuery.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in MetricQuery is not found in the empty JSON string", MetricQuery.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!MetricQuery.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MetricQuery` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MetricQuery` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : MetricQuery.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
+      // validate the required field `name`
+      MetricName.validateJsonElement(jsonObj.get("name"));
       if (!jsonObj.get("aggregationPeriod").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `aggregationPeriod` to be a primitive type in the JSON string but got `%s`", jsonObj.get("aggregationPeriod").toString()));
       }
+      // validate the required field `aggregationPeriod`
+      AggregationPeriodEnum.validateJsonElement(jsonObj.get("aggregationPeriod"));
       if ((jsonObj.get("groupBy") != null && !jsonObj.get("groupBy").isJsonNull()) && !jsonObj.get("groupBy").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `groupBy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("groupBy").toString()));
       }
@@ -396,7 +398,7 @@ public class MetricQuery implements Serializable {
 
           // validate the optional field `filters` (array)
           for (int i = 0; i < jsonArrayfilters.size(); i++) {
-            MetricQueryFilterEntry.validateJsonObject(jsonArrayfilters.get(i).getAsJsonObject());
+            MetricQueryFilterEntry.validateJsonElement(jsonArrayfilters.get(i));
           };
         }
       }
@@ -422,31 +424,31 @@ public class MetricQuery implements Serializable {
 
            @Override
            public MetricQuery read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of MetricQuery given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MetricQuery
-  * @throws IOException if the JSON string is invalid with respect to MetricQuery
-  */
+  /**
+   * Create an instance of MetricQuery given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MetricQuery
+   * @throws IOException if the JSON string is invalid with respect to MetricQuery
+   */
   public static MetricQuery fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MetricQuery.class);
   }
 
- /**
-  * Convert an instance of MetricQuery to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MetricQuery to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -14,16 +14,23 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.togai.client.models.AccountsBillingInformation;
+import com.togai.client.models.Address;
+import com.togai.client.models.CreateAccountAliasRequest;
 import com.togai.client.models.CreateEntitySetting;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -36,13 +43,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -50,101 +59,193 @@ import com.togai.client.JSON;
 /**
  * Payload to create account
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class CreateAccountRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
   private String name;
 
   public static final String SERIALIZED_NAME_INVOICE_CURRENCY = "invoiceCurrency";
   @SerializedName(SERIALIZED_NAME_INVOICE_CURRENCY)
+  @javax.annotation.Nullable
   private String invoiceCurrency;
 
   public static final String SERIALIZED_NAME_ALIASES = "aliases";
   @SerializedName(SERIALIZED_NAME_ALIASES)
+  @javax.annotation.Nullable
   private List<String> aliases = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_ACCOUNT_ALIASES = "accountAliases";
+  @SerializedName(SERIALIZED_NAME_ACCOUNT_ALIASES)
+  @javax.annotation.Nullable
+  private List<CreateAccountAliasRequest> accountAliases = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_ADDRESS = "address";
+  @SerializedName(SERIALIZED_NAME_ADDRESS)
+  @javax.annotation.Nullable
+  private Address address;
+
+  public static final String SERIALIZED_NAME_PRIMARY_EMAIL = "primaryEmail";
+  @SerializedName(SERIALIZED_NAME_PRIMARY_EMAIL)
+  @javax.annotation.Nullable
+  private String primaryEmail;
+
+  public static final String SERIALIZED_NAME_BILLING_INFORMATION = "billingInformation";
+  @SerializedName(SERIALIZED_NAME_BILLING_INFORMATION)
+  @javax.annotation.Nullable
+  private AccountsBillingInformation billingInformation;
 
   public static final String SERIALIZED_NAME_SETTINGS = "settings";
   @SerializedName(SERIALIZED_NAME_SETTINGS)
+  @javax.annotation.Nullable
   private List<CreateEntitySetting> settings = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_NET_TERM_DAYS = "netTermDays";
+  @SerializedName(SERIALIZED_NAME_NET_TERM_DAYS)
+  @javax.annotation.Nullable
+  private Integer netTermDays;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  @javax.annotation.Nullable
+  private Map<String, String> metadata = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  @javax.annotation.Nullable
+  private Set<String> tags = new LinkedHashSet<>();
+
+  /**
+   * Status of the created account defaults to ACTIVE
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    ACTIVE("ACTIVE"),
+    
+    DRAFT("DRAFT");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      StatusEnum.fromValue(value);
+    }
+  }
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
+  private StatusEnum status;
+
+  public static final String SERIALIZED_NAME_CUSTOMER_ID = "customerId";
+  @SerializedName(SERIALIZED_NAME_CUSTOMER_ID)
+  @javax.annotation.Nonnull
+  private String customerId;
 
   public CreateAccountRequest() {
   }
 
-  public CreateAccountRequest id(String id) {
-    
+  public CreateAccountRequest id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * Identifier of the account
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getId() {
     return id;
   }
 
-
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public CreateAccountRequest name(String name) {
-    
+  public CreateAccountRequest name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Name of the Account
    * @return name
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public CreateAccountRequest invoiceCurrency(String invoiceCurrency) {
-    
+  public CreateAccountRequest invoiceCurrency(@javax.annotation.Nullable String invoiceCurrency) {
     this.invoiceCurrency = invoiceCurrency;
     return this;
   }
 
-   /**
+  /**
    * Use [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code in which the account must be invoiced.   For example: AED is the currency code for United Arab Emirates dirham. 
    * @return invoiceCurrency
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getInvoiceCurrency() {
     return invoiceCurrency;
   }
 
-
-  public void setInvoiceCurrency(String invoiceCurrency) {
+  public void setInvoiceCurrency(@javax.annotation.Nullable String invoiceCurrency) {
     this.invoiceCurrency = invoiceCurrency;
   }
 
 
-  public CreateAccountRequest aliases(List<String> aliases) {
-    
+  public CreateAccountRequest aliases(@javax.annotation.Nullable List<String> aliases) {
     this.aliases = aliases;
     return this;
   }
@@ -157,24 +258,105 @@ public class CreateAccountRequest implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Aliases are tags that are associated with an account. Multiple aliases are allowed for a single account.
    * @return aliases
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<String> getAliases() {
     return aliases;
   }
 
-
-  public void setAliases(List<String> aliases) {
+  public void setAliases(@javax.annotation.Nullable List<String> aliases) {
     this.aliases = aliases;
   }
 
 
-  public CreateAccountRequest settings(List<CreateEntitySetting> settings) {
-    
+  public CreateAccountRequest accountAliases(@javax.annotation.Nullable List<CreateAccountAliasRequest> accountAliases) {
+    this.accountAliases = accountAliases;
+    return this;
+  }
+
+  public CreateAccountRequest addAccountAliasesItem(CreateAccountAliasRequest accountAliasesItem) {
+    if (this.accountAliases == null) {
+      this.accountAliases = new ArrayList<>();
+    }
+    this.accountAliases.add(accountAliasesItem);
+    return this;
+  }
+
+  /**
+   * Aliases which effective range
+   * @return accountAliases
+   */
+  @javax.annotation.Nullable
+  public List<CreateAccountAliasRequest> getAccountAliases() {
+    return accountAliases;
+  }
+
+  public void setAccountAliases(@javax.annotation.Nullable List<CreateAccountAliasRequest> accountAliases) {
+    this.accountAliases = accountAliases;
+  }
+
+
+  public CreateAccountRequest address(@javax.annotation.Nullable Address address) {
+    this.address = address;
+    return this;
+  }
+
+  /**
+   * Get address
+   * @return address
+   */
+  @javax.annotation.Nullable
+  public Address getAddress() {
+    return address;
+  }
+
+  public void setAddress(@javax.annotation.Nullable Address address) {
+    this.address = address;
+  }
+
+
+  public CreateAccountRequest primaryEmail(@javax.annotation.Nullable String primaryEmail) {
+    this.primaryEmail = primaryEmail;
+    return this;
+  }
+
+  /**
+   * Primary email of the account
+   * @return primaryEmail
+   */
+  @javax.annotation.Nullable
+  public String getPrimaryEmail() {
+    return primaryEmail;
+  }
+
+  public void setPrimaryEmail(@javax.annotation.Nullable String primaryEmail) {
+    this.primaryEmail = primaryEmail;
+  }
+
+
+  public CreateAccountRequest billingInformation(@javax.annotation.Nullable AccountsBillingInformation billingInformation) {
+    this.billingInformation = billingInformation;
+    return this;
+  }
+
+  /**
+   * Get billingInformation
+   * @return billingInformation
+   */
+  @javax.annotation.Nullable
+  public AccountsBillingInformation getBillingInformation() {
+    return billingInformation;
+  }
+
+  public void setBillingInformation(@javax.annotation.Nullable AccountsBillingInformation billingInformation) {
+    this.billingInformation = billingInformation;
+  }
+
+
+  public CreateAccountRequest settings(@javax.annotation.Nullable List<CreateEntitySetting> settings) {
     this.settings = settings;
     return this;
   }
@@ -187,19 +369,128 @@ public class CreateAccountRequest implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get settings
    * @return settings
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<CreateEntitySetting> getSettings() {
     return settings;
   }
 
-
-  public void setSettings(List<CreateEntitySetting> settings) {
+  public void setSettings(@javax.annotation.Nullable List<CreateEntitySetting> settings) {
     this.settings = settings;
+  }
+
+
+  public CreateAccountRequest netTermDays(@javax.annotation.Nullable Integer netTermDays) {
+    this.netTermDays = netTermDays;
+    return this;
+  }
+
+  /**
+   * Net term for the invoices of the account
+   * @return netTermDays
+   */
+  @javax.annotation.Nullable
+  public Integer getNetTermDays() {
+    return netTermDays;
+  }
+
+  public void setNetTermDays(@javax.annotation.Nullable Integer netTermDays) {
+    this.netTermDays = netTermDays;
+  }
+
+
+  public CreateAccountRequest metadata(@javax.annotation.Nullable Map<String, String> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public CreateAccountRequest putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Additional information associated with the account. Example: GSTN, VATN 
+   * @return metadata
+   */
+  @javax.annotation.Nullable
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(@javax.annotation.Nullable Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
+  public CreateAccountRequest tags(@javax.annotation.Nullable Set<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public CreateAccountRequest addTagsItem(String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new LinkedHashSet<>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+  /**
+   * Tag for accounts are stored in lowercase
+   * @return tags
+   */
+  @javax.annotation.Nullable
+  public Set<String> getTags() {
+    return tags;
+  }
+
+  public void setTags(@javax.annotation.Nullable Set<String> tags) {
+    this.tags = tags;
+  }
+
+
+  public CreateAccountRequest status(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Status of the created account defaults to ACTIVE
+   * @return status
+   */
+  @javax.annotation.Nullable
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
+  }
+
+
+  public CreateAccountRequest customerId(@javax.annotation.Nonnull String customerId) {
+    this.customerId = customerId;
+    return this;
+  }
+
+  /**
+   * Customer Identifier for whom the account is being created
+   * @return customerId
+   */
+  @javax.annotation.Nonnull
+  public String getCustomerId() {
+    return customerId;
+  }
+
+  public void setCustomerId(@javax.annotation.Nonnull String customerId) {
+    this.customerId = customerId;
   }
 
 
@@ -217,12 +508,21 @@ public class CreateAccountRequest implements Serializable {
         Objects.equals(this.name, createAccountRequest.name) &&
         Objects.equals(this.invoiceCurrency, createAccountRequest.invoiceCurrency) &&
         Objects.equals(this.aliases, createAccountRequest.aliases) &&
-        Objects.equals(this.settings, createAccountRequest.settings);
+        Objects.equals(this.accountAliases, createAccountRequest.accountAliases) &&
+        Objects.equals(this.address, createAccountRequest.address) &&
+        Objects.equals(this.primaryEmail, createAccountRequest.primaryEmail) &&
+        Objects.equals(this.billingInformation, createAccountRequest.billingInformation) &&
+        Objects.equals(this.settings, createAccountRequest.settings) &&
+        Objects.equals(this.netTermDays, createAccountRequest.netTermDays) &&
+        Objects.equals(this.metadata, createAccountRequest.metadata) &&
+        Objects.equals(this.tags, createAccountRequest.tags) &&
+        Objects.equals(this.status, createAccountRequest.status) &&
+        Objects.equals(this.customerId, createAccountRequest.customerId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, invoiceCurrency, aliases, settings);
+    return Objects.hash(id, name, invoiceCurrency, aliases, accountAliases, address, primaryEmail, billingInformation, settings, netTermDays, metadata, tags, status, customerId);
   }
 
   @Override
@@ -233,7 +533,16 @@ public class CreateAccountRequest implements Serializable {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    invoiceCurrency: ").append(toIndentedString(invoiceCurrency)).append("\n");
     sb.append("    aliases: ").append(toIndentedString(aliases)).append("\n");
+    sb.append("    accountAliases: ").append(toIndentedString(accountAliases)).append("\n");
+    sb.append("    address: ").append(toIndentedString(address)).append("\n");
+    sb.append("    primaryEmail: ").append(toIndentedString(primaryEmail)).append("\n");
+    sb.append("    billingInformation: ").append(toIndentedString(billingInformation)).append("\n");
     sb.append("    settings: ").append(toIndentedString(settings)).append("\n");
+    sb.append("    netTermDays: ").append(toIndentedString(netTermDays)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -260,41 +569,52 @@ public class CreateAccountRequest implements Serializable {
     openapiFields.add("name");
     openapiFields.add("invoiceCurrency");
     openapiFields.add("aliases");
+    openapiFields.add("accountAliases");
+    openapiFields.add("address");
+    openapiFields.add("primaryEmail");
+    openapiFields.add("billingInformation");
     openapiFields.add("settings");
+    openapiFields.add("netTermDays");
+    openapiFields.add("metadata");
+    openapiFields.add("tags");
+    openapiFields.add("status");
+    openapiFields.add("customerId");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("id");
     openapiRequiredFields.add("name");
+    openapiRequiredFields.add("customerId");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreateAccountRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CreateAccountRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateAccountRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreateAccountRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreateAccountRequest is not found in the empty JSON string", CreateAccountRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CreateAccountRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateAccountRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateAccountRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : CreateAccountRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
@@ -305,8 +625,33 @@ public class CreateAccountRequest implements Serializable {
         throw new IllegalArgumentException(String.format("Expected the field `invoiceCurrency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceCurrency").toString()));
       }
       // ensure the optional json data is an array if present
-      if (jsonObj.get("aliases") != null && !jsonObj.get("aliases").isJsonArray()) {
+      if (jsonObj.get("aliases") != null && !jsonObj.get("aliases").isJsonNull() && !jsonObj.get("aliases").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `aliases` to be an array in the JSON string but got `%s`", jsonObj.get("aliases").toString()));
+      }
+      if (jsonObj.get("accountAliases") != null && !jsonObj.get("accountAliases").isJsonNull()) {
+        JsonArray jsonArrayaccountAliases = jsonObj.getAsJsonArray("accountAliases");
+        if (jsonArrayaccountAliases != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("accountAliases").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `accountAliases` to be an array in the JSON string but got `%s`", jsonObj.get("accountAliases").toString()));
+          }
+
+          // validate the optional field `accountAliases` (array)
+          for (int i = 0; i < jsonArrayaccountAliases.size(); i++) {
+            CreateAccountAliasRequest.validateJsonElement(jsonArrayaccountAliases.get(i));
+          };
+        }
+      }
+      // validate the optional field `address`
+      if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {
+        Address.validateJsonElement(jsonObj.get("address"));
+      }
+      if ((jsonObj.get("primaryEmail") != null && !jsonObj.get("primaryEmail").isJsonNull()) && !jsonObj.get("primaryEmail").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `primaryEmail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("primaryEmail").toString()));
+      }
+      // validate the optional field `billingInformation`
+      if (jsonObj.get("billingInformation") != null && !jsonObj.get("billingInformation").isJsonNull()) {
+        AccountsBillingInformation.validateJsonElement(jsonObj.get("billingInformation"));
       }
       if (jsonObj.get("settings") != null && !jsonObj.get("settings").isJsonNull()) {
         JsonArray jsonArraysettings = jsonObj.getAsJsonArray("settings");
@@ -318,9 +663,23 @@ public class CreateAccountRequest implements Serializable {
 
           // validate the optional field `settings` (array)
           for (int i = 0; i < jsonArraysettings.size(); i++) {
-            CreateEntitySetting.validateJsonObject(jsonArraysettings.get(i).getAsJsonObject());
+            CreateEntitySetting.validateJsonElement(jsonArraysettings.get(i));
           };
         }
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull() && !jsonObj.get("tags").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
+      }
+      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      }
+      // validate the optional field `status`
+      if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
+        StatusEnum.validateJsonElement(jsonObj.get("status"));
+      }
+      if (!jsonObj.get("customerId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `customerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customerId").toString()));
       }
   }
 
@@ -344,31 +703,31 @@ public class CreateAccountRequest implements Serializable {
 
            @Override
            public CreateAccountRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreateAccountRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateAccountRequest
-  * @throws IOException if the JSON string is invalid with respect to CreateAccountRequest
-  */
+  /**
+   * Create an instance of CreateAccountRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateAccountRequest
+   * @throws IOException if the JSON string is invalid with respect to CreateAccountRequest
+   */
   public static CreateAccountRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateAccountRequest.class);
   }
 
- /**
-  * Convert an instance of CreateAccountRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateAccountRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

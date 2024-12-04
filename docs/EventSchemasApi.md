@@ -14,7 +14,7 @@ All URIs are relative to *https://api.togai.com*
 | [**listEventSchemas**](EventSchemasApi.md#listEventSchemas) | **GET** /event_schema | List event schemas |
 
 
-<a name="activateEventSchema"></a>
+<a id="activateEventSchema"></a>
 # **activateEventSchema**
 > EventSchema activateEventSchema(eventSchemaName)
 
@@ -42,7 +42,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     EventSchemasApi apiInstance = new EventSchemasApi(defaultClient);
-    String eventSchemaName = "eventSchemaName_example"; // String | 
+    String eventSchemaName = "rides"; // String | 
     try {
       EventSchema result = apiInstance.activateEventSchema(eventSchemaName);
       System.out.println(result);
@@ -87,7 +87,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="createEventSchema"></a>
+<a id="createEventSchema"></a>
 # **createEventSchema**
 > EventSchema createEventSchema(createEventSchemaRequest)
 
@@ -160,7 +160,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="deactivateEventSchema"></a>
+<a id="deactivateEventSchema"></a>
 # **deactivateEventSchema**
 > EventSchema deactivateEventSchema(eventSchemaName)
 
@@ -188,7 +188,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     EventSchemasApi apiInstance = new EventSchemasApi(defaultClient);
-    String eventSchemaName = "eventSchemaName_example"; // String | 
+    String eventSchemaName = "rides"; // String | 
     try {
       EventSchema result = apiInstance.deactivateEventSchema(eventSchemaName);
       System.out.println(result);
@@ -233,7 +233,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="deleteEventSchema"></a>
+<a id="deleteEventSchema"></a>
 # **deleteEventSchema**
 > BaseSuccessResponse deleteEventSchema(eventSchemaName)
 
@@ -261,7 +261,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     EventSchemasApi apiInstance = new EventSchemasApi(defaultClient);
-    String eventSchemaName = "eventSchemaName_example"; // String | 
+    String eventSchemaName = "rides"; // String | 
     try {
       BaseSuccessResponse result = apiInstance.deleteEventSchema(eventSchemaName);
       System.out.println(result);
@@ -306,7 +306,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="eventSchemaEventSchemaNamePatch"></a>
+<a id="eventSchemaEventSchemaNamePatch"></a>
 # **eventSchemaEventSchemaNamePatch**
 > EventSchema eventSchemaEventSchemaNamePatch(eventSchemaName, updateEventSchemaRequest)
 
@@ -334,7 +334,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     EventSchemasApi apiInstance = new EventSchemasApi(defaultClient);
-    String eventSchemaName = "eventSchemaName_example"; // String | 
+    String eventSchemaName = "rides"; // String | 
     UpdateEventSchemaRequest updateEventSchemaRequest = new UpdateEventSchemaRequest(); // UpdateEventSchemaRequest | Payload to update event schema
     try {
       EventSchema result = apiInstance.eventSchemaEventSchemaNamePatch(eventSchemaName, updateEventSchemaRequest);
@@ -381,7 +381,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="getEventSchema"></a>
+<a id="getEventSchema"></a>
 # **getEventSchema**
 > EventSchema getEventSchema(eventSchemaName, version)
 
@@ -409,8 +409,8 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     EventSchemasApi apiInstance = new EventSchemasApi(defaultClient);
-    String eventSchemaName = "eventSchemaName_example"; // String | 
-    Integer version = 56; // Integer | Optional version to get a specific version. Gets latest version if it is not provided.
+    String eventSchemaName = "rides"; // String | 
+    Integer version = 2; // Integer | Optional version to get a specific version. Gets latest version if it is not provided.
     try {
       EventSchema result = apiInstance.getEventSchema(eventSchemaName, version);
       System.out.println(result);
@@ -456,7 +456,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="listEventSchemaVersions"></a>
+<a id="listEventSchemaVersions"></a>
 # **listEventSchemaVersions**
 > EventSchemaVersionsResponse listEventSchemaVersions(eventSchemaName)
 
@@ -484,7 +484,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     EventSchemasApi apiInstance = new EventSchemasApi(defaultClient);
-    String eventSchemaName = "eventSchemaName_example"; // String | 
+    String eventSchemaName = "rides"; // String | 
     try {
       EventSchemaVersionsResponse result = apiInstance.listEventSchemaVersions(eventSchemaName);
       System.out.println(result);
@@ -529,7 +529,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="listEventSchemas"></a>
+<a id="listEventSchemas"></a>
 # **listEventSchemas**
 > EventSchemaListPaginatedResponse listEventSchemas(status, nextToken, pageSize)
 

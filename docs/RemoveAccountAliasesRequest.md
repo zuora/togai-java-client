@@ -2,13 +2,14 @@
 
 # RemoveAccountAliasesRequest
 
-Payload to remove aliases from account
+Payload to remove account aliases
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**aliases** | **List&lt;String&gt;** | List of aliases to remove |  [optional] |
+|**aliases** | **List&lt;String&gt;** |  |  [optional] |
+|**accountAliases** | [**List&lt;RemoveAccountAliasRequest&gt;**](RemoveAccountAliasRequest.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -11,6 +11,7 @@
 |**creditId** | **String** |  |  |
 |**transactionType** | [**TransactionTypeEnum**](#TransactionTypeEnum) |  |  |
 |**invoiceId** | **String** |  |  [optional] |
+|**entityId** | **String** |  |  [optional] |
 |**amount** | **BigDecimal** |  |  |
 |**createdAt** | **OffsetDateTime** |  |  |
 

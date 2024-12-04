@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,8 +22,10 @@ import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.DimensionsSchema;
 import com.togai.client.models.Enrichments;
 import com.togai.client.models.EventAttributeSchema;
+import com.togai.client.models.FeatureDetails;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.io.Serializable;
@@ -39,13 +40,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -53,20 +56,23 @@ import com.togai.client.JSON;
 /**
  * Structure of an event schema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class EventSchema implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
   private String name;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_VERSION = "version";
   @SerializedName(SERIALIZED_NAME_VERSION)
+  @javax.annotation.Nonnull
   private Integer version;
 
   /**
@@ -118,126 +124,144 @@ public class EventSchema implements Serializable {
         return StatusEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      StatusEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private StatusEnum status;
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  @javax.annotation.Nullable
   private Set<EventAttributeSchema> attributes = new LinkedHashSet<>();
 
   public static final String SERIALIZED_NAME_DIMENSIONS = "dimensions";
   @SerializedName(SERIALIZED_NAME_DIMENSIONS)
+  @javax.annotation.Nullable
   private Set<DimensionsSchema> dimensions = new LinkedHashSet<>();
+
+  public static final String SERIALIZED_NAME_FILTER_FIELDS = "filterFields";
+  @SerializedName(SERIALIZED_NAME_FILTER_FIELDS)
+  @javax.annotation.Nullable
+  private Set<String> filterFields = new LinkedHashSet<>();
+
+  public static final String SERIALIZED_NAME_FEATURE_DETAILS = "featureDetails";
+  @SerializedName(SERIALIZED_NAME_FEATURE_DETAILS)
+  @javax.annotation.Nullable
+  private FeatureDetails featureDetails;
 
   public static final String SERIALIZED_NAME_ENRICHMENTS = "enrichments";
   @SerializedName(SERIALIZED_NAME_ENRICHMENTS)
+  @javax.annotation.Nullable
   private Enrichments enrichments;
+
+  public static final String SERIALIZED_NAME_EVENT_ID_TEMPLATE = "eventIdTemplate";
+  @SerializedName(SERIALIZED_NAME_EVENT_ID_TEMPLATE)
+  @javax.annotation.Nullable
+  private String eventIdTemplate;
+
+  public static final String SERIALIZED_NAME_EVENT_LEVEL_REVENUE = "eventLevelRevenue";
+  @SerializedName(SERIALIZED_NAME_EVENT_LEVEL_REVENUE)
+  @javax.annotation.Nullable
+  private Boolean eventLevelRevenue;
 
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  @javax.annotation.Nullable
   private OffsetDateTime createdAt;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updatedAt";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
+  @javax.annotation.Nullable
   private OffsetDateTime updatedAt;
 
   public EventSchema() {
   }
 
-  public EventSchema name(String name) {
-    
+  public EventSchema name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Name of the event. Must be unique for an organization.
    * @return name
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public EventSchema description(String description) {
-    
+  public EventSchema description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
 
-   /**
+  /**
    * Description of the event
    * @return description
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getDescription() {
     return description;
   }
 
-
-  public void setDescription(String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public EventSchema version(Integer version) {
-    
+  public EventSchema version(@javax.annotation.Nonnull Integer version) {
     this.version = version;
     return this;
   }
 
-   /**
+  /**
    * Version of event schema
    * minimum: 1
    * @return version
-  **/
+   */
   @javax.annotation.Nonnull
-
   public Integer getVersion() {
     return version;
   }
 
-
-  public void setVersion(Integer version) {
+  public void setVersion(@javax.annotation.Nonnull Integer version) {
     this.version = version;
   }
 
 
-  public EventSchema status(StatusEnum status) {
-    
+  public EventSchema status(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * Status of event schema * DRAFT - Schema is in draft state  * ACTIVE - Schema is currently active  * INACTIVE - Schema is currently inactive * ARCHIVED - Older version of event schema 
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
-
   public StatusEnum getStatus() {
     return status;
   }
 
-
-  public void setStatus(StatusEnum status) {
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
   }
 
 
-  public EventSchema attributes(Set<EventAttributeSchema> attributes) {
-    
+  public EventSchema attributes(@javax.annotation.Nullable Set<EventAttributeSchema> attributes) {
     this.attributes = attributes;
     return this;
   }
@@ -250,24 +274,21 @@ public class EventSchema implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get attributes
    * @return attributes
-  **/
+   */
   @javax.annotation.Nullable
-
   public Set<EventAttributeSchema> getAttributes() {
     return attributes;
   }
 
-
-  public void setAttributes(Set<EventAttributeSchema> attributes) {
+  public void setAttributes(@javax.annotation.Nullable Set<EventAttributeSchema> attributes) {
     this.attributes = attributes;
   }
 
 
-  public EventSchema dimensions(Set<DimensionsSchema> dimensions) {
-    
+  public EventSchema dimensions(@javax.annotation.Nullable Set<DimensionsSchema> dimensions) {
     this.dimensions = dimensions;
     return this;
   }
@@ -280,84 +301,157 @@ public class EventSchema implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get dimensions
    * @return dimensions
-  **/
+   */
   @javax.annotation.Nullable
-
   public Set<DimensionsSchema> getDimensions() {
     return dimensions;
   }
 
-
-  public void setDimensions(Set<DimensionsSchema> dimensions) {
+  public void setDimensions(@javax.annotation.Nullable Set<DimensionsSchema> dimensions) {
     this.dimensions = dimensions;
   }
 
 
-  public EventSchema enrichments(Enrichments enrichments) {
-    
+  public EventSchema filterFields(@javax.annotation.Nullable Set<String> filterFields) {
+    this.filterFields = filterFields;
+    return this;
+  }
+
+  public EventSchema addFilterFieldsItem(String filterFieldsItem) {
+    if (this.filterFields == null) {
+      this.filterFields = new LinkedHashSet<>();
+    }
+    this.filterFields.add(filterFieldsItem);
+    return this;
+  }
+
+  /**
+   * Get filterFields
+   * @return filterFields
+   */
+  @javax.annotation.Nullable
+  public Set<String> getFilterFields() {
+    return filterFields;
+  }
+
+  public void setFilterFields(@javax.annotation.Nullable Set<String> filterFields) {
+    this.filterFields = filterFields;
+  }
+
+
+  public EventSchema featureDetails(@javax.annotation.Nullable FeatureDetails featureDetails) {
+    this.featureDetails = featureDetails;
+    return this;
+  }
+
+  /**
+   * Get featureDetails
+   * @return featureDetails
+   */
+  @javax.annotation.Nullable
+  public FeatureDetails getFeatureDetails() {
+    return featureDetails;
+  }
+
+  public void setFeatureDetails(@javax.annotation.Nullable FeatureDetails featureDetails) {
+    this.featureDetails = featureDetails;
+  }
+
+
+  public EventSchema enrichments(@javax.annotation.Nullable Enrichments enrichments) {
     this.enrichments = enrichments;
     return this;
   }
 
-   /**
+  /**
    * Get enrichments
    * @return enrichments
-  **/
+   */
   @javax.annotation.Nullable
-
   public Enrichments getEnrichments() {
     return enrichments;
   }
 
-
-  public void setEnrichments(Enrichments enrichments) {
+  public void setEnrichments(@javax.annotation.Nullable Enrichments enrichments) {
     this.enrichments = enrichments;
   }
 
 
-  public EventSchema createdAt(OffsetDateTime createdAt) {
-    
+  public EventSchema eventIdTemplate(@javax.annotation.Nullable String eventIdTemplate) {
+    this.eventIdTemplate = eventIdTemplate;
+    return this;
+  }
+
+  /**
+   * Template used to generate event id based on event payload
+   * @return eventIdTemplate
+   */
+  @javax.annotation.Nullable
+  public String getEventIdTemplate() {
+    return eventIdTemplate;
+  }
+
+  public void setEventIdTemplate(@javax.annotation.Nullable String eventIdTemplate) {
+    this.eventIdTemplate = eventIdTemplate;
+  }
+
+
+  public EventSchema eventLevelRevenue(@javax.annotation.Nullable Boolean eventLevelRevenue) {
+    this.eventLevelRevenue = eventLevelRevenue;
+    return this;
+  }
+
+  /**
+   * Get eventLevelRevenue
+   * @return eventLevelRevenue
+   */
+  @javax.annotation.Nullable
+  public Boolean getEventLevelRevenue() {
+    return eventLevelRevenue;
+  }
+
+  public void setEventLevelRevenue(@javax.annotation.Nullable Boolean eventLevelRevenue) {
+    this.eventLevelRevenue = eventLevelRevenue;
+  }
+
+
+  public EventSchema createdAt(@javax.annotation.Nullable OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
   }
 
-   /**
+  /**
    * Get createdAt
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nullable
-
   public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
 
-
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(@javax.annotation.Nullable OffsetDateTime createdAt) {
     this.createdAt = createdAt;
   }
 
 
-  public EventSchema updatedAt(OffsetDateTime updatedAt) {
-    
+  public EventSchema updatedAt(@javax.annotation.Nullable OffsetDateTime updatedAt) {
     this.updatedAt = updatedAt;
     return this;
   }
 
-   /**
+  /**
    * Get updatedAt
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nullable
-
   public OffsetDateTime getUpdatedAt() {
     return updatedAt;
   }
 
-
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
+  public void setUpdatedAt(@javax.annotation.Nullable OffsetDateTime updatedAt) {
     this.updatedAt = updatedAt;
   }
 
@@ -378,14 +472,18 @@ public class EventSchema implements Serializable {
         Objects.equals(this.status, eventSchema.status) &&
         Objects.equals(this.attributes, eventSchema.attributes) &&
         Objects.equals(this.dimensions, eventSchema.dimensions) &&
+        Objects.equals(this.filterFields, eventSchema.filterFields) &&
+        Objects.equals(this.featureDetails, eventSchema.featureDetails) &&
         Objects.equals(this.enrichments, eventSchema.enrichments) &&
+        Objects.equals(this.eventIdTemplate, eventSchema.eventIdTemplate) &&
+        Objects.equals(this.eventLevelRevenue, eventSchema.eventLevelRevenue) &&
         Objects.equals(this.createdAt, eventSchema.createdAt) &&
         Objects.equals(this.updatedAt, eventSchema.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, version, status, attributes, dimensions, enrichments, createdAt, updatedAt);
+    return Objects.hash(name, description, version, status, attributes, dimensions, filterFields, featureDetails, enrichments, eventIdTemplate, eventLevelRevenue, createdAt, updatedAt);
   }
 
   @Override
@@ -398,7 +496,11 @@ public class EventSchema implements Serializable {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    dimensions: ").append(toIndentedString(dimensions)).append("\n");
+    sb.append("    filterFields: ").append(toIndentedString(filterFields)).append("\n");
+    sb.append("    featureDetails: ").append(toIndentedString(featureDetails)).append("\n");
     sb.append("    enrichments: ").append(toIndentedString(enrichments)).append("\n");
+    sb.append("    eventIdTemplate: ").append(toIndentedString(eventIdTemplate)).append("\n");
+    sb.append("    eventLevelRevenue: ").append(toIndentedString(eventLevelRevenue)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
@@ -429,7 +531,11 @@ public class EventSchema implements Serializable {
     openapiFields.add("status");
     openapiFields.add("attributes");
     openapiFields.add("dimensions");
+    openapiFields.add("filterFields");
+    openapiFields.add("featureDetails");
     openapiFields.add("enrichments");
+    openapiFields.add("eventIdTemplate");
+    openapiFields.add("eventLevelRevenue");
     openapiFields.add("createdAt");
     openapiFields.add("updatedAt");
 
@@ -439,33 +545,34 @@ public class EventSchema implements Serializable {
     openapiRequiredFields.add("version");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to EventSchema
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!EventSchema.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to EventSchema
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!EventSchema.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in EventSchema is not found in the empty JSON string", EventSchema.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!EventSchema.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EventSchema` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EventSchema` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : EventSchema.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
@@ -474,6 +581,10 @@ public class EventSchema implements Serializable {
       }
       if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      }
+      // validate the optional field `status`
+      if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
+        StatusEnum.validateJsonElement(jsonObj.get("status"));
       }
       if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
         JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
@@ -485,7 +596,7 @@ public class EventSchema implements Serializable {
 
           // validate the optional field `attributes` (array)
           for (int i = 0; i < jsonArrayattributes.size(); i++) {
-            EventAttributeSchema.validateJsonObject(jsonArrayattributes.get(i).getAsJsonObject());
+            EventAttributeSchema.validateJsonElement(jsonArrayattributes.get(i));
           };
         }
       }
@@ -499,13 +610,24 @@ public class EventSchema implements Serializable {
 
           // validate the optional field `dimensions` (array)
           for (int i = 0; i < jsonArraydimensions.size(); i++) {
-            DimensionsSchema.validateJsonObject(jsonArraydimensions.get(i).getAsJsonObject());
+            DimensionsSchema.validateJsonElement(jsonArraydimensions.get(i));
           };
         }
       }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("filterFields") != null && !jsonObj.get("filterFields").isJsonNull() && !jsonObj.get("filterFields").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `filterFields` to be an array in the JSON string but got `%s`", jsonObj.get("filterFields").toString()));
+      }
+      // validate the optional field `featureDetails`
+      if (jsonObj.get("featureDetails") != null && !jsonObj.get("featureDetails").isJsonNull()) {
+        FeatureDetails.validateJsonElement(jsonObj.get("featureDetails"));
+      }
       // validate the optional field `enrichments`
       if (jsonObj.get("enrichments") != null && !jsonObj.get("enrichments").isJsonNull()) {
-        Enrichments.validateJsonObject(jsonObj.getAsJsonObject("enrichments"));
+        Enrichments.validateJsonElement(jsonObj.get("enrichments"));
+      }
+      if ((jsonObj.get("eventIdTemplate") != null && !jsonObj.get("eventIdTemplate").isJsonNull()) && !jsonObj.get("eventIdTemplate").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `eventIdTemplate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("eventIdTemplate").toString()));
       }
   }
 
@@ -529,31 +651,31 @@ public class EventSchema implements Serializable {
 
            @Override
            public EventSchema read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of EventSchema given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of EventSchema
-  * @throws IOException if the JSON string is invalid with respect to EventSchema
-  */
+  /**
+   * Create an instance of EventSchema given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of EventSchema
+   * @throws IOException if the JSON string is invalid with respect to EventSchema
+   */
   public static EventSchema fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, EventSchema.class);
   }
 
- /**
-  * Convert an instance of EventSchema to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of EventSchema to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

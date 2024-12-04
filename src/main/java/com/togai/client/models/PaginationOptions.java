@@ -14,13 +14,13 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -33,13 +33,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -47,12 +49,13 @@ import com.togai.client.JSON;
 /**
  * PaginationOptions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class PaginationOptions implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_PAGE_SIZE = "pageSize";
   @SerializedName(SERIALIZED_NAME_PAGE_SIZE)
+  @javax.annotation.Nullable
   private Integer pageSize;
 
   /**
@@ -100,55 +103,55 @@ public class PaginationOptions implements Serializable {
         return SortOrderEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      SortOrderEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_SORT_ORDER = "sortOrder";
   @SerializedName(SERIALIZED_NAME_SORT_ORDER)
+  @javax.annotation.Nullable
   private SortOrderEnum sortOrder;
 
   public PaginationOptions() {
   }
 
-  public PaginationOptions pageSize(Integer pageSize) {
-    
+  public PaginationOptions pageSize(@javax.annotation.Nullable Integer pageSize) {
     this.pageSize = pageSize;
     return this;
   }
 
-   /**
+  /**
    * Get pageSize
    * @return pageSize
-  **/
+   */
   @javax.annotation.Nullable
-
   public Integer getPageSize() {
     return pageSize;
   }
 
-
-  public void setPageSize(Integer pageSize) {
+  public void setPageSize(@javax.annotation.Nullable Integer pageSize) {
     this.pageSize = pageSize;
   }
 
 
-  public PaginationOptions sortOrder(SortOrderEnum sortOrder) {
-    
+  public PaginationOptions sortOrder(@javax.annotation.Nullable SortOrderEnum sortOrder) {
     this.sortOrder = sortOrder;
     return this;
   }
 
-   /**
+  /**
    * Get sortOrder
    * @return sortOrder
-  **/
+   */
   @javax.annotation.Nullable
-
   public SortOrderEnum getSortOrder() {
     return sortOrder;
   }
 
-
-  public void setSortOrder(SortOrderEnum sortOrder) {
+  public void setSortOrder(@javax.annotation.Nullable SortOrderEnum sortOrder) {
     this.sortOrder = sortOrder;
   }
 
@@ -207,28 +210,33 @@ public class PaginationOptions implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to PaginationOptions
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!PaginationOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaginationOptions
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PaginationOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaginationOptions is not found in the empty JSON string", PaginationOptions.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!PaginationOptions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaginationOptions` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaginationOptions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("sortOrder") != null && !jsonObj.get("sortOrder").isJsonNull()) && !jsonObj.get("sortOrder").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `sortOrder` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sortOrder").toString()));
+      }
+      // validate the optional field `sortOrder`
+      if (jsonObj.get("sortOrder") != null && !jsonObj.get("sortOrder").isJsonNull()) {
+        SortOrderEnum.validateJsonElement(jsonObj.get("sortOrder"));
       }
   }
 
@@ -252,31 +260,31 @@ public class PaginationOptions implements Serializable {
 
            @Override
            public PaginationOptions read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of PaginationOptions given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaginationOptions
-  * @throws IOException if the JSON string is invalid with respect to PaginationOptions
-  */
+  /**
+   * Create an instance of PaginationOptions given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaginationOptions
+   * @throws IOException if the JSON string is invalid with respect to PaginationOptions
+   */
   public static PaginationOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaginationOptions.class);
   }
 
- /**
-  * Convert an instance of PaginationOptions to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaginationOptions to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

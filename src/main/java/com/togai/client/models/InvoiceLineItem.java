@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,6 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,13 +38,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -52,179 +54,318 @@ import com.togai.client.JSON;
 /**
  * InvoiceLineItem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class InvoiceLineItem implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
+  private String id;
+
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nonnull
   private String description;
+
+  /**
+   * Type of the line item - GRAND_TOTAL_AMOUNT: Sum of all total amount of individual invoices in a grouped(composite) invoice - TOTAL_AMOUNT: Total revenue of the invoice - NET_AMOUNT: Net revenue of the invoice ( Gross revenue - Discounts ) - GROSS_AMOUNT: Gross revenue of the invoice  - PRICE_PLAN_AMOUNT: SUB_TOTAL_AMOUNT + true up amount - SUB_TOTAL_AMOUNT: Sum of all rate card revenues - TRUE_UP_AMOUNT: Minimum commitment - SUB_TOTAL_AMOUNT (Always positive) - TOTAL_USAGE: List of all the usage meter usages - USAGE_METER_USAGE: Usage of an usage meter - USAGE_RATE_CARD_AMOUNT: Revenue generated from usage rate card - USAGE_RATE_CARD_SLAB_AMOUNT: Revenue generated from usage rate card slab - FIXED_FEE_RATE_CARD_AMOUNT: Revenue generated from fixed fee rate card - CREDIT_GRANT_RATE_CARD_AMOUNT: : Revenue generated from credit grant rate card - BILLING_ENTITLEMENT_RATE_CARD_AMOUNT: Revenue generated from billing entitlement rate card - ENTITLEMENT_OVERAGE_RATE_CARD_AMOUNT: : Revenue generated from entitlement overage rate card - ENTITLEMENT_OVERAGE_RATE_CARD_SLAB_AMOUNT: Revenue generated from entitlement overage rate card slab - LICENSE_RATE_CARD_AMOUNT: Revenue generated from license rate card - TOTAL_CREDITS: Sum of all credit amounts - SUB_CREDITS: Granted credit value - TOTAL_ADVANCED_FEES: Sum of all advanced fee revenue - ADVANCED_FIXED_FEE: Revenue generated from advanced fixed fee rate card - ADVANCED_LICENSE_RATE_CARD_AMOUNT: Revenue generated from advanced license rate card - ADVANCED_BILLING_ENTITLEMENT_RATE_CARD_AMOUNT: Revenue generated from advanced billing entitlement rate card - ADVANCED_CREDIT_GRANT_RATE_CARD_AMOUNT: Revenue generated from advanced credit grant rate card - TOTAL_MISCELLANEOUS_CHARGES: Net revenue of all MISCELLANEOUS_CHARGE - MISCELLANEOUS_CHARGE: Custom amount added to a DRAFT invoice - TOTAL_PURCHASE_AMOUNT: Net revenue all rate cards in a purchase plan - CUSTOM_AMOUNT: Custom amount added a DRAFT invoice - CUSTOM_TAG: User defined tags given to each rate card - TOTAL_PRICING_RULE_ADDITION_AMOUNT: Sum of all line items added by applying pricing rules - PRICING_RULE_ADDITION_AMOUNT: Amount added to invoice as a result of applying a pricing rule - PRICING_RULE_REVENUE_UPDATE_AMOUNT: Difference in revenue(value) obtained as a result of applying a pricing rule - PRICING_RULE_USAGE_UPDATE_AMOUNT: Difference in usage(quantity) obtained as a result of applying a pricing rule - RATE_CONFIG_ADJUSTMENT_AMOUNT: Difference in revenue obtained as a result of applying rate config[&#39;minimumRate&#39;, &#39;maximumRate&#39;] at rate card level 
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    TOTAL_USAGE("TOTAL_USAGE"),
+    
+    USAGE_METER_USAGE("USAGE_METER_USAGE"),
+    
+    GRAND_TOTAL_AMOUNT("GRAND_TOTAL_AMOUNT"),
+    
+    TOTAL_AMOUNT("TOTAL_AMOUNT"),
+    
+    NET_AMOUNT("NET_AMOUNT"),
+    
+    GROSS_AMOUNT("GROSS_AMOUNT"),
+    
+    SUB_TOTAL_AMOUNT("SUB_TOTAL_AMOUNT"),
+    
+    PRICE_PLAN_AMOUNT("PRICE_PLAN_AMOUNT"),
+    
+    FIXED_FEE_RATE_CARD_AMOUNT("FIXED_FEE_RATE_CARD_AMOUNT"),
+    
+    CREDIT_GRANT_RATE_CARD_AMOUNT("CREDIT_GRANT_RATE_CARD_AMOUNT"),
+    
+    BILLING_ENTITLEMENT_RATE_CARD_AMOUNT("BILLING_ENTITLEMENT_RATE_CARD_AMOUNT"),
+    
+    ENTITLEMENT_OVERAGE_RATE_CARD_AMOUNT("ENTITLEMENT_OVERAGE_RATE_CARD_AMOUNT"),
+    
+    ENTITLEMENT_OVERAGE_RATE_CARD_SLAB_AMOUNT("ENTITLEMENT_OVERAGE_RATE_CARD_SLAB_AMOUNT"),
+    
+    LICENSE_RATE_CARD_AMOUNT("LICENSE_RATE_CARD_AMOUNT"),
+    
+    USAGE_CYCLE_AMOUNT("USAGE_CYCLE_AMOUNT"),
+    
+    LICENSE_RATE_CARD_SLAB_AMOUNT("LICENSE_RATE_CARD_SLAB_AMOUNT"),
+    
+    USAGE_RATE_CARD_AMOUNT("USAGE_RATE_CARD_AMOUNT"),
+    
+    USAGE_RATE_CARD_SLAB_AMOUNT("USAGE_RATE_CARD_SLAB_AMOUNT"),
+    
+    TOTAL_CREDITS("TOTAL_CREDITS"),
+    
+    SUB_CREDITS("SUB_CREDITS"),
+    
+    TOTAL_ADVANCED_FEES("TOTAL_ADVANCED_FEES"),
+    
+    ADVANCED_FIXED_FEE("ADVANCED_FIXED_FEE"),
+    
+    ADVANCED_LICENSE_RATE_CARD_AMOUNT("ADVANCED_LICENSE_RATE_CARD_AMOUNT"),
+    
+    ADVANCED_BILLING_ENTITLEMENT_RATE_CARD_AMOUNT("ADVANCED_BILLING_ENTITLEMENT_RATE_CARD_AMOUNT"),
+    
+    ADVANCED_CREDIT_GRANT_RATE_CARD_AMOUNT("ADVANCED_CREDIT_GRANT_RATE_CARD_AMOUNT"),
+    
+    TOTAL_MISCELLANEOUS_CHARGES("TOTAL_MISCELLANEOUS_CHARGES"),
+    
+    MISCELLANEOUS_CHARGE("MISCELLANEOUS_CHARGE"),
+    
+    TRUE_UP_AMOUNT("TRUE_UP_AMOUNT"),
+    
+    TOTAL_PURCHASE_AMOUNT("TOTAL_PURCHASE_AMOUNT"),
+    
+    CUSTOM_AMOUNT("CUSTOM_AMOUNT"),
+    
+    CUSTOM_TAG("CUSTOM_TAG"),
+    
+    TOTAL_PRICING_RULE_ADDITION_AMOUNT("TOTAL_PRICING_RULE_ADDITION_AMOUNT"),
+    
+    PRICING_RULE_ADDITION_AMOUNT("PRICING_RULE_ADDITION_AMOUNT"),
+    
+    PRICING_RULE_REVENUE_UPDATE_AMOUNT("PRICING_RULE_REVENUE_UPDATE_AMOUNT"),
+    
+    PRICING_RULE_USAGE_UPDATE_AMOUNT("PRICING_RULE_USAGE_UPDATE_AMOUNT"),
+    
+    RATE_CONFIG_ADJUSTMENT_AMOUNT("RATE_CONFIG_ADJUSTMENT_AMOUNT"),
+    
+    TOTAL_TAX_AMOUNT("TOTAL_TAX_AMOUNT"),
+    
+    TAX_AMOUNT("TAX_AMOUNT"),
+    
+    PROXY_AMOUNT("PROXY_AMOUNT");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return TypeEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      TypeEnum.fromValue(value);
+    }
+  }
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-  private String type;
+  @javax.annotation.Nonnull
+  private TypeEnum type;
 
   public static final String SERIALIZED_NAME_VALUE_PER_QUANTITY = "valuePerQuantity";
   @SerializedName(SERIALIZED_NAME_VALUE_PER_QUANTITY)
+  @javax.annotation.Nullable
   private BigDecimal valuePerQuantity;
 
   public static final String SERIALIZED_NAME_QUANTITY = "quantity";
   @SerializedName(SERIALIZED_NAME_QUANTITY)
+  @javax.annotation.Nullable
   private BigDecimal quantity;
 
   public static final String SERIALIZED_NAME_UNITS = "units";
   @SerializedName(SERIALIZED_NAME_UNITS)
+  @javax.annotation.Nullable
   private String units;
 
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
+  @javax.annotation.Nonnull
   private BigDecimal value;
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
+  @javax.annotation.Nullable
   private Map<String, Object> metadata = new HashMap<>();
 
   public static final String SERIALIZED_NAME_LINE_ITEMS = "lineItems";
   @SerializedName(SERIALIZED_NAME_LINE_ITEMS)
+  @javax.annotation.Nonnull
   private List<InvoiceLineItem> lineItems = new ArrayList<>();
 
   public InvoiceLineItem() {
   }
 
-  public InvoiceLineItem description(String description) {
-    
+  public InvoiceLineItem id(@javax.annotation.Nullable String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nullable
+  public String getId() {
+    return id;
+  }
+
+  public void setId(@javax.annotation.Nullable String id) {
+    this.id = id;
+  }
+
+
+  public InvoiceLineItem description(@javax.annotation.Nonnull String description) {
     this.description = description;
     return this;
   }
 
-   /**
+  /**
    * Get description
    * @return description
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getDescription() {
     return description;
   }
 
-
-  public void setDescription(String description) {
+  public void setDescription(@javax.annotation.Nonnull String description) {
     this.description = description;
   }
 
 
-  public InvoiceLineItem type(String type) {
-    
+  public InvoiceLineItem type(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
     return this;
   }
 
-   /**
-   * Type of the line item - TOTAL_USAGE: List of all the usage meter usages - USAGE_METER_USAGE: A single usage meter usage - NET_REVENUE: Net revenue of the invoice ( Gross revenue - Discounts ) - GROSS_REVENUE: Gross revenue of the invoice  - USAGE_RATE_CARD_REVENUE: Revenue generated from usage rate card - USAGE_RATE_CARD_SLAB_REVENUE: Revenue generated from usage rate card slab 
+  /**
+   * Type of the line item - GRAND_TOTAL_AMOUNT: Sum of all total amount of individual invoices in a grouped(composite) invoice - TOTAL_AMOUNT: Total revenue of the invoice - NET_AMOUNT: Net revenue of the invoice ( Gross revenue - Discounts ) - GROSS_AMOUNT: Gross revenue of the invoice  - PRICE_PLAN_AMOUNT: SUB_TOTAL_AMOUNT + true up amount - SUB_TOTAL_AMOUNT: Sum of all rate card revenues - TRUE_UP_AMOUNT: Minimum commitment - SUB_TOTAL_AMOUNT (Always positive) - TOTAL_USAGE: List of all the usage meter usages - USAGE_METER_USAGE: Usage of an usage meter - USAGE_RATE_CARD_AMOUNT: Revenue generated from usage rate card - USAGE_RATE_CARD_SLAB_AMOUNT: Revenue generated from usage rate card slab - FIXED_FEE_RATE_CARD_AMOUNT: Revenue generated from fixed fee rate card - CREDIT_GRANT_RATE_CARD_AMOUNT: : Revenue generated from credit grant rate card - BILLING_ENTITLEMENT_RATE_CARD_AMOUNT: Revenue generated from billing entitlement rate card - ENTITLEMENT_OVERAGE_RATE_CARD_AMOUNT: : Revenue generated from entitlement overage rate card - ENTITLEMENT_OVERAGE_RATE_CARD_SLAB_AMOUNT: Revenue generated from entitlement overage rate card slab - LICENSE_RATE_CARD_AMOUNT: Revenue generated from license rate card - TOTAL_CREDITS: Sum of all credit amounts - SUB_CREDITS: Granted credit value - TOTAL_ADVANCED_FEES: Sum of all advanced fee revenue - ADVANCED_FIXED_FEE: Revenue generated from advanced fixed fee rate card - ADVANCED_LICENSE_RATE_CARD_AMOUNT: Revenue generated from advanced license rate card - ADVANCED_BILLING_ENTITLEMENT_RATE_CARD_AMOUNT: Revenue generated from advanced billing entitlement rate card - ADVANCED_CREDIT_GRANT_RATE_CARD_AMOUNT: Revenue generated from advanced credit grant rate card - TOTAL_MISCELLANEOUS_CHARGES: Net revenue of all MISCELLANEOUS_CHARGE - MISCELLANEOUS_CHARGE: Custom amount added to a DRAFT invoice - TOTAL_PURCHASE_AMOUNT: Net revenue all rate cards in a purchase plan - CUSTOM_AMOUNT: Custom amount added a DRAFT invoice - CUSTOM_TAG: User defined tags given to each rate card - TOTAL_PRICING_RULE_ADDITION_AMOUNT: Sum of all line items added by applying pricing rules - PRICING_RULE_ADDITION_AMOUNT: Amount added to invoice as a result of applying a pricing rule - PRICING_RULE_REVENUE_UPDATE_AMOUNT: Difference in revenue(value) obtained as a result of applying a pricing rule - PRICING_RULE_USAGE_UPDATE_AMOUNT: Difference in usage(quantity) obtained as a result of applying a pricing rule - RATE_CONFIG_ADJUSTMENT_AMOUNT: Difference in revenue obtained as a result of applying rate config[&#39;minimumRate&#39;, &#39;maximumRate&#39;] at rate card level 
    * @return type
-  **/
+   */
   @javax.annotation.Nonnull
-
-  public String getType() {
+  public TypeEnum getType() {
     return type;
   }
 
-
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
   }
 
 
-  public InvoiceLineItem valuePerQuantity(BigDecimal valuePerQuantity) {
-    
+  public InvoiceLineItem valuePerQuantity(@javax.annotation.Nullable BigDecimal valuePerQuantity) {
     this.valuePerQuantity = valuePerQuantity;
     return this;
   }
 
-   /**
+  /**
    * Get valuePerQuantity
    * @return valuePerQuantity
-  **/
+   */
   @javax.annotation.Nullable
-
   public BigDecimal getValuePerQuantity() {
     return valuePerQuantity;
   }
 
-
-  public void setValuePerQuantity(BigDecimal valuePerQuantity) {
+  public void setValuePerQuantity(@javax.annotation.Nullable BigDecimal valuePerQuantity) {
     this.valuePerQuantity = valuePerQuantity;
   }
 
 
-  public InvoiceLineItem quantity(BigDecimal quantity) {
-    
+  public InvoiceLineItem quantity(@javax.annotation.Nullable BigDecimal quantity) {
     this.quantity = quantity;
     return this;
   }
 
-   /**
+  /**
    * Get quantity
    * @return quantity
-  **/
+   */
   @javax.annotation.Nullable
-
   public BigDecimal getQuantity() {
     return quantity;
   }
 
-
-  public void setQuantity(BigDecimal quantity) {
+  public void setQuantity(@javax.annotation.Nullable BigDecimal quantity) {
     this.quantity = quantity;
   }
 
 
-  public InvoiceLineItem units(String units) {
-    
+  public InvoiceLineItem units(@javax.annotation.Nullable String units) {
     this.units = units;
     return this;
   }
 
-   /**
+  /**
    * Get units
    * @return units
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getUnits() {
     return units;
   }
 
-
-  public void setUnits(String units) {
+  public void setUnits(@javax.annotation.Nullable String units) {
     this.units = units;
   }
 
 
-  public InvoiceLineItem value(BigDecimal value) {
-    
+  public InvoiceLineItem value(@javax.annotation.Nonnull BigDecimal value) {
     this.value = value;
     return this;
   }
 
-   /**
+  /**
    * Get value
    * @return value
-  **/
-  @javax.annotation.Nullable
-
+   */
+  @javax.annotation.Nonnull
   public BigDecimal getValue() {
     return value;
   }
 
-
-  public void setValue(BigDecimal value) {
+  public void setValue(@javax.annotation.Nonnull BigDecimal value) {
     this.value = value;
   }
 
 
-  public InvoiceLineItem metadata(Map<String, Object> metadata) {
-    
+  public InvoiceLineItem metadata(@javax.annotation.Nullable Map<String, Object> metadata) {
     this.metadata = metadata;
     return this;
   }
@@ -237,45 +378,43 @@ public class InvoiceLineItem implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get metadata
    * @return metadata
-  **/
+   */
   @javax.annotation.Nullable
-
   public Map<String, Object> getMetadata() {
     return metadata;
   }
 
-
-  public void setMetadata(Map<String, Object> metadata) {
+  public void setMetadata(@javax.annotation.Nullable Map<String, Object> metadata) {
     this.metadata = metadata;
   }
 
 
-  public InvoiceLineItem lineItems(List<InvoiceLineItem> lineItems) {
-    
+  public InvoiceLineItem lineItems(@javax.annotation.Nonnull List<InvoiceLineItem> lineItems) {
     this.lineItems = lineItems;
     return this;
   }
 
   public InvoiceLineItem addLineItemsItem(InvoiceLineItem lineItemsItem) {
+    if (this.lineItems == null) {
+      this.lineItems = new ArrayList<>();
+    }
     this.lineItems.add(lineItemsItem);
     return this;
   }
 
-   /**
+  /**
    * Get lineItems
    * @return lineItems
-  **/
+   */
   @javax.annotation.Nonnull
-
   public List<InvoiceLineItem> getLineItems() {
     return lineItems;
   }
 
-
-  public void setLineItems(List<InvoiceLineItem> lineItems) {
+  public void setLineItems(@javax.annotation.Nonnull List<InvoiceLineItem> lineItems) {
     this.lineItems = lineItems;
   }
 
@@ -290,7 +429,8 @@ public class InvoiceLineItem implements Serializable {
       return false;
     }
     InvoiceLineItem invoiceLineItem = (InvoiceLineItem) o;
-    return Objects.equals(this.description, invoiceLineItem.description) &&
+    return Objects.equals(this.id, invoiceLineItem.id) &&
+        Objects.equals(this.description, invoiceLineItem.description) &&
         Objects.equals(this.type, invoiceLineItem.type) &&
         Objects.equals(this.valuePerQuantity, invoiceLineItem.valuePerQuantity) &&
         Objects.equals(this.quantity, invoiceLineItem.quantity) &&
@@ -302,13 +442,14 @@ public class InvoiceLineItem implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, type, valuePerQuantity, quantity, units, value, metadata, lineItems);
+    return Objects.hash(id, description, type, valuePerQuantity, quantity, units, value, metadata, lineItems);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InvoiceLineItem {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    valuePerQuantity: ").append(toIndentedString(valuePerQuantity)).append("\n");
@@ -339,6 +480,7 @@ public class InvoiceLineItem implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("id");
     openapiFields.add("description");
     openapiFields.add("type");
     openapiFields.add("valuePerQuantity");
@@ -352,35 +494,40 @@ public class InvoiceLineItem implements Serializable {
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("description");
     openapiRequiredFields.add("type");
+    openapiRequiredFields.add("value");
     openapiRequiredFields.add("lineItems");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to InvoiceLineItem
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!InvoiceLineItem.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to InvoiceLineItem
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!InvoiceLineItem.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in InvoiceLineItem is not found in the empty JSON string", InvoiceLineItem.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!InvoiceLineItem.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InvoiceLineItem` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InvoiceLineItem` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : InvoiceLineItem.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       if (!jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
@@ -388,6 +535,8 @@ public class InvoiceLineItem implements Serializable {
       if (!jsonObj.get("type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
       }
+      // validate the required field `type`
+      TypeEnum.validateJsonElement(jsonObj.get("type"));
       if ((jsonObj.get("units") != null && !jsonObj.get("units").isJsonNull()) && !jsonObj.get("units").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `units` to be a primitive type in the JSON string but got `%s`", jsonObj.get("units").toString()));
       }
@@ -399,7 +548,7 @@ public class InvoiceLineItem implements Serializable {
       JsonArray jsonArraylineItems = jsonObj.getAsJsonArray("lineItems");
       // validate the required field `lineItems` (array)
       for (int i = 0; i < jsonArraylineItems.size(); i++) {
-        InvoiceLineItem.validateJsonObject(jsonArraylineItems.get(i).getAsJsonObject());
+        InvoiceLineItem.validateJsonElement(jsonArraylineItems.get(i));
       };
   }
 
@@ -423,31 +572,31 @@ public class InvoiceLineItem implements Serializable {
 
            @Override
            public InvoiceLineItem read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of InvoiceLineItem given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of InvoiceLineItem
-  * @throws IOException if the JSON string is invalid with respect to InvoiceLineItem
-  */
+  /**
+   * Create an instance of InvoiceLineItem given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of InvoiceLineItem
+   * @throws IOException if the JSON string is invalid with respect to InvoiceLineItem
+   */
   public static InvoiceLineItem fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InvoiceLineItem.class);
   }
 
- /**
-  * Convert an instance of InvoiceLineItem to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of InvoiceLineItem to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

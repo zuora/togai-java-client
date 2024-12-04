@@ -14,14 +14,19 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.CreatePricePlanDetailsOverride;
+import com.togai.client.models.CreatePricingRule;
+import com.togai.client.models.MigrationMode;
+import com.togai.client.models.VersionsToMigrate;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -34,76 +39,154 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
 
 /**
- * Request to update a price plan
+ * UpdatePricePlanRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class UpdatePricePlanRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_MIGRATION_MODE = "migrationMode";
+  @SerializedName(SERIALIZED_NAME_MIGRATION_MODE)
+  @javax.annotation.Nullable
+  private MigrationMode migrationMode;
+
+  public static final String SERIALIZED_NAME_VERSIONS_TO_MIGRATE = "versionsToMigrate";
+  @SerializedName(SERIALIZED_NAME_VERSIONS_TO_MIGRATE)
+  @javax.annotation.Nullable
+  private VersionsToMigrate versionsToMigrate;
+
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_PRICE_PLAN_DETAILS = "pricePlanDetails";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_DETAILS)
+  @javax.annotation.Nullable
   private CreatePricePlanDetailsOverride pricePlanDetails;
+
+  public static final String SERIALIZED_NAME_PRICING_RULES = "pricingRules";
+  @SerializedName(SERIALIZED_NAME_PRICING_RULES)
+  @javax.annotation.Nullable
+  private List<CreatePricingRule> pricingRules = new ArrayList<>();
 
   public UpdatePricePlanRequest() {
   }
 
-  public UpdatePricePlanRequest description(String description) {
-    
+  public UpdatePricePlanRequest migrationMode(@javax.annotation.Nullable MigrationMode migrationMode) {
+    this.migrationMode = migrationMode;
+    return this;
+  }
+
+  /**
+   * Get migrationMode
+   * @return migrationMode
+   */
+  @javax.annotation.Nullable
+  public MigrationMode getMigrationMode() {
+    return migrationMode;
+  }
+
+  public void setMigrationMode(@javax.annotation.Nullable MigrationMode migrationMode) {
+    this.migrationMode = migrationMode;
+  }
+
+
+  public UpdatePricePlanRequest versionsToMigrate(@javax.annotation.Nullable VersionsToMigrate versionsToMigrate) {
+    this.versionsToMigrate = versionsToMigrate;
+    return this;
+  }
+
+  /**
+   * Get versionsToMigrate
+   * @return versionsToMigrate
+   */
+  @javax.annotation.Nullable
+  public VersionsToMigrate getVersionsToMigrate() {
+    return versionsToMigrate;
+  }
+
+  public void setVersionsToMigrate(@javax.annotation.Nullable VersionsToMigrate versionsToMigrate) {
+    this.versionsToMigrate = versionsToMigrate;
+  }
+
+
+  public UpdatePricePlanRequest description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
 
-   /**
+  /**
    * Description of price plan
    * @return description
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getDescription() {
     return description;
   }
 
-
-  public void setDescription(String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public UpdatePricePlanRequest pricePlanDetails(CreatePricePlanDetailsOverride pricePlanDetails) {
-    
+  public UpdatePricePlanRequest pricePlanDetails(@javax.annotation.Nullable CreatePricePlanDetailsOverride pricePlanDetails) {
     this.pricePlanDetails = pricePlanDetails;
     return this;
   }
 
-   /**
+  /**
    * Get pricePlanDetails
    * @return pricePlanDetails
-  **/
+   */
   @javax.annotation.Nullable
-
   public CreatePricePlanDetailsOverride getPricePlanDetails() {
     return pricePlanDetails;
   }
 
-
-  public void setPricePlanDetails(CreatePricePlanDetailsOverride pricePlanDetails) {
+  public void setPricePlanDetails(@javax.annotation.Nullable CreatePricePlanDetailsOverride pricePlanDetails) {
     this.pricePlanDetails = pricePlanDetails;
+  }
+
+
+  public UpdatePricePlanRequest pricingRules(@javax.annotation.Nullable List<CreatePricingRule> pricingRules) {
+    this.pricingRules = pricingRules;
+    return this;
+  }
+
+  public UpdatePricePlanRequest addPricingRulesItem(CreatePricingRule pricingRulesItem) {
+    if (this.pricingRules == null) {
+      this.pricingRules = new ArrayList<>();
+    }
+    this.pricingRules.add(pricingRulesItem);
+    return this;
+  }
+
+  /**
+   * Get pricingRules
+   * @return pricingRules
+   */
+  @javax.annotation.Nullable
+  public List<CreatePricingRule> getPricingRules() {
+    return pricingRules;
+  }
+
+  public void setPricingRules(@javax.annotation.Nullable List<CreatePricingRule> pricingRules) {
+    this.pricingRules = pricingRules;
   }
 
 
@@ -117,21 +200,27 @@ public class UpdatePricePlanRequest implements Serializable {
       return false;
     }
     UpdatePricePlanRequest updatePricePlanRequest = (UpdatePricePlanRequest) o;
-    return Objects.equals(this.description, updatePricePlanRequest.description) &&
-        Objects.equals(this.pricePlanDetails, updatePricePlanRequest.pricePlanDetails);
+    return Objects.equals(this.migrationMode, updatePricePlanRequest.migrationMode) &&
+        Objects.equals(this.versionsToMigrate, updatePricePlanRequest.versionsToMigrate) &&
+        Objects.equals(this.description, updatePricePlanRequest.description) &&
+        Objects.equals(this.pricePlanDetails, updatePricePlanRequest.pricePlanDetails) &&
+        Objects.equals(this.pricingRules, updatePricePlanRequest.pricingRules);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, pricePlanDetails);
+    return Objects.hash(migrationMode, versionsToMigrate, description, pricePlanDetails, pricingRules);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdatePricePlanRequest {\n");
+    sb.append("    migrationMode: ").append(toIndentedString(migrationMode)).append("\n");
+    sb.append("    versionsToMigrate: ").append(toIndentedString(versionsToMigrate)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    pricePlanDetails: ").append(toIndentedString(pricePlanDetails)).append("\n");
+    sb.append("    pricingRules: ").append(toIndentedString(pricingRules)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -154,39 +243,65 @@ public class UpdatePricePlanRequest implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("migrationMode");
+    openapiFields.add("versionsToMigrate");
     openapiFields.add("description");
     openapiFields.add("pricePlanDetails");
+    openapiFields.add("pricingRules");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to UpdatePricePlanRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!UpdatePricePlanRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdatePricePlanRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UpdatePricePlanRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UpdatePricePlanRequest is not found in the empty JSON string", UpdatePricePlanRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!UpdatePricePlanRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdatePricePlanRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdatePricePlanRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the optional field `migrationMode`
+      if (jsonObj.get("migrationMode") != null && !jsonObj.get("migrationMode").isJsonNull()) {
+        MigrationMode.validateJsonElement(jsonObj.get("migrationMode"));
+      }
+      // validate the optional field `versionsToMigrate`
+      if (jsonObj.get("versionsToMigrate") != null && !jsonObj.get("versionsToMigrate").isJsonNull()) {
+        VersionsToMigrate.validateJsonElement(jsonObj.get("versionsToMigrate"));
       }
       if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
       }
       // validate the optional field `pricePlanDetails`
       if (jsonObj.get("pricePlanDetails") != null && !jsonObj.get("pricePlanDetails").isJsonNull()) {
-        CreatePricePlanDetailsOverride.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetails"));
+        CreatePricePlanDetailsOverride.validateJsonElement(jsonObj.get("pricePlanDetails"));
+      }
+      if (jsonObj.get("pricingRules") != null && !jsonObj.get("pricingRules").isJsonNull()) {
+        JsonArray jsonArraypricingRules = jsonObj.getAsJsonArray("pricingRules");
+        if (jsonArraypricingRules != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("pricingRules").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `pricingRules` to be an array in the JSON string but got `%s`", jsonObj.get("pricingRules").toString()));
+          }
+
+          // validate the optional field `pricingRules` (array)
+          for (int i = 0; i < jsonArraypricingRules.size(); i++) {
+            CreatePricingRule.validateJsonElement(jsonArraypricingRules.get(i));
+          };
+        }
       }
   }
 
@@ -210,31 +325,31 @@ public class UpdatePricePlanRequest implements Serializable {
 
            @Override
            public UpdatePricePlanRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of UpdatePricePlanRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UpdatePricePlanRequest
-  * @throws IOException if the JSON string is invalid with respect to UpdatePricePlanRequest
-  */
+  /**
+   * Create an instance of UpdatePricePlanRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdatePricePlanRequest
+   * @throws IOException if the JSON string is invalid with respect to UpdatePricePlanRequest
+   */
   public static UpdatePricePlanRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdatePricePlanRequest.class);
   }
 
- /**
-  * Convert an instance of UpdatePricePlanRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UpdatePricePlanRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

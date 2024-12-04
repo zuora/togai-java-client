@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -35,80 +35,81 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
 
 /**
- *  | Metric Name | FilterEntry Name |    Allowed groupBy fields                 |      Default Values      |                 Allowed Values                  | |-------------|------------------|-------------------------------------------|--------------------------|-------------------------------------------------| | EVENTS      | ACCOUNT_ID       | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | None                     | *\\&lt;one or more valid account IDs&gt;               |                                    CUSTOMER_ID                                                                                                            | | EVENTS      | CUSTOMER_ID      | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | None                     | *\\&lt;one or more valid customer IDs&gt;              |                                    CUSTOMER_ID                                                                                                            | | EVENTS      | SCHEMA_NAME      | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | None                     | *\\&lt;at most one valid schema names&gt;              |                                    CUSTOMER_ID                                                                                                            | | EVENTS      | EVENT_STATUS     | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME,    | [PROCESSED, UNPROCESSED] | oneOrMoreOf PROCESSED, UNPROCESSED, IN_PROGRESS |                                    CUSTOMER_ID                                                                                                            | | USAGE       | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\\&lt;one or more valid account IDs&gt;               | | USAGE       | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\\&lt;one or more valid customer IDs&gt;              | | USAGE       | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\\&lt;one or more valid usage meter name&gt;          | | REVENUE     | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\\&lt;one or more valid account IDs&gt;               | | REVENUE     | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\\&lt;one or more valid customer IDs&gt;              | | REVENUE     | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | None                     | *\\&lt;one or more valid usage meter name&gt;          | | EVENTS      | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | &lt;From auth token&gt;        |                                                 | | USAGE       | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | &lt;From auth token&gt;        |                                                 | | REVENUE     | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, CUSTOMER_ID   | &lt;From auth token&gt;        |                                                 | 
+ *  | Metric Name       | FilterEntry Name |    Allowed groupBy fields                                           |      Default Values      |                 Allowed Values                                  | |-------------------|------------------|---------------------------------------------------------------------|--------------------------|-----------------------------------------------------------------| | EVENTS            | ACCOUNT_ID       | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME, RAW_EVENT_STATUS             | None                     | *\\&lt;one or more valid account IDs&gt;                               | | EVENTS            | CUSTOMER_ID      | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME, RAW_EVENT_STATUS             | None                     | *\\&lt;one or more valid customer IDs&gt;                              | | EVENTS            | SCHEMA_NAME      | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME, RAW_EVENT_STATUS             | None                     | *\\&lt;at most one valid schema names&gt;                              | | EVENTS            | EVENT_STATUS     | ACCOUNT_ID, EVENT_STATUS, SCHEMA_NAME, RAW_EVENT_STATUS             | [PROCESSED, UNPROCESSED] | oneOrMoreOf PROCESSED, UNPROCESSED, IN_PROGRESS, IngestionStatus|       | USAGE             | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid account IDs&gt;                               | | USAGE             | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid customer IDs&gt;                              | | USAGE             | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid usage meter name&gt;                          | | USAGE             | BILLABLE_ID      | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid usage meter name&gt;                          | | REVENUE           | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid account IDs&gt;                               | | REVENUE           | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid customer IDs&gt;                              | | REVENUE           | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid usage meter name&gt;                          | | REVENUE           | BILLABLE_ID      | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid usage meter name&gt;                          | | EVENTS            | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | &lt;From auth token&gt;        |                                                                 | | USAGE             | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | &lt;From auth token&gt;        |                                                                 | | REVENUE           | ORGANIZATION_ID  | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | &lt;From auth token&gt;        |                                                                 | | USAGE_FOR_CYCLE   | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid account IDs&gt;                               | | USAGE_FOR_CYCLE   | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid customer IDs&gt;                              | | USAGE_FOR_CYCLE   | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid usage meter name&gt;                          | | USAGE_FOR_CYCLE   | BILLABLE_ID      | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid usage meter name&gt;                          | | REVENUE_FOR_CYCLE | ACCOUNT_ID       | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid account IDs&gt;                               | | REVENUE_FOR_CYCLE | CUSTOMER_ID      | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid customer IDs&gt;                              | | REVENUE_FOR_CYCLE | USAGE_METER_ID   | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid usage meter name&gt;                          | | REVENUE_FOR_CYCLE | BILLABLE_ID      | ACCOUNT_ID, USAGE_METER_ID, BILLABLE_ID CUSTOMER_ID                 | None                     | *\\&lt;one or more valid usage meter name&gt;                          | 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class MetricQueryFilterEntry implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_FIELD_NAME = "fieldName";
   @SerializedName(SERIALIZED_NAME_FIELD_NAME)
+  @javax.annotation.Nonnull
   private String fieldName;
 
   public static final String SERIALIZED_NAME_FIELD_VALUES = "fieldValues";
   @SerializedName(SERIALIZED_NAME_FIELD_VALUES)
+  @javax.annotation.Nonnull
   private List<String> fieldValues = new ArrayList<>();
 
   public MetricQueryFilterEntry() {
   }
 
-  public MetricQueryFilterEntry fieldName(String fieldName) {
-    
+  public MetricQueryFilterEntry fieldName(@javax.annotation.Nonnull String fieldName) {
     this.fieldName = fieldName;
     return this;
   }
 
-   /**
+  /**
    * Get fieldName
    * @return fieldName
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getFieldName() {
     return fieldName;
   }
 
-
-  public void setFieldName(String fieldName) {
+  public void setFieldName(@javax.annotation.Nonnull String fieldName) {
     this.fieldName = fieldName;
   }
 
 
-  public MetricQueryFilterEntry fieldValues(List<String> fieldValues) {
-    
+  public MetricQueryFilterEntry fieldValues(@javax.annotation.Nonnull List<String> fieldValues) {
     this.fieldValues = fieldValues;
     return this;
   }
 
   public MetricQueryFilterEntry addFieldValuesItem(String fieldValuesItem) {
+    if (this.fieldValues == null) {
+      this.fieldValues = new ArrayList<>();
+    }
     this.fieldValues.add(fieldValuesItem);
     return this;
   }
 
-   /**
+  /**
    * Get fieldValues
    * @return fieldValues
-  **/
+   */
   @javax.annotation.Nonnull
-
   public List<String> getFieldValues() {
     return fieldValues;
   }
 
-
-  public void setFieldValues(List<String> fieldValues) {
+  public void setFieldValues(@javax.annotation.Nonnull List<String> fieldValues) {
     this.fieldValues = fieldValues;
   }
 
@@ -169,33 +170,34 @@ public class MetricQueryFilterEntry implements Serializable {
     openapiRequiredFields.add("fieldValues");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to MetricQueryFilterEntry
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!MetricQueryFilterEntry.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MetricQueryFilterEntry
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!MetricQueryFilterEntry.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in MetricQueryFilterEntry is not found in the empty JSON string", MetricQueryFilterEntry.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!MetricQueryFilterEntry.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MetricQueryFilterEntry` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MetricQueryFilterEntry` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : MetricQueryFilterEntry.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("fieldName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `fieldName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fieldName").toString()));
       }
@@ -227,31 +229,31 @@ public class MetricQueryFilterEntry implements Serializable {
 
            @Override
            public MetricQueryFilterEntry read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of MetricQueryFilterEntry given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MetricQueryFilterEntry
-  * @throws IOException if the JSON string is invalid with respect to MetricQueryFilterEntry
-  */
+  /**
+   * Create an instance of MetricQueryFilterEntry given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MetricQueryFilterEntry
+   * @throws IOException if the JSON string is invalid with respect to MetricQueryFilterEntry
+   */
   public static MetricQueryFilterEntry fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MetricQueryFilterEntry.class);
   }
 
- /**
-  * Convert an instance of MetricQueryFilterEntry to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MetricQueryFilterEntry to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

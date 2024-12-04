@@ -10,6 +10,7 @@ Price plan entity
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | Price plan id |  |
 |**name** | **String** | Name of the price plan |  |
+|**type** | **PricePlanType** |  |  |
 |**description** | **String** | Description of price plan |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | Status of Price plan |  |
 |**pricingSchedule** | [**List&lt;PricingSchedule&gt;**](PricingSchedule.md) |  |  |

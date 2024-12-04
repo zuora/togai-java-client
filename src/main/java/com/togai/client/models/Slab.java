@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,6 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.PriceType;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.Serializable;
@@ -37,13 +37,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -51,99 +53,93 @@ import com.togai.client.JSON;
 /**
  * Represents a pricing priceType (rates + slabs) for usage price plan
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class Slab implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ORDER = "order";
   @SerializedName(SERIALIZED_NAME_ORDER)
+  @javax.annotation.Nonnull
   private Integer order;
 
   public static final String SERIALIZED_NAME_START_AFTER = "startAfter";
   @SerializedName(SERIALIZED_NAME_START_AFTER)
+  @javax.annotation.Nonnull
   private BigDecimal startAfter;
 
   public static final String SERIALIZED_NAME_PRICE_TYPE = "priceType";
   @SerializedName(SERIALIZED_NAME_PRICE_TYPE)
+  @javax.annotation.Nonnull
   private PriceType priceType;
 
   public static final String SERIALIZED_NAME_SLAB_CONFIG = "slabConfig";
   @SerializedName(SERIALIZED_NAME_SLAB_CONFIG)
+  @javax.annotation.Nullable
   private Map<String, String> slabConfig = new HashMap<>();
 
   public Slab() {
   }
 
-  public Slab order(Integer order) {
-    
+  public Slab order(@javax.annotation.Nonnull Integer order) {
     this.order = order;
     return this;
   }
 
-   /**
+  /**
    * Get order
    * minimum: 1
    * maximum: 10
    * @return order
-  **/
+   */
   @javax.annotation.Nonnull
-
   public Integer getOrder() {
     return order;
   }
 
-
-  public void setOrder(Integer order) {
+  public void setOrder(@javax.annotation.Nonnull Integer order) {
     this.order = order;
   }
 
 
-  public Slab startAfter(BigDecimal startAfter) {
-    
+  public Slab startAfter(@javax.annotation.Nonnull BigDecimal startAfter) {
     this.startAfter = startAfter;
     return this;
   }
 
-   /**
+  /**
    * Get startAfter
    * @return startAfter
-  **/
+   */
   @javax.annotation.Nonnull
-
   public BigDecimal getStartAfter() {
     return startAfter;
   }
 
-
-  public void setStartAfter(BigDecimal startAfter) {
+  public void setStartAfter(@javax.annotation.Nonnull BigDecimal startAfter) {
     this.startAfter = startAfter;
   }
 
 
-  public Slab priceType(PriceType priceType) {
-    
+  public Slab priceType(@javax.annotation.Nonnull PriceType priceType) {
     this.priceType = priceType;
     return this;
   }
 
-   /**
+  /**
    * Get priceType
    * @return priceType
-  **/
+   */
   @javax.annotation.Nonnull
-
   public PriceType getPriceType() {
     return priceType;
   }
 
-
-  public void setPriceType(PriceType priceType) {
+  public void setPriceType(@javax.annotation.Nonnull PriceType priceType) {
     this.priceType = priceType;
   }
 
 
-  public Slab slabConfig(Map<String, String> slabConfig) {
-    
+  public Slab slabConfig(@javax.annotation.Nullable Map<String, String> slabConfig) {
     this.slabConfig = slabConfig;
     return this;
   }
@@ -156,18 +152,16 @@ public class Slab implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get slabConfig
    * @return slabConfig
-  **/
+   */
   @javax.annotation.Nullable
-
   public Map<String, String> getSlabConfig() {
     return slabConfig;
   }
 
-
-  public void setSlabConfig(Map<String, String> slabConfig) {
+  public void setSlabConfig(@javax.annotation.Nullable Map<String, String> slabConfig) {
     this.slabConfig = slabConfig;
   }
 
@@ -235,33 +229,36 @@ public class Slab implements Serializable {
     openapiRequiredFields.add("priceType");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to Slab
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!Slab.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Slab
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Slab.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Slab is not found in the empty JSON string", Slab.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!Slab.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Slab` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Slab` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : Slab.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the required field `priceType`
+      PriceType.validateJsonElement(jsonObj.get("priceType"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -284,31 +281,31 @@ public class Slab implements Serializable {
 
            @Override
            public Slab read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of Slab given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Slab
-  * @throws IOException if the JSON string is invalid with respect to Slab
-  */
+  /**
+   * Create an instance of Slab given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Slab
+   * @throws IOException if the JSON string is invalid with respect to Slab
+   */
   public static Slab fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Slab.class);
   }
 
- /**
-  * Convert an instance of Slab to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Slab to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

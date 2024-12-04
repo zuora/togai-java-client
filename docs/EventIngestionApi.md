@@ -8,9 +8,9 @@ All URIs are relative to *https://api.togai.com*
 | [**ingestBatch**](EventIngestionApi.md#ingestBatch) | **POST** /ingestBatch | Ingest events to Togai in batch |
 
 
-<a name="ingest"></a>
+<a id="ingest"></a>
 # **ingest**
-> ingest(ingestEventRequest)
+> IngestEventResponse ingest(ingestEventRequest)
 
 Ingest events to Togai
 
@@ -38,7 +38,8 @@ public class Example {
     EventIngestionApi apiInstance = new EventIngestionApi(defaultClient);
     IngestEventRequest ingestEventRequest = new IngestEventRequest(); // IngestEventRequest | Request body to ingest events to Togai usage and billing management service.
     try {
-      apiInstance.ingest(ingestEventRequest);
+      IngestEventResponse result = apiInstance.ingest(ingestEventRequest);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EventIngestionApi#ingest");
       System.err.println("Status code: " + e.getCode());
@@ -58,7 +59,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**IngestEventResponse**](IngestEventResponse.md)
 
 ### Authorization
 
@@ -80,13 +81,13 @@ null (empty response body)
 | **503** | Service is currently unavailable to process the request. |  -  |
 | **0** | Error response |  -  |
 
-<a name="ingestBatch"></a>
+<a id="ingestBatch"></a>
 # **ingestBatch**
-> IngestBatchEventResponse ingestBatch(ingestBatchEventRequest)
+> IngestEventResponse ingestBatch(ingestBatchEventRequest)
 
 Ingest events to Togai in batch
 
-This API let’s you to ingest events in batch upto 1000 events. Ingest large amounts of events up to 1000 in batches in an array using this API.
+This API let’s you to ingest events in batch upto 500 events. Ingest large amounts of events up to 500 in batches in an array using this API.
 
 ### Example
 ```java
@@ -110,7 +111,7 @@ public class Example {
     EventIngestionApi apiInstance = new EventIngestionApi(defaultClient);
     IngestBatchEventRequest ingestBatchEventRequest = new IngestBatchEventRequest(); // IngestBatchEventRequest | Request body to ingest events in batch to Togai usage and billing management service.
     try {
-      IngestBatchEventResponse result = apiInstance.ingestBatch(ingestBatchEventRequest);
+      IngestEventResponse result = apiInstance.ingestBatch(ingestBatchEventRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EventIngestionApi#ingestBatch");
@@ -131,7 +132,7 @@ public class Example {
 
 ### Return type
 
-[**IngestBatchEventResponse**](IngestBatchEventResponse.md)
+[**IngestEventResponse**](IngestEventResponse.md)
 
 ### Authorization
 

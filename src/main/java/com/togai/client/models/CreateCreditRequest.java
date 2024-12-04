@@ -14,15 +14,16 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.togai.client.models.CreditRequest;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -35,180 +36,58 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
 
 /**
- * Payload to grant Credits
+ * payload to create credits
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class CreateCreditRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_ACCOUNT_ID = "accountId";
-  @SerializedName(SERIALIZED_NAME_ACCOUNT_ID)
-  private String accountId;
-
-  public static final String SERIALIZED_NAME_PURPOSE = "purpose";
-  @SerializedName(SERIALIZED_NAME_PURPOSE)
-  private String purpose;
-
-  public static final String SERIALIZED_NAME_EFFECTIVE_FROM = "effectiveFrom";
-  @SerializedName(SERIALIZED_NAME_EFFECTIVE_FROM)
-  private LocalDate effectiveFrom;
-
-  public static final String SERIALIZED_NAME_EFFECTIVE_UNTIL = "effectiveUntil";
-  @SerializedName(SERIALIZED_NAME_EFFECTIVE_UNTIL)
-  private LocalDate effectiveUntil;
-
-  public static final String SERIALIZED_NAME_CREDIT_AMOUNT = "creditAmount";
-  @SerializedName(SERIALIZED_NAME_CREDIT_AMOUNT)
-  private BigDecimal creditAmount;
-
-  public static final String SERIALIZED_NAME_PRIORITY = "priority";
-  @SerializedName(SERIALIZED_NAME_PRIORITY)
-  private Integer priority;
+  public static final String SERIALIZED_NAME_CREDIT_REQUESTS = "creditRequests";
+  @SerializedName(SERIALIZED_NAME_CREDIT_REQUESTS)
+  @javax.annotation.Nonnull
+  private List<CreditRequest> creditRequests = new ArrayList<>();
 
   public CreateCreditRequest() {
   }
 
-  public CreateCreditRequest accountId(String accountId) {
-    
-    this.accountId = accountId;
+  public CreateCreditRequest creditRequests(@javax.annotation.Nonnull List<CreditRequest> creditRequests) {
+    this.creditRequests = creditRequests;
     return this;
   }
 
-   /**
-   * Get accountId
-   * @return accountId
-  **/
+  public CreateCreditRequest addCreditRequestsItem(CreditRequest creditRequestsItem) {
+    if (this.creditRequests == null) {
+      this.creditRequests = new ArrayList<>();
+    }
+    this.creditRequests.add(creditRequestsItem);
+    return this;
+  }
+
+  /**
+   * Get creditRequests
+   * @return creditRequests
+   */
   @javax.annotation.Nonnull
-
-  public String getAccountId() {
-    return accountId;
+  public List<CreditRequest> getCreditRequests() {
+    return creditRequests;
   }
 
-
-  public void setAccountId(String accountId) {
-    this.accountId = accountId;
-  }
-
-
-  public CreateCreditRequest purpose(String purpose) {
-    
-    this.purpose = purpose;
-    return this;
-  }
-
-   /**
-   * Get purpose
-   * @return purpose
-  **/
-  @javax.annotation.Nonnull
-
-  public String getPurpose() {
-    return purpose;
-  }
-
-
-  public void setPurpose(String purpose) {
-    this.purpose = purpose;
-  }
-
-
-  public CreateCreditRequest effectiveFrom(LocalDate effectiveFrom) {
-    
-    this.effectiveFrom = effectiveFrom;
-    return this;
-  }
-
-   /**
-   * Get effectiveFrom
-   * @return effectiveFrom
-  **/
-  @javax.annotation.Nonnull
-
-  public LocalDate getEffectiveFrom() {
-    return effectiveFrom;
-  }
-
-
-  public void setEffectiveFrom(LocalDate effectiveFrom) {
-    this.effectiveFrom = effectiveFrom;
-  }
-
-
-  public CreateCreditRequest effectiveUntil(LocalDate effectiveUntil) {
-    
-    this.effectiveUntil = effectiveUntil;
-    return this;
-  }
-
-   /**
-   * Get effectiveUntil
-   * @return effectiveUntil
-  **/
-  @javax.annotation.Nullable
-
-  public LocalDate getEffectiveUntil() {
-    return effectiveUntil;
-  }
-
-
-  public void setEffectiveUntil(LocalDate effectiveUntil) {
-    this.effectiveUntil = effectiveUntil;
-  }
-
-
-  public CreateCreditRequest creditAmount(BigDecimal creditAmount) {
-    
-    this.creditAmount = creditAmount;
-    return this;
-  }
-
-   /**
-   * Get creditAmount
-   * @return creditAmount
-  **/
-  @javax.annotation.Nonnull
-
-  public BigDecimal getCreditAmount() {
-    return creditAmount;
-  }
-
-
-  public void setCreditAmount(BigDecimal creditAmount) {
-    this.creditAmount = creditAmount;
-  }
-
-
-  public CreateCreditRequest priority(Integer priority) {
-    
-    this.priority = priority;
-    return this;
-  }
-
-   /**
-   * Get priority
-   * @return priority
-  **/
-  @javax.annotation.Nonnull
-
-  public Integer getPriority() {
-    return priority;
-  }
-
-
-  public void setPriority(Integer priority) {
-    this.priority = priority;
+  public void setCreditRequests(@javax.annotation.Nonnull List<CreditRequest> creditRequests) {
+    this.creditRequests = creditRequests;
   }
 
 
@@ -222,29 +101,19 @@ public class CreateCreditRequest implements Serializable {
       return false;
     }
     CreateCreditRequest createCreditRequest = (CreateCreditRequest) o;
-    return Objects.equals(this.accountId, createCreditRequest.accountId) &&
-        Objects.equals(this.purpose, createCreditRequest.purpose) &&
-        Objects.equals(this.effectiveFrom, createCreditRequest.effectiveFrom) &&
-        Objects.equals(this.effectiveUntil, createCreditRequest.effectiveUntil) &&
-        Objects.equals(this.creditAmount, createCreditRequest.creditAmount) &&
-        Objects.equals(this.priority, createCreditRequest.priority);
+    return Objects.equals(this.creditRequests, createCreditRequest.creditRequests);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, purpose, effectiveFrom, effectiveUntil, creditAmount, priority);
+    return Objects.hash(creditRequests);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCreditRequest {\n");
-    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
-    sb.append("    purpose: ").append(toIndentedString(purpose)).append("\n");
-    sb.append("    effectiveFrom: ").append(toIndentedString(effectiveFrom)).append("\n");
-    sb.append("    effectiveUntil: ").append(toIndentedString(effectiveUntil)).append("\n");
-    sb.append("    creditAmount: ").append(toIndentedString(creditAmount)).append("\n");
-    sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
+    sb.append("    creditRequests: ").append(toIndentedString(creditRequests)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -267,55 +136,51 @@ public class CreateCreditRequest implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("accountId");
-    openapiFields.add("purpose");
-    openapiFields.add("effectiveFrom");
-    openapiFields.add("effectiveUntil");
-    openapiFields.add("creditAmount");
-    openapiFields.add("priority");
+    openapiFields.add("creditRequests");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("accountId");
-    openapiRequiredFields.add("purpose");
-    openapiRequiredFields.add("effectiveFrom");
-    openapiRequiredFields.add("creditAmount");
-    openapiRequiredFields.add("priority");
+    openapiRequiredFields.add("creditRequests");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreateCreditRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CreateCreditRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateCreditRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreateCreditRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreateCreditRequest is not found in the empty JSON string", CreateCreditRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CreateCreditRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateCreditRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateCreditRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : CreateCreditRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
-      if (!jsonObj.get("accountId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `accountId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountId").toString()));
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // ensure the json data is an array
+      if (!jsonObj.get("creditRequests").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `creditRequests` to be an array in the JSON string but got `%s`", jsonObj.get("creditRequests").toString()));
       }
-      if (!jsonObj.get("purpose").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `purpose` to be a primitive type in the JSON string but got `%s`", jsonObj.get("purpose").toString()));
-      }
+
+      JsonArray jsonArraycreditRequests = jsonObj.getAsJsonArray("creditRequests");
+      // validate the required field `creditRequests` (array)
+      for (int i = 0; i < jsonArraycreditRequests.size(); i++) {
+        CreditRequest.validateJsonElement(jsonArraycreditRequests.get(i));
+      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -338,31 +203,31 @@ public class CreateCreditRequest implements Serializable {
 
            @Override
            public CreateCreditRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreateCreditRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateCreditRequest
-  * @throws IOException if the JSON string is invalid with respect to CreateCreditRequest
-  */
+  /**
+   * Create an instance of CreateCreditRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateCreditRequest
+   * @throws IOException if the JSON string is invalid with respect to CreateCreditRequest
+   */
   public static CreateCreditRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateCreditRequest.class);
   }
 
- /**
-  * Convert an instance of CreateCreditRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateCreditRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

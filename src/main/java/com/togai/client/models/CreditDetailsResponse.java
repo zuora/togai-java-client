@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -26,7 +25,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -39,13 +41,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -53,40 +57,63 @@ import com.togai.client.JSON;
 /**
  * CreditDetailsResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class CreditDetailsResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ACCOUNT_ID = "accountId";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_ID)
+  @javax.annotation.Nonnull
   private String accountId;
 
   public static final String SERIALIZED_NAME_PURPOSE = "purpose";
   @SerializedName(SERIALIZED_NAME_PURPOSE)
+  @javax.annotation.Nonnull
   private String purpose;
+
+  public static final String SERIALIZED_NAME_APPLICABLE_ENTITY_IDS = "applicableEntityIds";
+  @SerializedName(SERIALIZED_NAME_APPLICABLE_ENTITY_IDS)
+  @javax.annotation.Nullable
+  private Set<String> applicableEntityIds = new LinkedHashSet<>();
 
   public static final String SERIALIZED_NAME_EFFECTIVE_FROM = "effectiveFrom";
   @SerializedName(SERIALIZED_NAME_EFFECTIVE_FROM)
+  @javax.annotation.Nonnull
   private LocalDate effectiveFrom;
 
   public static final String SERIALIZED_NAME_EFFECTIVE_UNTIL = "effectiveUntil";
   @SerializedName(SERIALIZED_NAME_EFFECTIVE_UNTIL)
+  @javax.annotation.Nullable
   private LocalDate effectiveUntil;
 
   public static final String SERIALIZED_NAME_CREDIT_AMOUNT = "creditAmount";
   @SerializedName(SERIALIZED_NAME_CREDIT_AMOUNT)
+  @javax.annotation.Nullable
   private BigDecimal creditAmount;
 
   public static final String SERIALIZED_NAME_PRIORITY = "priority";
   @SerializedName(SERIALIZED_NAME_PRIORITY)
+  @javax.annotation.Nonnull
   private Integer priority;
+
+  public static final String SERIALIZED_NAME_GRANTOR_ID = "grantorId";
+  @SerializedName(SERIALIZED_NAME_GRANTOR_ID)
+  @javax.annotation.Nullable
+  private String grantorId;
+
+  public static final String SERIALIZED_NAME_IDEMPOTENCY_KEY = "idempotencyKey";
+  @SerializedName(SERIALIZED_NAME_IDEMPOTENCY_KEY)
+  @javax.annotation.Nullable
+  private String idempotencyKey;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String SERIALIZED_NAME_CUSTOMER_ID = "customerId";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_ID)
+  @javax.annotation.Nonnull
   private String customerId;
 
   /**
@@ -138,370 +165,405 @@ public class CreditDetailsResponse implements Serializable {
         return StatusEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      StatusEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nonnull
   private StatusEnum status;
 
   public static final String SERIALIZED_NAME_CREDIT_UNIT = "creditUnit";
   @SerializedName(SERIALIZED_NAME_CREDIT_UNIT)
+  @javax.annotation.Nullable
   private String creditUnit;
 
   public static final String SERIALIZED_NAME_HOLD_AMOUNT = "holdAmount";
   @SerializedName(SERIALIZED_NAME_HOLD_AMOUNT)
+  @javax.annotation.Nullable
   private BigDecimal holdAmount;
 
   public static final String SERIALIZED_NAME_CONSUMED_AMOUNT = "consumedAmount";
   @SerializedName(SERIALIZED_NAME_CONSUMED_AMOUNT)
+  @javax.annotation.Nullable
   private BigDecimal consumedAmount;
 
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  @javax.annotation.Nonnull
   private OffsetDateTime createdAt;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updatedAt";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
+  @javax.annotation.Nullable
   private OffsetDateTime updatedAt;
 
   public static final String SERIALIZED_NAME_TRANSACTIONS = "transactions";
   @SerializedName(SERIALIZED_NAME_TRANSACTIONS)
+  @javax.annotation.Nonnull
   private List<CreditTransaction> transactions = new ArrayList<>();
 
   public CreditDetailsResponse() {
   }
 
-  public CreditDetailsResponse accountId(String accountId) {
-    
+  public CreditDetailsResponse accountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
     return this;
   }
 
-   /**
+  /**
    * Get accountId
    * @return accountId
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getAccountId() {
     return accountId;
   }
 
-
-  public void setAccountId(String accountId) {
+  public void setAccountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
   }
 
 
-  public CreditDetailsResponse purpose(String purpose) {
-    
+  public CreditDetailsResponse purpose(@javax.annotation.Nonnull String purpose) {
     this.purpose = purpose;
     return this;
   }
 
-   /**
+  /**
    * Get purpose
    * @return purpose
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getPurpose() {
     return purpose;
   }
 
-
-  public void setPurpose(String purpose) {
+  public void setPurpose(@javax.annotation.Nonnull String purpose) {
     this.purpose = purpose;
   }
 
 
-  public CreditDetailsResponse effectiveFrom(LocalDate effectiveFrom) {
-    
+  public CreditDetailsResponse applicableEntityIds(@javax.annotation.Nullable Set<String> applicableEntityIds) {
+    this.applicableEntityIds = applicableEntityIds;
+    return this;
+  }
+
+  public CreditDetailsResponse addApplicableEntityIdsItem(String applicableEntityIdsItem) {
+    if (this.applicableEntityIds == null) {
+      this.applicableEntityIds = new LinkedHashSet<>();
+    }
+    this.applicableEntityIds.add(applicableEntityIdsItem);
+    return this;
+  }
+
+  /**
+   * List of entity ids for which the credit is applicable. If null or empty, the credit is applicable to all ids. This list can accept special values like: - ALL_USAGE_METER_RATE_CARDS: To apply the credit to all usage meter rate cards - ALL_FIXED_FEE_RATE_CARDS: To apply the credit to all fixed fee rate cards 
+   * @return applicableEntityIds
+   */
+  @javax.annotation.Nullable
+  public Set<String> getApplicableEntityIds() {
+    return applicableEntityIds;
+  }
+
+  public void setApplicableEntityIds(@javax.annotation.Nullable Set<String> applicableEntityIds) {
+    this.applicableEntityIds = applicableEntityIds;
+  }
+
+
+  public CreditDetailsResponse effectiveFrom(@javax.annotation.Nonnull LocalDate effectiveFrom) {
     this.effectiveFrom = effectiveFrom;
     return this;
   }
 
-   /**
+  /**
    * Get effectiveFrom
    * @return effectiveFrom
-  **/
+   */
   @javax.annotation.Nonnull
-
   public LocalDate getEffectiveFrom() {
     return effectiveFrom;
   }
 
-
-  public void setEffectiveFrom(LocalDate effectiveFrom) {
+  public void setEffectiveFrom(@javax.annotation.Nonnull LocalDate effectiveFrom) {
     this.effectiveFrom = effectiveFrom;
   }
 
 
-  public CreditDetailsResponse effectiveUntil(LocalDate effectiveUntil) {
-    
+  public CreditDetailsResponse effectiveUntil(@javax.annotation.Nullable LocalDate effectiveUntil) {
     this.effectiveUntil = effectiveUntil;
     return this;
   }
 
-   /**
+  /**
    * Get effectiveUntil
    * @return effectiveUntil
-  **/
+   */
   @javax.annotation.Nullable
-
   public LocalDate getEffectiveUntil() {
     return effectiveUntil;
   }
 
-
-  public void setEffectiveUntil(LocalDate effectiveUntil) {
+  public void setEffectiveUntil(@javax.annotation.Nullable LocalDate effectiveUntil) {
     this.effectiveUntil = effectiveUntil;
   }
 
 
-  public CreditDetailsResponse creditAmount(BigDecimal creditAmount) {
-    
+  public CreditDetailsResponse creditAmount(@javax.annotation.Nullable BigDecimal creditAmount) {
     this.creditAmount = creditAmount;
     return this;
   }
 
-   /**
+  /**
    * Get creditAmount
    * @return creditAmount
-  **/
-  @javax.annotation.Nonnull
-
+   */
+  @javax.annotation.Nullable
   public BigDecimal getCreditAmount() {
     return creditAmount;
   }
 
-
-  public void setCreditAmount(BigDecimal creditAmount) {
+  public void setCreditAmount(@javax.annotation.Nullable BigDecimal creditAmount) {
     this.creditAmount = creditAmount;
   }
 
 
-  public CreditDetailsResponse priority(Integer priority) {
-    
+  public CreditDetailsResponse priority(@javax.annotation.Nonnull Integer priority) {
     this.priority = priority;
     return this;
   }
 
-   /**
+  /**
    * Get priority
    * @return priority
-  **/
+   */
   @javax.annotation.Nonnull
-
   public Integer getPriority() {
     return priority;
   }
 
-
-  public void setPriority(Integer priority) {
+  public void setPriority(@javax.annotation.Nonnull Integer priority) {
     this.priority = priority;
   }
 
 
-  public CreditDetailsResponse id(String id) {
-    
+  public CreditDetailsResponse grantorId(@javax.annotation.Nullable String grantorId) {
+    this.grantorId = grantorId;
+    return this;
+  }
+
+  /**
+   * The entity through which the credit has been granted
+   * @return grantorId
+   */
+  @javax.annotation.Nullable
+  public String getGrantorId() {
+    return grantorId;
+  }
+
+  public void setGrantorId(@javax.annotation.Nullable String grantorId) {
+    this.grantorId = grantorId;
+  }
+
+
+  public CreditDetailsResponse idempotencyKey(@javax.annotation.Nullable String idempotencyKey) {
+    this.idempotencyKey = idempotencyKey;
+    return this;
+  }
+
+  /**
+   * The idempotency key for uniqueness of the credit record
+   * @return idempotencyKey
+   */
+  @javax.annotation.Nullable
+  public String getIdempotencyKey() {
+    return idempotencyKey;
+  }
+
+  public void setIdempotencyKey(@javax.annotation.Nullable String idempotencyKey) {
+    this.idempotencyKey = idempotencyKey;
+  }
+
+
+  public CreditDetailsResponse id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * Identifier of credits
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getId() {
     return id;
   }
 
-
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public CreditDetailsResponse customerId(String customerId) {
-    
+  public CreditDetailsResponse customerId(@javax.annotation.Nonnull String customerId) {
     this.customerId = customerId;
     return this;
   }
 
-   /**
+  /**
    * Get customerId
    * @return customerId
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getCustomerId() {
     return customerId;
   }
 
-
-  public void setCustomerId(String customerId) {
+  public void setCustomerId(@javax.annotation.Nonnull String customerId) {
     this.customerId = customerId;
   }
 
 
-  public CreditDetailsResponse status(StatusEnum status) {
-    
+  public CreditDetailsResponse status(@javax.annotation.Nonnull StatusEnum status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * Get status
    * @return status
-  **/
+   */
   @javax.annotation.Nonnull
-
   public StatusEnum getStatus() {
     return status;
   }
 
-
-  public void setStatus(StatusEnum status) {
+  public void setStatus(@javax.annotation.Nonnull StatusEnum status) {
     this.status = status;
   }
 
 
-  public CreditDetailsResponse creditUnit(String creditUnit) {
-    
+  public CreditDetailsResponse creditUnit(@javax.annotation.Nullable String creditUnit) {
     this.creditUnit = creditUnit;
     return this;
   }
 
-   /**
+  /**
    * Get creditUnit
    * @return creditUnit
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getCreditUnit() {
     return creditUnit;
   }
 
-
-  public void setCreditUnit(String creditUnit) {
+  public void setCreditUnit(@javax.annotation.Nullable String creditUnit) {
     this.creditUnit = creditUnit;
   }
 
 
-  public CreditDetailsResponse holdAmount(BigDecimal holdAmount) {
-    
+  public CreditDetailsResponse holdAmount(@javax.annotation.Nullable BigDecimal holdAmount) {
     this.holdAmount = holdAmount;
     return this;
   }
 
-   /**
+  /**
    * Get holdAmount
    * @return holdAmount
-  **/
+   */
   @javax.annotation.Nullable
-
   public BigDecimal getHoldAmount() {
     return holdAmount;
   }
 
-
-  public void setHoldAmount(BigDecimal holdAmount) {
+  public void setHoldAmount(@javax.annotation.Nullable BigDecimal holdAmount) {
     this.holdAmount = holdAmount;
   }
 
 
-  public CreditDetailsResponse consumedAmount(BigDecimal consumedAmount) {
-    
+  public CreditDetailsResponse consumedAmount(@javax.annotation.Nullable BigDecimal consumedAmount) {
     this.consumedAmount = consumedAmount;
     return this;
   }
 
-   /**
+  /**
    * Get consumedAmount
    * @return consumedAmount
-  **/
+   */
   @javax.annotation.Nullable
-
   public BigDecimal getConsumedAmount() {
     return consumedAmount;
   }
 
-
-  public void setConsumedAmount(BigDecimal consumedAmount) {
+  public void setConsumedAmount(@javax.annotation.Nullable BigDecimal consumedAmount) {
     this.consumedAmount = consumedAmount;
   }
 
 
-  public CreditDetailsResponse createdAt(OffsetDateTime createdAt) {
-    
+  public CreditDetailsResponse createdAt(@javax.annotation.Nonnull OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
   }
 
-   /**
+  /**
    * Get createdAt
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nonnull
-
   public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
 
-
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(@javax.annotation.Nonnull OffsetDateTime createdAt) {
     this.createdAt = createdAt;
   }
 
 
-  public CreditDetailsResponse updatedAt(OffsetDateTime updatedAt) {
-    
+  public CreditDetailsResponse updatedAt(@javax.annotation.Nullable OffsetDateTime updatedAt) {
     this.updatedAt = updatedAt;
     return this;
   }
 
-   /**
+  /**
    * Get updatedAt
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nullable
-
   public OffsetDateTime getUpdatedAt() {
     return updatedAt;
   }
 
-
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
+  public void setUpdatedAt(@javax.annotation.Nullable OffsetDateTime updatedAt) {
     this.updatedAt = updatedAt;
   }
 
 
-  public CreditDetailsResponse transactions(List<CreditTransaction> transactions) {
-    
+  public CreditDetailsResponse transactions(@javax.annotation.Nonnull List<CreditTransaction> transactions) {
     this.transactions = transactions;
     return this;
   }
 
   public CreditDetailsResponse addTransactionsItem(CreditTransaction transactionsItem) {
+    if (this.transactions == null) {
+      this.transactions = new ArrayList<>();
+    }
     this.transactions.add(transactionsItem);
     return this;
   }
 
-   /**
+  /**
    * Get transactions
    * @return transactions
-  **/
+   */
   @javax.annotation.Nonnull
-
   public List<CreditTransaction> getTransactions() {
     return transactions;
   }
 
-
-  public void setTransactions(List<CreditTransaction> transactions) {
+  public void setTransactions(@javax.annotation.Nonnull List<CreditTransaction> transactions) {
     this.transactions = transactions;
   }
 
@@ -518,10 +580,13 @@ public class CreditDetailsResponse implements Serializable {
     CreditDetailsResponse creditDetailsResponse = (CreditDetailsResponse) o;
     return Objects.equals(this.accountId, creditDetailsResponse.accountId) &&
         Objects.equals(this.purpose, creditDetailsResponse.purpose) &&
+        Objects.equals(this.applicableEntityIds, creditDetailsResponse.applicableEntityIds) &&
         Objects.equals(this.effectiveFrom, creditDetailsResponse.effectiveFrom) &&
         Objects.equals(this.effectiveUntil, creditDetailsResponse.effectiveUntil) &&
         Objects.equals(this.creditAmount, creditDetailsResponse.creditAmount) &&
         Objects.equals(this.priority, creditDetailsResponse.priority) &&
+        Objects.equals(this.grantorId, creditDetailsResponse.grantorId) &&
+        Objects.equals(this.idempotencyKey, creditDetailsResponse.idempotencyKey) &&
         Objects.equals(this.id, creditDetailsResponse.id) &&
         Objects.equals(this.customerId, creditDetailsResponse.customerId) &&
         Objects.equals(this.status, creditDetailsResponse.status) &&
@@ -535,7 +600,7 @@ public class CreditDetailsResponse implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, purpose, effectiveFrom, effectiveUntil, creditAmount, priority, id, customerId, status, creditUnit, holdAmount, consumedAmount, createdAt, updatedAt, transactions);
+    return Objects.hash(accountId, purpose, applicableEntityIds, effectiveFrom, effectiveUntil, creditAmount, priority, grantorId, idempotencyKey, id, customerId, status, creditUnit, holdAmount, consumedAmount, createdAt, updatedAt, transactions);
   }
 
   @Override
@@ -544,10 +609,13 @@ public class CreditDetailsResponse implements Serializable {
     sb.append("class CreditDetailsResponse {\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    purpose: ").append(toIndentedString(purpose)).append("\n");
+    sb.append("    applicableEntityIds: ").append(toIndentedString(applicableEntityIds)).append("\n");
     sb.append("    effectiveFrom: ").append(toIndentedString(effectiveFrom)).append("\n");
     sb.append("    effectiveUntil: ").append(toIndentedString(effectiveUntil)).append("\n");
     sb.append("    creditAmount: ").append(toIndentedString(creditAmount)).append("\n");
     sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
+    sb.append("    grantorId: ").append(toIndentedString(grantorId)).append("\n");
+    sb.append("    idempotencyKey: ").append(toIndentedString(idempotencyKey)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
@@ -581,10 +649,13 @@ public class CreditDetailsResponse implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("accountId");
     openapiFields.add("purpose");
+    openapiFields.add("applicableEntityIds");
     openapiFields.add("effectiveFrom");
     openapiFields.add("effectiveUntil");
     openapiFields.add("creditAmount");
     openapiFields.add("priority");
+    openapiFields.add("grantorId");
+    openapiFields.add("idempotencyKey");
     openapiFields.add("id");
     openapiFields.add("customerId");
     openapiFields.add("status");
@@ -600,7 +671,6 @@ public class CreditDetailsResponse implements Serializable {
     openapiRequiredFields.add("accountId");
     openapiRequiredFields.add("purpose");
     openapiRequiredFields.add("effectiveFrom");
-    openapiRequiredFields.add("creditAmount");
     openapiRequiredFields.add("priority");
     openapiRequiredFields.add("id");
     openapiRequiredFields.add("customerId");
@@ -609,38 +679,49 @@ public class CreditDetailsResponse implements Serializable {
     openapiRequiredFields.add("transactions");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreditDetailsResponse
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CreditDetailsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreditDetailsResponse
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreditDetailsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreditDetailsResponse is not found in the empty JSON string", CreditDetailsResponse.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CreditDetailsResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreditDetailsResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreditDetailsResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : CreditDetailsResponse.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("accountId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `accountId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountId").toString()));
       }
       if (!jsonObj.get("purpose").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `purpose` to be a primitive type in the JSON string but got `%s`", jsonObj.get("purpose").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("applicableEntityIds") != null && !jsonObj.get("applicableEntityIds").isJsonNull() && !jsonObj.get("applicableEntityIds").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `applicableEntityIds` to be an array in the JSON string but got `%s`", jsonObj.get("applicableEntityIds").toString()));
+      }
+      if ((jsonObj.get("grantorId") != null && !jsonObj.get("grantorId").isJsonNull()) && !jsonObj.get("grantorId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `grantorId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("grantorId").toString()));
+      }
+      if ((jsonObj.get("idempotencyKey") != null && !jsonObj.get("idempotencyKey").isJsonNull()) && !jsonObj.get("idempotencyKey").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `idempotencyKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("idempotencyKey").toString()));
       }
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
@@ -651,6 +732,8 @@ public class CreditDetailsResponse implements Serializable {
       if (!jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
       }
+      // validate the required field `status`
+      StatusEnum.validateJsonElement(jsonObj.get("status"));
       if ((jsonObj.get("creditUnit") != null && !jsonObj.get("creditUnit").isJsonNull()) && !jsonObj.get("creditUnit").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `creditUnit` to be a primitive type in the JSON string but got `%s`", jsonObj.get("creditUnit").toString()));
       }
@@ -662,7 +745,7 @@ public class CreditDetailsResponse implements Serializable {
       JsonArray jsonArraytransactions = jsonObj.getAsJsonArray("transactions");
       // validate the required field `transactions` (array)
       for (int i = 0; i < jsonArraytransactions.size(); i++) {
-        CreditTransaction.validateJsonObject(jsonArraytransactions.get(i).getAsJsonObject());
+        CreditTransaction.validateJsonElement(jsonArraytransactions.get(i));
       };
   }
 
@@ -686,31 +769,31 @@ public class CreditDetailsResponse implements Serializable {
 
            @Override
            public CreditDetailsResponse read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreditDetailsResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreditDetailsResponse
-  * @throws IOException if the JSON string is invalid with respect to CreditDetailsResponse
-  */
+  /**
+   * Create an instance of CreditDetailsResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreditDetailsResponse
+   * @throws IOException if the JSON string is invalid with respect to CreditDetailsResponse
+   */
   public static CreditDetailsResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreditDetailsResponse.class);
   }
 
- /**
-  * Convert an instance of CreditDetailsResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreditDetailsResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

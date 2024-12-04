@@ -13,6 +13,7 @@ Credit Balance response
 |**runningBalance** | **BigDecimal** |  |  |
 |**inapplicableCredits** | **BigDecimal** |  |  |
 |**unit** | **String** |  |  |
+|**lastUpdatedAt** | **OffsetDateTime** |  |  |
 
 
 ## Implemented Interfaces

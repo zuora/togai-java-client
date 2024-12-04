@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  |
 |**name** | **String** |  |  |
+|**alias** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

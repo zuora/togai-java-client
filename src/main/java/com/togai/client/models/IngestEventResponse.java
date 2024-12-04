@@ -14,13 +14,13 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -33,13 +33,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -47,36 +49,154 @@ import com.togai.client.JSON;
 /**
  * IngestEventResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class IngestEventResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_INGESTION_REQUEST_ID = "ingestionRequestId";
-  @SerializedName(SERIALIZED_NAME_INGESTION_REQUEST_ID)
-  private String ingestionRequestId;
+  public static final String SERIALIZED_NAME_SUCCESS = "success";
+  @SerializedName(SERIALIZED_NAME_SUCCESS)
+  @javax.annotation.Nullable
+  private Boolean success;
+
+  public static final String SERIALIZED_NAME_STATUS_CODE = "statusCode";
+  @SerializedName(SERIALIZED_NAME_STATUS_CODE)
+  @javax.annotation.Nullable
+  private Integer statusCode;
+
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
+  private String name;
+
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  @javax.annotation.Nullable
+  private String message;
+
+  public static final String SERIALIZED_NAME_CODE = "code";
+  @SerializedName(SERIALIZED_NAME_CODE)
+  @javax.annotation.Nullable
+  private String code;
+
+  public static final String SERIALIZED_NAME_DETAILS = "details";
+  @SerializedName(SERIALIZED_NAME_DETAILS)
+  @javax.annotation.Nullable
+  private Object details;
 
   public IngestEventResponse() {
   }
 
-  public IngestEventResponse ingestionRequestId(String ingestionRequestId) {
-    
-    this.ingestionRequestId = ingestionRequestId;
+  public IngestEventResponse success(@javax.annotation.Nullable Boolean success) {
+    this.success = success;
     return this;
   }
 
-   /**
-   * On successful ingestion acceptance request, ingestion request id will be returned. This ingestion id can be used by clients to query the status of ingestion (IN_PROGRESS, COMPLETED).
-   * @return ingestionRequestId
-  **/
-  @javax.annotation.Nonnull
+  /**
+   * Get success
+   * @return success
+   */
+  @javax.annotation.Nullable
+  public Boolean getSuccess() {
+    return success;
+  }
 
-  public String getIngestionRequestId() {
-    return ingestionRequestId;
+  public void setSuccess(@javax.annotation.Nullable Boolean success) {
+    this.success = success;
   }
 
 
-  public void setIngestionRequestId(String ingestionRequestId) {
-    this.ingestionRequestId = ingestionRequestId;
+  public IngestEventResponse statusCode(@javax.annotation.Nullable Integer statusCode) {
+    this.statusCode = statusCode;
+    return this;
+  }
+
+  /**
+   * Get statusCode
+   * @return statusCode
+   */
+  @javax.annotation.Nullable
+  public Integer getStatusCode() {
+    return statusCode;
+  }
+
+  public void setStatusCode(@javax.annotation.Nullable Integer statusCode) {
+    this.statusCode = statusCode;
+  }
+
+
+  public IngestEventResponse name(@javax.annotation.Nullable String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Get name
+   * @return name
+   */
+  @javax.annotation.Nullable
+  public String getName() {
+    return name;
+  }
+
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
+  }
+
+
+  public IngestEventResponse message(@javax.annotation.Nullable String message) {
+    this.message = message;
+    return this;
+  }
+
+  /**
+   * Get message
+   * @return message
+   */
+  @javax.annotation.Nullable
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(@javax.annotation.Nullable String message) {
+    this.message = message;
+  }
+
+
+  public IngestEventResponse code(@javax.annotation.Nullable String code) {
+    this.code = code;
+    return this;
+  }
+
+  /**
+   * Get code
+   * @return code
+   */
+  @javax.annotation.Nullable
+  public String getCode() {
+    return code;
+  }
+
+  public void setCode(@javax.annotation.Nullable String code) {
+    this.code = code;
+  }
+
+
+  public IngestEventResponse details(@javax.annotation.Nullable Object details) {
+    this.details = details;
+    return this;
+  }
+
+  /**
+   * Get details
+   * @return details
+   */
+  @javax.annotation.Nullable
+  public Object getDetails() {
+    return details;
+  }
+
+  public void setDetails(@javax.annotation.Nullable Object details) {
+    this.details = details;
   }
 
 
@@ -90,19 +210,29 @@ public class IngestEventResponse implements Serializable {
       return false;
     }
     IngestEventResponse ingestEventResponse = (IngestEventResponse) o;
-    return Objects.equals(this.ingestionRequestId, ingestEventResponse.ingestionRequestId);
+    return Objects.equals(this.success, ingestEventResponse.success) &&
+        Objects.equals(this.statusCode, ingestEventResponse.statusCode) &&
+        Objects.equals(this.name, ingestEventResponse.name) &&
+        Objects.equals(this.message, ingestEventResponse.message) &&
+        Objects.equals(this.code, ingestEventResponse.code) &&
+        Objects.equals(this.details, ingestEventResponse.details);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ingestionRequestId);
+    return Objects.hash(success, statusCode, name, message, code, details);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IngestEventResponse {\n");
-    sb.append("    ingestionRequestId: ").append(toIndentedString(ingestionRequestId)).append("\n");
+    sb.append("    success: ").append(toIndentedString(success)).append("\n");
+    sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    details: ").append(toIndentedString(details)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -125,42 +255,46 @@ public class IngestEventResponse implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("ingestionRequestId");
+    openapiFields.add("success");
+    openapiFields.add("statusCode");
+    openapiFields.add("name");
+    openapiFields.add("message");
+    openapiFields.add("code");
+    openapiFields.add("details");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("ingestionRequestId");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to IngestEventResponse
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!IngestEventResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to IngestEventResponse
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!IngestEventResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in IngestEventResponse is not found in the empty JSON string", IngestEventResponse.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!IngestEventResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IngestEventResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IngestEventResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : IngestEventResponse.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
-      if (!jsonObj.get("ingestionRequestId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ingestionRequestId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ingestionRequestId").toString()));
+      if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) && !jsonObj.get("message").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
+      }
+      if ((jsonObj.get("code") != null && !jsonObj.get("code").isJsonNull()) && !jsonObj.get("code").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("code").toString()));
       }
   }
 
@@ -184,31 +318,31 @@ public class IngestEventResponse implements Serializable {
 
            @Override
            public IngestEventResponse read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of IngestEventResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of IngestEventResponse
-  * @throws IOException if the JSON string is invalid with respect to IngestEventResponse
-  */
+  /**
+   * Create an instance of IngestEventResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of IngestEventResponse
+   * @throws IOException if the JSON string is invalid with respect to IngestEventResponse
+   */
   public static IngestEventResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, IngestEventResponse.class);
   }
 
- /**
-  * Convert an instance of IngestEventResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of IngestEventResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -14,14 +14,15 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.togai.client.models.RemoveAccountAliasRequest;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -35,33 +36,40 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
 
 /**
- * Payload to remove aliases from account
+ * Payload to remove account aliases
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class RemoveAccountAliasesRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ALIASES = "aliases";
   @SerializedName(SERIALIZED_NAME_ALIASES)
+  @javax.annotation.Nullable
   private List<String> aliases = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_ACCOUNT_ALIASES = "accountAliases";
+  @SerializedName(SERIALIZED_NAME_ACCOUNT_ALIASES)
+  @javax.annotation.Nullable
+  private List<RemoveAccountAliasRequest> accountAliases = new ArrayList<>();
 
   public RemoveAccountAliasesRequest() {
   }
 
-  public RemoveAccountAliasesRequest aliases(List<String> aliases) {
-    
+  public RemoveAccountAliasesRequest aliases(@javax.annotation.Nullable List<String> aliases) {
     this.aliases = aliases;
     return this;
   }
@@ -74,19 +82,44 @@ public class RemoveAccountAliasesRequest implements Serializable {
     return this;
   }
 
-   /**
-   * List of aliases to remove
+  /**
+   * Get aliases
    * @return aliases
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<String> getAliases() {
     return aliases;
   }
 
-
-  public void setAliases(List<String> aliases) {
+  public void setAliases(@javax.annotation.Nullable List<String> aliases) {
     this.aliases = aliases;
+  }
+
+
+  public RemoveAccountAliasesRequest accountAliases(@javax.annotation.Nullable List<RemoveAccountAliasRequest> accountAliases) {
+    this.accountAliases = accountAliases;
+    return this;
+  }
+
+  public RemoveAccountAliasesRequest addAccountAliasesItem(RemoveAccountAliasRequest accountAliasesItem) {
+    if (this.accountAliases == null) {
+      this.accountAliases = new ArrayList<>();
+    }
+    this.accountAliases.add(accountAliasesItem);
+    return this;
+  }
+
+  /**
+   * Get accountAliases
+   * @return accountAliases
+   */
+  @javax.annotation.Nullable
+  public List<RemoveAccountAliasRequest> getAccountAliases() {
+    return accountAliases;
+  }
+
+  public void setAccountAliases(@javax.annotation.Nullable List<RemoveAccountAliasRequest> accountAliases) {
+    this.accountAliases = accountAliases;
   }
 
 
@@ -100,12 +133,13 @@ public class RemoveAccountAliasesRequest implements Serializable {
       return false;
     }
     RemoveAccountAliasesRequest removeAccountAliasesRequest = (RemoveAccountAliasesRequest) o;
-    return Objects.equals(this.aliases, removeAccountAliasesRequest.aliases);
+    return Objects.equals(this.aliases, removeAccountAliasesRequest.aliases) &&
+        Objects.equals(this.accountAliases, removeAccountAliasesRequest.accountAliases);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(aliases);
+    return Objects.hash(aliases, accountAliases);
   }
 
   @Override
@@ -113,6 +147,7 @@ public class RemoveAccountAliasesRequest implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class RemoveAccountAliasesRequest {\n");
     sb.append("    aliases: ").append(toIndentedString(aliases)).append("\n");
+    sb.append("    accountAliases: ").append(toIndentedString(accountAliases)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -136,34 +171,50 @@ public class RemoveAccountAliasesRequest implements Serializable {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("aliases");
+    openapiFields.add("accountAliases");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to RemoveAccountAliasesRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!RemoveAccountAliasesRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RemoveAccountAliasesRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!RemoveAccountAliasesRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in RemoveAccountAliasesRequest is not found in the empty JSON string", RemoveAccountAliasesRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!RemoveAccountAliasesRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RemoveAccountAliasesRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RemoveAccountAliasesRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // ensure the optional json data is an array if present
-      if (jsonObj.get("aliases") != null && !jsonObj.get("aliases").isJsonArray()) {
+      if (jsonObj.get("aliases") != null && !jsonObj.get("aliases").isJsonNull() && !jsonObj.get("aliases").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `aliases` to be an array in the JSON string but got `%s`", jsonObj.get("aliases").toString()));
+      }
+      if (jsonObj.get("accountAliases") != null && !jsonObj.get("accountAliases").isJsonNull()) {
+        JsonArray jsonArrayaccountAliases = jsonObj.getAsJsonArray("accountAliases");
+        if (jsonArrayaccountAliases != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("accountAliases").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `accountAliases` to be an array in the JSON string but got `%s`", jsonObj.get("accountAliases").toString()));
+          }
+
+          // validate the optional field `accountAliases` (array)
+          for (int i = 0; i < jsonArrayaccountAliases.size(); i++) {
+            RemoveAccountAliasRequest.validateJsonElement(jsonArrayaccountAliases.get(i));
+          };
+        }
       }
   }
 
@@ -187,31 +238,31 @@ public class RemoveAccountAliasesRequest implements Serializable {
 
            @Override
            public RemoveAccountAliasesRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of RemoveAccountAliasesRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RemoveAccountAliasesRequest
-  * @throws IOException if the JSON string is invalid with respect to RemoveAccountAliasesRequest
-  */
+  /**
+   * Create an instance of RemoveAccountAliasesRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RemoveAccountAliasesRequest
+   * @throws IOException if the JSON string is invalid with respect to RemoveAccountAliasesRequest
+   */
   public static RemoveAccountAliasesRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RemoveAccountAliasesRequest.class);
   }
 
- /**
-  * Convert an instance of RemoveAccountAliasesRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RemoveAccountAliasesRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -14,13 +14,13 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -33,13 +33,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -47,109 +49,34 @@ import com.togai.client.JSON;
 /**
  * AccountAliases
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class AccountAliases implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ALIAS = "alias";
   @SerializedName(SERIALIZED_NAME_ALIAS)
+  @javax.annotation.Nullable
   private String alias;
-
-  /**
-   * Gets or Sets status
-   */
-  @JsonAdapter(StatusEnum.Adapter.class)
-  public enum StatusEnum {
-    ACTIVE("ACTIVE"),
-    
-    ARCHIVED("ARCHIVED");
-
-    private String value;
-
-    StatusEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<StatusEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return StatusEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private StatusEnum status;
 
   public AccountAliases() {
   }
 
-  public AccountAliases alias(String alias) {
-    
+  public AccountAliases alias(@javax.annotation.Nullable String alias) {
     this.alias = alias;
     return this;
   }
 
-   /**
+  /**
    * Get alias
    * @return alias
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getAlias() {
     return alias;
   }
 
-
-  public void setAlias(String alias) {
+  public void setAlias(@javax.annotation.Nullable String alias) {
     this.alias = alias;
-  }
-
-
-  public AccountAliases status(StatusEnum status) {
-    
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * Get status
-   * @return status
-  **/
-  @javax.annotation.Nullable
-
-  public StatusEnum getStatus() {
-    return status;
-  }
-
-
-  public void setStatus(StatusEnum status) {
-    this.status = status;
   }
 
 
@@ -163,13 +90,12 @@ public class AccountAliases implements Serializable {
       return false;
     }
     AccountAliases accountAliases = (AccountAliases) o;
-    return Objects.equals(this.alias, accountAliases.alias) &&
-        Objects.equals(this.status, accountAliases.status);
+    return Objects.equals(this.alias, accountAliases.alias);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(alias, status);
+    return Objects.hash(alias);
   }
 
   @Override
@@ -177,7 +103,6 @@ public class AccountAliases implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class AccountAliases {\n");
     sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -201,37 +126,34 @@ public class AccountAliases implements Serializable {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("alias");
-    openapiFields.add("status");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to AccountAliases
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!AccountAliases.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AccountAliases
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!AccountAliases.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AccountAliases is not found in the empty JSON string", AccountAliases.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!AccountAliases.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AccountAliases` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AccountAliases` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("alias") != null && !jsonObj.get("alias").isJsonNull()) && !jsonObj.get("alias").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `alias` to be a primitive type in the JSON string but got `%s`", jsonObj.get("alias").toString()));
-      }
-      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
       }
   }
 
@@ -255,31 +177,31 @@ public class AccountAliases implements Serializable {
 
            @Override
            public AccountAliases read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of AccountAliases given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of AccountAliases
-  * @throws IOException if the JSON string is invalid with respect to AccountAliases
-  */
+  /**
+   * Create an instance of AccountAliases given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AccountAliases
+   * @throws IOException if the JSON string is invalid with respect to AccountAliases
+   */
   public static AccountAliases fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AccountAliases.class);
   }
 
- /**
-  * Convert an instance of AccountAliases to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of AccountAliases to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,6 +23,7 @@ import com.togai.client.models.Account;
 import com.togai.client.models.PaginationOptions;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -37,13 +37,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -51,27 +53,29 @@ import com.togai.client.JSON;
 /**
  * AccountPaginatedResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class AccountPaginatedResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
+  @javax.annotation.Nullable
   private List<Account> data = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_NEXT_TOKEN = "nextToken";
   @SerializedName(SERIALIZED_NAME_NEXT_TOKEN)
+  @javax.annotation.Nullable
   private String nextToken;
 
   public static final String SERIALIZED_NAME_CONTEXT = "context";
   @SerializedName(SERIALIZED_NAME_CONTEXT)
+  @javax.annotation.Nullable
   private PaginationOptions context;
 
   public AccountPaginatedResponse() {
   }
 
-  public AccountPaginatedResponse data(List<Account> data) {
-    
+  public AccountPaginatedResponse data(@javax.annotation.Nullable List<Account> data) {
     this.data = data;
     return this;
   }
@@ -84,62 +88,54 @@ public class AccountPaginatedResponse implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get data
    * @return data
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<Account> getData() {
     return data;
   }
 
-
-  public void setData(List<Account> data) {
+  public void setData(@javax.annotation.Nullable List<Account> data) {
     this.data = data;
   }
 
 
-  public AccountPaginatedResponse nextToken(String nextToken) {
-    
+  public AccountPaginatedResponse nextToken(@javax.annotation.Nullable String nextToken) {
     this.nextToken = nextToken;
     return this;
   }
 
-   /**
+  /**
    * Get nextToken
    * @return nextToken
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getNextToken() {
     return nextToken;
   }
 
-
-  public void setNextToken(String nextToken) {
+  public void setNextToken(@javax.annotation.Nullable String nextToken) {
     this.nextToken = nextToken;
   }
 
 
-  public AccountPaginatedResponse context(PaginationOptions context) {
-    
+  public AccountPaginatedResponse context(@javax.annotation.Nullable PaginationOptions context) {
     this.context = context;
     return this;
   }
 
-   /**
+  /**
    * Get context
    * @return context
-  **/
+   */
   @javax.annotation.Nullable
-
   public PaginationOptions getContext() {
     return context;
   }
 
-
-  public void setContext(PaginationOptions context) {
+  public void setContext(@javax.annotation.Nullable PaginationOptions context) {
     this.context = context;
   }
 
@@ -201,26 +197,27 @@ public class AccountPaginatedResponse implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to AccountPaginatedResponse
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!AccountPaginatedResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AccountPaginatedResponse
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!AccountPaginatedResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AccountPaginatedResponse is not found in the empty JSON string", AccountPaginatedResponse.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!AccountPaginatedResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AccountPaginatedResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AccountPaginatedResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull()) {
         JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
         if (jsonArraydata != null) {
@@ -231,7 +228,7 @@ public class AccountPaginatedResponse implements Serializable {
 
           // validate the optional field `data` (array)
           for (int i = 0; i < jsonArraydata.size(); i++) {
-            Account.validateJsonObject(jsonArraydata.get(i).getAsJsonObject());
+            Account.validateJsonElement(jsonArraydata.get(i));
           };
         }
       }
@@ -240,7 +237,7 @@ public class AccountPaginatedResponse implements Serializable {
       }
       // validate the optional field `context`
       if (jsonObj.get("context") != null && !jsonObj.get("context").isJsonNull()) {
-        PaginationOptions.validateJsonObject(jsonObj.getAsJsonObject("context"));
+        PaginationOptions.validateJsonElement(jsonObj.get("context"));
       }
   }
 
@@ -264,31 +261,31 @@ public class AccountPaginatedResponse implements Serializable {
 
            @Override
            public AccountPaginatedResponse read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of AccountPaginatedResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of AccountPaginatedResponse
-  * @throws IOException if the JSON string is invalid with respect to AccountPaginatedResponse
-  */
+  /**
+   * Create an instance of AccountPaginatedResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AccountPaginatedResponse
+   * @throws IOException if the JSON string is invalid with respect to AccountPaginatedResponse
+   */
   public static AccountPaginatedResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AccountPaginatedResponse.class);
   }
 
- /**
-  * Convert an instance of AccountPaginatedResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of AccountPaginatedResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

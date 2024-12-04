@@ -2,6 +2,7 @@
 
 Togai Apis
 - API version: 1.0
+  - Generator version: 7.10.0
 
 APIs for Togai App
 
@@ -96,11 +97,10 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     AccountsApi apiInstance = new AccountsApi(defaultClient);
-    String customerId = "customerId_example"; // String | 
-    String accountId = "accountId_example"; // String | account_id corresponding to an account
+    String accountId = "ACC00001"; // String | account_id corresponding to an account
     AddAccountAliasesRequest addAccountAliasesRequest = new AddAccountAliasesRequest(); // AddAccountAliasesRequest | Payload to add aliases to account
     try {
-      Account result = apiInstance.addAliases(customerId, accountId, addAccountAliasesRequest);
+      Account result = apiInstance.addAliases(accountId, addAccountAliasesRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AccountsApi#addAliases");
@@ -120,33 +120,67 @@ All URIs are relative to *https://api.togai.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AccountsApi* | [**addAliases**](docs/AccountsApi.md#addAliases) | **POST** /customers/{customer_id}/accounts/{account_id}/add_aliases | Add Aliases to account
-*AccountsApi* | [**createAccount**](docs/AccountsApi.md#createAccount) | **POST** /customers/{customer_id}/accounts | Create an account
-*AccountsApi* | [**deleteAccount**](docs/AccountsApi.md#deleteAccount) | **DELETE** /customers/{customer_id}/accounts/{account_id} | Delete an account
-*AccountsApi* | [**getAccount**](docs/AccountsApi.md#getAccount) | **GET** /customers/{customer_id}/accounts/{account_id} | Get an account
-*AccountsApi* | [**getAccounts**](docs/AccountsApi.md#getAccounts) | **GET** /customers/{customer_id}/accounts | List accounts of customer
-*AccountsApi* | [**removeAliases**](docs/AccountsApi.md#removeAliases) | **POST** /customers/{customer_id}/accounts/{account_id}/remove_aliases | Remove Aliases to account
-*AccountsApi* | [**updateAccount**](docs/AccountsApi.md#updateAccount) | **PATCH** /customers/{customer_id}/accounts/{account_id} | Update an account
-*AccountsApi* | [**updatePricingSchedule**](docs/AccountsApi.md#updatePricingSchedule) | **POST** /customers/{customer_id}/accounts/{account_id}/price_plans | Dis/associate a plan from/to an account
+*AccountsApi* | [**addAliases**](docs/AccountsApi.md#addAliases) | **POST** /accounts/{account_id}/add_aliases | Add Aliases to account
+*AccountsApi* | [**createAccount**](docs/AccountsApi.md#createAccount) | **POST** /accounts | Create an account
+*AccountsApi* | [**createProposal**](docs/AccountsApi.md#createProposal) | **POST** /accounts/{account_id}/purchase_proposals | (DEPRECATED) Propose a purchase of a plan
+*AccountsApi* | [**deleteAccount**](docs/AccountsApi.md#deleteAccount) | **DELETE** /accounts/{account_id} | Delete an account
+*AccountsApi* | [**getAccount**](docs/AccountsApi.md#getAccount) | **GET** /accounts/{account_id} | Get an account
+*AccountsApi* | [**getAccounts**](docs/AccountsApi.md#getAccounts) | **GET** /accounts | List accounts of customer
+*AccountsApi* | [**getPricingSchedules**](docs/AccountsApi.md#getPricingSchedules) | **GET** /accounts/{account_id}/pricing_schedules | (DEPRECATED) List pricing schedules of an account
+*AccountsApi* | [**getProposal**](docs/AccountsApi.md#getProposal) | **GET** /purchase_proposals/{purchase_proposal_id} | (DEPRECATED) Get proposal information
+*AccountsApi* | [**getPurchase**](docs/AccountsApi.md#getPurchase) | **GET** /purchases/{purchase_id} | (DEPRECATED) Get a specific purchase of an account
+*AccountsApi* | [**initiateOneTimeEntitlementPlan**](docs/AccountsApi.md#initiateOneTimeEntitlementPlan) | **POST** /accounts/{account_id}/purchases | (DEPRECATED) Initiate a purchase
+*AccountsApi* | [**listAccountAliases**](docs/AccountsApi.md#listAccountAliases) | **GET** /accounts/{account_id}/account_aliases | Get all aliases of an account
+*AccountsApi* | [**listAccountProposals**](docs/AccountsApi.md#listAccountProposals) | **GET** /accounts/{account_id}/purchase_proposals | (DEPRECATED) List all proposals of an account
+*AccountsApi* | [**listAccountPurchases**](docs/AccountsApi.md#listAccountPurchases) | **GET** /accounts/{account_id}/purchases | (DEPRECATED) Get all purchases for an account
+*AccountsApi* | [**removeAliases**](docs/AccountsApi.md#removeAliases) | **POST** /accounts/{account_id}/remove_aliases | Remove Aliases to account
+*AccountsApi* | [**updateAccount**](docs/AccountsApi.md#updateAccount) | **PATCH** /accounts/{account_id} | Update an account
+*AccountsApi* | [**updatePricingSchedule**](docs/AccountsApi.md#updatePricingSchedule) | **POST** /accounts/{account_id}/price_plans | (DEPRECATED) Dissociate or associate a price plan with an account
+*AccountsApi* | [**updatePricingScheduleBatch**](docs/AccountsApi.md#updatePricingScheduleBatch) | **POST** /accounts/{account_id}/edit_schedules | (DEPRECATED) Edit schedules of an account.
+*AccountsApi* | [**updateProposalStatus**](docs/AccountsApi.md#updateProposalStatus) | **POST** /purchase_proposals/{purchase_proposal_id}/update_status | (DEPRECATED) Approve or decline a purchase of a billing plan
 *AddOnsApi* | [**createAddOn**](docs/AddOnsApi.md#createAddOn) | **POST** /addons | Create an AddOn
 *AddOnsApi* | [**deleteAddOn**](docs/AddOnsApi.md#deleteAddOn) | **DELETE** /addons/{addon_id} | Delete an addon
 *AddOnsApi* | [**getAddOn**](docs/AddOnsApi.md#getAddOn) | **GET** /addons/{addon_id} | Get an addon
 *AddOnsApi* | [**getAddOns**](docs/AddOnsApi.md#getAddOns) | **GET** /addons | List addOns
 *AddOnsApi* | [**updateAddOn**](docs/AddOnsApi.md#updateAddOn) | **PATCH** /addons/{addon_id} | Update an addon
+*AlertsApi* | [**createAlert**](docs/AlertsApi.md#createAlert) | **POST** /alerts | Create an alert
+*AlertsApi* | [**getAlertTemplate**](docs/AlertsApi.md#getAlertTemplate) | **GET** /alert_templates/{alert_template_id} | Get an alert template
+*AlertsApi* | [**getAlertTemplates**](docs/AlertsApi.md#getAlertTemplates) | **GET** /alert_templates | List alert templates
+*AlertsApi* | [**getIncident**](docs/AlertsApi.md#getIncident) | **GET** /incidents/{incident_id} | Get an incident
+*AlertsApi* | [**getIncidents**](docs/AlertsApi.md#getIncidents) | **GET** /incidents | List incidents
+*AlertsApi* | [**listAlerts**](docs/AlertsApi.md#listAlerts) | **GET** /alerts | List alerts
+*AlertsApi* | [**updateAlert**](docs/AlertsApi.md#updateAlert) | **PATCH** /alerts/{alert_id} | Update an alert
+*AlertsApi* | [**updateIncidentStatus**](docs/AlertsApi.md#updateIncidentStatus) | **PUT** /incidents/{incident_id}/status | Update an incident status
+*AliasesApi* | [**createAlias**](docs/AliasesApi.md#createAlias) | **POST** /aliases | Create an alias
+*AliasesApi* | [**deleteAlias**](docs/AliasesApi.md#deleteAlias) | **DELETE** /aliases/{alias} | Delete an alias
+*AliasesApi* | [**getAlias**](docs/AliasesApi.md#getAlias) | **GET** /aliases/{alias} | Get an alias
+*AliasesApi* | [**listAliases**](docs/AliasesApi.md#listAliases) | **GET** /aliases | List all aliases
+*AuthenticationApi* | [**authenticate**](docs/AuthenticationApi.md#authenticate) | **POST** /authenticate | Generate short lived bearer token
 *CreditsApi* | [**createCredit**](docs/CreditsApi.md#createCredit) | **POST** /credits | Grant credit
 *CreditsApi* | [**creditBalanceForAccount**](docs/CreditsApi.md#creditBalanceForAccount) | **GET** /accounts/{account_id}/credit_balance | Credit balance for Account
 *CreditsApi* | [**getCreditDetails**](docs/CreditsApi.md#getCreditDetails) | **GET** /credits/{credit_id} | Get credit details
 *CreditsApi* | [**listCredits**](docs/CreditsApi.md#listCredits) | **GET** /credits | List credits
 *CreditsApi* | [**voidCredit**](docs/CreditsApi.md#voidCredit) | **POST** /credits/{credit_id}/void | Void credit
+*CustomerPortalApi* | [**getCustomerPortalDelegateToken**](docs/CustomerPortalApi.md#getCustomerPortalDelegateToken) | **POST** /portal/token | Get delegate token for customer portal
 *CustomersApi* | [**createCustomer**](docs/CustomersApi.md#createCustomer) | **POST** /customers | Create a customer
+*CustomersApi* | [**createCustomerContact**](docs/CustomersApi.md#createCustomerContact) | **POST** /customers/{customer_id}/contacts | Create a contact for the customer
 *CustomersApi* | [**deleteCustomer**](docs/CustomersApi.md#deleteCustomer) | **DELETE** /customers/{customer_id} | Delete a customer
 *CustomersApi* | [**getCustomer**](docs/CustomersApi.md#getCustomer) | **GET** /customers/{customer_id} | Get a customer
 *CustomersApi* | [**getCustomers**](docs/CustomersApi.md#getCustomers) | **GET** /customers | List customers
 *CustomersApi* | [**updateCustomer**](docs/CustomersApi.md#updateCustomer) | **PATCH** /customers/{customer_id} | Update a customer
+*EntitlementsApi* | [**getEntitlementValue**](docs/EntitlementsApi.md#getEntitlementValue) | **GET** /accounts/{account_id}/entitlements/{feature_id} | Get entitlement value for a account
+*EntitlementsApi* | [**getEntitlements**](docs/EntitlementsApi.md#getEntitlements) | **GET** /accounts/{account_id}/entitlements | Get entitlements for a account
+*EntitlementsApi* | [**getFeatureCredits**](docs/EntitlementsApi.md#getFeatureCredits) | **GET** /accounts/{account_id}/features/{feature_id} | Get Feature credits balance
+*EntitlementsApi* | [**ingestEntitledEvent**](docs/EntitlementsApi.md#ingestEntitledEvent) | **POST** /entitled | Ingest event if a user is entitled to a feature
+*EntitlementsApi* | [**listFeatureCreditEntries**](docs/EntitlementsApi.md#listFeatureCreditEntries) | **GET** /accounts/{account_id}/features/{feature_id}/entries | List feature credits entries of a feature for an account
+*EntitlementsApi* | [**updateFeatureCreditEntry**](docs/EntitlementsApi.md#updateFeatureCreditEntry) | **PATCH** /accounts/{account_id}/features/{feature_id}/entries/{entry_id} | Update a feature credits entry
+*EntitlementsApi* | [**validateEntitlementValue**](docs/EntitlementsApi.md#validateEntitlementValue) | **POST** /accounts/{account_id}/entitlements/{feature_id} | Check entitlement value for a account
+*EntitlementsApi* | [**voidFeatureCreditEntry**](docs/EntitlementsApi.md#voidFeatureCreditEntry) | **POST** /accounts/{account_id}/features/{feature_id}/entries/{entry_id}/void | Void a feature credits entry of a feature for an account
 *EventIngestionApi* | [**ingest**](docs/EventIngestionApi.md#ingest) | **POST** /ingest | Ingest events to Togai
 *EventIngestionApi* | [**ingestBatch**](docs/EventIngestionApi.md#ingestBatch) | **POST** /ingestBatch | Ingest events to Togai in batch
+*EventManagementApi* | [**eventCorrection**](docs/EventManagementApi.md#eventCorrection) | **POST** /events/correction | Correct an ingested event
 *EventManagementApi* | [**getEvents**](docs/EventManagementApi.md#getEvents) | **GET** /events | Get a list of usage events with multiple query options
-*EventManagementApi* | [**getSingleEvent**](docs/EventManagementApi.md#getSingleEvent) | **GET** /events/{event_id} | Get an usage event using event id
+*EventManagementApi* | [**getSingleEvent**](docs/EventManagementApi.md#getSingleEvent) | **GET** /events/{event_id} | Get an event using event id
 *EventSchemasApi* | [**activateEventSchema**](docs/EventSchemasApi.md#activateEventSchema) | **POST** /event_schema/{event_schema_name}/activate | Activate an event schema
 *EventSchemasApi* | [**createEventSchema**](docs/EventSchemasApi.md#createEventSchema) | **POST** /event_schema | Create an event schema
 *EventSchemasApi* | [**deactivateEventSchema**](docs/EventSchemasApi.md#deactivateEventSchema) | **POST** /event_schema/{event_schema_name}/deactivate | Deactivate an event schema
@@ -155,189 +189,426 @@ Class | Method | HTTP request | Description
 *EventSchemasApi* | [**getEventSchema**](docs/EventSchemasApi.md#getEventSchema) | **GET** /event_schema/{event_schema_name} | Get an event schema
 *EventSchemasApi* | [**listEventSchemaVersions**](docs/EventSchemasApi.md#listEventSchemaVersions) | **GET** /event_schema/{event_schema_name}/versions | List all event schema versions
 *EventSchemasApi* | [**listEventSchemas**](docs/EventSchemasApi.md#listEventSchemas) | **GET** /event_schema | List event schemas
+*FeatureApi* | [**createFeature**](docs/FeatureApi.md#createFeature) | **POST** /features | Create a Feature and optionally associate with one or more event_schemas
+*FeatureApi* | [**getFeature**](docs/FeatureApi.md#getFeature) | **GET** /features/{feature_id} | Get a Feature
+*FeatureApi* | [**getFeatures**](docs/FeatureApi.md#getFeatures) | **GET** /features | List Feature
+*FeatureApi* | [**updateFeature**](docs/FeatureApi.md#updateFeature) | **PATCH** /features/{feature_id} | Update a Feature
+*FileStorageApi* | [**getDownloadUrl**](docs/FileStorageApi.md#getDownloadUrl) | **GET** /files/{file_id}/download_url | Get a download url for a file
+*FileStorageApi* | [**getFile**](docs/FileStorageApi.md#getFile) | **GET** /files/{file_id} | Get a file
+*InvoiceGroupsApi* | [**addInvoiceGroupAccounts**](docs/InvoiceGroupsApi.md#addInvoiceGroupAccounts) | **POST** /invoice_groups/{invoice_group_id}/add_accounts | Add accounts to an invoice group
+*InvoiceGroupsApi* | [**createInvoiceGroup**](docs/InvoiceGroupsApi.md#createInvoiceGroup) | **POST** /invoice_groups | Create an invoice group
+*InvoiceGroupsApi* | [**getInvoiceGroup**](docs/InvoiceGroupsApi.md#getInvoiceGroup) | **GET** /invoice_groups/{invoice_group_id} | Get information of an invoice group
+*InvoiceGroupsApi* | [**listInvoiceGroups**](docs/InvoiceGroupsApi.md#listInvoiceGroups) | **GET** /invoice_groups | List Invoice Groups
+*InvoiceGroupsApi* | [**removeInvoiceGroupAccounts**](docs/InvoiceGroupsApi.md#removeInvoiceGroupAccounts) | **POST** /invoice_groups/{invoice_group_id}/remove_accounts | Remove accounts from an invoice group. Removing all accounts will also delete the invoice group
+*InvoicesApi* | [**createCustomInvoice**](docs/InvoicesApi.md#createCustomInvoice) | **POST** /invoices | Create a custom invoice for an account
+*InvoicesApi* | [**createInvoiceBillRun**](docs/InvoicesApi.md#createInvoiceBillRun) | **POST** /invoices/bill_runs | Create a bill run job request
+*InvoicesApi* | [**deleteCustomInvoice**](docs/InvoicesApi.md#deleteCustomInvoice) | **DELETE** /invoices/{invoice_id} | Delete a custom invoice in DRAFT state
 *InvoicesApi* | [**getInvoice**](docs/InvoicesApi.md#getInvoice) | **GET** /invoices/{invoice_id} | Get an invoice
 *InvoicesApi* | [**listInvoices**](docs/InvoicesApi.md#listInvoices) | **GET** /invoices | List invoices
+*InvoicesApi* | [**listInvoicesForBillRun**](docs/InvoicesApi.md#listInvoicesForBillRun) | **GET** /invoices/bill_runs | List invoices eligible for bill run
+*InvoicesApi* | [**listPricingRuleLogs**](docs/InvoicesApi.md#listPricingRuleLogs) | **GET** /invoice/{invoice_id}/pricing_rules_logs | List pricing rule logs
+*InvoicesApi* | [**manageMiscellaneousChargesInAccount**](docs/InvoicesApi.md#manageMiscellaneousChargesInAccount) | **PUT** /accounts/{account_id}/miscellaneous_charges | Add or update miscellaneous charges in upcoming Invoice for a account
+*InvoicesApi* | [**manageMiscellaneousChargesInInvoice**](docs/InvoicesApi.md#manageMiscellaneousChargesInInvoice) | **PUT** /invoices/{invoice_id}/miscellaneous_charges | Add or update miscellaneous charges in Invoice
+*InvoicesApi* | [**updateInvoice**](docs/InvoicesApi.md#updateInvoice) | **PATCH** /invoices/{invoice_id} | Update an invoice
+*JobsApi* | [**confirmJob**](docs/JobsApi.md#confirmJob) | **POST** /jobs/{job_id}/confirm | Confirm a job
+*JobsApi* | [**getJobEntries**](docs/JobsApi.md#getJobEntries) | **GET** /jobs/{job_id}/entries | List job entries
+*JobsApi* | [**getJobStatus**](docs/JobsApi.md#getJobStatus) | **GET** /jobs/{job_id} | Get the status of a job
+*JobsApi* | [**getJobs**](docs/JobsApi.md#getJobs) | **GET** /jobs | List jobs
+*JobsApi* | [**rejectJob**](docs/JobsApi.md#rejectJob) | **POST** /jobs/{job_id}/reject | Reject a job
+*LicensesApi* | [**addLicenseUpdateEntry**](docs/LicensesApi.md#addLicenseUpdateEntry) | **POST** /license_updates | Update a license entry
+*LicensesApi* | [**getLicenseUpdates**](docs/LicensesApi.md#getLicenseUpdates) | **GET** /license_updates | Get a list of licenses updates
+*LicensesApi* | [**getNamedLicenseUpdates**](docs/LicensesApi.md#getNamedLicenseUpdates) | **GET** /named_license_updates | Get a list of named licenses updates
+*LicensesApi* | [**updateLicenseEntryDetails**](docs/LicensesApi.md#updateLicenseEntryDetails) | **PATCH** /license_updates/{license_id} | Update a license entry details
 *MetricsApi* | [**getMetrics**](docs/MetricsApi.md#getMetrics) | **POST** /metrics | Get Togai Metrics
-*MiscellaneousApi* | [**calculateRevenue**](docs/MiscellaneousApi.md#calculateRevenue) | **POST** /revenue_calculator | Calculate and return the revenue for a existing or new price plan
-*PricePlansApi* | [**activatePricePlan**](docs/PricePlansApi.md#activatePricePlan) | **POST** /price_plans/{price_plan_id}/activate | Activate a price plan
-*PricePlansApi* | [**addCurrencyToPricePlan**](docs/PricePlansApi.md#addCurrencyToPricePlan) | **POST** /price_plans/{price_plan_id}/currencies | Add currencies to a price plan
-*PricePlansApi* | [**createPricePlan**](docs/PricePlansApi.md#createPricePlan) | **POST** /price_plans | Create a price plan
-*PricePlansApi* | [**getPricePlan**](docs/PricePlansApi.md#getPricePlan) | **GET** /price_plans/{price_plan_id} | Get a price plan
-*PricePlansApi* | [**getPricePlans**](docs/PricePlansApi.md#getPricePlans) | **GET** /price_plans | List price plans
-*PricePlansApi* | [**removeCurrencyFromPricePlan**](docs/PricePlansApi.md#removeCurrencyFromPricePlan) | **DELETE** /price_plans/{price_plan_id}/currencies/{currency_id} | Remove a draft currency from a price plan
-*PricePlansApi* | [**updatePricePlan**](docs/PricePlansApi.md#updatePricePlan) | **PATCH** /price_plans/{price_plan_id} | Update a price plan
+*PaymentsApi* | [**createPayments**](docs/PaymentsApi.md#createPayments) | **POST** /payments | create payments
+*PaymentsApi* | [**getPayment**](docs/PaymentsApi.md#getPayment) | **GET** /payments/{payment_id} | Get a payment
+*PaymentsApi* | [**listPayments**](docs/PaymentsApi.md#listPayments) | **GET** /payments | List all payments
+*PriceExperimentationApi* | [**calculateRevenue**](docs/PriceExperimentationApi.md#calculateRevenue) | **POST** /revenue_calculator | (DEPRECATED) Calculate and return the revenue for a existing or new price plan
+*PriceExperimentationApi* | [**calculateRevenueV2**](docs/PriceExperimentationApi.md#calculateRevenueV2) | **POST** /v2/revenue_calculator | Calculate and return the revenue for a existing or new price plan v2
+*PricePlanV2Api* | [**bulkPricePlanRateCardOperations**](docs/PricePlanV2Api.md#bulkPricePlanRateCardOperations) | **POST** /v2/price_plans/{price_plan_id}/rate_cards | Bulk rate card operations of a price plan
+*PricePlanV2Api* | [**createPricePlanV2**](docs/PricePlanV2Api.md#createPricePlanV2) | **POST** /v2/price_plans | Create a price plan
+*PricePlanV2Api* | [**discardPricePlan**](docs/PricePlanV2Api.md#discardPricePlan) | **DELETE** /v2/price_plans/{price_plan_id}/discard | Discard a price plan
+*PricePlanV2Api* | [**finalizePricePlan**](docs/PricePlanV2Api.md#finalizePricePlan) | **POST** /v2/price_plans/{price_plan_id}/finalize | Finalize a price plan
+*PricePlanV2Api* | [**getPricePlanV2**](docs/PricePlanV2Api.md#getPricePlanV2) | **GET** /v2/price_plans/{price_plan_id} | Get a price plan
+*PricePlanV2Api* | [**listPricePlanErrors**](docs/PricePlanV2Api.md#listPricePlanErrors) | **GET** /v2/price_plans/{price_plan_id}/errors | Get list of errors of a price plan
+*PricePlanV2Api* | [**listPricePlanPricingRules**](docs/PricePlanV2Api.md#listPricePlanPricingRules) | **GET** /v2/price_plans/{price_plan_id}/pricing_rules | List pricing rules of a price plan
+*PricePlanV2Api* | [**listPricePlanRateCards**](docs/PricePlanV2Api.md#listPricePlanRateCards) | **GET** /v2/price_plans/{price_plan_id}/rate_cards | List rate cards of a price plan
+*PricePlanV2Api* | [**listPricePlanVersions**](docs/PricePlanV2Api.md#listPricePlanVersions) | **GET** /v2/price_plans/{price_plan_id}/versions | List price plan versions
+*PricePlanV2Api* | [**listPricePlansV2**](docs/PricePlanV2Api.md#listPricePlansV2) | **GET** /v2/price_plans | List price plans
+*PricePlanV2Api* | [**pricePlanMigrationV2**](docs/PricePlanV2Api.md#pricePlanMigrationV2) | **POST** /v2/price_plans/migration | Create a price plan v2 migration
+*PricePlanV2Api* | [**updatePricePlanPricingRules**](docs/PricePlanV2Api.md#updatePricePlanPricingRules) | **PUT** /v2/price_plans/{price_plan_id}/pricing_rules | Update pricing rules of a price plan
+*PricePlanV2Api* | [**updatePricePlanV2**](docs/PricePlanV2Api.md#updatePricePlanV2) | **PATCH** /v2/price_plans/{price_plan_id} | Update a price plan
+*PricePlansApi* | [**activatePricePlan**](docs/PricePlansApi.md#activatePricePlan) | **POST** /price_plans/{price_plan_id}/activate | (DEPRECATED) Activate a price plan
+*PricePlansApi* | [**archivePricePlan**](docs/PricePlansApi.md#archivePricePlan) | **DELETE** /price_plans/{price_plan_id} | (DEPRECATED) Archive a price plan
+*PricePlansApi* | [**createPricePlan**](docs/PricePlansApi.md#createPricePlan) | **POST** /price_plans | (DEPRECATED) Create a price plan
+*PricePlansApi* | [**getPricePlan**](docs/PricePlansApi.md#getPricePlan) | **GET** /price_plans/{price_plan_id} | (DEPRECATED) Get a price plan
+*PricePlansApi* | [**getPricePlans**](docs/PricePlansApi.md#getPricePlans) | **GET** /price_plans | (DEPRECATED) List price plans
+*PricePlansApi* | [**pricePlanMigration**](docs/PricePlansApi.md#pricePlanMigration) | **POST** /price_plans/migration | (DEPRECATED) Create a price plan migration
+*PricePlansApi* | [**updatePricePlan**](docs/PricePlansApi.md#updatePricePlan) | **PATCH** /price_plans/{price_plan_id} | (DEPRECATED) Update a price plan
+*PricingRulesApi* | [**listPricingRulesByScheduleId**](docs/PricingRulesApi.md#listPricingRulesByScheduleId) | **GET** /price_plans/{price_plan_id}/pricing_schedules/{pricing_schedule_id}/pricing_rules | (DEPRECATED) List pricing rules by price plan id and pricing schedule id
+*ReportsApi* | [**listReports**](docs/ReportsApi.md#listReports) | **GET** /reports | List reports
+*SchedulesApi* | [**bulkEditSchedules**](docs/SchedulesApi.md#bulkEditSchedules) | **POST** /v2/accounts/{account_id}/edit_schedules | Bulk edit schedules of an account
+*SchedulesApi* | [**bulkRateCardOperationsOnSchedule**](docs/SchedulesApi.md#bulkRateCardOperationsOnSchedule) | **POST** /v2/schedules/{schedule_id}/rate_cards | Bulk rate card operations on a schedule
+*SchedulesApi* | [**discardAccountSchedules**](docs/SchedulesApi.md#discardAccountSchedules) | **DELETE** /v2/accounts/{account_id}/discard_schedules | Discard schedules of an account
+*SchedulesApi* | [**finalizeAccountSchedules**](docs/SchedulesApi.md#finalizeAccountSchedules) | **POST** /v2/accounts/{account_id}/finalize_schedules | Finalize schedules of an account
+*SchedulesApi* | [**listPricingRules**](docs/SchedulesApi.md#listPricingRules) | **GET** /v2/schedules/{schedule_id}/pricing_rules | List pricing rules of a account schedule
+*SchedulesApi* | [**listScheduleErrors**](docs/SchedulesApi.md#listScheduleErrors) | **GET** /v2/schedules/{schedule_id}/errors | Get list of errors of a acc schedule
+*SchedulesApi* | [**listScheduleRateCards**](docs/SchedulesApi.md#listScheduleRateCards) | **GET** /v2/schedules/{schedule_id}/rate_cards | List rate cards
+*SchedulesApi* | [**listaccountSchedules**](docs/SchedulesApi.md#listaccountSchedules) | **GET** /v2/accounts/{account_id}/schedules | List pricing schedules of an account
+*SchedulesApi* | [**updatePricingRules**](docs/SchedulesApi.md#updatePricingRules) | **PUT** /v2/schedules/{schedule_id}/pricing_rules | Update pricing rules of a account schedule
 *SettingsApi* | [**getSetting**](docs/SettingsApi.md#getSetting) | **GET** /settings/{setting_id_str} | Get a setting
 *SettingsApi* | [**insertSetting**](docs/SettingsApi.md#insertSetting) | **POST** /settings | Create a setting
 *SettingsApi* | [**listSetting**](docs/SettingsApi.md#listSetting) | **GET** /settings | Lists settings
 *SettingsApi* | [**updateSetting**](docs/SettingsApi.md#updateSetting) | **PATCH** /settings/{setting_id_str} | Update a setting
-*UsageMetersApi* | [**activateUsageMeter**](docs/UsageMetersApi.md#activateUsageMeter) | **POST** /event_schema/{event_schema_name}/usage_meters/{usage_meter_id}/activate | Activate usage meter
-*UsageMetersApi* | [**createUsageMeter**](docs/UsageMetersApi.md#createUsageMeter) | **POST** /event_schema/{event_schema_name}/usage_meters | Create an usage meter
-*UsageMetersApi* | [**deactivateUsageMeter**](docs/UsageMetersApi.md#deactivateUsageMeter) | **POST** /event_schema/{event_schema_name}/usage_meters/{usage_meter_id}/deactivate | Deactivate usage meter
-*UsageMetersApi* | [**getUsageMeter**](docs/UsageMetersApi.md#getUsageMeter) | **GET** /event_schema/{event_schema_name}/usage_meters/{usage_meter_id} | Get usage meter
-*UsageMetersApi* | [**getUsageMetersForEventSchema**](docs/UsageMetersApi.md#getUsageMetersForEventSchema) | **GET** /event_schema/{event_schema_name}/usage_meters | List usage meters for event schema
-*UsageMetersApi* | [**updateUsageMeter**](docs/UsageMetersApi.md#updateUsageMeter) | **PATCH** /event_schema/{event_schema_name}/usage_meters/{usage_meter_id} | Update an usage meter
+*UsageMetersApi* | [**activateUsageMeter**](docs/UsageMetersApi.md#activateUsageMeter) | **POST** /usage_meters/{usage_meter_id}/activate | Activate usage meter
+*UsageMetersApi* | [**createUsageMeter**](docs/UsageMetersApi.md#createUsageMeter) | **POST** /usage_meters | Create an usage meter
+*UsageMetersApi* | [**deactivateUsageMeter**](docs/UsageMetersApi.md#deactivateUsageMeter) | **POST** /usage_meters/{usage_meter_id}/deactivate | Deactivate usage meter
+*UsageMetersApi* | [**deleteUsageMeter**](docs/UsageMetersApi.md#deleteUsageMeter) | **DELETE** /usage_meters/{usage_meter_id} | Delete an Usage Meter
+*UsageMetersApi* | [**getUsageMeter**](docs/UsageMetersApi.md#getUsageMeter) | **GET** /usage_meters/{usage_meter_id} | Get usage meter
+*UsageMetersApi* | [**getUsageMetersForEventSchema**](docs/UsageMetersApi.md#getUsageMetersForEventSchema) | **GET** /usage_meters | List usage meters for event schema
+*UsageMetersApi* | [**updateUsageMeter**](docs/UsageMetersApi.md#updateUsageMeter) | **PATCH** /usage_meters/{usage_meter_id} | Update an usage meter
+*WalletApi* | [**topUpWalletForAccount**](docs/WalletApi.md#topUpWalletForAccount) | **POST** /accounts/{account_id}/wallet_topup | Top-up wallet for an account
+*WalletApi* | [**updateWalletForAccount**](docs/WalletApi.md#updateWalletForAccount) | **PATCH** /accounts/{account_id}/wallet | Update wallet details for an account
+*WalletApi* | [**walletBalanceForAccount**](docs/WalletApi.md#walletBalanceForAccount) | **GET** /accounts/{account_id}/wallet | Wallet balance for Account
+*WalletApi* | [**walletEntriesForAccount**](docs/WalletApi.md#walletEntriesForAccount) | **GET** /accounts/{account_id}/wallet/entries | Wallet entries for Account
 
 
 ## Documentation for Models
 
  - [Account](docs/Account.md)
+ - [AccountAlias](docs/AccountAlias.md)
  - [AccountAliases](docs/AccountAliases.md)
+ - [AccountAliasesPaginatedResponse](docs/AccountAliasesPaginatedResponse.md)
  - [AccountPaginatedResponse](docs/AccountPaginatedResponse.md)
+ - [AccountSchedule](docs/AccountSchedule.md)
+ - [AccountsBillingInformation](docs/AccountsBillingInformation.md)
  - [ActivatePricePlanRequest](docs/ActivatePricePlanRequest.md)
  - [AddAccountAliasesRequest](docs/AddAccountAliasesRequest.md)
- - [AddCurrencyToPricePlanRequest](docs/AddCurrencyToPricePlanRequest.md)
  - [AddOn](docs/AddOn.md)
- - [AddOnAllOf](docs/AddOnAllOf.md)
  - [AddOnPaginatedResponse](docs/AddOnPaginatedResponse.md)
+ - [AddOnType](docs/AddOnType.md)
+ - [Address](docs/Address.md)
+ - [Alert](docs/Alert.md)
+ - [AlertStatus](docs/AlertStatus.md)
+ - [AlertTemplate](docs/AlertTemplate.md)
+ - [AlertTemplatesPaginatedResponse](docs/AlertTemplatesPaginatedResponse.md)
+ - [AlertsPaginatedResponse](docs/AlertsPaginatedResponse.md)
+ - [Alias](docs/Alias.md)
+ - [AliasPaginatedResponse](docs/AliasPaginatedResponse.md)
+ - [AssociationConfig](docs/AssociationConfig.md)
  - [Attribute](docs/Attribute.md)
  - [BaseSuccessResponse](docs/BaseSuccessResponse.md)
+ - [BillingConfig](docs/BillingConfig.md)
+ - [BillingEntitlementRateCard](docs/BillingEntitlementRateCard.md)
+ - [BillingEntitlementRevenueSummary](docs/BillingEntitlementRevenueSummary.md)
+ - [BulkRateCardOperationsRequest](docs/BulkRateCardOperationsRequest.md)
+ - [BulkRateCardOperationsResponse](docs/BulkRateCardOperationsResponse.md)
  - [CalculateRevenueRequest](docs/CalculateRevenueRequest.md)
  - [CalculateRevenueResponse](docs/CalculateRevenueResponse.md)
+ - [CalculateRevenueResponseV2](docs/CalculateRevenueResponseV2.md)
  - [Computation](docs/Computation.md)
- - [ComputeRevenueSummaryRequest](docs/ComputeRevenueSummaryRequest.md)
- - [ComputeRevenueSummaryResponse](docs/ComputeRevenueSummaryResponse.md)
+ - [CreateAccountAliasRequest](docs/CreateAccountAliasRequest.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
+ - [CreateAccountRequestWithoutCustomerId](docs/CreateAccountRequestWithoutCustomerId.md)
  - [CreateAddOnRequest](docs/CreateAddOnRequest.md)
+ - [CreateAlertRequest](docs/CreateAlertRequest.md)
+ - [CreateAliasRequest](docs/CreateAliasRequest.md)
+ - [CreateBulkAliasRequest](docs/CreateBulkAliasRequest.md)
  - [CreateCreditRequest](docs/CreateCreditRequest.md)
+ - [CreateCreditResponse](docs/CreateCreditResponse.md)
+ - [CreateCustomInvoiceRequest](docs/CreateCustomInvoiceRequest.md)
+ - [CreateCustomerContactRequest](docs/CreateCustomerContactRequest.md)
+ - [CreateCustomerContactResponse](docs/CreateCustomerContactResponse.md)
  - [CreateCustomerRequest](docs/CreateCustomerRequest.md)
  - [CreateCustomerResponse](docs/CreateCustomerResponse.md)
  - [CreateEntitySetting](docs/CreateEntitySetting.md)
  - [CreateEventSchemaRequest](docs/CreateEventSchemaRequest.md)
+ - [CreateFeatureRequest](docs/CreateFeatureRequest.md)
+ - [CreateInvoiceGroupRequest](docs/CreateInvoiceGroupRequest.md)
+ - [CreatePaymentRequest](docs/CreatePaymentRequest.md)
  - [CreatePricePlanDetails](docs/CreatePricePlanDetails.md)
  - [CreatePricePlanDetailsOverride](docs/CreatePricePlanDetailsOverride.md)
+ - [CreatePricePlanMigrationRequest](docs/CreatePricePlanMigrationRequest.md)
  - [CreatePricePlanRequest](docs/CreatePricePlanRequest.md)
+ - [CreatePricePlanV2Request](docs/CreatePricePlanV2Request.md)
+ - [CreatePricingRule](docs/CreatePricingRule.md)
+ - [CreateProposalRequest](docs/CreateProposalRequest.md)
+ - [CreatePurchaseRequest](docs/CreatePurchaseRequest.md)
  - [CreateUsageMeterRequest](docs/CreateUsageMeterRequest.md)
  - [Credit](docs/Credit.md)
- - [CreditAllOf](docs/CreditAllOf.md)
  - [CreditBalanceResponse](docs/CreditBalanceResponse.md)
  - [CreditDetailsResponse](docs/CreditDetailsResponse.md)
- - [CreditDetailsResponseAllOf](docs/CreditDetailsResponseAllOf.md)
+ - [CreditGrantRateCard](docs/CreditGrantRateCard.md)
+ - [CreditGrantRevenueSummary](docs/CreditGrantRevenueSummary.md)
+ - [CreditGrantType](docs/CreditGrantType.md)
+ - [CreditRateDetails](docs/CreditRateDetails.md)
+ - [CreditRequest](docs/CreditRequest.md)
  - [CreditTransaction](docs/CreditTransaction.md)
  - [CurrencyConfig](docs/CurrencyConfig.md)
  - [CurrencyRateValue](docs/CurrencyRateValue.md)
+ - [CurrencySlabRateDetail](docs/CurrencySlabRateDetail.md)
+ - [CustomInvoiceLineItem](docs/CustomInvoiceLineItem.md)
  - [Customer](docs/Customer.md)
  - [CustomerPaginatedResponse](docs/CustomerPaginatedResponse.md)
  - [Dependency](docs/Dependency.md)
  - [DimensionsSchema](docs/DimensionsSchema.md)
+ - [EditAccountScheduleRequest](docs/EditAccountScheduleRequest.md)
+ - [EditPricingScheduleRequest](docs/EditPricingScheduleRequest.md)
  - [EnrichedField](docs/EnrichedField.md)
  - [EnrichmentDependency](docs/EnrichmentDependency.md)
  - [Enrichments](docs/Enrichments.md)
+ - [EntitlementOverageConfig](docs/EntitlementOverageConfig.md)
+ - [EntitlementOverageConfigLookupCycle](docs/EntitlementOverageConfigLookupCycle.md)
+ - [EntitlementOverageEntry](docs/EntitlementOverageEntry.md)
+ - [EntitlementOverageRateCard](docs/EntitlementOverageRateCard.md)
+ - [EntitlementOverageRevenueSummary](docs/EntitlementOverageRevenueSummary.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [Event](docs/Event.md)
  - [EventAttributeSchema](docs/EventAttributeSchema.md)
+ - [EventCorrectionInfo](docs/EventCorrectionInfo.md)
+ - [EventCorrectionRequest](docs/EventCorrectionRequest.md)
  - [EventPipelineInfo](docs/EventPipelineInfo.md)
  - [EventPipelineInfoAccount](docs/EventPipelineInfoAccount.md)
  - [EventPipelineInfoCustomer](docs/EventPipelineInfoCustomer.md)
  - [EventPipelineInfoEnrichments](docs/EventPipelineInfoEnrichments.md)
  - [EventPipelineInfoEventSchema](docs/EventPipelineInfoEventSchema.md)
+ - [EventPipelineInfoFeatureDetails](docs/EventPipelineInfoFeatureDetails.md)
  - [EventPipelineInfoPricePlans](docs/EventPipelineInfoPricePlans.md)
+ - [EventPipelineInfoRevenueDetails](docs/EventPipelineInfoRevenueDetails.md)
  - [EventPipelineInfoUsageMeters](docs/EventPipelineInfoUsageMeters.md)
  - [EventSchema](docs/EventSchema.md)
  - [EventSchemaListData](docs/EventSchemaListData.md)
- - [EventSchemaListDataAllOf](docs/EventSchemaListDataAllOf.md)
  - [EventSchemaListPaginatedResponse](docs/EventSchemaListPaginatedResponse.md)
  - [EventSchemaVersionsResponse](docs/EventSchemaVersionsResponse.md)
+ - [EventSchemasForFeature](docs/EventSchemasForFeature.md)
+ - [EventSource](docs/EventSource.md)
  - [EventWithStatus](docs/EventWithStatus.md)
  - [EventWithStatusAndEventPipelineInfo](docs/EventWithStatusAndEventPipelineInfo.md)
- - [EventWithStatusAndEventPipelineInfoAllOf](docs/EventWithStatusAndEventPipelineInfoAllOf.md)
+ - [EventsCorrectionResponse](docs/EventsCorrectionResponse.md)
+ - [ExpiryType](docs/ExpiryType.md)
+ - [ExternalPaymentReference](docs/ExternalPaymentReference.md)
+ - [Feature](docs/Feature.md)
+ - [FeatureConfig](docs/FeatureConfig.md)
+ - [FeatureCreditEntry](docs/FeatureCreditEntry.md)
+ - [FeatureDetails](docs/FeatureDetails.md)
+ - [FeatureListResponse](docs/FeatureListResponse.md)
+ - [FeaturePaginatedListData](docs/FeaturePaginatedListData.md)
  - [Field](docs/Field.md)
- - [FixedFeeRate](docs/FixedFeeRate.md)
+ - [FileDownloadUrlResponse](docs/FileDownloadUrlResponse.md)
+ - [FinalizeAccountSchedules](docs/FinalizeAccountSchedules.md)
+ - [FinalizePricePlanRequest](docs/FinalizePricePlanRequest.md)
  - [FixedFeeRateCard](docs/FixedFeeRateCard.md)
+ - [FixedFeeRevenueSummary](docs/FixedFeeRevenueSummary.md)
+ - [FixedFeeType](docs/FixedFeeType.md)
+ - [GetCustomerPortalDelegateTokenRequest](docs/GetCustomerPortalDelegateTokenRequest.md)
+ - [GetEntitlementValuesResponse](docs/GetEntitlementValuesResponse.md)
+ - [GetEntitlementValuesResponseDataInner](docs/GetEntitlementValuesResponseDataInner.md)
  - [GetEventResponse](docs/GetEventResponse.md)
  - [GetEventsResponse](docs/GetEventsResponse.md)
+ - [GetFeatureCreditEntriesPaginatedResponse](docs/GetFeatureCreditEntriesPaginatedResponse.md)
+ - [GetFeatureCreditsResponse](docs/GetFeatureCreditsResponse.md)
+ - [GetJobResponse](docs/GetJobResponse.md)
+ - [GetLicenseUpdatesResponse](docs/GetLicenseUpdatesResponse.md)
  - [GetMetricsRequest](docs/GetMetricsRequest.md)
  - [GetMetricsResponse](docs/GetMetricsResponse.md)
+ - [GetProposalResponse](docs/GetProposalResponse.md)
+ - [GetPurchaseResponse](docs/GetPurchaseResponse.md)
+ - [GrantDetails](docs/GrantDetails.md)
+ - [Incident](docs/Incident.md)
+ - [IncidentsPaginatedResponse](docs/IncidentsPaginatedResponse.md)
  - [IngestBatchEventRequest](docs/IngestBatchEventRequest.md)
- - [IngestBatchEventResponse](docs/IngestBatchEventResponse.md)
- - [IngestError](docs/IngestError.md)
  - [IngestEventRequest](docs/IngestEventRequest.md)
  - [IngestEventResponse](docs/IngestEventResponse.md)
  - [IngestionStatus](docs/IngestionStatus.md)
- - [InternalFixedFeeRateCard](docs/InternalFixedFeeRateCard.md)
- - [InternalSlab](docs/InternalSlab.md)
- - [InternalSlabAllOf](docs/InternalSlabAllOf.md)
- - [InternalUsageRateCard](docs/InternalUsageRateCard.md)
  - [Invoice](docs/Invoice.md)
  - [InvoiceDetails](docs/InvoiceDetails.md)
  - [InvoiceDetailsAccount](docs/InvoiceDetailsAccount.md)
  - [InvoiceDetailsCustomer](docs/InvoiceDetailsCustomer.md)
+ - [InvoiceDetailsInvoiceGroup](docs/InvoiceDetailsInvoiceGroup.md)
+ - [InvoiceDetailsOrganization](docs/InvoiceDetailsOrganization.md)
+ - [InvoiceGroupAccountsPaginatedResponse](docs/InvoiceGroupAccountsPaginatedResponse.md)
+ - [InvoiceGroupDetails](docs/InvoiceGroupDetails.md)
+ - [InvoiceGroupPaginatedResponse](docs/InvoiceGroupPaginatedResponse.md)
+ - [InvoiceGroups](docs/InvoiceGroups.md)
+ - [InvoiceInfoInner](docs/InvoiceInfoInner.md)
  - [InvoiceLineItem](docs/InvoiceLineItem.md)
+ - [InvoiceSummary](docs/InvoiceSummary.md)
  - [InvoiceTiming](docs/InvoiceTiming.md)
+ - [InvoicesClass](docs/InvoicesClass.md)
+ - [InvoicesStatus](docs/InvoicesStatus.md)
+ - [InvoicesType](docs/InvoicesType.md)
+ - [JobEntriesPaginatedResponse](docs/JobEntriesPaginatedResponse.md)
+ - [JobEntriesResponse](docs/JobEntriesResponse.md)
+ - [JobsPaginatedResponse](docs/JobsPaginatedResponse.md)
+ - [JobsWithoutStatusInfoResponse](docs/JobsWithoutStatusInfoResponse.md)
+ - [LicenseEntriesConfig](docs/LicenseEntriesConfig.md)
+ - [LicenseEntriesConfigLookupCycle](docs/LicenseEntriesConfigLookupCycle.md)
+ - [LicenseEntriesConfigLookupRange](docs/LicenseEntriesConfigLookupRange.md)
+ - [LicenseEntry](docs/LicenseEntry.md)
+ - [LicenseEntryDetailsUpdateRequest](docs/LicenseEntryDetailsUpdateRequest.md)
+ - [LicenseRateCard](docs/LicenseRateCard.md)
+ - [LicenseRateCardConfig](docs/LicenseRateCardConfig.md)
+ - [LicenseUpdate](docs/LicenseUpdate.md)
+ - [LicenseUpdateRequest](docs/LicenseUpdateRequest.md)
+ - [LicenseUpdateResponse](docs/LicenseUpdateResponse.md)
  - [ListCreditsResponse](docs/ListCreditsResponse.md)
  - [ListInvoicesResponse](docs/ListInvoicesResponse.md)
+ - [ListPaymentResponse](docs/ListPaymentResponse.md)
+ - [ManageMiscellaneousChargesRequest](docs/ManageMiscellaneousChargesRequest.md)
+ - [MaxQuantityBreachAction](docs/MaxQuantityBreachAction.md)
  - [MetricDataPoints](docs/MetricDataPoints.md)
  - [MetricDataPointsGroupedBy](docs/MetricDataPointsGroupedBy.md)
  - [MetricName](docs/MetricName.md)
  - [MetricQuery](docs/MetricQuery.md)
  - [MetricQueryFilterEntry](docs/MetricQueryFilterEntry.md)
  - [MetricQueryResponse](docs/MetricQueryResponse.md)
+ - [MigrationMode](docs/MigrationMode.md)
  - [MinimumCommitment](docs/MinimumCommitment.md)
- - [OrganizationSetting](docs/OrganizationSetting.md)
+ - [MiscellaneousCharge](docs/MiscellaneousCharge.md)
+ - [MiscellaneousChargesResponse](docs/MiscellaneousChargesResponse.md)
+ - [NamedLicenseEntriesConfig](docs/NamedLicenseEntriesConfig.md)
+ - [NamedLicenseEntriesConfigLookupCycle](docs/NamedLicenseEntriesConfigLookupCycle.md)
+ - [NamedLicenseEntriesConfigLookupRange](docs/NamedLicenseEntriesConfigLookupRange.md)
+ - [NamedLicenseEntry](docs/NamedLicenseEntry.md)
+ - [NamedLicenseUpdate](docs/NamedLicenseUpdate.md)
+ - [NamedLicenseUpdatesPaginatedResponse](docs/NamedLicenseUpdatesPaginatedResponse.md)
  - [PaginationOptions](docs/PaginationOptions.md)
+ - [Payment](docs/Payment.md)
+ - [PaymentLineItemRecord](docs/PaymentLineItemRecord.md)
  - [PlanOverride](docs/PlanOverride.md)
+ - [PreAction](docs/PreAction.md)
  - [PricePlan](docs/PricePlan.md)
  - [PricePlanDetails](docs/PricePlanDetails.md)
  - [PricePlanDetailsConfig](docs/PricePlanDetailsConfig.md)
  - [PricePlanDetailsOverride](docs/PricePlanDetailsOverride.md)
- - [PricePlanDetailsOverrideAllOf](docs/PricePlanDetailsOverrideAllOf.md)
+ - [PricePlanInfo](docs/PricePlanInfo.md)
  - [PricePlanListData](docs/PricePlanListData.md)
+ - [PricePlanMigrationConfig](docs/PricePlanMigrationConfig.md)
  - [PricePlanPaginatedResponse](docs/PricePlanPaginatedResponse.md)
+ - [PricePlanType](docs/PricePlanType.md)
+ - [PricePlanV2](docs/PricePlanV2.md)
+ - [PricePlanV2PaginatedResponse](docs/PricePlanV2PaginatedResponse.md)
  - [PriceType](docs/PriceType.md)
  - [PricingCycleConfig](docs/PricingCycleConfig.md)
  - [PricingCycleConfigStartOffset](docs/PricingCycleConfigStartOffset.md)
+ - [PricingCycleInterval](docs/PricingCycleInterval.md)
  - [PricingModel](docs/PricingModel.md)
+ - [PricingRule](docs/PricingRule.md)
+ - [PricingRuleAction](docs/PricingRuleAction.md)
+ - [PricingRuleChangesLog](docs/PricingRuleChangesLog.md)
+ - [PricingRuleInfo](docs/PricingRuleInfo.md)
+ - [PricingRuleTiming](docs/PricingRuleTiming.md)
+ - [PricingRulesLog](docs/PricingRulesLog.md)
+ - [PricingRulesLogsPaginatedResponse](docs/PricingRulesLogsPaginatedResponse.md)
+ - [PricingRulesPaginatedResponse](docs/PricingRulesPaginatedResponse.md)
+ - [PricingRulesValues](docs/PricingRulesValues.md)
  - [PricingSchedule](docs/PricingSchedule.md)
+ - [PricingSchedulePaginatedResponse](docs/PricingSchedulePaginatedResponse.md)
+ - [PricingScheduleWithPricePlanId](docs/PricingScheduleWithPricePlanId.md)
+ - [Proposal](docs/Proposal.md)
+ - [ProposalsListResponse](docs/ProposalsListResponse.md)
+ - [ProposalsPaginatedResponse](docs/ProposalsPaginatedResponse.md)
+ - [ProratedRefundMode](docs/ProratedRefundMode.md)
+ - [ProrationConfig](docs/ProrationConfig.md)
+ - [ProrationConfigCustomConfig](docs/ProrationConfigCustomConfig.md)
+ - [ProrationConfigLookupCycleConfig](docs/ProrationConfigLookupCycleConfig.md)
+ - [Purchase](docs/Purchase.md)
+ - [PurchaseFeatureDetails](docs/PurchaseFeatureDetails.md)
+ - [PurchaseListResponse](docs/PurchaseListResponse.md)
+ - [PurchasePaginatedListData](docs/PurchasePaginatedListData.md)
+ - [PurchasePlanOverride](docs/PurchasePlanOverride.md)
+ - [PurchaseStatus](docs/PurchaseStatus.md)
+ - [PurchaseType](docs/PurchaseType.md)
+ - [QueryColumn](docs/QueryColumn.md)
+ - [QueryFilter](docs/QueryFilter.md)
+ - [QueryFunction](docs/QueryFunction.md)
+ - [QueryInput](docs/QueryInput.md)
+ - [QueryInputSortInner](docs/QueryInputSortInner.md)
+ - [RateCard](docs/RateCard.md)
+ - [RateCardData](docs/RateCardData.md)
+ - [RateCardDetails](docs/RateCardDetails.md)
+ - [RateCardOperation](docs/RateCardOperation.md)
+ - [RateCardPaginatedResponse](docs/RateCardPaginatedResponse.md)
+ - [RateCardType](docs/RateCardType.md)
  - [RatePlan](docs/RatePlan.md)
  - [RateValue](docs/RateValue.md)
+ - [RecurrenceConfig](docs/RecurrenceConfig.md)
+ - [RemoveAccountAliasRequest](docs/RemoveAccountAliasRequest.md)
  - [RemoveAccountAliasesRequest](docs/RemoveAccountAliasesRequest.md)
+ - [Report](docs/Report.md)
+ - [ReportStatus](docs/ReportStatus.md)
+ - [ReportType](docs/ReportType.md)
+ - [ReportsPaginatedResponse](docs/ReportsPaginatedResponse.md)
  - [RevenueInfo](docs/RevenueInfo.md)
- - [RevenueInfoFixedFeeRevenueSummary](docs/RevenueInfoFixedFeeRevenueSummary.md)
- - [RevenueSummaryQuery](docs/RevenueSummaryQuery.md)
- - [RevenueSummaryQueryUsages](docs/RevenueSummaryQueryUsages.md)
- - [RevenueSummaryQueryUsagesCustomConfig](docs/RevenueSummaryQueryUsagesCustomConfig.md)
- - [RevenueSummaryQueryUsagesLookupConfig](docs/RevenueSummaryQueryUsagesLookupConfig.md)
- - [RevenueSummaryResponse](docs/RevenueSummaryResponse.md)
- - [RevenueSummaryResponseRevenueSummary](docs/RevenueSummaryResponseRevenueSummary.md)
+ - [RevenueInfoV2](docs/RevenueInfoV2.md)
+ - [RevenueSummaryWithMetadata](docs/RevenueSummaryWithMetadata.md)
+ - [ScheduleInfo](docs/ScheduleInfo.md)
+ - [SchedulesPaginatedResponse](docs/SchedulesPaginatedResponse.md)
  - [Setting](docs/Setting.md)
  - [SettingDataType](docs/SettingDataType.md)
  - [SettingPaginatedResponse](docs/SettingPaginatedResponse.md)
- - [SignupRequest](docs/SignupRequest.md)
- - [SignupResponse](docs/SignupResponse.md)
  - [Slab](docs/Slab.md)
+ - [SlabDetail](docs/SlabDetail.md)
  - [SlabRate](docs/SlabRate.md)
  - [SlabRevenue](docs/SlabRevenue.md)
  - [SlabRevenueMetadata](docs/SlabRevenueMetadata.md)
  - [SlabRevenueSummary](docs/SlabRevenueSummary.md)
- - [StatusResponse](docs/StatusResponse.md)
- - [StatusResponseHeaders](docs/StatusResponseHeaders.md)
+ - [SlabRevenueWithMetadata](docs/SlabRevenueWithMetadata.md)
+ - [TokenResponse](docs/TokenResponse.md)
+ - [TopupWalletRequest](docs/TopupWalletRequest.md)
  - [UpdateAccountRequest](docs/UpdateAccountRequest.md)
+ - [UpdateAccountScheduleV2Request](docs/UpdateAccountScheduleV2Request.md)
  - [UpdateAddOnRequest](docs/UpdateAddOnRequest.md)
+ - [UpdateAlertRequest](docs/UpdateAlertRequest.md)
  - [UpdateCustomerRequest](docs/UpdateCustomerRequest.md)
  - [UpdateEventSchemaRequest](docs/UpdateEventSchemaRequest.md)
- - [UpdateOrganizationSettingRequest](docs/UpdateOrganizationSettingRequest.md)
+ - [UpdateFeatureCreditsRequest](docs/UpdateFeatureCreditsRequest.md)
+ - [UpdateFeatureRequest](docs/UpdateFeatureRequest.md)
+ - [UpdateIncidentStatusRequest](docs/UpdateIncidentStatusRequest.md)
+ - [UpdateInvoiceGroupAccounts](docs/UpdateInvoiceGroupAccounts.md)
+ - [UpdateInvoiceRequest](docs/UpdateInvoiceRequest.md)
  - [UpdatePricePlanRequest](docs/UpdatePricePlanRequest.md)
+ - [UpdatePricePlanV2Request](docs/UpdatePricePlanV2Request.md)
+ - [UpdatePricingRulesRequest](docs/UpdatePricingRulesRequest.md)
  - [UpdatePricingScheduleRequest](docs/UpdatePricingScheduleRequest.md)
+ - [UpdatePricingScheduleRequestWithActions](docs/UpdatePricingScheduleRequestWithActions.md)
  - [UpdatePricingScheduleResponse](docs/UpdatePricingScheduleResponse.md)
+ - [UpdateProposalStatus](docs/UpdateProposalStatus.md)
  - [UpdateSettingRequest](docs/UpdateSettingRequest.md)
  - [UpdateUsageMeterRequest](docs/UpdateUsageMeterRequest.md)
+ - [UpdateWalletRequest](docs/UpdateWalletRequest.md)
  - [UsageConfig](docs/UsageConfig.md)
  - [UsageConfigLookupCycle](docs/UsageConfigLookupCycle.md)
  - [UsageConfigLookupRange](docs/UsageConfigLookupRange.md)
+ - [UsageCycleInterval](docs/UsageCycleInterval.md)
  - [UsageLookupRange](docs/UsageLookupRange.md)
  - [UsageMeter](docs/UsageMeter.md)
+ - [UsageMeterAggregation](docs/UsageMeterAggregation.md)
+ - [UsageMeterFilterEntry](docs/UsageMeterFilterEntry.md)
  - [UsageMeterPaginatedResponse](docs/UsageMeterPaginatedResponse.md)
- - [UsageRate](docs/UsageRate.md)
  - [UsageRateCard](docs/UsageRateCard.md)
- - [UserDetails](docs/UserDetails.md)
+ - [ValidateEntitlementValueRequest](docs/ValidateEntitlementValueRequest.md)
+ - [ValidatedEntityError](docs/ValidatedEntityError.md)
+ - [ValidatedEntityErrorsPaginatedResponse](docs/ValidatedEntityErrorsPaginatedResponse.md)
+ - [VersionsToMigrate](docs/VersionsToMigrate.md)
+ - [WalletBalanceResponse](docs/WalletBalanceResponse.md)
+ - [WalletEntriesPaginatedResponse](docs/WalletEntriesPaginatedResponse.md)
+ - [WalletEntry](docs/WalletEntry.md)
+ - [WalletStatus](docs/WalletStatus.md)
+ - [WalletTopupDetails](docs/WalletTopupDetails.md)
 
 
+<a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
+
 Authentication schemes defined for the API:
+<a id="bearerAuth"></a>
 ### bearerAuth
 
-- **Type**: HTTP basic authentication
+- **Type**: HTTP Bearer Token authentication (Bearer <credential>)
 
+<a id="apiKeyAuth"></a>
 ### apiKeyAuth
 
 - **Type**: API key

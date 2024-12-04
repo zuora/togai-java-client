@@ -8,8 +8,8 @@ Request to get metrics from togai
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**startTime** | **OffsetDateTime** |  |  |
-|**endTime** | **OffsetDateTime** |  |  |
+|**startTime** | **OffsetDateTime** | Start date time of the query (inclusive) |  |
+|**endTime** | **OffsetDateTime** | End date time of the query (exclusive) |  |
 |**metricQueries** | [**Set&lt;MetricQuery&gt;**](MetricQuery.md) |  |  |
 
 

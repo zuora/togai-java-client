@@ -14,13 +14,14 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.togai.client.models.AddOnType;
 import java.io.IOException;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -33,13 +34,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -47,109 +50,82 @@ import com.togai.client.JSON;
 /**
  * Request to create an addon
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class CreateAddOnRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
   private String name;
-
-  /**
-   * Type of addon
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    ONE_TIME("ONE_TIME"),
-    
-    RECURRING("RECURRING");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return TypeEnum.fromValue(value);
-      }
-    }
-  }
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-  private TypeEnum type;
+  @javax.annotation.Nonnull
+  private AddOnType type;
+
+  public static final String SERIALIZED_NAME_BILLABLE_NAME = "billableName";
+  @SerializedName(SERIALIZED_NAME_BILLABLE_NAME)
+  @javax.annotation.Nullable
+  private String billableName;
 
   public CreateAddOnRequest() {
   }
 
-  public CreateAddOnRequest name(String name) {
-    
+  public CreateAddOnRequest name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Name of addon
    * @return name
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public CreateAddOnRequest type(TypeEnum type) {
-    
+  public CreateAddOnRequest type(@javax.annotation.Nonnull AddOnType type) {
     this.type = type;
     return this;
   }
 
-   /**
-   * Type of addon
+  /**
+   * Get type
    * @return type
-  **/
+   */
   @javax.annotation.Nonnull
-
-  public TypeEnum getType() {
+  public AddOnType getType() {
     return type;
   }
 
-
-  public void setType(TypeEnum type) {
+  public void setType(@javax.annotation.Nonnull AddOnType type) {
     this.type = type;
+  }
+
+
+  public CreateAddOnRequest billableName(@javax.annotation.Nullable String billableName) {
+    this.billableName = billableName;
+    return this;
+  }
+
+  /**
+   * Billable name of addon. Billable name takes precedence over name to display in invoice.
+   * @return billableName
+   */
+  @javax.annotation.Nullable
+  public String getBillableName() {
+    return billableName;
+  }
+
+  public void setBillableName(@javax.annotation.Nullable String billableName) {
+    this.billableName = billableName;
   }
 
 
@@ -164,12 +140,13 @@ public class CreateAddOnRequest implements Serializable {
     }
     CreateAddOnRequest createAddOnRequest = (CreateAddOnRequest) o;
     return Objects.equals(this.name, createAddOnRequest.name) &&
-        Objects.equals(this.type, createAddOnRequest.type);
+        Objects.equals(this.type, createAddOnRequest.type) &&
+        Objects.equals(this.billableName, createAddOnRequest.billableName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, type);
+    return Objects.hash(name, type, billableName);
   }
 
   @Override
@@ -178,6 +155,7 @@ public class CreateAddOnRequest implements Serializable {
     sb.append("class CreateAddOnRequest {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    billableName: ").append(toIndentedString(billableName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -202,6 +180,7 @@ public class CreateAddOnRequest implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
     openapiFields.add("type");
+    openapiFields.add("billableName");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -209,38 +188,41 @@ public class CreateAddOnRequest implements Serializable {
     openapiRequiredFields.add("type");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreateAddOnRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CreateAddOnRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateAddOnRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreateAddOnRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreateAddOnRequest is not found in the empty JSON string", CreateAddOnRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CreateAddOnRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateAddOnRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateAddOnRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : CreateAddOnRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
-      if (!jsonObj.get("type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
+      // validate the required field `type`
+      AddOnType.validateJsonElement(jsonObj.get("type"));
+      if ((jsonObj.get("billableName") != null && !jsonObj.get("billableName").isJsonNull()) && !jsonObj.get("billableName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `billableName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("billableName").toString()));
       }
   }
 
@@ -264,31 +246,31 @@ public class CreateAddOnRequest implements Serializable {
 
            @Override
            public CreateAddOnRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreateAddOnRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateAddOnRequest
-  * @throws IOException if the JSON string is invalid with respect to CreateAddOnRequest
-  */
+  /**
+   * Create an instance of CreateAddOnRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateAddOnRequest
+   * @throws IOException if the JSON string is invalid with respect to CreateAddOnRequest
+   */
   public static CreateAddOnRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateAddOnRequest.class);
   }
 
- /**
-  * Convert an instance of CreateAddOnRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateAddOnRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -8,10 +8,14 @@ Request to update usage meter
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**description** | **String** | Description of the event |  [optional] |
+|**name** | **String** | Name of usage meter. |  [optional] |
+|**billableName** | **String** | Billable name of usage meter. Billable name takes precedence over name to display in invoice. |  [optional] |
+|**description** | **String** | Description of the usage meter |  [optional] |
+|**eventSchemaName** | **String** | Event Schema Identifier |  [optional] |
 |**type** | [**TypeEnum**](#TypeEnum) | Type of usage meter * COUNTER - Count usage  |  [optional] |
-|**aggregation** | [**AggregationEnum**](#AggregationEnum) | Aggregation to be applied on usage meter result * COUNT - Counts number of events matching the usage meter * SUM - Sums up results of computation of all events matching usage meter  |  [optional] |
+|**aggregation** | **UsageMeterAggregation** |  |  [optional] |
 |**computations** | [**List&lt;Computation&gt;**](Computation.md) |  |  [optional] |
+|**filters** | [**List&lt;UsageMeterFilterEntry&gt;**](UsageMeterFilterEntry.md) |  |  [optional] |
 
 
 
@@ -20,15 +24,6 @@ Request to update usage meter
 | Name | Value |
 |---- | -----|
 | COUNTER | &quot;COUNTER&quot; |
-
-
-
-## Enum: AggregationEnum
-
-| Name | Value |
-|---- | -----|
-| COUNT | &quot;COUNT&quot; |
-| SUM | &quot;SUM&quot; |
 
 
 ## Implemented Interfaces

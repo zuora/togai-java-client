@@ -14,13 +14,13 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -33,13 +33,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -47,113 +49,105 @@ import com.togai.client.JSON;
 /**
  * Computation
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class Computation implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_MATCHER = "matcher";
   @SerializedName(SERIALIZED_NAME_MATCHER)
+  @javax.annotation.Nullable
   private String matcher;
 
   public static final String SERIALIZED_NAME_COMPUTATION = "computation";
   @SerializedName(SERIALIZED_NAME_COMPUTATION)
+  @javax.annotation.Nonnull
   private String computation;
 
   public static final String SERIALIZED_NAME_ORDER = "order";
   @SerializedName(SERIALIZED_NAME_ORDER)
+  @javax.annotation.Nonnull
   private Integer order;
 
   public Computation() {
   }
 
-  public Computation id(String id) {
-    
+  public Computation id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * Optional identifier describing the matcher and computation pair
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getId() {
     return id;
   }
 
-
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public Computation matcher(String matcher) {
-    
+  public Computation matcher(@javax.annotation.Nullable String matcher) {
     this.matcher = matcher;
     return this;
   }
 
-   /**
+  /**
    * Condition to be applied on event. Upon matching it the corresponding computation will be considered for usage_meter unit calculation. The result of the matcher needs to be [truthy](https://jsonlogic.com/truthy.html) in order to be considered as a match. 
    * @return matcher
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getMatcher() {
     return matcher;
   }
 
-
-  public void setMatcher(String matcher) {
+  public void setMatcher(@javax.annotation.Nullable String matcher) {
     this.matcher = matcher;
   }
 
 
-  public Computation computation(String computation) {
-    
+  public Computation computation(@javax.annotation.Nonnull String computation) {
     this.computation = computation;
     return this;
   }
 
-   /**
+  /**
    * Computation to be applied on an event if it matches the matcher. In case of a COUNT aggregation type, computation should be passed as &#39;1&#39; 
    * @return computation
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getComputation() {
     return computation;
   }
 
-
-  public void setComputation(String computation) {
+  public void setComputation(@javax.annotation.Nonnull String computation) {
     this.computation = computation;
   }
 
 
-  public Computation order(Integer order) {
-    
+  public Computation order(@javax.annotation.Nonnull Integer order) {
     this.order = order;
     return this;
   }
 
-   /**
+  /**
    * The order in which multiple matched computations will get evaluated
    * @return order
-  **/
+   */
   @javax.annotation.Nonnull
-
   public Integer getOrder() {
     return order;
   }
 
-
-  public void setOrder(Integer order) {
+  public void setOrder(@javax.annotation.Nonnull Integer order) {
     this.order = order;
   }
 
@@ -220,33 +214,34 @@ public class Computation implements Serializable {
     openapiRequiredFields.add("order");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to Computation
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!Computation.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Computation
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Computation.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Computation is not found in the empty JSON string", Computation.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!Computation.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Computation` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Computation` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : Computation.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
@@ -278,31 +273,31 @@ public class Computation implements Serializable {
 
            @Override
            public Computation read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of Computation given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Computation
-  * @throws IOException if the JSON string is invalid with respect to Computation
-  */
+  /**
+   * Create an instance of Computation given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Computation
+   * @throws IOException if the JSON string is invalid with respect to Computation
+   */
   public static Computation fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Computation.class);
   }
 
- /**
-  * Convert an instance of Computation to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Computation to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

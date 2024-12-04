@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,7 +21,10 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.InvoiceDetailsAccount;
 import com.togai.client.models.InvoiceDetailsCustomer;
+import com.togai.client.models.InvoiceDetailsInvoiceGroup;
+import com.togai.client.models.InvoiceDetailsOrganization;
 import java.io.IOException;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -35,13 +37,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -49,88 +53,154 @@ import com.togai.client.JSON;
 /**
  * InvoiceDetails
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class InvoiceDetails implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_CUSTOMER = "customer";
   @SerializedName(SERIALIZED_NAME_CUSTOMER)
+  @javax.annotation.Nullable
   private InvoiceDetailsCustomer customer;
 
   public static final String SERIALIZED_NAME_ACCOUNT = "account";
   @SerializedName(SERIALIZED_NAME_ACCOUNT)
+  @javax.annotation.Nullable
   private InvoiceDetailsAccount account;
 
   public static final String SERIALIZED_NAME_PRICE_PLAN_NAME = "pricePlanName";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_NAME)
+  @javax.annotation.Nullable
   private String pricePlanName;
+
+  public static final String SERIALIZED_NAME_INVOICE_GROUP = "invoiceGroup";
+  @SerializedName(SERIALIZED_NAME_INVOICE_GROUP)
+  @javax.annotation.Nullable
+  private InvoiceDetailsInvoiceGroup invoiceGroup;
+
+  public static final String SERIALIZED_NAME_ORGANIZATION = "organization";
+  @SerializedName(SERIALIZED_NAME_ORGANIZATION)
+  @javax.annotation.Nullable
+  private InvoiceDetailsOrganization organization;
+
+  public static final String SERIALIZED_NAME_LOGO_URL = "logoUrl";
+  @SerializedName(SERIALIZED_NAME_LOGO_URL)
+  @javax.annotation.Nullable
+  private String logoUrl;
 
   public InvoiceDetails() {
   }
 
-  public InvoiceDetails customer(InvoiceDetailsCustomer customer) {
-    
+  public InvoiceDetails customer(@javax.annotation.Nullable InvoiceDetailsCustomer customer) {
     this.customer = customer;
     return this;
   }
 
-   /**
+  /**
    * Get customer
    * @return customer
-  **/
-  @javax.annotation.Nonnull
-
+   */
+  @javax.annotation.Nullable
   public InvoiceDetailsCustomer getCustomer() {
     return customer;
   }
 
-
-  public void setCustomer(InvoiceDetailsCustomer customer) {
+  public void setCustomer(@javax.annotation.Nullable InvoiceDetailsCustomer customer) {
     this.customer = customer;
   }
 
 
-  public InvoiceDetails account(InvoiceDetailsAccount account) {
-    
+  public InvoiceDetails account(@javax.annotation.Nullable InvoiceDetailsAccount account) {
     this.account = account;
     return this;
   }
 
-   /**
+  /**
    * Get account
    * @return account
-  **/
-  @javax.annotation.Nonnull
-
+   */
+  @javax.annotation.Nullable
   public InvoiceDetailsAccount getAccount() {
     return account;
   }
 
-
-  public void setAccount(InvoiceDetailsAccount account) {
+  public void setAccount(@javax.annotation.Nullable InvoiceDetailsAccount account) {
     this.account = account;
   }
 
 
-  public InvoiceDetails pricePlanName(String pricePlanName) {
-    
+  public InvoiceDetails pricePlanName(@javax.annotation.Nullable String pricePlanName) {
     this.pricePlanName = pricePlanName;
     return this;
   }
 
-   /**
+  /**
    * Get pricePlanName
    * @return pricePlanName
-  **/
-  @javax.annotation.Nonnull
-
+   */
+  @javax.annotation.Nullable
   public String getPricePlanName() {
     return pricePlanName;
   }
 
-
-  public void setPricePlanName(String pricePlanName) {
+  public void setPricePlanName(@javax.annotation.Nullable String pricePlanName) {
     this.pricePlanName = pricePlanName;
+  }
+
+
+  public InvoiceDetails invoiceGroup(@javax.annotation.Nullable InvoiceDetailsInvoiceGroup invoiceGroup) {
+    this.invoiceGroup = invoiceGroup;
+    return this;
+  }
+
+  /**
+   * Get invoiceGroup
+   * @return invoiceGroup
+   */
+  @javax.annotation.Nullable
+  public InvoiceDetailsInvoiceGroup getInvoiceGroup() {
+    return invoiceGroup;
+  }
+
+  public void setInvoiceGroup(@javax.annotation.Nullable InvoiceDetailsInvoiceGroup invoiceGroup) {
+    this.invoiceGroup = invoiceGroup;
+  }
+
+
+  public InvoiceDetails organization(@javax.annotation.Nullable InvoiceDetailsOrganization organization) {
+    this.organization = organization;
+    return this;
+  }
+
+  /**
+   * Get organization
+   * @return organization
+   */
+  @javax.annotation.Nullable
+  public InvoiceDetailsOrganization getOrganization() {
+    return organization;
+  }
+
+  public void setOrganization(@javax.annotation.Nullable InvoiceDetailsOrganization organization) {
+    this.organization = organization;
+  }
+
+
+  public InvoiceDetails logoUrl(@javax.annotation.Nullable String logoUrl) {
+    this.logoUrl = logoUrl;
+    return this;
+  }
+
+  /**
+   * Get logoUrl
+   * @return logoUrl
+   */
+  @javax.annotation.Nullable
+  public String getLogoUrl() {
+    return logoUrl;
+  }
+
+  public void setLogoUrl(@javax.annotation.Nullable String logoUrl) {
+    this.logoUrl = logoUrl;
   }
 
 
@@ -146,12 +216,15 @@ public class InvoiceDetails implements Serializable {
     InvoiceDetails invoiceDetails = (InvoiceDetails) o;
     return Objects.equals(this.customer, invoiceDetails.customer) &&
         Objects.equals(this.account, invoiceDetails.account) &&
-        Objects.equals(this.pricePlanName, invoiceDetails.pricePlanName);
+        Objects.equals(this.pricePlanName, invoiceDetails.pricePlanName) &&
+        Objects.equals(this.invoiceGroup, invoiceDetails.invoiceGroup) &&
+        Objects.equals(this.organization, invoiceDetails.organization) &&
+        Objects.equals(this.logoUrl, invoiceDetails.logoUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(customer, account, pricePlanName);
+    return Objects.hash(customer, account, pricePlanName, invoiceGroup, organization, logoUrl);
   }
 
   @Override
@@ -161,6 +234,9 @@ public class InvoiceDetails implements Serializable {
     sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
     sb.append("    pricePlanName: ").append(toIndentedString(pricePlanName)).append("\n");
+    sb.append("    invoiceGroup: ").append(toIndentedString(invoiceGroup)).append("\n");
+    sb.append("    organization: ").append(toIndentedString(organization)).append("\n");
+    sb.append("    logoUrl: ").append(toIndentedString(logoUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -186,47 +262,56 @@ public class InvoiceDetails implements Serializable {
     openapiFields.add("customer");
     openapiFields.add("account");
     openapiFields.add("pricePlanName");
+    openapiFields.add("invoiceGroup");
+    openapiFields.add("organization");
+    openapiFields.add("logoUrl");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("customer");
-    openapiRequiredFields.add("account");
-    openapiRequiredFields.add("pricePlanName");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to InvoiceDetails
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!InvoiceDetails.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to InvoiceDetails
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!InvoiceDetails.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in InvoiceDetails is not found in the empty JSON string", InvoiceDetails.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!InvoiceDetails.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InvoiceDetails` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InvoiceDetails` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : InvoiceDetails.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the optional field `customer`
+      if (jsonObj.get("customer") != null && !jsonObj.get("customer").isJsonNull()) {
+        InvoiceDetailsCustomer.validateJsonElement(jsonObj.get("customer"));
       }
-      // validate the required field `customer`
-      InvoiceDetailsCustomer.validateJsonObject(jsonObj.getAsJsonObject("customer"));
-      // validate the required field `account`
-      InvoiceDetailsAccount.validateJsonObject(jsonObj.getAsJsonObject("account"));
-      if (!jsonObj.get("pricePlanName").isJsonPrimitive()) {
+      // validate the optional field `account`
+      if (jsonObj.get("account") != null && !jsonObj.get("account").isJsonNull()) {
+        InvoiceDetailsAccount.validateJsonElement(jsonObj.get("account"));
+      }
+      if ((jsonObj.get("pricePlanName") != null && !jsonObj.get("pricePlanName").isJsonNull()) && !jsonObj.get("pricePlanName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `pricePlanName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pricePlanName").toString()));
+      }
+      // validate the optional field `invoiceGroup`
+      if (jsonObj.get("invoiceGroup") != null && !jsonObj.get("invoiceGroup").isJsonNull()) {
+        InvoiceDetailsInvoiceGroup.validateJsonElement(jsonObj.get("invoiceGroup"));
+      }
+      // validate the optional field `organization`
+      if (jsonObj.get("organization") != null && !jsonObj.get("organization").isJsonNull()) {
+        InvoiceDetailsOrganization.validateJsonElement(jsonObj.get("organization"));
+      }
+      if ((jsonObj.get("logoUrl") != null && !jsonObj.get("logoUrl").isJsonNull()) && !jsonObj.get("logoUrl").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `logoUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("logoUrl").toString()));
       }
   }
 
@@ -250,31 +335,31 @@ public class InvoiceDetails implements Serializable {
 
            @Override
            public InvoiceDetails read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of InvoiceDetails given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of InvoiceDetails
-  * @throws IOException if the JSON string is invalid with respect to InvoiceDetails
-  */
+  /**
+   * Create an instance of InvoiceDetails given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of InvoiceDetails
+   * @throws IOException if the JSON string is invalid with respect to InvoiceDetails
+   */
   public static InvoiceDetails fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InvoiceDetails.class);
   }
 
- /**
-  * Convert an instance of InvoiceDetails to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of InvoiceDetails to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

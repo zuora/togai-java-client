@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,6 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.Credit;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -36,13 +36,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -50,66 +52,65 @@ import com.togai.client.JSON;
 /**
  * List credits response
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class ListCreditsResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
+  @javax.annotation.Nonnull
   private List<Credit> data = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_NEXT_TOKEN = "nextToken";
   @SerializedName(SERIALIZED_NAME_NEXT_TOKEN)
+  @javax.annotation.Nullable
   private String nextToken;
 
   public ListCreditsResponse() {
   }
 
-  public ListCreditsResponse data(List<Credit> data) {
-    
+  public ListCreditsResponse data(@javax.annotation.Nonnull List<Credit> data) {
     this.data = data;
     return this;
   }
 
   public ListCreditsResponse addDataItem(Credit dataItem) {
+    if (this.data == null) {
+      this.data = new ArrayList<>();
+    }
     this.data.add(dataItem);
     return this;
   }
 
-   /**
+  /**
    * Get data
    * @return data
-  **/
+   */
   @javax.annotation.Nonnull
-
   public List<Credit> getData() {
     return data;
   }
 
-
-  public void setData(List<Credit> data) {
+  public void setData(@javax.annotation.Nonnull List<Credit> data) {
     this.data = data;
   }
 
 
-  public ListCreditsResponse nextToken(String nextToken) {
-    
+  public ListCreditsResponse nextToken(@javax.annotation.Nullable String nextToken) {
     this.nextToken = nextToken;
     return this;
   }
 
-   /**
+  /**
    * Get nextToken
    * @return nextToken
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getNextToken() {
     return nextToken;
   }
 
-
-  public void setNextToken(String nextToken) {
+  public void setNextToken(@javax.annotation.Nullable String nextToken) {
     this.nextToken = nextToken;
   }
 
@@ -169,33 +170,34 @@ public class ListCreditsResponse implements Serializable {
     openapiRequiredFields.add("data");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to ListCreditsResponse
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!ListCreditsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ListCreditsResponse
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ListCreditsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ListCreditsResponse is not found in the empty JSON string", ListCreditsResponse.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!ListCreditsResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListCreditsResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListCreditsResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : ListCreditsResponse.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // ensure the json data is an array
       if (!jsonObj.get("data").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
@@ -204,7 +206,7 @@ public class ListCreditsResponse implements Serializable {
       JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
       // validate the required field `data` (array)
       for (int i = 0; i < jsonArraydata.size(); i++) {
-        Credit.validateJsonObject(jsonArraydata.get(i).getAsJsonObject());
+        Credit.validateJsonElement(jsonArraydata.get(i));
       };
       if ((jsonObj.get("nextToken") != null && !jsonObj.get("nextToken").isJsonNull()) && !jsonObj.get("nextToken").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `nextToken` to be a primitive type in the JSON string but got `%s`", jsonObj.get("nextToken").toString()));
@@ -231,31 +233,31 @@ public class ListCreditsResponse implements Serializable {
 
            @Override
            public ListCreditsResponse read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of ListCreditsResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ListCreditsResponse
-  * @throws IOException if the JSON string is invalid with respect to ListCreditsResponse
-  */
+  /**
+   * Create an instance of ListCreditsResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ListCreditsResponse
+   * @throws IOException if the JSON string is invalid with respect to ListCreditsResponse
+   */
   public static ListCreditsResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ListCreditsResponse.class);
   }
 
- /**
-  * Convert an instance of ListCreditsResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ListCreditsResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

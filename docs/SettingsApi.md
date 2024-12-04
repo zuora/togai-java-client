@@ -10,7 +10,7 @@ All URIs are relative to *https://api.togai.com*
 | [**updateSetting**](SettingsApi.md#updateSetting) | **PATCH** /settings/{setting_id_str} | Update a setting |
 
 
-<a name="getSetting"></a>
+<a id="getSetting"></a>
 # **getSetting**
 > Setting getSetting(settingIdStr)
 
@@ -83,7 +83,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="insertSetting"></a>
+<a id="insertSetting"></a>
 # **insertSetting**
 > Setting insertSetting(setting)
 
@@ -157,9 +157,9 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="listSetting"></a>
+<a id="listSetting"></a>
 # **listSetting**
-> SettingPaginatedResponse listSetting(entityType, entityId, settingId, namespace)
+> SettingPaginatedResponse listSetting(nextToken, pageSize, entityType, entityId, settingId, namespace)
 
 Lists settings
 
@@ -185,12 +185,14 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     SettingsApi apiInstance = new SettingsApi(defaultClient);
+    String nextToken = "eyJsYXN0SXRlbUlkIjogInN0cmluZyIsICJwYWdlU2l6ZSI6IDEwMCwgInNvcnRPcmRlciI6ICJhc2MifQ=="; // String | 
+    BigDecimal pageSize = new BigDecimal("10"); // BigDecimal | 
     String entityType = "ACCOUNT"; // String | 
     String entityId = "acc_X1Df3sRf3"; // String | 
     String settingId = "settingId_example"; // String | 
     String namespace = "USER"; // String | 
     try {
-      SettingPaginatedResponse result = apiInstance.listSetting(entityType, entityId, settingId, namespace);
+      SettingPaginatedResponse result = apiInstance.listSetting(nextToken, pageSize, entityType, entityId, settingId, namespace);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SettingsApi#listSetting");
@@ -207,6 +209,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **nextToken** | **String**|  | [optional] |
+| **pageSize** | **BigDecimal**|  | [optional] |
 | **entityType** | **String**|  | [optional] |
 | **entityId** | **String**|  | [optional] |
 | **settingId** | **String**|  | [optional] |
@@ -236,7 +240,7 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="updateSetting"></a>
+<a id="updateSetting"></a>
 # **updateSetting**
 > Setting updateSetting(settingIdStr, updateSettingRequest)
 

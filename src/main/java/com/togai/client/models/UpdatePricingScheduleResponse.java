@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,6 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.PlanOverride;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -36,13 +36,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -50,92 +52,89 @@ import com.togai.client.JSON;
 /**
  * UpdatePricingScheduleResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class UpdatePricingScheduleResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ACCOUNT_ID = "accountId";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_ID)
+  @javax.annotation.Nonnull
   private String accountId;
 
   public static final String SERIALIZED_NAME_ACCOUNT_NAME = "accountName";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_NAME)
+  @javax.annotation.Nonnull
   private String accountName;
 
   public static final String SERIALIZED_NAME_PRICING_SCHEDULES = "pricingSchedules";
   @SerializedName(SERIALIZED_NAME_PRICING_SCHEDULES)
+  @javax.annotation.Nonnull
   private List<PlanOverride> pricingSchedules = new ArrayList<>();
 
   public UpdatePricingScheduleResponse() {
   }
 
-  public UpdatePricingScheduleResponse accountId(String accountId) {
-    
+  public UpdatePricingScheduleResponse accountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
     return this;
   }
 
-   /**
+  /**
    * Identifier of the account
    * @return accountId
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getAccountId() {
     return accountId;
   }
 
-
-  public void setAccountId(String accountId) {
+  public void setAccountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
   }
 
 
-  public UpdatePricingScheduleResponse accountName(String accountName) {
-    
+  public UpdatePricingScheduleResponse accountName(@javax.annotation.Nonnull String accountName) {
     this.accountName = accountName;
     return this;
   }
 
-   /**
+  /**
    * Name of the Account
    * @return accountName
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getAccountName() {
     return accountName;
   }
 
-
-  public void setAccountName(String accountName) {
+  public void setAccountName(@javax.annotation.Nonnull String accountName) {
     this.accountName = accountName;
   }
 
 
-  public UpdatePricingScheduleResponse pricingSchedules(List<PlanOverride> pricingSchedules) {
-    
+  public UpdatePricingScheduleResponse pricingSchedules(@javax.annotation.Nonnull List<PlanOverride> pricingSchedules) {
     this.pricingSchedules = pricingSchedules;
     return this;
   }
 
   public UpdatePricingScheduleResponse addPricingSchedulesItem(PlanOverride pricingSchedulesItem) {
+    if (this.pricingSchedules == null) {
+      this.pricingSchedules = new ArrayList<>();
+    }
     this.pricingSchedules.add(pricingSchedulesItem);
     return this;
   }
 
-   /**
+  /**
    * Get pricingSchedules
    * @return pricingSchedules
-  **/
+   */
   @javax.annotation.Nonnull
-
   public List<PlanOverride> getPricingSchedules() {
     return pricingSchedules;
   }
 
-
-  public void setPricingSchedules(List<PlanOverride> pricingSchedules) {
+  public void setPricingSchedules(@javax.annotation.Nonnull List<PlanOverride> pricingSchedules) {
     this.pricingSchedules = pricingSchedules;
   }
 
@@ -200,33 +199,34 @@ public class UpdatePricingScheduleResponse implements Serializable {
     openapiRequiredFields.add("pricingSchedules");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to UpdatePricingScheduleResponse
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!UpdatePricingScheduleResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdatePricingScheduleResponse
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UpdatePricingScheduleResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UpdatePricingScheduleResponse is not found in the empty JSON string", UpdatePricingScheduleResponse.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!UpdatePricingScheduleResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdatePricingScheduleResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdatePricingScheduleResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : UpdatePricingScheduleResponse.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("accountId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `accountId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountId").toString()));
       }
@@ -241,7 +241,7 @@ public class UpdatePricingScheduleResponse implements Serializable {
       JsonArray jsonArraypricingSchedules = jsonObj.getAsJsonArray("pricingSchedules");
       // validate the required field `pricingSchedules` (array)
       for (int i = 0; i < jsonArraypricingSchedules.size(); i++) {
-        PlanOverride.validateJsonObject(jsonArraypricingSchedules.get(i).getAsJsonObject());
+        PlanOverride.validateJsonElement(jsonArraypricingSchedules.get(i));
       };
   }
 
@@ -265,31 +265,31 @@ public class UpdatePricingScheduleResponse implements Serializable {
 
            @Override
            public UpdatePricingScheduleResponse read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of UpdatePricingScheduleResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UpdatePricingScheduleResponse
-  * @throws IOException if the JSON string is invalid with respect to UpdatePricingScheduleResponse
-  */
+  /**
+   * Create an instance of UpdatePricingScheduleResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdatePricingScheduleResponse
+   * @throws IOException if the JSON string is invalid with respect to UpdatePricingScheduleResponse
+   */
   public static UpdatePricingScheduleResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdatePricingScheduleResponse.class);
   }
 
- /**
-  * Convert an instance of UpdatePricingScheduleResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UpdatePricingScheduleResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

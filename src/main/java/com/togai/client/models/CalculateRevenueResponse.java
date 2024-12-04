@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -25,6 +24,7 @@ import com.togai.client.models.RevenueInfo;
 import com.togai.client.models.UsageLookupRange;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -38,13 +38,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -52,118 +54,113 @@ import com.togai.client.JSON;
 /**
  * CalculateRevenueResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class CalculateRevenueResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nonnull
   private String currency;
 
   public static final String SERIALIZED_NAME_USAGE_LOOKUP_RANGE = "usageLookupRange";
   @SerializedName(SERIALIZED_NAME_USAGE_LOOKUP_RANGE)
+  @javax.annotation.Nullable
   private UsageLookupRange usageLookupRange;
 
   public static final String SERIALIZED_NAME_PRICE_PLAN_DETAILS = "pricePlanDetails";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_DETAILS)
+  @javax.annotation.Nonnull
   private PricePlanDetails pricePlanDetails;
 
   public static final String SERIALIZED_NAME_REVENUE_INFO = "revenueInfo";
   @SerializedName(SERIALIZED_NAME_REVENUE_INFO)
+  @javax.annotation.Nonnull
   private List<RevenueInfo> revenueInfo = new ArrayList<>();
 
   public CalculateRevenueResponse() {
   }
 
-  public CalculateRevenueResponse currency(String currency) {
-    
+  public CalculateRevenueResponse currency(@javax.annotation.Nonnull String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * Get currency
    * @return currency
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getCurrency() {
     return currency;
   }
 
-
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nonnull String currency) {
     this.currency = currency;
   }
 
 
-  public CalculateRevenueResponse usageLookupRange(UsageLookupRange usageLookupRange) {
-    
+  public CalculateRevenueResponse usageLookupRange(@javax.annotation.Nullable UsageLookupRange usageLookupRange) {
     this.usageLookupRange = usageLookupRange;
     return this;
   }
 
-   /**
+  /**
    * Get usageLookupRange
    * @return usageLookupRange
-  **/
+   */
   @javax.annotation.Nullable
-
   public UsageLookupRange getUsageLookupRange() {
     return usageLookupRange;
   }
 
-
-  public void setUsageLookupRange(UsageLookupRange usageLookupRange) {
+  public void setUsageLookupRange(@javax.annotation.Nullable UsageLookupRange usageLookupRange) {
     this.usageLookupRange = usageLookupRange;
   }
 
 
-  public CalculateRevenueResponse pricePlanDetails(PricePlanDetails pricePlanDetails) {
-    
+  public CalculateRevenueResponse pricePlanDetails(@javax.annotation.Nonnull PricePlanDetails pricePlanDetails) {
     this.pricePlanDetails = pricePlanDetails;
     return this;
   }
 
-   /**
+  /**
    * Get pricePlanDetails
    * @return pricePlanDetails
-  **/
+   */
   @javax.annotation.Nonnull
-
   public PricePlanDetails getPricePlanDetails() {
     return pricePlanDetails;
   }
 
-
-  public void setPricePlanDetails(PricePlanDetails pricePlanDetails) {
+  public void setPricePlanDetails(@javax.annotation.Nonnull PricePlanDetails pricePlanDetails) {
     this.pricePlanDetails = pricePlanDetails;
   }
 
 
-  public CalculateRevenueResponse revenueInfo(List<RevenueInfo> revenueInfo) {
-    
+  public CalculateRevenueResponse revenueInfo(@javax.annotation.Nonnull List<RevenueInfo> revenueInfo) {
     this.revenueInfo = revenueInfo;
     return this;
   }
 
   public CalculateRevenueResponse addRevenueInfoItem(RevenueInfo revenueInfoItem) {
+    if (this.revenueInfo == null) {
+      this.revenueInfo = new ArrayList<>();
+    }
     this.revenueInfo.add(revenueInfoItem);
     return this;
   }
 
-   /**
+  /**
    * Get revenueInfo
    * @return revenueInfo
-  **/
+   */
   @javax.annotation.Nonnull
-
   public List<RevenueInfo> getRevenueInfo() {
     return revenueInfo;
   }
 
-
-  public void setRevenueInfo(List<RevenueInfo> revenueInfo) {
+  public void setRevenueInfo(@javax.annotation.Nonnull List<RevenueInfo> revenueInfo) {
     this.revenueInfo = revenueInfo;
   }
 
@@ -231,42 +228,43 @@ public class CalculateRevenueResponse implements Serializable {
     openapiRequiredFields.add("revenueInfo");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CalculateRevenueResponse
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CalculateRevenueResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CalculateRevenueResponse
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CalculateRevenueResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CalculateRevenueResponse is not found in the empty JSON string", CalculateRevenueResponse.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CalculateRevenueResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CalculateRevenueResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CalculateRevenueResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : CalculateRevenueResponse.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("currency").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
       }
       // validate the optional field `usageLookupRange`
       if (jsonObj.get("usageLookupRange") != null && !jsonObj.get("usageLookupRange").isJsonNull()) {
-        UsageLookupRange.validateJsonObject(jsonObj.getAsJsonObject("usageLookupRange"));
+        UsageLookupRange.validateJsonElement(jsonObj.get("usageLookupRange"));
       }
       // validate the required field `pricePlanDetails`
-      PricePlanDetails.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetails"));
+      PricePlanDetails.validateJsonElement(jsonObj.get("pricePlanDetails"));
       // ensure the json data is an array
       if (!jsonObj.get("revenueInfo").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `revenueInfo` to be an array in the JSON string but got `%s`", jsonObj.get("revenueInfo").toString()));
@@ -275,7 +273,7 @@ public class CalculateRevenueResponse implements Serializable {
       JsonArray jsonArrayrevenueInfo = jsonObj.getAsJsonArray("revenueInfo");
       // validate the required field `revenueInfo` (array)
       for (int i = 0; i < jsonArrayrevenueInfo.size(); i++) {
-        RevenueInfo.validateJsonObject(jsonArrayrevenueInfo.get(i).getAsJsonObject());
+        RevenueInfo.validateJsonElement(jsonArrayrevenueInfo.get(i));
       };
   }
 
@@ -299,31 +297,31 @@ public class CalculateRevenueResponse implements Serializable {
 
            @Override
            public CalculateRevenueResponse read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CalculateRevenueResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CalculateRevenueResponse
-  * @throws IOException if the JSON string is invalid with respect to CalculateRevenueResponse
-  */
+  /**
+   * Create an instance of CalculateRevenueResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CalculateRevenueResponse
+   * @throws IOException if the JSON string is invalid with respect to CalculateRevenueResponse
+   */
   public static CalculateRevenueResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CalculateRevenueResponse.class);
   }
 
- /**
-  * Convert an instance of CalculateRevenueResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CalculateRevenueResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,6 +23,7 @@ import com.togai.client.models.Dependency;
 import com.togai.client.models.Field;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -37,13 +37,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -51,23 +53,24 @@ import com.togai.client.JSON;
 /**
  * Enrichments
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class Enrichments implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_DEPENDENCIES = "dependencies";
   @SerializedName(SERIALIZED_NAME_DEPENDENCIES)
+  @javax.annotation.Nullable
   private List<Dependency> dependencies = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_FIELDS = "fields";
   @SerializedName(SERIALIZED_NAME_FIELDS)
+  @javax.annotation.Nonnull
   private List<Field> fields = new ArrayList<>();
 
   public Enrichments() {
   }
 
-  public Enrichments dependencies(List<Dependency> dependencies) {
-    
+  public Enrichments dependencies(@javax.annotation.Nullable List<Dependency> dependencies) {
     this.dependencies = dependencies;
     return this;
   }
@@ -80,45 +83,43 @@ public class Enrichments implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get dependencies
    * @return dependencies
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<Dependency> getDependencies() {
     return dependencies;
   }
 
-
-  public void setDependencies(List<Dependency> dependencies) {
+  public void setDependencies(@javax.annotation.Nullable List<Dependency> dependencies) {
     this.dependencies = dependencies;
   }
 
 
-  public Enrichments fields(List<Field> fields) {
-    
+  public Enrichments fields(@javax.annotation.Nonnull List<Field> fields) {
     this.fields = fields;
     return this;
   }
 
   public Enrichments addFieldsItem(Field fieldsItem) {
+    if (this.fields == null) {
+      this.fields = new ArrayList<>();
+    }
     this.fields.add(fieldsItem);
     return this;
   }
 
-   /**
+  /**
    * Get fields
    * @return fields
-  **/
+   */
   @javax.annotation.Nonnull
-
   public List<Field> getFields() {
     return fields;
   }
 
-
-  public void setFields(List<Field> fields) {
+  public void setFields(@javax.annotation.Nonnull List<Field> fields) {
     this.fields = fields;
   }
 
@@ -178,33 +179,34 @@ public class Enrichments implements Serializable {
     openapiRequiredFields.add("fields");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to Enrichments
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!Enrichments.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Enrichments
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Enrichments.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Enrichments is not found in the empty JSON string", Enrichments.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!Enrichments.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Enrichments` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Enrichments` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : Enrichments.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (jsonObj.get("dependencies") != null && !jsonObj.get("dependencies").isJsonNull()) {
         JsonArray jsonArraydependencies = jsonObj.getAsJsonArray("dependencies");
         if (jsonArraydependencies != null) {
@@ -215,7 +217,7 @@ public class Enrichments implements Serializable {
 
           // validate the optional field `dependencies` (array)
           for (int i = 0; i < jsonArraydependencies.size(); i++) {
-            Dependency.validateJsonObject(jsonArraydependencies.get(i).getAsJsonObject());
+            Dependency.validateJsonElement(jsonArraydependencies.get(i));
           };
         }
       }
@@ -227,7 +229,7 @@ public class Enrichments implements Serializable {
       JsonArray jsonArrayfields = jsonObj.getAsJsonArray("fields");
       // validate the required field `fields` (array)
       for (int i = 0; i < jsonArrayfields.size(); i++) {
-        Field.validateJsonObject(jsonArrayfields.get(i).getAsJsonObject());
+        Field.validateJsonElement(jsonArrayfields.get(i));
       };
   }
 
@@ -251,31 +253,31 @@ public class Enrichments implements Serializable {
 
            @Override
            public Enrichments read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of Enrichments given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Enrichments
-  * @throws IOException if the JSON string is invalid with respect to Enrichments
-  */
+  /**
+   * Create an instance of Enrichments given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Enrichments
+   * @throws IOException if the JSON string is invalid with respect to Enrichments
+   */
   public static Enrichments fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Enrichments.class);
   }
 
- /**
-  * Convert an instance of Enrichments to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Enrichments to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

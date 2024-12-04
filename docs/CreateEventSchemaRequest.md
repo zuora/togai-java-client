@@ -13,6 +13,8 @@ Request to create event schema
 |**attributes** | [**List&lt;EventAttributeSchema&gt;**](EventAttributeSchema.md) |  |  |
 |**dimensions** | [**List&lt;DimensionsSchema&gt;**](DimensionsSchema.md) |  |  |
 |**enrichments** | [**Enrichments**](Enrichments.md) |  |  [optional] |
+|**filterFields** | **Set&lt;String&gt;** | List of fields that can be used for filtering in usage meter |  [optional] |
+|**eventIdTemplate** | **String** | Template used to generate event id based on event payload |  [optional] |
 
 
 ## Implemented Interfaces

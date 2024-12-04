@@ -41,7 +41,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.ws.rs.core.GenericType;
 
 public class EventSchemasApi {
     private ApiClient localVarApiClient;
@@ -87,7 +86,8 @@ public class EventSchemasApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -161,7 +161,8 @@ public class EventSchemasApi {
      * @return EventSchema
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -184,7 +185,8 @@ public class EventSchemasApi {
      * @return ApiResponse&lt;EventSchema&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -209,7 +211,8 @@ public class EventSchemasApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -234,7 +237,8 @@ public class EventSchemasApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -308,7 +312,8 @@ public class EventSchemasApi {
      * @return EventSchema
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -331,7 +336,8 @@ public class EventSchemasApi {
      * @return ApiResponse&lt;EventSchema&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -356,7 +362,8 @@ public class EventSchemasApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -381,7 +388,8 @@ public class EventSchemasApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -455,7 +463,8 @@ public class EventSchemasApi {
      * @return EventSchema
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -478,7 +487,8 @@ public class EventSchemasApi {
      * @return ApiResponse&lt;EventSchema&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -503,7 +513,8 @@ public class EventSchemasApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -528,7 +539,8 @@ public class EventSchemasApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -602,7 +614,8 @@ public class EventSchemasApi {
      * @return BaseSuccessResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -625,7 +638,8 @@ public class EventSchemasApi {
      * @return ApiResponse&lt;BaseSuccessResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -650,7 +664,8 @@ public class EventSchemasApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -676,7 +691,8 @@ public class EventSchemasApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -757,7 +773,8 @@ public class EventSchemasApi {
      * @return EventSchema
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -781,7 +798,8 @@ public class EventSchemasApi {
      * @return ApiResponse&lt;EventSchema&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -807,7 +825,8 @@ public class EventSchemasApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -833,7 +852,8 @@ public class EventSchemasApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -912,7 +932,8 @@ public class EventSchemasApi {
      * @return EventSchema
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -936,7 +957,8 @@ public class EventSchemasApi {
      * @return ApiResponse&lt;EventSchema&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -962,7 +984,8 @@ public class EventSchemasApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Create and Get event schema requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -987,7 +1010,8 @@ public class EventSchemasApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for list event schema versions request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -1061,7 +1085,8 @@ public class EventSchemasApi {
      * @return EventSchemaVersionsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for list event schema versions request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -1084,7 +1109,8 @@ public class EventSchemasApi {
      * @return ApiResponse&lt;EventSchemaVersionsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for list event schema versions request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -1109,7 +1135,8 @@ public class EventSchemasApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for list event schema versions request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -1136,7 +1163,8 @@ public class EventSchemasApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for list events request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -1218,7 +1246,8 @@ public class EventSchemasApi {
      * @return EventSchemaListPaginatedResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for list events request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -1243,7 +1272,8 @@ public class EventSchemasApi {
      * @return ApiResponse&lt;EventSchemaListPaginatedResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for list events request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -1270,7 +1300,8 @@ public class EventSchemasApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for list events request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>

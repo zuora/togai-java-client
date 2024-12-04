@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,6 +23,7 @@ import com.togai.client.models.PaginationOptions;
 import com.togai.client.models.Setting;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -37,13 +37,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -51,27 +53,29 @@ import com.togai.client.JSON;
 /**
  * SettingPaginatedResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class SettingPaginatedResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
+  @javax.annotation.Nullable
   private List<Setting> data = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_NEXT_TOKEN = "nextToken";
   @SerializedName(SERIALIZED_NAME_NEXT_TOKEN)
+  @javax.annotation.Nullable
   private String nextToken;
 
   public static final String SERIALIZED_NAME_CONTEXT = "context";
   @SerializedName(SERIALIZED_NAME_CONTEXT)
+  @javax.annotation.Nullable
   private PaginationOptions context;
 
   public SettingPaginatedResponse() {
   }
 
-  public SettingPaginatedResponse data(List<Setting> data) {
-    
+  public SettingPaginatedResponse data(@javax.annotation.Nullable List<Setting> data) {
     this.data = data;
     return this;
   }
@@ -84,62 +88,54 @@ public class SettingPaginatedResponse implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get data
    * @return data
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<Setting> getData() {
     return data;
   }
 
-
-  public void setData(List<Setting> data) {
+  public void setData(@javax.annotation.Nullable List<Setting> data) {
     this.data = data;
   }
 
 
-  public SettingPaginatedResponse nextToken(String nextToken) {
-    
+  public SettingPaginatedResponse nextToken(@javax.annotation.Nullable String nextToken) {
     this.nextToken = nextToken;
     return this;
   }
 
-   /**
+  /**
    * Get nextToken
    * @return nextToken
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getNextToken() {
     return nextToken;
   }
 
-
-  public void setNextToken(String nextToken) {
+  public void setNextToken(@javax.annotation.Nullable String nextToken) {
     this.nextToken = nextToken;
   }
 
 
-  public SettingPaginatedResponse context(PaginationOptions context) {
-    
+  public SettingPaginatedResponse context(@javax.annotation.Nullable PaginationOptions context) {
     this.context = context;
     return this;
   }
 
-   /**
+  /**
    * Get context
    * @return context
-  **/
+   */
   @javax.annotation.Nullable
-
   public PaginationOptions getContext() {
     return context;
   }
 
-
-  public void setContext(PaginationOptions context) {
+  public void setContext(@javax.annotation.Nullable PaginationOptions context) {
     this.context = context;
   }
 
@@ -201,26 +197,27 @@ public class SettingPaginatedResponse implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to SettingPaginatedResponse
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!SettingPaginatedResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SettingPaginatedResponse
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SettingPaginatedResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SettingPaginatedResponse is not found in the empty JSON string", SettingPaginatedResponse.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!SettingPaginatedResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SettingPaginatedResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SettingPaginatedResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull()) {
         JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
         if (jsonArraydata != null) {
@@ -231,7 +228,7 @@ public class SettingPaginatedResponse implements Serializable {
 
           // validate the optional field `data` (array)
           for (int i = 0; i < jsonArraydata.size(); i++) {
-            Setting.validateJsonObject(jsonArraydata.get(i).getAsJsonObject());
+            Setting.validateJsonElement(jsonArraydata.get(i));
           };
         }
       }
@@ -240,7 +237,7 @@ public class SettingPaginatedResponse implements Serializable {
       }
       // validate the optional field `context`
       if (jsonObj.get("context") != null && !jsonObj.get("context").isJsonNull()) {
-        PaginationOptions.validateJsonObject(jsonObj.getAsJsonObject("context"));
+        PaginationOptions.validateJsonElement(jsonObj.get("context"));
       }
   }
 
@@ -264,31 +261,31 @@ public class SettingPaginatedResponse implements Serializable {
 
            @Override
            public SettingPaginatedResponse read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SettingPaginatedResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SettingPaginatedResponse
-  * @throws IOException if the JSON string is invalid with respect to SettingPaginatedResponse
-  */
+  /**
+   * Create an instance of SettingPaginatedResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SettingPaginatedResponse
+   * @throws IOException if the JSON string is invalid with respect to SettingPaginatedResponse
+   */
   public static SettingPaginatedResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SettingPaginatedResponse.class);
   }
 
- /**
-  * Convert an instance of SettingPaginatedResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SettingPaginatedResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -8,7 +8,7 @@ Payload for ingesting events
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**event** | [**Event**](Event.md) |  |  [optional] |
+|**event** | [**Event**](Event.md) |  |  |
 
 
 ## Implemented Interfaces

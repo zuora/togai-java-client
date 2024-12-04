@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import java.math.BigDecimal;
 import com.togai.client.models.ErrorResponse;
 import com.togai.client.models.Setting;
 import com.togai.client.models.SettingPaginatedResponse;
@@ -37,7 +38,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.ws.rs.core.GenericType;
 
 public class SettingsApi {
     private ApiClient localVarApiClient;
@@ -83,7 +83,8 @@ public class SettingsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -157,7 +158,8 @@ public class SettingsApi {
      * @return Setting
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -180,7 +182,8 @@ public class SettingsApi {
      * @return ApiResponse&lt;Setting&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -205,7 +208,8 @@ public class SettingsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -230,7 +234,8 @@ public class SettingsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
@@ -305,7 +310,8 @@ public class SettingsApi {
      * @return Setting
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
@@ -329,7 +335,8 @@ public class SettingsApi {
      * @return ApiResponse&lt;Setting&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
@@ -355,7 +362,8 @@ public class SettingsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
@@ -376,6 +384,8 @@ public class SettingsApi {
     }
     /**
      * Build call for listSetting
+     * @param nextToken  (optional)
+     * @param pageSize  (optional)
      * @param entityType  (optional)
      * @param entityId  (optional)
      * @param settingId  (optional)
@@ -384,7 +394,8 @@ public class SettingsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for list setting request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -395,7 +406,7 @@ public class SettingsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listSettingCall(String entityType, String entityId, String settingId, String namespace, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listSettingCall(String nextToken, BigDecimal pageSize, String entityType, String entityId, String settingId, String namespace, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -419,6 +430,14 @@ public class SettingsApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (nextToken != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("nextToken", nextToken));
+        }
+
+        if (pageSize != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("pageSize", pageSize));
+        }
 
         if (entityType != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("entity_type", entityType));
@@ -456,14 +475,16 @@ public class SettingsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listSettingValidateBeforeCall(String entityType, String entityId, String settingId, String namespace, final ApiCallback _callback) throws ApiException {
-        return listSettingCall(entityType, entityId, settingId, namespace, _callback);
+    private okhttp3.Call listSettingValidateBeforeCall(String nextToken, BigDecimal pageSize, String entityType, String entityId, String settingId, String namespace, final ApiCallback _callback) throws ApiException {
+        return listSettingCall(nextToken, pageSize, entityType, entityId, settingId, namespace, _callback);
 
     }
 
     /**
      * Lists settings
      * List settings
+     * @param nextToken  (optional)
+     * @param pageSize  (optional)
      * @param entityType  (optional)
      * @param entityId  (optional)
      * @param settingId  (optional)
@@ -471,7 +492,8 @@ public class SettingsApi {
      * @return SettingPaginatedResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for list setting request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -482,14 +504,16 @@ public class SettingsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public SettingPaginatedResponse listSetting(String entityType, String entityId, String settingId, String namespace) throws ApiException {
-        ApiResponse<SettingPaginatedResponse> localVarResp = listSettingWithHttpInfo(entityType, entityId, settingId, namespace);
+    public SettingPaginatedResponse listSetting(String nextToken, BigDecimal pageSize, String entityType, String entityId, String settingId, String namespace) throws ApiException {
+        ApiResponse<SettingPaginatedResponse> localVarResp = listSettingWithHttpInfo(nextToken, pageSize, entityType, entityId, settingId, namespace);
         return localVarResp.getData();
     }
 
     /**
      * Lists settings
      * List settings
+     * @param nextToken  (optional)
+     * @param pageSize  (optional)
      * @param entityType  (optional)
      * @param entityId  (optional)
      * @param settingId  (optional)
@@ -497,7 +521,8 @@ public class SettingsApi {
      * @return ApiResponse&lt;SettingPaginatedResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for list setting request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -508,8 +533,8 @@ public class SettingsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SettingPaginatedResponse> listSettingWithHttpInfo(String entityType, String entityId, String settingId, String namespace) throws ApiException {
-        okhttp3.Call localVarCall = listSettingValidateBeforeCall(entityType, entityId, settingId, namespace, null);
+    public ApiResponse<SettingPaginatedResponse> listSettingWithHttpInfo(String nextToken, BigDecimal pageSize, String entityType, String entityId, String settingId, String namespace) throws ApiException {
+        okhttp3.Call localVarCall = listSettingValidateBeforeCall(nextToken, pageSize, entityType, entityId, settingId, namespace, null);
         Type localVarReturnType = new TypeToken<SettingPaginatedResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -517,6 +542,8 @@ public class SettingsApi {
     /**
      * Lists settings (asynchronously)
      * List settings
+     * @param nextToken  (optional)
+     * @param pageSize  (optional)
      * @param entityType  (optional)
      * @param entityId  (optional)
      * @param settingId  (optional)
@@ -525,7 +552,8 @@ public class SettingsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for list setting request </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -536,9 +564,9 @@ public class SettingsApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listSettingAsync(String entityType, String entityId, String settingId, String namespace, final ApiCallback<SettingPaginatedResponse> _callback) throws ApiException {
+    public okhttp3.Call listSettingAsync(String nextToken, BigDecimal pageSize, String entityType, String entityId, String settingId, String namespace, final ApiCallback<SettingPaginatedResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listSettingValidateBeforeCall(entityType, entityId, settingId, namespace, _callback);
+        okhttp3.Call localVarCall = listSettingValidateBeforeCall(nextToken, pageSize, entityType, entityId, settingId, namespace, _callback);
         Type localVarReturnType = new TypeToken<SettingPaginatedResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -551,7 +579,8 @@ public class SettingsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
@@ -633,7 +662,8 @@ public class SettingsApi {
      * @return Setting
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
@@ -658,7 +688,8 @@ public class SettingsApi {
      * @return ApiResponse&lt;Setting&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
@@ -685,7 +716,8 @@ public class SettingsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Response for insert and update settings request </td><td>  -  </td></tr>

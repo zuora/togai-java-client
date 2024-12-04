@@ -14,13 +14,19 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.togai.client.models.AccountsBillingInformation;
+import com.togai.client.models.Address;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -33,13 +39,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -47,36 +55,294 @@ import com.togai.client.JSON;
 /**
  * Payload to update account
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class UpdateAccountRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
+
+  /**
+   * Gets or Sets status
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    ACTIVE("ACTIVE"),
+    
+    DRAFT("DRAFT");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      StatusEnum.fromValue(value);
+    }
+  }
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
+  private StatusEnum status;
+
+  public static final String SERIALIZED_NAME_INVOICE_CURRENCY = "invoiceCurrency";
+  @SerializedName(SERIALIZED_NAME_INVOICE_CURRENCY)
+  @javax.annotation.Nullable
+  private String invoiceCurrency;
+
+  public static final String SERIALIZED_NAME_NET_TERM_DAYS = "netTermDays";
+  @SerializedName(SERIALIZED_NAME_NET_TERM_DAYS)
+  @javax.annotation.Nullable
+  private Integer netTermDays;
+
+  public static final String SERIALIZED_NAME_PRIMARY_EMAIL = "primaryEmail";
+  @SerializedName(SERIALIZED_NAME_PRIMARY_EMAIL)
+  @javax.annotation.Nullable
+  private String primaryEmail;
+
+  public static final String SERIALIZED_NAME_BILLING_INFORMATION = "billingInformation";
+  @SerializedName(SERIALIZED_NAME_BILLING_INFORMATION)
+  @javax.annotation.Nullable
+  private AccountsBillingInformation billingInformation;
+
+  public static final String SERIALIZED_NAME_ADDRESS = "address";
+  @SerializedName(SERIALIZED_NAME_ADDRESS)
+  @javax.annotation.Nullable
+  private Address address;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  @javax.annotation.Nullable
+  private Map<String, String> metadata = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  @javax.annotation.Nullable
+  private Set<String> tags = new LinkedHashSet<>();
 
   public UpdateAccountRequest() {
   }
 
-  public UpdateAccountRequest name(String name) {
-    
+  public UpdateAccountRequest name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Name of the Account
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
+  }
+
+
+  public UpdateAccountRequest status(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * @return status
+   */
+  @javax.annotation.Nullable
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
+  }
+
+
+  public UpdateAccountRequest invoiceCurrency(@javax.annotation.Nullable String invoiceCurrency) {
+    this.invoiceCurrency = invoiceCurrency;
+    return this;
+  }
+
+  /**
+   * [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217) code of the currency in which the account must be invoiced Defaults to Base currency. 
+   * @return invoiceCurrency
+   */
+  @javax.annotation.Nullable
+  public String getInvoiceCurrency() {
+    return invoiceCurrency;
+  }
+
+  public void setInvoiceCurrency(@javax.annotation.Nullable String invoiceCurrency) {
+    this.invoiceCurrency = invoiceCurrency;
+  }
+
+
+  public UpdateAccountRequest netTermDays(@javax.annotation.Nullable Integer netTermDays) {
+    this.netTermDays = netTermDays;
+    return this;
+  }
+
+  /**
+   * Get netTermDays
+   * @return netTermDays
+   */
+  @javax.annotation.Nullable
+  public Integer getNetTermDays() {
+    return netTermDays;
+  }
+
+  public void setNetTermDays(@javax.annotation.Nullable Integer netTermDays) {
+    this.netTermDays = netTermDays;
+  }
+
+
+  public UpdateAccountRequest primaryEmail(@javax.annotation.Nullable String primaryEmail) {
+    this.primaryEmail = primaryEmail;
+    return this;
+  }
+
+  /**
+   * Primary email of the account
+   * @return primaryEmail
+   */
+  @javax.annotation.Nullable
+  public String getPrimaryEmail() {
+    return primaryEmail;
+  }
+
+  public void setPrimaryEmail(@javax.annotation.Nullable String primaryEmail) {
+    this.primaryEmail = primaryEmail;
+  }
+
+
+  public UpdateAccountRequest billingInformation(@javax.annotation.Nullable AccountsBillingInformation billingInformation) {
+    this.billingInformation = billingInformation;
+    return this;
+  }
+
+  /**
+   * Get billingInformation
+   * @return billingInformation
+   */
+  @javax.annotation.Nullable
+  public AccountsBillingInformation getBillingInformation() {
+    return billingInformation;
+  }
+
+  public void setBillingInformation(@javax.annotation.Nullable AccountsBillingInformation billingInformation) {
+    this.billingInformation = billingInformation;
+  }
+
+
+  public UpdateAccountRequest address(@javax.annotation.Nullable Address address) {
+    this.address = address;
+    return this;
+  }
+
+  /**
+   * Get address
+   * @return address
+   */
+  @javax.annotation.Nullable
+  public Address getAddress() {
+    return address;
+  }
+
+  public void setAddress(@javax.annotation.Nullable Address address) {
+    this.address = address;
+  }
+
+
+  public UpdateAccountRequest metadata(@javax.annotation.Nullable Map<String, String> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public UpdateAccountRequest putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Additional information associated with the account. Example: GSTN, VATN NOTE: This replaces the existing metadata if the metadata in the request is not null.  To remove all existing metadata, use empty object 
+   * @return metadata
+   */
+  @javax.annotation.Nullable
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(@javax.annotation.Nullable Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
+  public UpdateAccountRequest tags(@javax.annotation.Nullable Set<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public UpdateAccountRequest addTagsItem(String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new LinkedHashSet<>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+  /**
+   * Tag for accounts are stored in lowercase
+   * @return tags
+   */
+  @javax.annotation.Nullable
+  public Set<String> getTags() {
+    return tags;
+  }
+
+  public void setTags(@javax.annotation.Nullable Set<String> tags) {
+    this.tags = tags;
   }
 
 
@@ -90,12 +356,20 @@ public class UpdateAccountRequest implements Serializable {
       return false;
     }
     UpdateAccountRequest updateAccountRequest = (UpdateAccountRequest) o;
-    return Objects.equals(this.name, updateAccountRequest.name);
+    return Objects.equals(this.name, updateAccountRequest.name) &&
+        Objects.equals(this.status, updateAccountRequest.status) &&
+        Objects.equals(this.invoiceCurrency, updateAccountRequest.invoiceCurrency) &&
+        Objects.equals(this.netTermDays, updateAccountRequest.netTermDays) &&
+        Objects.equals(this.primaryEmail, updateAccountRequest.primaryEmail) &&
+        Objects.equals(this.billingInformation, updateAccountRequest.billingInformation) &&
+        Objects.equals(this.address, updateAccountRequest.address) &&
+        Objects.equals(this.metadata, updateAccountRequest.metadata) &&
+        Objects.equals(this.tags, updateAccountRequest.tags);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(name, status, invoiceCurrency, netTermDays, primaryEmail, billingInformation, address, metadata, tags);
   }
 
   @Override
@@ -103,6 +377,14 @@ public class UpdateAccountRequest implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateAccountRequest {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    invoiceCurrency: ").append(toIndentedString(invoiceCurrency)).append("\n");
+    sb.append("    netTermDays: ").append(toIndentedString(netTermDays)).append("\n");
+    sb.append("    primaryEmail: ").append(toIndentedString(primaryEmail)).append("\n");
+    sb.append("    billingInformation: ").append(toIndentedString(billingInformation)).append("\n");
+    sb.append("    address: ").append(toIndentedString(address)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -126,33 +408,67 @@ public class UpdateAccountRequest implements Serializable {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
+    openapiFields.add("status");
+    openapiFields.add("invoiceCurrency");
+    openapiFields.add("netTermDays");
+    openapiFields.add("primaryEmail");
+    openapiFields.add("billingInformation");
+    openapiFields.add("address");
+    openapiFields.add("metadata");
+    openapiFields.add("tags");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to UpdateAccountRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!UpdateAccountRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdateAccountRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UpdateAccountRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateAccountRequest is not found in the empty JSON string", UpdateAccountRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!UpdateAccountRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateAccountRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateAccountRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      }
+      // validate the optional field `status`
+      if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
+        StatusEnum.validateJsonElement(jsonObj.get("status"));
+      }
+      if ((jsonObj.get("invoiceCurrency") != null && !jsonObj.get("invoiceCurrency").isJsonNull()) && !jsonObj.get("invoiceCurrency").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `invoiceCurrency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceCurrency").toString()));
+      }
+      if ((jsonObj.get("primaryEmail") != null && !jsonObj.get("primaryEmail").isJsonNull()) && !jsonObj.get("primaryEmail").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `primaryEmail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("primaryEmail").toString()));
+      }
+      // validate the optional field `billingInformation`
+      if (jsonObj.get("billingInformation") != null && !jsonObj.get("billingInformation").isJsonNull()) {
+        AccountsBillingInformation.validateJsonElement(jsonObj.get("billingInformation"));
+      }
+      // validate the optional field `address`
+      if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {
+        Address.validateJsonElement(jsonObj.get("address"));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull() && !jsonObj.get("tags").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
       }
   }
 
@@ -176,31 +492,31 @@ public class UpdateAccountRequest implements Serializable {
 
            @Override
            public UpdateAccountRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of UpdateAccountRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UpdateAccountRequest
-  * @throws IOException if the JSON string is invalid with respect to UpdateAccountRequest
-  */
+  /**
+   * Create an instance of UpdateAccountRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdateAccountRequest
+   * @throws IOException if the JSON string is invalid with respect to UpdateAccountRequest
+   */
   public static UpdateAccountRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdateAccountRequest.class);
   }
 
- /**
-  * Convert an instance of UpdateAccountRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UpdateAccountRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

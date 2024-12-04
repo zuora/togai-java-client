@@ -27,16 +27,21 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.togai.client.models.BaseSuccessResponse;
+import com.togai.client.models.CreateCustomInvoiceRequest;
 import com.togai.client.models.ErrorResponse;
 import com.togai.client.models.Invoice;
 import com.togai.client.models.ListInvoicesResponse;
+import com.togai.client.models.ManageMiscellaneousChargesRequest;
+import com.togai.client.models.MiscellaneousChargesResponse;
+import com.togai.client.models.PricingRulesLogsPaginatedResponse;
+import com.togai.client.models.UpdateInvoiceRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.ws.rs.core.GenericType;
 
 public class InvoicesApi {
     private ApiClient localVarApiClient;
@@ -76,13 +81,456 @@ public class InvoicesApi {
     }
 
     /**
+     * Build call for createCustomInvoice
+     * @param createCustomInvoiceRequest Payload to create invoice (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createCustomInvoiceCall(CreateCustomInvoiceRequest createCustomInvoiceRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = createCustomInvoiceRequest;
+
+        // create path and map variables
+        String localVarPath = "/invoices";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call createCustomInvoiceValidateBeforeCall(CreateCustomInvoiceRequest createCustomInvoiceRequest, final ApiCallback _callback) throws ApiException {
+        return createCustomInvoiceCall(createCustomInvoiceRequest, _callback);
+
+    }
+
+    /**
+     * Create a custom invoice for an account
+     * Create a custom invoice for an account.
+     * @param createCustomInvoiceRequest Payload to create invoice (optional)
+     * @return Invoice
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public Invoice createCustomInvoice(CreateCustomInvoiceRequest createCustomInvoiceRequest) throws ApiException {
+        ApiResponse<Invoice> localVarResp = createCustomInvoiceWithHttpInfo(createCustomInvoiceRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Create a custom invoice for an account
+     * Create a custom invoice for an account.
+     * @param createCustomInvoiceRequest Payload to create invoice (optional)
+     * @return ApiResponse&lt;Invoice&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Invoice> createCustomInvoiceWithHttpInfo(CreateCustomInvoiceRequest createCustomInvoiceRequest) throws ApiException {
+        okhttp3.Call localVarCall = createCustomInvoiceValidateBeforeCall(createCustomInvoiceRequest, null);
+        Type localVarReturnType = new TypeToken<Invoice>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Create a custom invoice for an account (asynchronously)
+     * Create a custom invoice for an account.
+     * @param createCustomInvoiceRequest Payload to create invoice (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createCustomInvoiceAsync(CreateCustomInvoiceRequest createCustomInvoiceRequest, final ApiCallback<Invoice> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = createCustomInvoiceValidateBeforeCall(createCustomInvoiceRequest, _callback);
+        Type localVarReturnType = new TypeToken<Invoice>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for createInvoiceBillRun
+     * @param requireConfirmation Specifies whether to start a migration only after a confirmation (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createInvoiceBillRunCall(Boolean requireConfirmation, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/invoices/bill_runs";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (requireConfirmation != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("require_confirmation", requireConfirmation));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call createInvoiceBillRunValidateBeforeCall(Boolean requireConfirmation, final ApiCallback _callback) throws ApiException {
+        return createInvoiceBillRunCall(requireConfirmation, _callback);
+
+    }
+
+    /**
+     * Create a bill run job request
+     * Create a bill run job request
+     * @param requireConfirmation Specifies whether to start a migration only after a confirmation (optional)
+     * @return BaseSuccessResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public BaseSuccessResponse createInvoiceBillRun(Boolean requireConfirmation) throws ApiException {
+        ApiResponse<BaseSuccessResponse> localVarResp = createInvoiceBillRunWithHttpInfo(requireConfirmation);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Create a bill run job request
+     * Create a bill run job request
+     * @param requireConfirmation Specifies whether to start a migration only after a confirmation (optional)
+     * @return ApiResponse&lt;BaseSuccessResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<BaseSuccessResponse> createInvoiceBillRunWithHttpInfo(Boolean requireConfirmation) throws ApiException {
+        okhttp3.Call localVarCall = createInvoiceBillRunValidateBeforeCall(requireConfirmation, null);
+        Type localVarReturnType = new TypeToken<BaseSuccessResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Create a bill run job request (asynchronously)
+     * Create a bill run job request
+     * @param requireConfirmation Specifies whether to start a migration only after a confirmation (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createInvoiceBillRunAsync(Boolean requireConfirmation, final ApiCallback<BaseSuccessResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = createInvoiceBillRunValidateBeforeCall(requireConfirmation, _callback);
+        Type localVarReturnType = new TypeToken<BaseSuccessResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for deleteCustomInvoice
+     * @param invoiceId  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteCustomInvoiceCall(String invoiceId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/invoices/{invoice_id}"
+            .replace("{" + "invoice_id" + "}", localVarApiClient.escapeString(invoiceId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteCustomInvoiceValidateBeforeCall(String invoiceId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'invoiceId' is set
+        if (invoiceId == null) {
+            throw new ApiException("Missing the required parameter 'invoiceId' when calling deleteCustomInvoice(Async)");
+        }
+
+        return deleteCustomInvoiceCall(invoiceId, _callback);
+
+    }
+
+    /**
+     * Delete a custom invoice in DRAFT state
+     * Delete a custom invoice in DRAFT state.
+     * @param invoiceId  (required)
+     * @return BaseSuccessResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public BaseSuccessResponse deleteCustomInvoice(String invoiceId) throws ApiException {
+        ApiResponse<BaseSuccessResponse> localVarResp = deleteCustomInvoiceWithHttpInfo(invoiceId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Delete a custom invoice in DRAFT state
+     * Delete a custom invoice in DRAFT state.
+     * @param invoiceId  (required)
+     * @return ApiResponse&lt;BaseSuccessResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<BaseSuccessResponse> deleteCustomInvoiceWithHttpInfo(String invoiceId) throws ApiException {
+        okhttp3.Call localVarCall = deleteCustomInvoiceValidateBeforeCall(invoiceId, null);
+        Type localVarReturnType = new TypeToken<BaseSuccessResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Delete a custom invoice in DRAFT state (asynchronously)
+     * Delete a custom invoice in DRAFT state.
+     * @param invoiceId  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteCustomInvoiceAsync(String invoiceId, final ApiCallback<BaseSuccessResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteCustomInvoiceValidateBeforeCall(invoiceId, _callback);
+        Type localVarReturnType = new TypeToken<BaseSuccessResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for getInvoice
      * @param invoiceId  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -156,7 +604,8 @@ public class InvoicesApi {
      * @return Invoice
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -179,7 +628,8 @@ public class InvoicesApi {
      * @return ApiResponse&lt;Invoice&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -204,7 +654,8 @@ public class InvoicesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
@@ -226,7 +677,7 @@ public class InvoicesApi {
      * Build call for listInvoices
      * @param nextToken Pagination token used as a marker to get records from next page. (optional)
      * @param status Filter option to filter by status. (optional)
-     * @param accountId Filter option to filter based on account id. (optional)
+     * @param ownerId Filter option to filter based on owner id. (optional)
      * @param customerId Filter option to filter based on customer id. (optional)
      * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
      * @param startTime Start time filter in epoch milli seconds (optional)
@@ -235,7 +686,8 @@ public class InvoicesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success response </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request. Please check the response message for failure details. </td><td>  -  </td></tr>
@@ -246,7 +698,7 @@ public class InvoicesApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listInvoicesCall(String nextToken, String status, String accountId, String customerId, Integer pageSize, Long startTime, Long endTime, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listInvoicesCall(String nextToken, String status, String ownerId, String customerId, Integer pageSize, Long startTime, Long endTime, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -279,8 +731,8 @@ public class InvoicesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("status", status));
         }
 
-        if (accountId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("account_id", accountId));
+        if (ownerId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("owner_id", ownerId));
         }
 
         if (customerId != null) {
@@ -319,8 +771,8 @@ public class InvoicesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listInvoicesValidateBeforeCall(String nextToken, String status, String accountId, String customerId, Integer pageSize, Long startTime, Long endTime, final ApiCallback _callback) throws ApiException {
-        return listInvoicesCall(nextToken, status, accountId, customerId, pageSize, startTime, endTime, _callback);
+    private okhttp3.Call listInvoicesValidateBeforeCall(String nextToken, String status, String ownerId, String customerId, Integer pageSize, Long startTime, Long endTime, final ApiCallback _callback) throws ApiException {
+        return listInvoicesCall(nextToken, status, ownerId, customerId, pageSize, startTime, endTime, _callback);
 
     }
 
@@ -329,7 +781,7 @@ public class InvoicesApi {
      * List invoices
      * @param nextToken Pagination token used as a marker to get records from next page. (optional)
      * @param status Filter option to filter by status. (optional)
-     * @param accountId Filter option to filter based on account id. (optional)
+     * @param ownerId Filter option to filter based on owner id. (optional)
      * @param customerId Filter option to filter based on customer id. (optional)
      * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
      * @param startTime Start time filter in epoch milli seconds (optional)
@@ -337,7 +789,8 @@ public class InvoicesApi {
      * @return ListInvoicesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success response </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request. Please check the response message for failure details. </td><td>  -  </td></tr>
@@ -348,8 +801,8 @@ public class InvoicesApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ListInvoicesResponse listInvoices(String nextToken, String status, String accountId, String customerId, Integer pageSize, Long startTime, Long endTime) throws ApiException {
-        ApiResponse<ListInvoicesResponse> localVarResp = listInvoicesWithHttpInfo(nextToken, status, accountId, customerId, pageSize, startTime, endTime);
+    public ListInvoicesResponse listInvoices(String nextToken, String status, String ownerId, String customerId, Integer pageSize, Long startTime, Long endTime) throws ApiException {
+        ApiResponse<ListInvoicesResponse> localVarResp = listInvoicesWithHttpInfo(nextToken, status, ownerId, customerId, pageSize, startTime, endTime);
         return localVarResp.getData();
     }
 
@@ -358,7 +811,7 @@ public class InvoicesApi {
      * List invoices
      * @param nextToken Pagination token used as a marker to get records from next page. (optional)
      * @param status Filter option to filter by status. (optional)
-     * @param accountId Filter option to filter based on account id. (optional)
+     * @param ownerId Filter option to filter based on owner id. (optional)
      * @param customerId Filter option to filter based on customer id. (optional)
      * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
      * @param startTime Start time filter in epoch milli seconds (optional)
@@ -366,7 +819,8 @@ public class InvoicesApi {
      * @return ApiResponse&lt;ListInvoicesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success response </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request. Please check the response message for failure details. </td><td>  -  </td></tr>
@@ -377,8 +831,8 @@ public class InvoicesApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListInvoicesResponse> listInvoicesWithHttpInfo(String nextToken, String status, String accountId, String customerId, Integer pageSize, Long startTime, Long endTime) throws ApiException {
-        okhttp3.Call localVarCall = listInvoicesValidateBeforeCall(nextToken, status, accountId, customerId, pageSize, startTime, endTime, null);
+    public ApiResponse<ListInvoicesResponse> listInvoicesWithHttpInfo(String nextToken, String status, String ownerId, String customerId, Integer pageSize, Long startTime, Long endTime) throws ApiException {
+        okhttp3.Call localVarCall = listInvoicesValidateBeforeCall(nextToken, status, ownerId, customerId, pageSize, startTime, endTime, null);
         Type localVarReturnType = new TypeToken<ListInvoicesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -388,7 +842,7 @@ public class InvoicesApi {
      * List invoices
      * @param nextToken Pagination token used as a marker to get records from next page. (optional)
      * @param status Filter option to filter by status. (optional)
-     * @param accountId Filter option to filter based on account id. (optional)
+     * @param ownerId Filter option to filter based on owner id. (optional)
      * @param customerId Filter option to filter based on customer id. (optional)
      * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
      * @param startTime Start time filter in epoch milli seconds (optional)
@@ -397,7 +851,8 @@ public class InvoicesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success response </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request. Please check the response message for failure details. </td><td>  -  </td></tr>
@@ -408,10 +863,826 @@ public class InvoicesApi {
         <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listInvoicesAsync(String nextToken, String status, String accountId, String customerId, Integer pageSize, Long startTime, Long endTime, final ApiCallback<ListInvoicesResponse> _callback) throws ApiException {
+    public okhttp3.Call listInvoicesAsync(String nextToken, String status, String ownerId, String customerId, Integer pageSize, Long startTime, Long endTime, final ApiCallback<ListInvoicesResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listInvoicesValidateBeforeCall(nextToken, status, accountId, customerId, pageSize, startTime, endTime, _callback);
+        okhttp3.Call localVarCall = listInvoicesValidateBeforeCall(nextToken, status, ownerId, customerId, pageSize, startTime, endTime, _callback);
         Type localVarReturnType = new TypeToken<ListInvoicesResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for listInvoicesForBillRun
+     * @param nextToken Pagination token used as a marker to get records from next page. (optional)
+     * @param status Filter option to filter by status. (optional)
+     * @param ownerId Filter option to filter based on owner id. (optional)
+     * @param customerId Filter option to filter based on customer id. (optional)
+     * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
+     * @param startTime Start time filter in epoch milli seconds (optional)
+     * @param endTime End time filter in epoch milli seconds (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listInvoicesForBillRunCall(String nextToken, String status, String ownerId, String customerId, Integer pageSize, Long startTime, Long endTime, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/invoices/bill_runs";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (nextToken != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("nextToken", nextToken));
+        }
+
+        if (status != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("status", status));
+        }
+
+        if (ownerId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("owner_id", ownerId));
+        }
+
+        if (customerId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("customer_id", customerId));
+        }
+
+        if (pageSize != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("pageSize", pageSize));
+        }
+
+        if (startTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("start_time", startTime));
+        }
+
+        if (endTime != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("end_time", endTime));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call listInvoicesForBillRunValidateBeforeCall(String nextToken, String status, String ownerId, String customerId, Integer pageSize, Long startTime, Long endTime, final ApiCallback _callback) throws ApiException {
+        return listInvoicesForBillRunCall(nextToken, status, ownerId, customerId, pageSize, startTime, endTime, _callback);
+
+    }
+
+    /**
+     * List invoices eligible for bill run
+     * List invoices eligible for bill run
+     * @param nextToken Pagination token used as a marker to get records from next page. (optional)
+     * @param status Filter option to filter by status. (optional)
+     * @param ownerId Filter option to filter based on owner id. (optional)
+     * @param customerId Filter option to filter based on customer id. (optional)
+     * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
+     * @param startTime Start time filter in epoch milli seconds (optional)
+     * @param endTime End time filter in epoch milli seconds (optional)
+     * @return ListInvoicesResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ListInvoicesResponse listInvoicesForBillRun(String nextToken, String status, String ownerId, String customerId, Integer pageSize, Long startTime, Long endTime) throws ApiException {
+        ApiResponse<ListInvoicesResponse> localVarResp = listInvoicesForBillRunWithHttpInfo(nextToken, status, ownerId, customerId, pageSize, startTime, endTime);
+        return localVarResp.getData();
+    }
+
+    /**
+     * List invoices eligible for bill run
+     * List invoices eligible for bill run
+     * @param nextToken Pagination token used as a marker to get records from next page. (optional)
+     * @param status Filter option to filter by status. (optional)
+     * @param ownerId Filter option to filter based on owner id. (optional)
+     * @param customerId Filter option to filter based on customer id. (optional)
+     * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
+     * @param startTime Start time filter in epoch milli seconds (optional)
+     * @param endTime End time filter in epoch milli seconds (optional)
+     * @return ApiResponse&lt;ListInvoicesResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ListInvoicesResponse> listInvoicesForBillRunWithHttpInfo(String nextToken, String status, String ownerId, String customerId, Integer pageSize, Long startTime, Long endTime) throws ApiException {
+        okhttp3.Call localVarCall = listInvoicesForBillRunValidateBeforeCall(nextToken, status, ownerId, customerId, pageSize, startTime, endTime, null);
+        Type localVarReturnType = new TypeToken<ListInvoicesResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * List invoices eligible for bill run (asynchronously)
+     * List invoices eligible for bill run
+     * @param nextToken Pagination token used as a marker to get records from next page. (optional)
+     * @param status Filter option to filter by status. (optional)
+     * @param ownerId Filter option to filter based on owner id. (optional)
+     * @param customerId Filter option to filter based on customer id. (optional)
+     * @param pageSize Maximum page size expected by client to return the record list.    NOTE: Max page size cannot be more than 50. Also 50 is the default page size if no value is provided. (optional)
+     * @param startTime Start time filter in epoch milli seconds (optional)
+     * @param endTime End time filter in epoch milli seconds (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listInvoicesForBillRunAsync(String nextToken, String status, String ownerId, String customerId, Integer pageSize, Long startTime, Long endTime, final ApiCallback<ListInvoicesResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listInvoicesForBillRunValidateBeforeCall(nextToken, status, ownerId, customerId, pageSize, startTime, endTime, _callback);
+        Type localVarReturnType = new TypeToken<ListInvoicesResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for listPricingRuleLogs
+     * @param invoiceId  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for list Invoice Pricing Rules Logs Request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listPricingRuleLogsCall(String invoiceId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/invoice/{invoice_id}/pricing_rules_logs"
+            .replace("{" + "invoice_id" + "}", localVarApiClient.escapeString(invoiceId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call listPricingRuleLogsValidateBeforeCall(String invoiceId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'invoiceId' is set
+        if (invoiceId == null) {
+            throw new ApiException("Missing the required parameter 'invoiceId' when calling listPricingRuleLogs(Async)");
+        }
+
+        return listPricingRuleLogsCall(invoiceId, _callback);
+
+    }
+
+    /**
+     * List pricing rule logs
+     * List pricing rule logs
+     * @param invoiceId  (required)
+     * @return PricingRulesLogsPaginatedResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for list Invoice Pricing Rules Logs Request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public PricingRulesLogsPaginatedResponse listPricingRuleLogs(String invoiceId) throws ApiException {
+        ApiResponse<PricingRulesLogsPaginatedResponse> localVarResp = listPricingRuleLogsWithHttpInfo(invoiceId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * List pricing rule logs
+     * List pricing rule logs
+     * @param invoiceId  (required)
+     * @return ApiResponse&lt;PricingRulesLogsPaginatedResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for list Invoice Pricing Rules Logs Request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<PricingRulesLogsPaginatedResponse> listPricingRuleLogsWithHttpInfo(String invoiceId) throws ApiException {
+        okhttp3.Call localVarCall = listPricingRuleLogsValidateBeforeCall(invoiceId, null);
+        Type localVarReturnType = new TypeToken<PricingRulesLogsPaginatedResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * List pricing rule logs (asynchronously)
+     * List pricing rule logs
+     * @param invoiceId  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for list Invoice Pricing Rules Logs Request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listPricingRuleLogsAsync(String invoiceId, final ApiCallback<PricingRulesLogsPaginatedResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listPricingRuleLogsValidateBeforeCall(invoiceId, _callback);
+        Type localVarReturnType = new TypeToken<PricingRulesLogsPaginatedResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for manageMiscellaneousChargesInAccount
+     * @param accountId account_id corresponding to an account (required)
+     * @param manageMiscellaneousChargesRequest Payload to update custom line items (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Miscellaneous Charges Request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call manageMiscellaneousChargesInAccountCall(String accountId, ManageMiscellaneousChargesRequest manageMiscellaneousChargesRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = manageMiscellaneousChargesRequest;
+
+        // create path and map variables
+        String localVarPath = "/accounts/{account_id}/miscellaneous_charges"
+            .replace("{" + "account_id" + "}", localVarApiClient.escapeString(accountId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call manageMiscellaneousChargesInAccountValidateBeforeCall(String accountId, ManageMiscellaneousChargesRequest manageMiscellaneousChargesRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'accountId' is set
+        if (accountId == null) {
+            throw new ApiException("Missing the required parameter 'accountId' when calling manageMiscellaneousChargesInAccount(Async)");
+        }
+
+        return manageMiscellaneousChargesInAccountCall(accountId, manageMiscellaneousChargesRequest, _callback);
+
+    }
+
+    /**
+     * Add or update miscellaneous charges in upcoming Invoice for a account
+     * Add or update miscellaneous charges in upcoming Invoice for a account
+     * @param accountId account_id corresponding to an account (required)
+     * @param manageMiscellaneousChargesRequest Payload to update custom line items (optional)
+     * @return MiscellaneousChargesResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Miscellaneous Charges Request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public MiscellaneousChargesResponse manageMiscellaneousChargesInAccount(String accountId, ManageMiscellaneousChargesRequest manageMiscellaneousChargesRequest) throws ApiException {
+        ApiResponse<MiscellaneousChargesResponse> localVarResp = manageMiscellaneousChargesInAccountWithHttpInfo(accountId, manageMiscellaneousChargesRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Add or update miscellaneous charges in upcoming Invoice for a account
+     * Add or update miscellaneous charges in upcoming Invoice for a account
+     * @param accountId account_id corresponding to an account (required)
+     * @param manageMiscellaneousChargesRequest Payload to update custom line items (optional)
+     * @return ApiResponse&lt;MiscellaneousChargesResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Miscellaneous Charges Request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<MiscellaneousChargesResponse> manageMiscellaneousChargesInAccountWithHttpInfo(String accountId, ManageMiscellaneousChargesRequest manageMiscellaneousChargesRequest) throws ApiException {
+        okhttp3.Call localVarCall = manageMiscellaneousChargesInAccountValidateBeforeCall(accountId, manageMiscellaneousChargesRequest, null);
+        Type localVarReturnType = new TypeToken<MiscellaneousChargesResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Add or update miscellaneous charges in upcoming Invoice for a account (asynchronously)
+     * Add or update miscellaneous charges in upcoming Invoice for a account
+     * @param accountId account_id corresponding to an account (required)
+     * @param manageMiscellaneousChargesRequest Payload to update custom line items (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Miscellaneous Charges Request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call manageMiscellaneousChargesInAccountAsync(String accountId, ManageMiscellaneousChargesRequest manageMiscellaneousChargesRequest, final ApiCallback<MiscellaneousChargesResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = manageMiscellaneousChargesInAccountValidateBeforeCall(accountId, manageMiscellaneousChargesRequest, _callback);
+        Type localVarReturnType = new TypeToken<MiscellaneousChargesResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for manageMiscellaneousChargesInInvoice
+     * @param invoiceId  (required)
+     * @param manageMiscellaneousChargesRequest Payload to update custom line items (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Miscellaneous Charges Request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call manageMiscellaneousChargesInInvoiceCall(String invoiceId, ManageMiscellaneousChargesRequest manageMiscellaneousChargesRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = manageMiscellaneousChargesRequest;
+
+        // create path and map variables
+        String localVarPath = "/invoices/{invoice_id}/miscellaneous_charges"
+            .replace("{" + "invoice_id" + "}", localVarApiClient.escapeString(invoiceId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call manageMiscellaneousChargesInInvoiceValidateBeforeCall(String invoiceId, ManageMiscellaneousChargesRequest manageMiscellaneousChargesRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'invoiceId' is set
+        if (invoiceId == null) {
+            throw new ApiException("Missing the required parameter 'invoiceId' when calling manageMiscellaneousChargesInInvoice(Async)");
+        }
+
+        return manageMiscellaneousChargesInInvoiceCall(invoiceId, manageMiscellaneousChargesRequest, _callback);
+
+    }
+
+    /**
+     * Add or update miscellaneous charges in Invoice
+     * Add or update miscellaneous charges in Invoice
+     * @param invoiceId  (required)
+     * @param manageMiscellaneousChargesRequest Payload to update custom line items (optional)
+     * @return MiscellaneousChargesResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Miscellaneous Charges Request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public MiscellaneousChargesResponse manageMiscellaneousChargesInInvoice(String invoiceId, ManageMiscellaneousChargesRequest manageMiscellaneousChargesRequest) throws ApiException {
+        ApiResponse<MiscellaneousChargesResponse> localVarResp = manageMiscellaneousChargesInInvoiceWithHttpInfo(invoiceId, manageMiscellaneousChargesRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Add or update miscellaneous charges in Invoice
+     * Add or update miscellaneous charges in Invoice
+     * @param invoiceId  (required)
+     * @param manageMiscellaneousChargesRequest Payload to update custom line items (optional)
+     * @return ApiResponse&lt;MiscellaneousChargesResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Miscellaneous Charges Request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<MiscellaneousChargesResponse> manageMiscellaneousChargesInInvoiceWithHttpInfo(String invoiceId, ManageMiscellaneousChargesRequest manageMiscellaneousChargesRequest) throws ApiException {
+        okhttp3.Call localVarCall = manageMiscellaneousChargesInInvoiceValidateBeforeCall(invoiceId, manageMiscellaneousChargesRequest, null);
+        Type localVarReturnType = new TypeToken<MiscellaneousChargesResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Add or update miscellaneous charges in Invoice (asynchronously)
+     * Add or update miscellaneous charges in Invoice
+     * @param invoiceId  (required)
+     * @param manageMiscellaneousChargesRequest Payload to update custom line items (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Miscellaneous Charges Request </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call manageMiscellaneousChargesInInvoiceAsync(String invoiceId, ManageMiscellaneousChargesRequest manageMiscellaneousChargesRequest, final ApiCallback<MiscellaneousChargesResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = manageMiscellaneousChargesInInvoiceValidateBeforeCall(invoiceId, manageMiscellaneousChargesRequest, _callback);
+        Type localVarReturnType = new TypeToken<MiscellaneousChargesResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateInvoice
+     * @param invoiceId  (required)
+     * @param updateInvoiceRequest Payload to update an invoice (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateInvoiceCall(String invoiceId, UpdateInvoiceRequest updateInvoiceRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = updateInvoiceRequest;
+
+        // create path and map variables
+        String localVarPath = "/invoices/{invoice_id}"
+            .replace("{" + "invoice_id" + "}", localVarApiClient.escapeString(invoiceId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateInvoiceValidateBeforeCall(String invoiceId, UpdateInvoiceRequest updateInvoiceRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'invoiceId' is set
+        if (invoiceId == null) {
+            throw new ApiException("Missing the required parameter 'invoiceId' when calling updateInvoice(Async)");
+        }
+
+        return updateInvoiceCall(invoiceId, updateInvoiceRequest, _callback);
+
+    }
+
+    /**
+     * Update an invoice
+     * Update an invoice[Only CUSTOM invoices in DRAFT state support updating of all fields]. Updating status can be done for all invoice.
+     * @param invoiceId  (required)
+     * @param updateInvoiceRequest Payload to update an invoice (optional)
+     * @return Invoice
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public Invoice updateInvoice(String invoiceId, UpdateInvoiceRequest updateInvoiceRequest) throws ApiException {
+        ApiResponse<Invoice> localVarResp = updateInvoiceWithHttpInfo(invoiceId, updateInvoiceRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update an invoice
+     * Update an invoice[Only CUSTOM invoices in DRAFT state support updating of all fields]. Updating status can be done for all invoice.
+     * @param invoiceId  (required)
+     * @param updateInvoiceRequest Payload to update an invoice (optional)
+     * @return ApiResponse&lt;Invoice&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Invoice> updateInvoiceWithHttpInfo(String invoiceId, UpdateInvoiceRequest updateInvoiceRequest) throws ApiException {
+        okhttp3.Call localVarCall = updateInvoiceValidateBeforeCall(invoiceId, updateInvoiceRequest, null);
+        Type localVarReturnType = new TypeToken<Invoice>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update an invoice (asynchronously)
+     * Update an invoice[Only CUSTOM invoices in DRAFT state support updating of all fields]. Updating status can be done for all invoice.
+     * @param invoiceId  (required)
+     * @param updateInvoiceRequest Payload to update an invoice (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response for Get invoice requests </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Error response </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Error response </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateInvoiceAsync(String invoiceId, UpdateInvoiceRequest updateInvoiceRequest, final ApiCallback<Invoice> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateInvoiceValidateBeforeCall(invoiceId, updateInvoiceRequest, _callback);
+        Type localVarReturnType = new TypeToken<Invoice>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

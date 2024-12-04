@@ -14,16 +14,17 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.togai.client.models.CreateAccountRequest;
+import com.togai.client.models.Address;
+import com.togai.client.models.CreateAccountRequestWithoutCustomerId;
 import com.togai.client.models.CreateEntitySetting;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -37,13 +38,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -51,127 +54,120 @@ import com.togai.client.JSON;
 /**
  * Payload to create customer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class CreateCustomerRequest implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
   private String name;
 
   public static final String SERIALIZED_NAME_PRIMARY_EMAIL = "primaryEmail";
   @SerializedName(SERIALIZED_NAME_PRIMARY_EMAIL)
+  @javax.annotation.Nonnull
   private String primaryEmail;
 
-  public static final String SERIALIZED_NAME_BILLING_ADDRESS = "billingAddress";
-  @SerializedName(SERIALIZED_NAME_BILLING_ADDRESS)
-  private String billingAddress;
+  public static final String SERIALIZED_NAME_ADDRESS = "address";
+  @SerializedName(SERIALIZED_NAME_ADDRESS)
+  @javax.annotation.Nonnull
+  private Address address;
 
   public static final String SERIALIZED_NAME_SETTINGS = "settings";
   @SerializedName(SERIALIZED_NAME_SETTINGS)
+  @javax.annotation.Nullable
   private List<CreateEntitySetting> settings = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ACCOUNT = "account";
   @SerializedName(SERIALIZED_NAME_ACCOUNT)
-  private CreateAccountRequest account;
+  @javax.annotation.Nullable
+  private CreateAccountRequestWithoutCustomerId account;
 
   public CreateCustomerRequest() {
   }
 
-  public CreateCustomerRequest id(String id) {
-    
+  public CreateCustomerRequest id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * Customer identifier
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getId() {
     return id;
   }
 
-
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public CreateCustomerRequest name(String name) {
-    
+  public CreateCustomerRequest name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Name of the Customer
    * @return name
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getName() {
     return name;
   }
 
-
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public CreateCustomerRequest primaryEmail(String primaryEmail) {
-    
+  public CreateCustomerRequest primaryEmail(@javax.annotation.Nonnull String primaryEmail) {
     this.primaryEmail = primaryEmail;
     return this;
   }
 
-   /**
+  /**
    * Primary email of the customer
    * @return primaryEmail
-  **/
+   */
   @javax.annotation.Nonnull
-
   public String getPrimaryEmail() {
     return primaryEmail;
   }
 
-
-  public void setPrimaryEmail(String primaryEmail) {
+  public void setPrimaryEmail(@javax.annotation.Nonnull String primaryEmail) {
     this.primaryEmail = primaryEmail;
   }
 
 
-  public CreateCustomerRequest billingAddress(String billingAddress) {
-    
-    this.billingAddress = billingAddress;
+  public CreateCustomerRequest address(@javax.annotation.Nonnull Address address) {
+    this.address = address;
     return this;
   }
 
-   /**
-   * billing address of the customer
-   * @return billingAddress
-  **/
+  /**
+   * Get address
+   * @return address
+   */
   @javax.annotation.Nonnull
+  public Address getAddress() {
+    return address;
+  }
 
-  public String getBillingAddress() {
-    return billingAddress;
+  public void setAddress(@javax.annotation.Nonnull Address address) {
+    this.address = address;
   }
 
 
-  public void setBillingAddress(String billingAddress) {
-    this.billingAddress = billingAddress;
-  }
-
-
-  public CreateCustomerRequest settings(List<CreateEntitySetting> settings) {
-    
+  public CreateCustomerRequest settings(@javax.annotation.Nullable List<CreateEntitySetting> settings) {
     this.settings = settings;
     return this;
   }
@@ -184,40 +180,35 @@ public class CreateCustomerRequest implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get settings
    * @return settings
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<CreateEntitySetting> getSettings() {
     return settings;
   }
 
-
-  public void setSettings(List<CreateEntitySetting> settings) {
+  public void setSettings(@javax.annotation.Nullable List<CreateEntitySetting> settings) {
     this.settings = settings;
   }
 
 
-  public CreateCustomerRequest account(CreateAccountRequest account) {
-    
+  public CreateCustomerRequest account(@javax.annotation.Nullable CreateAccountRequestWithoutCustomerId account) {
     this.account = account;
     return this;
   }
 
-   /**
+  /**
    * Get account
    * @return account
-  **/
+   */
   @javax.annotation.Nullable
-
-  public CreateAccountRequest getAccount() {
+  public CreateAccountRequestWithoutCustomerId getAccount() {
     return account;
   }
 
-
-  public void setAccount(CreateAccountRequest account) {
+  public void setAccount(@javax.annotation.Nullable CreateAccountRequestWithoutCustomerId account) {
     this.account = account;
   }
 
@@ -235,14 +226,14 @@ public class CreateCustomerRequest implements Serializable {
     return Objects.equals(this.id, createCustomerRequest.id) &&
         Objects.equals(this.name, createCustomerRequest.name) &&
         Objects.equals(this.primaryEmail, createCustomerRequest.primaryEmail) &&
-        Objects.equals(this.billingAddress, createCustomerRequest.billingAddress) &&
+        Objects.equals(this.address, createCustomerRequest.address) &&
         Objects.equals(this.settings, createCustomerRequest.settings) &&
         Objects.equals(this.account, createCustomerRequest.account);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, primaryEmail, billingAddress, settings, account);
+    return Objects.hash(id, name, primaryEmail, address, settings, account);
   }
 
   @Override
@@ -252,7 +243,7 @@ public class CreateCustomerRequest implements Serializable {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    primaryEmail: ").append(toIndentedString(primaryEmail)).append("\n");
-    sb.append("    billingAddress: ").append(toIndentedString(billingAddress)).append("\n");
+    sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    settings: ").append(toIndentedString(settings)).append("\n");
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
     sb.append("}");
@@ -280,7 +271,7 @@ public class CreateCustomerRequest implements Serializable {
     openapiFields.add("id");
     openapiFields.add("name");
     openapiFields.add("primaryEmail");
-    openapiFields.add("billingAddress");
+    openapiFields.add("address");
     openapiFields.add("settings");
     openapiFields.add("account");
 
@@ -289,36 +280,37 @@ public class CreateCustomerRequest implements Serializable {
     openapiRequiredFields.add("id");
     openapiRequiredFields.add("name");
     openapiRequiredFields.add("primaryEmail");
-    openapiRequiredFields.add("billingAddress");
+    openapiRequiredFields.add("address");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreateCustomerRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CreateCustomerRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateCustomerRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreateCustomerRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreateCustomerRequest is not found in the empty JSON string", CreateCustomerRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CreateCustomerRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateCustomerRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateCustomerRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : CreateCustomerRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
@@ -328,9 +320,8 @@ public class CreateCustomerRequest implements Serializable {
       if (!jsonObj.get("primaryEmail").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `primaryEmail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("primaryEmail").toString()));
       }
-      if (!jsonObj.get("billingAddress").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `billingAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("billingAddress").toString()));
-      }
+      // validate the required field `address`
+      Address.validateJsonElement(jsonObj.get("address"));
       if (jsonObj.get("settings") != null && !jsonObj.get("settings").isJsonNull()) {
         JsonArray jsonArraysettings = jsonObj.getAsJsonArray("settings");
         if (jsonArraysettings != null) {
@@ -341,13 +332,13 @@ public class CreateCustomerRequest implements Serializable {
 
           // validate the optional field `settings` (array)
           for (int i = 0; i < jsonArraysettings.size(); i++) {
-            CreateEntitySetting.validateJsonObject(jsonArraysettings.get(i).getAsJsonObject());
+            CreateEntitySetting.validateJsonElement(jsonArraysettings.get(i));
           };
         }
       }
       // validate the optional field `account`
       if (jsonObj.get("account") != null && !jsonObj.get("account").isJsonNull()) {
-        CreateAccountRequest.validateJsonObject(jsonObj.getAsJsonObject("account"));
+        CreateAccountRequestWithoutCustomerId.validateJsonElement(jsonObj.get("account"));
       }
   }
 
@@ -371,31 +362,31 @@ public class CreateCustomerRequest implements Serializable {
 
            @Override
            public CreateCustomerRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreateCustomerRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateCustomerRequest
-  * @throws IOException if the JSON string is invalid with respect to CreateCustomerRequest
-  */
+  /**
+   * Create an instance of CreateCustomerRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateCustomerRequest
+   * @throws IOException if the JSON string is invalid with respect to CreateCustomerRequest
+   */
   public static CreateCustomerRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateCustomerRequest.class);
   }
 
- /**
-  * Convert an instance of CreateCustomerRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateCustomerRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -4,20 +4,20 @@ All URIs are relative to *https://api.togai.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**activatePricePlan**](PricePlansApi.md#activatePricePlan) | **POST** /price_plans/{price_plan_id}/activate | Activate a price plan |
-| [**addCurrencyToPricePlan**](PricePlansApi.md#addCurrencyToPricePlan) | **POST** /price_plans/{price_plan_id}/currencies | Add currencies to a price plan |
-| [**createPricePlan**](PricePlansApi.md#createPricePlan) | **POST** /price_plans | Create a price plan |
-| [**getPricePlan**](PricePlansApi.md#getPricePlan) | **GET** /price_plans/{price_plan_id} | Get a price plan |
-| [**getPricePlans**](PricePlansApi.md#getPricePlans) | **GET** /price_plans | List price plans |
-| [**removeCurrencyFromPricePlan**](PricePlansApi.md#removeCurrencyFromPricePlan) | **DELETE** /price_plans/{price_plan_id}/currencies/{currency_id} | Remove a draft currency from a price plan |
-| [**updatePricePlan**](PricePlansApi.md#updatePricePlan) | **PATCH** /price_plans/{price_plan_id} | Update a price plan |
+| [**activatePricePlan**](PricePlansApi.md#activatePricePlan) | **POST** /price_plans/{price_plan_id}/activate | (DEPRECATED) Activate a price plan |
+| [**archivePricePlan**](PricePlansApi.md#archivePricePlan) | **DELETE** /price_plans/{price_plan_id} | (DEPRECATED) Archive a price plan |
+| [**createPricePlan**](PricePlansApi.md#createPricePlan) | **POST** /price_plans | (DEPRECATED) Create a price plan |
+| [**getPricePlan**](PricePlansApi.md#getPricePlan) | **GET** /price_plans/{price_plan_id} | (DEPRECATED) Get a price plan |
+| [**getPricePlans**](PricePlansApi.md#getPricePlans) | **GET** /price_plans | (DEPRECATED) List price plans |
+| [**pricePlanMigration**](PricePlansApi.md#pricePlanMigration) | **POST** /price_plans/migration | (DEPRECATED) Create a price plan migration |
+| [**updatePricePlan**](PricePlansApi.md#updatePricePlan) | **PATCH** /price_plans/{price_plan_id} | (DEPRECATED) Update a price plan |
 
 
-<a name="activatePricePlan"></a>
+<a id="activatePricePlan"></a>
 # **activatePricePlan**
 > PricePlan activatePricePlan(pricePlanId, activatePricePlanRequest)
 
-Activate a price plan
+(DEPRECATED) Activate a price plan
 
 Activate a price plan details using price plan id
 
@@ -41,7 +41,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     PricePlansApi apiInstance = new PricePlansApi(defaultClient);
-    String pricePlanId = "pricePlanId_example"; // String | 
+    String pricePlanId = "pp.1zYnCiM9Bpg.lv25y"; // String | 
     ActivatePricePlanRequest activatePricePlanRequest = new ActivatePricePlanRequest(); // ActivatePricePlanRequest | Payload to activate price plan
     try {
       PricePlan result = apiInstance.activatePricePlan(pricePlanId, activatePricePlanRequest);
@@ -88,13 +88,13 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="addCurrencyToPricePlan"></a>
-# **addCurrencyToPricePlan**
-> PricePlan addCurrencyToPricePlan(pricePlanId, addCurrencyToPricePlanRequest)
+<a id="archivePricePlan"></a>
+# **archivePricePlan**
+> BaseSuccessResponse archivePricePlan(pricePlanId)
 
-Add currencies to a price plan
+(DEPRECATED) Archive a price plan
 
-Add currencies to a price plan
+Archive a price plan
 
 ### Example
 ```java
@@ -116,13 +116,12 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     PricePlansApi apiInstance = new PricePlansApi(defaultClient);
-    String pricePlanId = "pricePlanId_example"; // String | 
-    AddCurrencyToPricePlanRequest addCurrencyToPricePlanRequest = new AddCurrencyToPricePlanRequest(); // AddCurrencyToPricePlanRequest | Payload to add currency to price plan
+    String pricePlanId = "pp.1zYnCiM9Bpg.lv25y"; // String | 
     try {
-      PricePlan result = apiInstance.addCurrencyToPricePlan(pricePlanId, addCurrencyToPricePlanRequest);
+      BaseSuccessResponse result = apiInstance.archivePricePlan(pricePlanId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PricePlansApi#addCurrencyToPricePlan");
+      System.err.println("Exception when calling PricePlansApi#archivePricePlan");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -137,11 +136,10 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **pricePlanId** | **String**|  | |
-| **addCurrencyToPricePlanRequest** | [**AddCurrencyToPricePlanRequest**](AddCurrencyToPricePlanRequest.md)| Payload to add currency to price plan | |
 
 ### Return type
 
-[**PricePlan**](PricePlan.md)
+[**BaseSuccessResponse**](BaseSuccessResponse.md)
 
 ### Authorization
 
@@ -149,13 +147,13 @@ public class Example {
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Response for Create and Get price plan requests |  -  |
+| **200** | OK |  -  |
 | **400** | Error response |  -  |
 | **401** | Error response |  -  |
 | **403** | Error response |  -  |
@@ -163,11 +161,11 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="createPricePlan"></a>
+<a id="createPricePlan"></a>
 # **createPricePlan**
-> PricePlan createPricePlan(createPricePlanRequest)
+> PricePlan createPricePlan(createPricePlanRequest, dryRun)
 
-Create a price plan
+(DEPRECATED) Create a price plan
 
 This API let&#39;s you create and price plan Learn more about [Price Plans](https://docs.togai.com/docs/priceplan) 
 
@@ -192,8 +190,9 @@ public class Example {
 
     PricePlansApi apiInstance = new PricePlansApi(defaultClient);
     CreatePricePlanRequest createPricePlanRequest = new CreatePricePlanRequest(); // CreatePricePlanRequest | Payload to create price plan
+    Boolean dryRun = false; // Boolean | 
     try {
-      PricePlan result = apiInstance.createPricePlan(createPricePlanRequest);
+      PricePlan result = apiInstance.createPricePlan(createPricePlanRequest, dryRun);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PricePlansApi#createPricePlan");
@@ -211,6 +210,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createPricePlanRequest** | [**CreatePricePlanRequest**](CreatePricePlanRequest.md)| Payload to create price plan | |
+| **dryRun** | **Boolean**|  | [optional] |
 
 ### Return type
 
@@ -236,11 +236,11 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="getPricePlan"></a>
+<a id="getPricePlan"></a>
 # **getPricePlan**
-> PricePlan getPricePlan(pricePlanId)
+> PricePlan getPricePlan(pricePlanId, version)
 
-Get a price plan
+(DEPRECATED) Get a price plan
 
 Get a price plan details using price plan id
 
@@ -264,9 +264,10 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     PricePlansApi apiInstance = new PricePlansApi(defaultClient);
-    String pricePlanId = "pricePlanId_example"; // String | 
+    String pricePlanId = "pp.1zYnCiM9Bpg.lv25y"; // String | 
+    Integer version = 2; // Integer | Optional version to get a specific version. Gets latest version if it is not provided.
     try {
-      PricePlan result = apiInstance.getPricePlan(pricePlanId);
+      PricePlan result = apiInstance.getPricePlan(pricePlanId, version);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PricePlansApi#getPricePlan");
@@ -284,6 +285,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **pricePlanId** | **String**|  | |
+| **version** | **Integer**| Optional version to get a specific version. Gets latest version if it is not provided. | [optional] |
 
 ### Return type
 
@@ -309,11 +311,11 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="getPricePlans"></a>
+<a id="getPricePlans"></a>
 # **getPricePlans**
 > PricePlanPaginatedResponse getPricePlans(nextToken, pageSize)
 
-List price plans
+(DEPRECATED) List price plans
 
 Get a list of price plans
 
@@ -384,13 +386,13 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="removeCurrencyFromPricePlan"></a>
-# **removeCurrencyFromPricePlan**
-> PricePlan removeCurrencyFromPricePlan(pricePlanId, currencyId)
+<a id="pricePlanMigration"></a>
+# **pricePlanMigration**
+> BaseSuccessResponse pricePlanMigration(createPricePlanMigrationRequest)
 
-Remove a draft currency from a price plan
+(DEPRECATED) Create a price plan migration
 
-Remove a draft currency from a price plan
+Migrates accounts across price plans. This is an asynchronous process functioning on top of Togai&#39;s Jobs  framework. Status of the created migrations can be obtained using the [Jobs APIs](https://docs.togai.com/api-reference/jobs/get-the-status-of-a-job) 
 
 ### Example
 ```java
@@ -412,13 +414,12 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     PricePlansApi apiInstance = new PricePlansApi(defaultClient);
-    String pricePlanId = "pricePlanId_example"; // String | 
-    String currencyId = "currencyId_example"; // String | 
+    CreatePricePlanMigrationRequest createPricePlanMigrationRequest = new CreatePricePlanMigrationRequest(); // CreatePricePlanMigrationRequest | Payload to create price plan migration request
     try {
-      PricePlan result = apiInstance.removeCurrencyFromPricePlan(pricePlanId, currencyId);
+      BaseSuccessResponse result = apiInstance.pricePlanMigration(createPricePlanMigrationRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PricePlansApi#removeCurrencyFromPricePlan");
+      System.err.println("Exception when calling PricePlansApi#pricePlanMigration");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -432,12 +433,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **pricePlanId** | **String**|  | |
-| **currencyId** | **String**|  | |
+| **createPricePlanMigrationRequest** | [**CreatePricePlanMigrationRequest**](CreatePricePlanMigrationRequest.md)| Payload to create price plan migration request | |
 
 ### Return type
 
-[**PricePlan**](PricePlan.md)
+[**BaseSuccessResponse**](BaseSuccessResponse.md)
 
 ### Authorization
 
@@ -445,13 +445,13 @@ public class Example {
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Response for Create and Get price plan requests |  -  |
+| **201** | OK |  -  |
 | **400** | Error response |  -  |
 | **401** | Error response |  -  |
 | **403** | Error response |  -  |
@@ -459,11 +459,11 @@ public class Example {
 | **429** | Error response |  -  |
 | **0** | Error response |  -  |
 
-<a name="updatePricePlan"></a>
+<a id="updatePricePlan"></a>
 # **updatePricePlan**
 > PricePlan updatePricePlan(pricePlanId, updatePricePlanRequest)
 
-Update a price plan
+(DEPRECATED) Update a price plan
 
 Update an existing price plan Price Plans with status as DRAFT alone can be updated . Learn more about [Price plans](https://docs.togai.com/docs/priceplan) from our Guides 
 
@@ -487,7 +487,7 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     PricePlansApi apiInstance = new PricePlansApi(defaultClient);
-    String pricePlanId = "pricePlanId_example"; // String | 
+    String pricePlanId = "pp.1zYnCiM9Bpg.lv25y"; // String | 
     UpdatePricePlanRequest updatePricePlanRequest = new UpdatePricePlanRequest(); // UpdatePricePlanRequest | Payload to update price plan
     try {
       PricePlan result = apiInstance.updatePricePlan(pricePlanId, updatePricePlanRequest);

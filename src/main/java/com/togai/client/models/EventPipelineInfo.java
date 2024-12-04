@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,10 +23,13 @@ import com.togai.client.models.EventPipelineInfoAccount;
 import com.togai.client.models.EventPipelineInfoCustomer;
 import com.togai.client.models.EventPipelineInfoEnrichments;
 import com.togai.client.models.EventPipelineInfoEventSchema;
+import com.togai.client.models.EventPipelineInfoFeatureDetails;
 import com.togai.client.models.EventPipelineInfoPricePlans;
+import com.togai.client.models.EventPipelineInfoRevenueDetails;
 import com.togai.client.models.EventPipelineInfoUsageMeters;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
 
@@ -41,13 +43,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -55,61 +59,88 @@ import com.togai.client.JSON;
 /**
  * Information related to ingestion of an event
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class EventPipelineInfo implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_EVENT_SCHEMA = "eventSchema";
   @SerializedName(SERIALIZED_NAME_EVENT_SCHEMA)
+  @javax.annotation.Nullable
   private EventPipelineInfoEventSchema eventSchema;
 
   public static final String SERIALIZED_NAME_USAGE_METERS = "usageMeters";
   @SerializedName(SERIALIZED_NAME_USAGE_METERS)
+  @javax.annotation.Nullable
   private List<EventPipelineInfoUsageMeters> usageMeters = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PRICE_PLANS = "pricePlans";
   @SerializedName(SERIALIZED_NAME_PRICE_PLANS)
+  @javax.annotation.Nullable
   private List<EventPipelineInfoPricePlans> pricePlans = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ACCOUNT = "account";
   @SerializedName(SERIALIZED_NAME_ACCOUNT)
+  @javax.annotation.Nullable
   private EventPipelineInfoAccount account;
 
   public static final String SERIALIZED_NAME_CUSTOMER = "customer";
   @SerializedName(SERIALIZED_NAME_CUSTOMER)
+  @javax.annotation.Nullable
   private EventPipelineInfoCustomer customer;
+
+  public static final String SERIALIZED_NAME_FEATURE_DETAILS = "featureDetails";
+  @SerializedName(SERIALIZED_NAME_FEATURE_DETAILS)
+  @javax.annotation.Nullable
+  private EventPipelineInfoFeatureDetails featureDetails;
 
   public static final String SERIALIZED_NAME_ENRICHMENTS = "enrichments";
   @SerializedName(SERIALIZED_NAME_ENRICHMENTS)
+  @javax.annotation.Nullable
   private EventPipelineInfoEnrichments enrichments;
+
+  public static final String SERIALIZED_NAME_REVENUE_DETAILS = "revenueDetails";
+  @SerializedName(SERIALIZED_NAME_REVENUE_DETAILS)
+  @javax.annotation.Nullable
+  private List<EventPipelineInfoRevenueDetails> revenueDetails = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_STATUS_BEFORE_REVERTING = "statusBeforeReverting";
+  @SerializedName(SERIALIZED_NAME_STATUS_BEFORE_REVERTING)
+  @javax.annotation.Nullable
+  private String statusBeforeReverting;
+
+  public static final String SERIALIZED_NAME_BASE_CURRENCY = "baseCurrency";
+  @SerializedName(SERIALIZED_NAME_BASE_CURRENCY)
+  @javax.annotation.Nullable
+  private String baseCurrency;
+
+  public static final String SERIALIZED_NAME_INVOICE_CURRENCY = "invoiceCurrency";
+  @SerializedName(SERIALIZED_NAME_INVOICE_CURRENCY)
+  @javax.annotation.Nullable
+  private String invoiceCurrency;
 
   public EventPipelineInfo() {
   }
 
-  public EventPipelineInfo eventSchema(EventPipelineInfoEventSchema eventSchema) {
-    
+  public EventPipelineInfo eventSchema(@javax.annotation.Nullable EventPipelineInfoEventSchema eventSchema) {
     this.eventSchema = eventSchema;
     return this;
   }
 
-   /**
+  /**
    * Get eventSchema
    * @return eventSchema
-  **/
+   */
   @javax.annotation.Nullable
-
   public EventPipelineInfoEventSchema getEventSchema() {
     return eventSchema;
   }
 
-
-  public void setEventSchema(EventPipelineInfoEventSchema eventSchema) {
+  public void setEventSchema(@javax.annotation.Nullable EventPipelineInfoEventSchema eventSchema) {
     this.eventSchema = eventSchema;
   }
 
 
-  public EventPipelineInfo usageMeters(List<EventPipelineInfoUsageMeters> usageMeters) {
-    
+  public EventPipelineInfo usageMeters(@javax.annotation.Nullable List<EventPipelineInfoUsageMeters> usageMeters) {
     this.usageMeters = usageMeters;
     return this;
   }
@@ -122,24 +153,21 @@ public class EventPipelineInfo implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get usageMeters
    * @return usageMeters
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<EventPipelineInfoUsageMeters> getUsageMeters() {
     return usageMeters;
   }
 
-
-  public void setUsageMeters(List<EventPipelineInfoUsageMeters> usageMeters) {
+  public void setUsageMeters(@javax.annotation.Nullable List<EventPipelineInfoUsageMeters> usageMeters) {
     this.usageMeters = usageMeters;
   }
 
 
-  public EventPipelineInfo pricePlans(List<EventPipelineInfoPricePlans> pricePlans) {
-    
+  public EventPipelineInfo pricePlans(@javax.annotation.Nullable List<EventPipelineInfoPricePlans> pricePlans) {
     this.pricePlans = pricePlans;
     return this;
   }
@@ -152,85 +180,177 @@ public class EventPipelineInfo implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get pricePlans
    * @return pricePlans
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<EventPipelineInfoPricePlans> getPricePlans() {
     return pricePlans;
   }
 
-
-  public void setPricePlans(List<EventPipelineInfoPricePlans> pricePlans) {
+  public void setPricePlans(@javax.annotation.Nullable List<EventPipelineInfoPricePlans> pricePlans) {
     this.pricePlans = pricePlans;
   }
 
 
-  public EventPipelineInfo account(EventPipelineInfoAccount account) {
-    
+  public EventPipelineInfo account(@javax.annotation.Nullable EventPipelineInfoAccount account) {
     this.account = account;
     return this;
   }
 
-   /**
+  /**
    * Get account
    * @return account
-  **/
+   */
   @javax.annotation.Nullable
-
   public EventPipelineInfoAccount getAccount() {
     return account;
   }
 
-
-  public void setAccount(EventPipelineInfoAccount account) {
+  public void setAccount(@javax.annotation.Nullable EventPipelineInfoAccount account) {
     this.account = account;
   }
 
 
-  public EventPipelineInfo customer(EventPipelineInfoCustomer customer) {
-    
+  public EventPipelineInfo customer(@javax.annotation.Nullable EventPipelineInfoCustomer customer) {
     this.customer = customer;
     return this;
   }
 
-   /**
+  /**
    * Get customer
    * @return customer
-  **/
+   */
   @javax.annotation.Nullable
-
   public EventPipelineInfoCustomer getCustomer() {
     return customer;
   }
 
-
-  public void setCustomer(EventPipelineInfoCustomer customer) {
+  public void setCustomer(@javax.annotation.Nullable EventPipelineInfoCustomer customer) {
     this.customer = customer;
   }
 
 
-  public EventPipelineInfo enrichments(EventPipelineInfoEnrichments enrichments) {
-    
+  public EventPipelineInfo featureDetails(@javax.annotation.Nullable EventPipelineInfoFeatureDetails featureDetails) {
+    this.featureDetails = featureDetails;
+    return this;
+  }
+
+  /**
+   * Get featureDetails
+   * @return featureDetails
+   */
+  @javax.annotation.Nullable
+  public EventPipelineInfoFeatureDetails getFeatureDetails() {
+    return featureDetails;
+  }
+
+  public void setFeatureDetails(@javax.annotation.Nullable EventPipelineInfoFeatureDetails featureDetails) {
+    this.featureDetails = featureDetails;
+  }
+
+
+  public EventPipelineInfo enrichments(@javax.annotation.Nullable EventPipelineInfoEnrichments enrichments) {
     this.enrichments = enrichments;
     return this;
   }
 
-   /**
+  /**
    * Get enrichments
    * @return enrichments
-  **/
+   */
   @javax.annotation.Nullable
-
   public EventPipelineInfoEnrichments getEnrichments() {
     return enrichments;
   }
 
-
-  public void setEnrichments(EventPipelineInfoEnrichments enrichments) {
+  public void setEnrichments(@javax.annotation.Nullable EventPipelineInfoEnrichments enrichments) {
     this.enrichments = enrichments;
+  }
+
+
+  public EventPipelineInfo revenueDetails(@javax.annotation.Nullable List<EventPipelineInfoRevenueDetails> revenueDetails) {
+    this.revenueDetails = revenueDetails;
+    return this;
+  }
+
+  public EventPipelineInfo addRevenueDetailsItem(EventPipelineInfoRevenueDetails revenueDetailsItem) {
+    if (this.revenueDetails == null) {
+      this.revenueDetails = new ArrayList<>();
+    }
+    this.revenueDetails.add(revenueDetailsItem);
+    return this;
+  }
+
+  /**
+   * Get revenueDetails
+   * @return revenueDetails
+   */
+  @javax.annotation.Nullable
+  public List<EventPipelineInfoRevenueDetails> getRevenueDetails() {
+    return revenueDetails;
+  }
+
+  public void setRevenueDetails(@javax.annotation.Nullable List<EventPipelineInfoRevenueDetails> revenueDetails) {
+    this.revenueDetails = revenueDetails;
+  }
+
+
+  public EventPipelineInfo statusBeforeReverting(@javax.annotation.Nullable String statusBeforeReverting) {
+    this.statusBeforeReverting = statusBeforeReverting;
+    return this;
+  }
+
+  /**
+   * Get statusBeforeReverting
+   * @return statusBeforeReverting
+   */
+  @javax.annotation.Nullable
+  public String getStatusBeforeReverting() {
+    return statusBeforeReverting;
+  }
+
+  public void setStatusBeforeReverting(@javax.annotation.Nullable String statusBeforeReverting) {
+    this.statusBeforeReverting = statusBeforeReverting;
+  }
+
+
+  public EventPipelineInfo baseCurrency(@javax.annotation.Nullable String baseCurrency) {
+    this.baseCurrency = baseCurrency;
+    return this;
+  }
+
+  /**
+   * Get baseCurrency
+   * @return baseCurrency
+   */
+  @javax.annotation.Nullable
+  public String getBaseCurrency() {
+    return baseCurrency;
+  }
+
+  public void setBaseCurrency(@javax.annotation.Nullable String baseCurrency) {
+    this.baseCurrency = baseCurrency;
+  }
+
+
+  public EventPipelineInfo invoiceCurrency(@javax.annotation.Nullable String invoiceCurrency) {
+    this.invoiceCurrency = invoiceCurrency;
+    return this;
+  }
+
+  /**
+   * Get invoiceCurrency
+   * @return invoiceCurrency
+   */
+  @javax.annotation.Nullable
+  public String getInvoiceCurrency() {
+    return invoiceCurrency;
+  }
+
+  public void setInvoiceCurrency(@javax.annotation.Nullable String invoiceCurrency) {
+    this.invoiceCurrency = invoiceCurrency;
   }
 
 
@@ -249,12 +369,17 @@ public class EventPipelineInfo implements Serializable {
         Objects.equals(this.pricePlans, eventPipelineInfo.pricePlans) &&
         Objects.equals(this.account, eventPipelineInfo.account) &&
         Objects.equals(this.customer, eventPipelineInfo.customer) &&
-        Objects.equals(this.enrichments, eventPipelineInfo.enrichments);
+        Objects.equals(this.featureDetails, eventPipelineInfo.featureDetails) &&
+        Objects.equals(this.enrichments, eventPipelineInfo.enrichments) &&
+        Objects.equals(this.revenueDetails, eventPipelineInfo.revenueDetails) &&
+        Objects.equals(this.statusBeforeReverting, eventPipelineInfo.statusBeforeReverting) &&
+        Objects.equals(this.baseCurrency, eventPipelineInfo.baseCurrency) &&
+        Objects.equals(this.invoiceCurrency, eventPipelineInfo.invoiceCurrency);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(eventSchema, usageMeters, pricePlans, account, customer, enrichments);
+    return Objects.hash(eventSchema, usageMeters, pricePlans, account, customer, featureDetails, enrichments, revenueDetails, statusBeforeReverting, baseCurrency, invoiceCurrency);
   }
 
   @Override
@@ -266,7 +391,12 @@ public class EventPipelineInfo implements Serializable {
     sb.append("    pricePlans: ").append(toIndentedString(pricePlans)).append("\n");
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
     sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
+    sb.append("    featureDetails: ").append(toIndentedString(featureDetails)).append("\n");
     sb.append("    enrichments: ").append(toIndentedString(enrichments)).append("\n");
+    sb.append("    revenueDetails: ").append(toIndentedString(revenueDetails)).append("\n");
+    sb.append("    statusBeforeReverting: ").append(toIndentedString(statusBeforeReverting)).append("\n");
+    sb.append("    baseCurrency: ").append(toIndentedString(baseCurrency)).append("\n");
+    sb.append("    invoiceCurrency: ").append(toIndentedString(invoiceCurrency)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -294,35 +424,41 @@ public class EventPipelineInfo implements Serializable {
     openapiFields.add("pricePlans");
     openapiFields.add("account");
     openapiFields.add("customer");
+    openapiFields.add("featureDetails");
     openapiFields.add("enrichments");
+    openapiFields.add("revenueDetails");
+    openapiFields.add("statusBeforeReverting");
+    openapiFields.add("baseCurrency");
+    openapiFields.add("invoiceCurrency");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to EventPipelineInfo
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!EventPipelineInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to EventPipelineInfo
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!EventPipelineInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in EventPipelineInfo is not found in the empty JSON string", EventPipelineInfo.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!EventPipelineInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EventPipelineInfo` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EventPipelineInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `eventSchema`
       if (jsonObj.get("eventSchema") != null && !jsonObj.get("eventSchema").isJsonNull()) {
-        EventPipelineInfoEventSchema.validateJsonObject(jsonObj.getAsJsonObject("eventSchema"));
+        EventPipelineInfoEventSchema.validateJsonElement(jsonObj.get("eventSchema"));
       }
       if (jsonObj.get("usageMeters") != null && !jsonObj.get("usageMeters").isJsonNull()) {
         JsonArray jsonArrayusageMeters = jsonObj.getAsJsonArray("usageMeters");
@@ -334,7 +470,7 @@ public class EventPipelineInfo implements Serializable {
 
           // validate the optional field `usageMeters` (array)
           for (int i = 0; i < jsonArrayusageMeters.size(); i++) {
-            EventPipelineInfoUsageMeters.validateJsonObject(jsonArrayusageMeters.get(i).getAsJsonObject());
+            EventPipelineInfoUsageMeters.validateJsonElement(jsonArrayusageMeters.get(i));
           };
         }
       }
@@ -348,21 +484,48 @@ public class EventPipelineInfo implements Serializable {
 
           // validate the optional field `pricePlans` (array)
           for (int i = 0; i < jsonArraypricePlans.size(); i++) {
-            EventPipelineInfoPricePlans.validateJsonObject(jsonArraypricePlans.get(i).getAsJsonObject());
+            EventPipelineInfoPricePlans.validateJsonElement(jsonArraypricePlans.get(i));
           };
         }
       }
       // validate the optional field `account`
       if (jsonObj.get("account") != null && !jsonObj.get("account").isJsonNull()) {
-        EventPipelineInfoAccount.validateJsonObject(jsonObj.getAsJsonObject("account"));
+        EventPipelineInfoAccount.validateJsonElement(jsonObj.get("account"));
       }
       // validate the optional field `customer`
       if (jsonObj.get("customer") != null && !jsonObj.get("customer").isJsonNull()) {
-        EventPipelineInfoCustomer.validateJsonObject(jsonObj.getAsJsonObject("customer"));
+        EventPipelineInfoCustomer.validateJsonElement(jsonObj.get("customer"));
+      }
+      // validate the optional field `featureDetails`
+      if (jsonObj.get("featureDetails") != null && !jsonObj.get("featureDetails").isJsonNull()) {
+        EventPipelineInfoFeatureDetails.validateJsonElement(jsonObj.get("featureDetails"));
       }
       // validate the optional field `enrichments`
       if (jsonObj.get("enrichments") != null && !jsonObj.get("enrichments").isJsonNull()) {
-        EventPipelineInfoEnrichments.validateJsonObject(jsonObj.getAsJsonObject("enrichments"));
+        EventPipelineInfoEnrichments.validateJsonElement(jsonObj.get("enrichments"));
+      }
+      if (jsonObj.get("revenueDetails") != null && !jsonObj.get("revenueDetails").isJsonNull()) {
+        JsonArray jsonArrayrevenueDetails = jsonObj.getAsJsonArray("revenueDetails");
+        if (jsonArrayrevenueDetails != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("revenueDetails").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `revenueDetails` to be an array in the JSON string but got `%s`", jsonObj.get("revenueDetails").toString()));
+          }
+
+          // validate the optional field `revenueDetails` (array)
+          for (int i = 0; i < jsonArrayrevenueDetails.size(); i++) {
+            EventPipelineInfoRevenueDetails.validateJsonElement(jsonArrayrevenueDetails.get(i));
+          };
+        }
+      }
+      if ((jsonObj.get("statusBeforeReverting") != null && !jsonObj.get("statusBeforeReverting").isJsonNull()) && !jsonObj.get("statusBeforeReverting").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `statusBeforeReverting` to be a primitive type in the JSON string but got `%s`", jsonObj.get("statusBeforeReverting").toString()));
+      }
+      if ((jsonObj.get("baseCurrency") != null && !jsonObj.get("baseCurrency").isJsonNull()) && !jsonObj.get("baseCurrency").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `baseCurrency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("baseCurrency").toString()));
+      }
+      if ((jsonObj.get("invoiceCurrency") != null && !jsonObj.get("invoiceCurrency").isJsonNull()) && !jsonObj.get("invoiceCurrency").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `invoiceCurrency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceCurrency").toString()));
       }
   }
 
@@ -386,31 +549,31 @@ public class EventPipelineInfo implements Serializable {
 
            @Override
            public EventPipelineInfo read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of EventPipelineInfo given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of EventPipelineInfo
-  * @throws IOException if the JSON string is invalid with respect to EventPipelineInfo
-  */
+  /**
+   * Create an instance of EventPipelineInfo given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of EventPipelineInfo
+   * @throws IOException if the JSON string is invalid with respect to EventPipelineInfo
+   */
   public static EventPipelineInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, EventPipelineInfo.class);
   }
 
- /**
-  * Convert an instance of EventPipelineInfo to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of EventPipelineInfo to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

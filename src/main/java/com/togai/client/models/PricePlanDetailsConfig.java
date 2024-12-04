@@ -14,7 +14,6 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,6 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import com.togai.client.models.CreatePricePlanDetails;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import java.io.Serializable;
 
 import com.google.gson.Gson;
@@ -35,13 +35,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -49,7 +51,7 @@ import com.togai.client.JSON;
 /**
  * Configuration for getting the usage rate card
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class PricePlanDetailsConfig implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -100,138 +102,157 @@ public class PricePlanDetailsConfig implements Serializable {
         return ModeEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      ModeEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_MODE = "mode";
   @SerializedName(SERIALIZED_NAME_MODE)
+  @javax.annotation.Nonnull
   private ModeEnum mode;
 
   public static final String SERIALIZED_NAME_PRICE_PLAN_DETAILS = "pricePlanDetails";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_DETAILS)
+  @javax.annotation.Nullable
   private CreatePricePlanDetails pricePlanDetails;
 
   public static final String SERIALIZED_NAME_PRICE_PLAN_ID = "pricePlanId";
   @SerializedName(SERIALIZED_NAME_PRICE_PLAN_ID)
+  @javax.annotation.Nullable
   private String pricePlanId;
 
   public static final String SERIALIZED_NAME_ACCOUNT_ID = "accountId";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_ID)
+  @javax.annotation.Nullable
   private String accountId;
 
   public static final String SERIALIZED_NAME_EFFECTIVE_ON = "effectiveOn";
   @SerializedName(SERIALIZED_NAME_EFFECTIVE_ON)
+  @javax.annotation.Nullable
   private OffsetDateTime effectiveOn;
+
+  public static final String SERIALIZED_NAME_PRICING_CYCLE_ORDINAL = "pricingCycleOrdinal";
+  @SerializedName(SERIALIZED_NAME_PRICING_CYCLE_ORDINAL)
+  @javax.annotation.Nullable
+  private Integer pricingCycleOrdinal;
 
   public PricePlanDetailsConfig() {
   }
 
-  public PricePlanDetailsConfig mode(ModeEnum mode) {
-    
+  public PricePlanDetailsConfig mode(@javax.annotation.Nonnull ModeEnum mode) {
     this.mode = mode;
     return this;
   }
 
-   /**
+  /**
    * Mode to get the usage rate card - CUSTOM: Use the price plan details provided in the request - PRICE_PLAN: Use the usage rate cards of the given price plan - ACCOUNT: Use the usage rate cards of a associated price plan of the given account 
    * @return mode
-  **/
+   */
   @javax.annotation.Nonnull
-
   public ModeEnum getMode() {
     return mode;
   }
 
-
-  public void setMode(ModeEnum mode) {
+  public void setMode(@javax.annotation.Nonnull ModeEnum mode) {
     this.mode = mode;
   }
 
 
-  public PricePlanDetailsConfig pricePlanDetails(CreatePricePlanDetails pricePlanDetails) {
-    
+  public PricePlanDetailsConfig pricePlanDetails(@javax.annotation.Nullable CreatePricePlanDetails pricePlanDetails) {
     this.pricePlanDetails = pricePlanDetails;
     return this;
   }
 
-   /**
+  /**
    * Get pricePlanDetails
    * @return pricePlanDetails
-  **/
+   */
   @javax.annotation.Nullable
-
   public CreatePricePlanDetails getPricePlanDetails() {
     return pricePlanDetails;
   }
 
-
-  public void setPricePlanDetails(CreatePricePlanDetails pricePlanDetails) {
+  public void setPricePlanDetails(@javax.annotation.Nullable CreatePricePlanDetails pricePlanDetails) {
     this.pricePlanDetails = pricePlanDetails;
   }
 
 
-  public PricePlanDetailsConfig pricePlanId(String pricePlanId) {
-    
+  public PricePlanDetailsConfig pricePlanId(@javax.annotation.Nullable String pricePlanId) {
     this.pricePlanId = pricePlanId;
     return this;
   }
 
-   /**
+  /**
    * Id of the price plan, this will be considered if mode is PRICE_PLAN
    * @return pricePlanId
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getPricePlanId() {
     return pricePlanId;
   }
 
-
-  public void setPricePlanId(String pricePlanId) {
+  public void setPricePlanId(@javax.annotation.Nullable String pricePlanId) {
     this.pricePlanId = pricePlanId;
   }
 
 
-  public PricePlanDetailsConfig accountId(String accountId) {
-    
+  public PricePlanDetailsConfig accountId(@javax.annotation.Nullable String accountId) {
     this.accountId = accountId;
     return this;
   }
 
-   /**
+  /**
    * Id of the account, this will be considered if mode is ACCOUNT
    * @return accountId
-  **/
+   */
   @javax.annotation.Nullable
-
   public String getAccountId() {
     return accountId;
   }
 
-
-  public void setAccountId(String accountId) {
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
     this.accountId = accountId;
   }
 
 
-  public PricePlanDetailsConfig effectiveOn(OffsetDateTime effectiveOn) {
-    
+  public PricePlanDetailsConfig effectiveOn(@javax.annotation.Nullable OffsetDateTime effectiveOn) {
     this.effectiveOn = effectiveOn;
     return this;
   }
 
-   /**
+  /**
    * Will be used for getting the usage rate card, only used if mode is ACCOUNT or PRICE_PLAN
    * @return effectiveOn
-  **/
+   */
   @javax.annotation.Nullable
-
   public OffsetDateTime getEffectiveOn() {
     return effectiveOn;
   }
 
-
-  public void setEffectiveOn(OffsetDateTime effectiveOn) {
+  public void setEffectiveOn(@javax.annotation.Nullable OffsetDateTime effectiveOn) {
     this.effectiveOn = effectiveOn;
+  }
+
+
+  public PricePlanDetailsConfig pricingCycleOrdinal(@javax.annotation.Nullable Integer pricingCycleOrdinal) {
+    this.pricingCycleOrdinal = pricingCycleOrdinal;
+    return this;
+  }
+
+  /**
+   * nth cycle, will be used to calculate revenue for the particular cycle, only used if mode is CUSTOM or PRICE_PLAN
+   * @return pricingCycleOrdinal
+   */
+  @javax.annotation.Nullable
+  public Integer getPricingCycleOrdinal() {
+    return pricingCycleOrdinal;
+  }
+
+  public void setPricingCycleOrdinal(@javax.annotation.Nullable Integer pricingCycleOrdinal) {
+    this.pricingCycleOrdinal = pricingCycleOrdinal;
   }
 
 
@@ -249,12 +270,13 @@ public class PricePlanDetailsConfig implements Serializable {
         Objects.equals(this.pricePlanDetails, pricePlanDetailsConfig.pricePlanDetails) &&
         Objects.equals(this.pricePlanId, pricePlanDetailsConfig.pricePlanId) &&
         Objects.equals(this.accountId, pricePlanDetailsConfig.accountId) &&
-        Objects.equals(this.effectiveOn, pricePlanDetailsConfig.effectiveOn);
+        Objects.equals(this.effectiveOn, pricePlanDetailsConfig.effectiveOn) &&
+        Objects.equals(this.pricingCycleOrdinal, pricePlanDetailsConfig.pricingCycleOrdinal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mode, pricePlanDetails, pricePlanId, accountId, effectiveOn);
+    return Objects.hash(mode, pricePlanDetails, pricePlanId, accountId, effectiveOn, pricingCycleOrdinal);
   }
 
   @Override
@@ -266,6 +288,7 @@ public class PricePlanDetailsConfig implements Serializable {
     sb.append("    pricePlanId: ").append(toIndentedString(pricePlanId)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    effectiveOn: ").append(toIndentedString(effectiveOn)).append("\n");
+    sb.append("    pricingCycleOrdinal: ").append(toIndentedString(pricingCycleOrdinal)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -293,45 +316,49 @@ public class PricePlanDetailsConfig implements Serializable {
     openapiFields.add("pricePlanId");
     openapiFields.add("accountId");
     openapiFields.add("effectiveOn");
+    openapiFields.add("pricingCycleOrdinal");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("mode");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to PricePlanDetailsConfig
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!PricePlanDetailsConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PricePlanDetailsConfig
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PricePlanDetailsConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PricePlanDetailsConfig is not found in the empty JSON string", PricePlanDetailsConfig.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!PricePlanDetailsConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PricePlanDetailsConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PricePlanDetailsConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : PricePlanDetailsConfig.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("mode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mode").toString()));
       }
+      // validate the required field `mode`
+      ModeEnum.validateJsonElement(jsonObj.get("mode"));
       // validate the optional field `pricePlanDetails`
       if (jsonObj.get("pricePlanDetails") != null && !jsonObj.get("pricePlanDetails").isJsonNull()) {
-        CreatePricePlanDetails.validateJsonObject(jsonObj.getAsJsonObject("pricePlanDetails"));
+        CreatePricePlanDetails.validateJsonElement(jsonObj.get("pricePlanDetails"));
       }
       if ((jsonObj.get("pricePlanId") != null && !jsonObj.get("pricePlanId").isJsonNull()) && !jsonObj.get("pricePlanId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `pricePlanId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pricePlanId").toString()));
@@ -361,31 +388,31 @@ public class PricePlanDetailsConfig implements Serializable {
 
            @Override
            public PricePlanDetailsConfig read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of PricePlanDetailsConfig given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PricePlanDetailsConfig
-  * @throws IOException if the JSON string is invalid with respect to PricePlanDetailsConfig
-  */
+  /**
+   * Create an instance of PricePlanDetailsConfig given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PricePlanDetailsConfig
+   * @throws IOException if the JSON string is invalid with respect to PricePlanDetailsConfig
+   */
   public static PricePlanDetailsConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PricePlanDetailsConfig.class);
   }
 
- /**
-  * Convert an instance of PricePlanDetailsConfig to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PricePlanDetailsConfig to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

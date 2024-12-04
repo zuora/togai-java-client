@@ -14,19 +14,26 @@
 package com.togai.client.models;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.togai.client.models.BillingEntitlementRateCard;
+import com.togai.client.models.BillingEntitlementRevenueSummary;
+import com.togai.client.models.CreditGrantRateCard;
+import com.togai.client.models.CreditGrantRevenueSummary;
+import com.togai.client.models.EntitlementOverageRateCard;
+import com.togai.client.models.EntitlementOverageRevenueSummary;
 import com.togai.client.models.FixedFeeRateCard;
-import com.togai.client.models.RevenueInfoFixedFeeRevenueSummary;
+import com.togai.client.models.FixedFeeRevenueSummary;
+import com.togai.client.models.LicenseRateCard;
 import com.togai.client.models.SlabRevenueSummary;
 import com.togai.client.models.UsageRateCard;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,13 +49,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.togai.client.JSON;
@@ -56,128 +65,323 @@ import com.togai.client.JSON;
 /**
  * RevenueInfo
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class RevenueInfo implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_USAGE_RATE_CARD = "usageRateCard";
   @SerializedName(SERIALIZED_NAME_USAGE_RATE_CARD)
+  @javax.annotation.Nullable
   private UsageRateCard usageRateCard;
 
   public static final String SERIALIZED_NAME_FIXED_FEE_RATE_CARD = "fixedFeeRateCard";
   @SerializedName(SERIALIZED_NAME_FIXED_FEE_RATE_CARD)
+  @javax.annotation.Nullable
   private FixedFeeRateCard fixedFeeRateCard;
+
+  public static final String SERIALIZED_NAME_LICENSE_RATE_CARD = "licenseRateCard";
+  @SerializedName(SERIALIZED_NAME_LICENSE_RATE_CARD)
+  @javax.annotation.Nullable
+  private LicenseRateCard licenseRateCard;
+
+  public static final String SERIALIZED_NAME_BILLING_ENTITLEMENT_RATE_CARD = "billingEntitlementRateCard";
+  @SerializedName(SERIALIZED_NAME_BILLING_ENTITLEMENT_RATE_CARD)
+  @javax.annotation.Nullable
+  private BillingEntitlementRateCard billingEntitlementRateCard;
+
+  public static final String SERIALIZED_NAME_CREDIT_GRANT_RATE_CARD = "creditGrantRateCard";
+  @SerializedName(SERIALIZED_NAME_CREDIT_GRANT_RATE_CARD)
+  @javax.annotation.Nullable
+  private CreditGrantRateCard creditGrantRateCard;
+
+  public static final String SERIALIZED_NAME_ENTITLEMENT_OVERAGE_RATE_CARD = "entitlementOverageRateCard";
+  @SerializedName(SERIALIZED_NAME_ENTITLEMENT_OVERAGE_RATE_CARD)
+  @javax.annotation.Nullable
+  private EntitlementOverageRateCard entitlementOverageRateCard;
 
   public static final String SERIALIZED_NAME_USAGES = "usages";
   @SerializedName(SERIALIZED_NAME_USAGES)
+  @javax.annotation.Nonnull
   private Map<String, BigDecimal> usages = new HashMap<>();
 
   public static final String SERIALIZED_NAME_FIXED_FEE_REVENUE_SUMMARY = "fixedFeeRevenueSummary";
   @SerializedName(SERIALIZED_NAME_FIXED_FEE_REVENUE_SUMMARY)
-  private RevenueInfoFixedFeeRevenueSummary fixedFeeRevenueSummary;
+  @javax.annotation.Nullable
+  private FixedFeeRevenueSummary fixedFeeRevenueSummary;
+
+  public static final String SERIALIZED_NAME_LICENSE_REVENUE_SUMMARY = "licenseRevenueSummary";
+  @SerializedName(SERIALIZED_NAME_LICENSE_REVENUE_SUMMARY)
+  @javax.annotation.Nullable
+  private List<SlabRevenueSummary> licenseRevenueSummary = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_BILLING_ENTITLEMENT_REVENUE_SUMMARY = "billingEntitlementRevenueSummary";
+  @SerializedName(SERIALIZED_NAME_BILLING_ENTITLEMENT_REVENUE_SUMMARY)
+  @javax.annotation.Nullable
+  private BillingEntitlementRevenueSummary billingEntitlementRevenueSummary;
+
+  public static final String SERIALIZED_NAME_CREDIT_GRANT_REVENUE_SUMMARY = "creditGrantRevenueSummary";
+  @SerializedName(SERIALIZED_NAME_CREDIT_GRANT_REVENUE_SUMMARY)
+  @javax.annotation.Nullable
+  private CreditGrantRevenueSummary creditGrantRevenueSummary;
+
+  public static final String SERIALIZED_NAME_ENTITLEMENT_OVERAGE_REVENUE_SUMMARY = "entitlementOverageRevenueSummary";
+  @SerializedName(SERIALIZED_NAME_ENTITLEMENT_OVERAGE_REVENUE_SUMMARY)
+  @javax.annotation.Nullable
+  private EntitlementOverageRevenueSummary entitlementOverageRevenueSummary;
 
   public static final String SERIALIZED_NAME_SLAB_REVENUE_SUMMARIES = "slabRevenueSummaries";
   @SerializedName(SERIALIZED_NAME_SLAB_REVENUE_SUMMARIES)
+  @javax.annotation.Nullable
   private List<SlabRevenueSummary> slabRevenueSummaries = new ArrayList<>();
 
   public RevenueInfo() {
   }
 
-  public RevenueInfo usageRateCard(UsageRateCard usageRateCard) {
-    
+  public RevenueInfo usageRateCard(@javax.annotation.Nullable UsageRateCard usageRateCard) {
     this.usageRateCard = usageRateCard;
     return this;
   }
 
-   /**
+  /**
    * Get usageRateCard
    * @return usageRateCard
-  **/
+   */
   @javax.annotation.Nullable
-
   public UsageRateCard getUsageRateCard() {
     return usageRateCard;
   }
 
-
-  public void setUsageRateCard(UsageRateCard usageRateCard) {
+  public void setUsageRateCard(@javax.annotation.Nullable UsageRateCard usageRateCard) {
     this.usageRateCard = usageRateCard;
   }
 
 
-  public RevenueInfo fixedFeeRateCard(FixedFeeRateCard fixedFeeRateCard) {
-    
+  public RevenueInfo fixedFeeRateCard(@javax.annotation.Nullable FixedFeeRateCard fixedFeeRateCard) {
     this.fixedFeeRateCard = fixedFeeRateCard;
     return this;
   }
 
-   /**
+  /**
    * Get fixedFeeRateCard
    * @return fixedFeeRateCard
-  **/
+   */
   @javax.annotation.Nullable
-
   public FixedFeeRateCard getFixedFeeRateCard() {
     return fixedFeeRateCard;
   }
 
-
-  public void setFixedFeeRateCard(FixedFeeRateCard fixedFeeRateCard) {
+  public void setFixedFeeRateCard(@javax.annotation.Nullable FixedFeeRateCard fixedFeeRateCard) {
     this.fixedFeeRateCard = fixedFeeRateCard;
   }
 
 
-  public RevenueInfo usages(Map<String, BigDecimal> usages) {
-    
+  public RevenueInfo licenseRateCard(@javax.annotation.Nullable LicenseRateCard licenseRateCard) {
+    this.licenseRateCard = licenseRateCard;
+    return this;
+  }
+
+  /**
+   * Get licenseRateCard
+   * @return licenseRateCard
+   */
+  @javax.annotation.Nullable
+  public LicenseRateCard getLicenseRateCard() {
+    return licenseRateCard;
+  }
+
+  public void setLicenseRateCard(@javax.annotation.Nullable LicenseRateCard licenseRateCard) {
+    this.licenseRateCard = licenseRateCard;
+  }
+
+
+  public RevenueInfo billingEntitlementRateCard(@javax.annotation.Nullable BillingEntitlementRateCard billingEntitlementRateCard) {
+    this.billingEntitlementRateCard = billingEntitlementRateCard;
+    return this;
+  }
+
+  /**
+   * Get billingEntitlementRateCard
+   * @return billingEntitlementRateCard
+   */
+  @javax.annotation.Nullable
+  public BillingEntitlementRateCard getBillingEntitlementRateCard() {
+    return billingEntitlementRateCard;
+  }
+
+  public void setBillingEntitlementRateCard(@javax.annotation.Nullable BillingEntitlementRateCard billingEntitlementRateCard) {
+    this.billingEntitlementRateCard = billingEntitlementRateCard;
+  }
+
+
+  public RevenueInfo creditGrantRateCard(@javax.annotation.Nullable CreditGrantRateCard creditGrantRateCard) {
+    this.creditGrantRateCard = creditGrantRateCard;
+    return this;
+  }
+
+  /**
+   * Get creditGrantRateCard
+   * @return creditGrantRateCard
+   */
+  @javax.annotation.Nullable
+  public CreditGrantRateCard getCreditGrantRateCard() {
+    return creditGrantRateCard;
+  }
+
+  public void setCreditGrantRateCard(@javax.annotation.Nullable CreditGrantRateCard creditGrantRateCard) {
+    this.creditGrantRateCard = creditGrantRateCard;
+  }
+
+
+  public RevenueInfo entitlementOverageRateCard(@javax.annotation.Nullable EntitlementOverageRateCard entitlementOverageRateCard) {
+    this.entitlementOverageRateCard = entitlementOverageRateCard;
+    return this;
+  }
+
+  /**
+   * Get entitlementOverageRateCard
+   * @return entitlementOverageRateCard
+   */
+  @javax.annotation.Nullable
+  public EntitlementOverageRateCard getEntitlementOverageRateCard() {
+    return entitlementOverageRateCard;
+  }
+
+  public void setEntitlementOverageRateCard(@javax.annotation.Nullable EntitlementOverageRateCard entitlementOverageRateCard) {
+    this.entitlementOverageRateCard = entitlementOverageRateCard;
+  }
+
+
+  public RevenueInfo usages(@javax.annotation.Nonnull Map<String, BigDecimal> usages) {
     this.usages = usages;
     return this;
   }
 
   public RevenueInfo putUsagesItem(String key, BigDecimal usagesItem) {
+    if (this.usages == null) {
+      this.usages = new HashMap<>();
+    }
     this.usages.put(key, usagesItem);
     return this;
   }
 
-   /**
+  /**
    * Get usages
    * @return usages
-  **/
+   */
   @javax.annotation.Nonnull
-
   public Map<String, BigDecimal> getUsages() {
     return usages;
   }
 
-
-  public void setUsages(Map<String, BigDecimal> usages) {
+  public void setUsages(@javax.annotation.Nonnull Map<String, BigDecimal> usages) {
     this.usages = usages;
   }
 
 
-  public RevenueInfo fixedFeeRevenueSummary(RevenueInfoFixedFeeRevenueSummary fixedFeeRevenueSummary) {
-    
+  public RevenueInfo fixedFeeRevenueSummary(@javax.annotation.Nullable FixedFeeRevenueSummary fixedFeeRevenueSummary) {
     this.fixedFeeRevenueSummary = fixedFeeRevenueSummary;
     return this;
   }
 
-   /**
+  /**
    * Get fixedFeeRevenueSummary
    * @return fixedFeeRevenueSummary
-  **/
+   */
   @javax.annotation.Nullable
-
-  public RevenueInfoFixedFeeRevenueSummary getFixedFeeRevenueSummary() {
+  public FixedFeeRevenueSummary getFixedFeeRevenueSummary() {
     return fixedFeeRevenueSummary;
   }
 
-
-  public void setFixedFeeRevenueSummary(RevenueInfoFixedFeeRevenueSummary fixedFeeRevenueSummary) {
+  public void setFixedFeeRevenueSummary(@javax.annotation.Nullable FixedFeeRevenueSummary fixedFeeRevenueSummary) {
     this.fixedFeeRevenueSummary = fixedFeeRevenueSummary;
   }
 
 
-  public RevenueInfo slabRevenueSummaries(List<SlabRevenueSummary> slabRevenueSummaries) {
-    
+  public RevenueInfo licenseRevenueSummary(@javax.annotation.Nullable List<SlabRevenueSummary> licenseRevenueSummary) {
+    this.licenseRevenueSummary = licenseRevenueSummary;
+    return this;
+  }
+
+  public RevenueInfo addLicenseRevenueSummaryItem(SlabRevenueSummary licenseRevenueSummaryItem) {
+    if (this.licenseRevenueSummary == null) {
+      this.licenseRevenueSummary = new ArrayList<>();
+    }
+    this.licenseRevenueSummary.add(licenseRevenueSummaryItem);
+    return this;
+  }
+
+  /**
+   * Get licenseRevenueSummary
+   * @return licenseRevenueSummary
+   */
+  @javax.annotation.Nullable
+  public List<SlabRevenueSummary> getLicenseRevenueSummary() {
+    return licenseRevenueSummary;
+  }
+
+  public void setLicenseRevenueSummary(@javax.annotation.Nullable List<SlabRevenueSummary> licenseRevenueSummary) {
+    this.licenseRevenueSummary = licenseRevenueSummary;
+  }
+
+
+  public RevenueInfo billingEntitlementRevenueSummary(@javax.annotation.Nullable BillingEntitlementRevenueSummary billingEntitlementRevenueSummary) {
+    this.billingEntitlementRevenueSummary = billingEntitlementRevenueSummary;
+    return this;
+  }
+
+  /**
+   * Get billingEntitlementRevenueSummary
+   * @return billingEntitlementRevenueSummary
+   */
+  @javax.annotation.Nullable
+  public BillingEntitlementRevenueSummary getBillingEntitlementRevenueSummary() {
+    return billingEntitlementRevenueSummary;
+  }
+
+  public void setBillingEntitlementRevenueSummary(@javax.annotation.Nullable BillingEntitlementRevenueSummary billingEntitlementRevenueSummary) {
+    this.billingEntitlementRevenueSummary = billingEntitlementRevenueSummary;
+  }
+
+
+  public RevenueInfo creditGrantRevenueSummary(@javax.annotation.Nullable CreditGrantRevenueSummary creditGrantRevenueSummary) {
+    this.creditGrantRevenueSummary = creditGrantRevenueSummary;
+    return this;
+  }
+
+  /**
+   * Get creditGrantRevenueSummary
+   * @return creditGrantRevenueSummary
+   */
+  @javax.annotation.Nullable
+  public CreditGrantRevenueSummary getCreditGrantRevenueSummary() {
+    return creditGrantRevenueSummary;
+  }
+
+  public void setCreditGrantRevenueSummary(@javax.annotation.Nullable CreditGrantRevenueSummary creditGrantRevenueSummary) {
+    this.creditGrantRevenueSummary = creditGrantRevenueSummary;
+  }
+
+
+  public RevenueInfo entitlementOverageRevenueSummary(@javax.annotation.Nullable EntitlementOverageRevenueSummary entitlementOverageRevenueSummary) {
+    this.entitlementOverageRevenueSummary = entitlementOverageRevenueSummary;
+    return this;
+  }
+
+  /**
+   * Get entitlementOverageRevenueSummary
+   * @return entitlementOverageRevenueSummary
+   */
+  @javax.annotation.Nullable
+  public EntitlementOverageRevenueSummary getEntitlementOverageRevenueSummary() {
+    return entitlementOverageRevenueSummary;
+  }
+
+  public void setEntitlementOverageRevenueSummary(@javax.annotation.Nullable EntitlementOverageRevenueSummary entitlementOverageRevenueSummary) {
+    this.entitlementOverageRevenueSummary = entitlementOverageRevenueSummary;
+  }
+
+
+  public RevenueInfo slabRevenueSummaries(@javax.annotation.Nullable List<SlabRevenueSummary> slabRevenueSummaries) {
     this.slabRevenueSummaries = slabRevenueSummaries;
     return this;
   }
@@ -190,18 +394,16 @@ public class RevenueInfo implements Serializable {
     return this;
   }
 
-   /**
+  /**
    * Get slabRevenueSummaries
    * @return slabRevenueSummaries
-  **/
+   */
   @javax.annotation.Nullable
-
   public List<SlabRevenueSummary> getSlabRevenueSummaries() {
     return slabRevenueSummaries;
   }
 
-
-  public void setSlabRevenueSummaries(List<SlabRevenueSummary> slabRevenueSummaries) {
+  public void setSlabRevenueSummaries(@javax.annotation.Nullable List<SlabRevenueSummary> slabRevenueSummaries) {
     this.slabRevenueSummaries = slabRevenueSummaries;
   }
 
@@ -218,14 +420,22 @@ public class RevenueInfo implements Serializable {
     RevenueInfo revenueInfo = (RevenueInfo) o;
     return Objects.equals(this.usageRateCard, revenueInfo.usageRateCard) &&
         Objects.equals(this.fixedFeeRateCard, revenueInfo.fixedFeeRateCard) &&
+        Objects.equals(this.licenseRateCard, revenueInfo.licenseRateCard) &&
+        Objects.equals(this.billingEntitlementRateCard, revenueInfo.billingEntitlementRateCard) &&
+        Objects.equals(this.creditGrantRateCard, revenueInfo.creditGrantRateCard) &&
+        Objects.equals(this.entitlementOverageRateCard, revenueInfo.entitlementOverageRateCard) &&
         Objects.equals(this.usages, revenueInfo.usages) &&
         Objects.equals(this.fixedFeeRevenueSummary, revenueInfo.fixedFeeRevenueSummary) &&
+        Objects.equals(this.licenseRevenueSummary, revenueInfo.licenseRevenueSummary) &&
+        Objects.equals(this.billingEntitlementRevenueSummary, revenueInfo.billingEntitlementRevenueSummary) &&
+        Objects.equals(this.creditGrantRevenueSummary, revenueInfo.creditGrantRevenueSummary) &&
+        Objects.equals(this.entitlementOverageRevenueSummary, revenueInfo.entitlementOverageRevenueSummary) &&
         Objects.equals(this.slabRevenueSummaries, revenueInfo.slabRevenueSummaries);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(usageRateCard, fixedFeeRateCard, usages, fixedFeeRevenueSummary, slabRevenueSummaries);
+    return Objects.hash(usageRateCard, fixedFeeRateCard, licenseRateCard, billingEntitlementRateCard, creditGrantRateCard, entitlementOverageRateCard, usages, fixedFeeRevenueSummary, licenseRevenueSummary, billingEntitlementRevenueSummary, creditGrantRevenueSummary, entitlementOverageRevenueSummary, slabRevenueSummaries);
   }
 
   @Override
@@ -234,8 +444,16 @@ public class RevenueInfo implements Serializable {
     sb.append("class RevenueInfo {\n");
     sb.append("    usageRateCard: ").append(toIndentedString(usageRateCard)).append("\n");
     sb.append("    fixedFeeRateCard: ").append(toIndentedString(fixedFeeRateCard)).append("\n");
+    sb.append("    licenseRateCard: ").append(toIndentedString(licenseRateCard)).append("\n");
+    sb.append("    billingEntitlementRateCard: ").append(toIndentedString(billingEntitlementRateCard)).append("\n");
+    sb.append("    creditGrantRateCard: ").append(toIndentedString(creditGrantRateCard)).append("\n");
+    sb.append("    entitlementOverageRateCard: ").append(toIndentedString(entitlementOverageRateCard)).append("\n");
     sb.append("    usages: ").append(toIndentedString(usages)).append("\n");
     sb.append("    fixedFeeRevenueSummary: ").append(toIndentedString(fixedFeeRevenueSummary)).append("\n");
+    sb.append("    licenseRevenueSummary: ").append(toIndentedString(licenseRevenueSummary)).append("\n");
+    sb.append("    billingEntitlementRevenueSummary: ").append(toIndentedString(billingEntitlementRevenueSummary)).append("\n");
+    sb.append("    creditGrantRevenueSummary: ").append(toIndentedString(creditGrantRevenueSummary)).append("\n");
+    sb.append("    entitlementOverageRevenueSummary: ").append(toIndentedString(entitlementOverageRevenueSummary)).append("\n");
     sb.append("    slabRevenueSummaries: ").append(toIndentedString(slabRevenueSummaries)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -261,8 +479,16 @@ public class RevenueInfo implements Serializable {
     openapiFields = new HashSet<String>();
     openapiFields.add("usageRateCard");
     openapiFields.add("fixedFeeRateCard");
+    openapiFields.add("licenseRateCard");
+    openapiFields.add("billingEntitlementRateCard");
+    openapiFields.add("creditGrantRateCard");
+    openapiFields.add("entitlementOverageRateCard");
     openapiFields.add("usages");
     openapiFields.add("fixedFeeRevenueSummary");
+    openapiFields.add("licenseRevenueSummary");
+    openapiFields.add("billingEntitlementRevenueSummary");
+    openapiFields.add("creditGrantRevenueSummary");
+    openapiFields.add("entitlementOverageRevenueSummary");
     openapiFields.add("slabRevenueSummaries");
 
     // a set of required properties/fields (JSON key names)
@@ -270,44 +496,87 @@ public class RevenueInfo implements Serializable {
     openapiRequiredFields.add("usages");
   }
 
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to RevenueInfo
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!RevenueInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RevenueInfo
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!RevenueInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in RevenueInfo is not found in the empty JSON string", RevenueInfo.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!RevenueInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RevenueInfo` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RevenueInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : RevenueInfo.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `usageRateCard`
       if (jsonObj.get("usageRateCard") != null && !jsonObj.get("usageRateCard").isJsonNull()) {
-        UsageRateCard.validateJsonObject(jsonObj.getAsJsonObject("usageRateCard"));
+        UsageRateCard.validateJsonElement(jsonObj.get("usageRateCard"));
       }
       // validate the optional field `fixedFeeRateCard`
       if (jsonObj.get("fixedFeeRateCard") != null && !jsonObj.get("fixedFeeRateCard").isJsonNull()) {
-        FixedFeeRateCard.validateJsonObject(jsonObj.getAsJsonObject("fixedFeeRateCard"));
+        FixedFeeRateCard.validateJsonElement(jsonObj.get("fixedFeeRateCard"));
+      }
+      // validate the optional field `licenseRateCard`
+      if (jsonObj.get("licenseRateCard") != null && !jsonObj.get("licenseRateCard").isJsonNull()) {
+        LicenseRateCard.validateJsonElement(jsonObj.get("licenseRateCard"));
+      }
+      // validate the optional field `billingEntitlementRateCard`
+      if (jsonObj.get("billingEntitlementRateCard") != null && !jsonObj.get("billingEntitlementRateCard").isJsonNull()) {
+        BillingEntitlementRateCard.validateJsonElement(jsonObj.get("billingEntitlementRateCard"));
+      }
+      // validate the optional field `creditGrantRateCard`
+      if (jsonObj.get("creditGrantRateCard") != null && !jsonObj.get("creditGrantRateCard").isJsonNull()) {
+        CreditGrantRateCard.validateJsonElement(jsonObj.get("creditGrantRateCard"));
+      }
+      // validate the optional field `entitlementOverageRateCard`
+      if (jsonObj.get("entitlementOverageRateCard") != null && !jsonObj.get("entitlementOverageRateCard").isJsonNull()) {
+        EntitlementOverageRateCard.validateJsonElement(jsonObj.get("entitlementOverageRateCard"));
       }
       // validate the optional field `fixedFeeRevenueSummary`
       if (jsonObj.get("fixedFeeRevenueSummary") != null && !jsonObj.get("fixedFeeRevenueSummary").isJsonNull()) {
-        RevenueInfoFixedFeeRevenueSummary.validateJsonObject(jsonObj.getAsJsonObject("fixedFeeRevenueSummary"));
+        FixedFeeRevenueSummary.validateJsonElement(jsonObj.get("fixedFeeRevenueSummary"));
+      }
+      if (jsonObj.get("licenseRevenueSummary") != null && !jsonObj.get("licenseRevenueSummary").isJsonNull()) {
+        JsonArray jsonArraylicenseRevenueSummary = jsonObj.getAsJsonArray("licenseRevenueSummary");
+        if (jsonArraylicenseRevenueSummary != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("licenseRevenueSummary").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `licenseRevenueSummary` to be an array in the JSON string but got `%s`", jsonObj.get("licenseRevenueSummary").toString()));
+          }
+
+          // validate the optional field `licenseRevenueSummary` (array)
+          for (int i = 0; i < jsonArraylicenseRevenueSummary.size(); i++) {
+            SlabRevenueSummary.validateJsonElement(jsonArraylicenseRevenueSummary.get(i));
+          };
+        }
+      }
+      // validate the optional field `billingEntitlementRevenueSummary`
+      if (jsonObj.get("billingEntitlementRevenueSummary") != null && !jsonObj.get("billingEntitlementRevenueSummary").isJsonNull()) {
+        BillingEntitlementRevenueSummary.validateJsonElement(jsonObj.get("billingEntitlementRevenueSummary"));
+      }
+      // validate the optional field `creditGrantRevenueSummary`
+      if (jsonObj.get("creditGrantRevenueSummary") != null && !jsonObj.get("creditGrantRevenueSummary").isJsonNull()) {
+        CreditGrantRevenueSummary.validateJsonElement(jsonObj.get("creditGrantRevenueSummary"));
+      }
+      // validate the optional field `entitlementOverageRevenueSummary`
+      if (jsonObj.get("entitlementOverageRevenueSummary") != null && !jsonObj.get("entitlementOverageRevenueSummary").isJsonNull()) {
+        EntitlementOverageRevenueSummary.validateJsonElement(jsonObj.get("entitlementOverageRevenueSummary"));
       }
       if (jsonObj.get("slabRevenueSummaries") != null && !jsonObj.get("slabRevenueSummaries").isJsonNull()) {
         JsonArray jsonArrayslabRevenueSummaries = jsonObj.getAsJsonArray("slabRevenueSummaries");
@@ -319,7 +588,7 @@ public class RevenueInfo implements Serializable {
 
           // validate the optional field `slabRevenueSummaries` (array)
           for (int i = 0; i < jsonArrayslabRevenueSummaries.size(); i++) {
-            SlabRevenueSummary.validateJsonObject(jsonArrayslabRevenueSummaries.get(i).getAsJsonObject());
+            SlabRevenueSummary.validateJsonElement(jsonArrayslabRevenueSummaries.get(i));
           };
         }
       }
@@ -345,31 +614,31 @@ public class RevenueInfo implements Serializable {
 
            @Override
            public RevenueInfo read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of RevenueInfo given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RevenueInfo
-  * @throws IOException if the JSON string is invalid with respect to RevenueInfo
-  */
+  /**
+   * Create an instance of RevenueInfo given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RevenueInfo
+   * @throws IOException if the JSON string is invalid with respect to RevenueInfo
+   */
   public static RevenueInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RevenueInfo.class);
   }
 
- /**
-  * Convert an instance of RevenueInfo to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RevenueInfo to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

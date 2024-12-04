@@ -9,5 +9,7 @@
 
 * `IN_ARREARS` (value: `"IN_ARREARS"`)
 
+* `PREPAID` (value: `"PREPAID"`)
+
 
 
